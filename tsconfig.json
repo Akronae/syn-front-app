@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es5",
+      "sourceMap": true,
+      "allowJs": true,
+      "checkJs": true,
+      "baseUrl": "./",
+      "paths":
+      {
+        "~/*": ["/*"],
+        "@/*": ["src/*"],
+      },
+      "lib": ["es2017", "DOM"],
+    },
+    "exclude": ["node_modules", "www", "dist", "platforms", "plugins", "res", "build"]
+  }

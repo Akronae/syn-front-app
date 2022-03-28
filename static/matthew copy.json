@@ -1,0 +1,37 @@
+{
+    "collections":
+    {
+        "New Testament":
+        {
+            "name":
+            {
+                "grc": "Κατα Μαθθαιον",
+                "eng": "The Book of Matthew"
+            },
+            "milestones":
+            {
+                "_unit": "verse",
+                "1":
+                [
+                    {"grc": "Βιβλος", "en": "the book"},
+                    {"grc": "γενέσεως", "en": "of the birth"},
+                    {"grc": "Ἰησοῦ Χριστοῦ", "en": "of Jesus Christ"},
+                    {"grc": "υἱοῦ", "en": "son of"},
+                    {"grc": "Δαυεὶδ", "en": "David"},
+                    {"grc": "υἱοῦ", "en": "son of"},
+                    {"grc": "Ἀβρααμ", "en": "Abraham"}
+                ],
+                "2":
+                [
+                    {"grc": "Ἀβραὰμ", "en": ""},
+                    {"grc": "ἐγέννησεν", "en": "he begat"},
+                    {"grc": "τὸν", "en": "the"},
+                    {"grc": "Ἰσαάκ", "en": "Isac"},
+                    {"grc": "Δαυεὶδ", "en": "David"},
+                    {"grc": "υἱοῦ", "en": "son of"},
+                    {"grc": "Ἀβρααμ", "en": "Abraham"}
+                ]
+            }
+        }
+    }
+}
