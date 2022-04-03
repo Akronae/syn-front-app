@@ -214,4 +214,27 @@ export default class StringUtils
     {
         return str.replace(new RegExp(search + '$'), replace);
     }
+
+    /**
+     * @param {string} str 
+     * @param  {...string} all 
+     */
+    static includesEvery (str, ...all)
+    {
+        return all.every(item => str.includes(item))
+    }
+    
+    /**
+     * @param {string} str 
+     * @param  {...string} all 
+     */
+    static includesSome (str, ...all)
+    {
+        return all.some(item => str.includes(item))
+    }
+
+    static endsWithSome (str, ...all)
+    {
+        return all.some(item => str.endsWith(item))
+    }
 }

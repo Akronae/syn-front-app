@@ -4,11 +4,12 @@ import GreekDictionary from '@/utils/GreekDictionary'
 import ObjectUtils from '@/utils/ObjectUtils'
 import GreekGrammar from '@/utils/GreekGrammar'
 import GreekDeclension from './GreekDeclension'
+import GreekDeclensionVerbTables from './GreekDeclensionVerbTables'
 
 export default class GreekInflectionUtils
 {
     /**
-     * @type {Object.<string, GreekDeclensionNounTables.Table>}
+     * @type {Object.<string, GreekDeclension[]>}
      */
     static DICTIONARY_INFLECTED = {}
 
@@ -22,52 +23,55 @@ export default class GreekInflectionUtils
         str = str.replace(/plural/gm, 'plur')
         str = str.replace(/masculine/gm, 'mas')
         str = str.replace(/feminine/gm, 'fem')
+        str = str.replace(/aorist/gm, 'aor')
+        str = str.replace(/active/gm, 'act')
+        str = str.replace(/indicative/gm, 'ind')
+        str = str.replace(/third/gm, '3rd')
 
         return str
     }
 
+    static populate ()
+    {
+        delete this.DICTIONARY_INFLECTED
+        this.DICTIONARY_INFLECTED = {}
+        for (const [key, value] of Object.entries(GreekDictionary.DICTIONARY))
+        {
+            var table = this.inflect(key)
+            var pathes = ObjectUtils.getValuesPathes(table)
+            for (const [declStr, inflected] of Object.entries(pathes))
+            {
+                if (!inflected) continue
+                var declension = new GreekDeclension()
+                declension.lemma = key
+                declension.pos = value.pos
+                Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
+                Object.entries(GreekGrammar.CASES).forEach(([k, v]) => { if (declStr.includes(v)) declension.case = GreekGrammar.CASES[k] })
+                Object.entries(GreekGrammar.TENSES).forEach(([k, v]) => { if (declStr.includes(v)) declension.tense = GreekGrammar.TENSES[k] })
+                Object.entries(GreekGrammar.MOODS).forEach(([k, v]) => { if (declStr.includes(v)) declension.mood = GreekGrammar.MOODS[k] })
+                Object.entries(GreekGrammar.VOICES).forEach(([k, v]) => { if (declStr.includes(v)) declension.voice = GreekGrammar.VOICES[k] })
+                Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
+                Object.entries(GreekGrammar.PERSONS).forEach(([k, v]) => { if (declStr.includes(v)) declension.person = GreekGrammar.PERSONS[k] })
+                Object.entries(GreekGrammar.GENDERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.gender = GreekGrammar.GENDERS[k] })
+                if (!this.DICTIONARY_INFLECTED[inflected]) this.DICTIONARY_INFLECTED[inflected] = []
+                this.DICTIONARY_INFLECTED[inflected].push(declension)
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param {string} wordInflected 
+     * @returns {GreekDeclension[]}
+     */
     static getDeclension (wordInflected)
     {
         wordInflected = wordInflected.toLowerCase()
         wordInflected = wordInflected.replace(/ί/gm, 'ί')
 
-        for (const [key] of Object.entries(GreekDictionary.DICTIONARY))
-        {
-            if (!this.DICTIONARY_INFLECTED[key])
-            {
-                this.DICTIONARY_INFLECTED[key] = this.inflect(key)
-            }
-        }
-
-        var entry = null
-        const declension = new GreekDeclension()
-
-        for (const [key, value] of Object.entries(this.DICTIONARY_INFLECTED))
-        {
-            const match = Object.entries(ObjectUtils.getValuesPathes(value)).find(([key, value]) => value == wordInflected)
-            if (match)
-            {
-                entry = match[0]
-                declension.lemma = key
-                break
-            }
-        }
-        if (!entry) return declension
-
-        const dictEntry = GreekDictionary.get(declension.lemma)
-        if (entry.includes(GreekGrammar.GENDERS.FEMININE)) declension.gender = GreekGrammar.GENDERS.FEMININE
-        if (entry.includes(GreekGrammar.GENDERS.MASCULINE)) declension.gender = GreekGrammar.GENDERS.MASCULINE
-        if (entry.includes(GreekGrammar.GENDERS.NEUTER)) declension.gender = GreekGrammar.GENDERS.NEUTER
-        if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN) declension.gender = dictEntry.gender
-        if (entry.includes(GreekGrammar.NUMBERS.SINGULAR)) declension.number = GreekGrammar.NUMBERS.SINGULAR
-        if (entry.includes(GreekGrammar.NUMBERS.PLURAL)) declension.number = GreekGrammar.NUMBERS.PLURAL
-        if (entry.includes(GreekGrammar.CASES.VOCATIVE)) declension.case = GreekGrammar.CASES.VOCATIVE
-        if (entry.includes(GreekGrammar.CASES.NOMINATIVE)) declension.case = GreekGrammar.CASES.NOMINATIVE
-        if (entry.includes(GreekGrammar.CASES.ACCUSATIVE)) declension.case = GreekGrammar.CASES.ACCUSATIVE
-        if (entry.includes(GreekGrammar.CASES.DATIVE)) declension.case = GreekGrammar.CASES.DATIVE
-        if (entry.includes(GreekGrammar.CASES.GENITIVE)) declension.case = GreekGrammar.CASES.GENITIVE
-
-        return declension
+        const declensions = this.DICTIONARY_INFLECTED[wordInflected]
+        if (!declensions) return null
+        return ObjectUtils.clone(declensions)
     }
 
     static inflect (lemma)
@@ -77,16 +81,30 @@ export default class GreekInflectionUtils
         const dictEntry = GreekDictionary.get(lemma)
         
         var radical = StringUtils.EMPTY
-        if (dictEntry.declensionTable)
+        if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
         {
-            const n = dictEntry.declensionTable.singular.nominative
+            const n = dictEntry.declensionNounTable.singular.nominative
             radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(n.masculine || n.feminine || n.neuter), StringUtils.EMPTY)
             radical = lemma.substring(0, radical.length)
+
+            return GreekDeclensionNounTables.conjugateTable(dictEntry.declensionNounTable, radical, lemma)
         }
-        
-        if (dictEntry.declensionTable)
+        else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.VERB)
         {
-            return GreekDeclensionNounTables.conjugateTable(dictEntry.declensionTable, radical, lemma)
+            const firstEnding = dictEntry.declensionVerbTable.present.indicative.active.singular.first[0]
+            radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(firstEnding), StringUtils.EMPTY)
+            radical = lemma.substring(0, radical.length)
+
+            return GreekDeclensionVerbTables.conjugateTable(dictEntry.declensionVerbTable, radical)
         }
+        else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.ARTICLE)
+        {
+            return dictEntry.articleTable
+        }
+        else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN)
+        {
+            return dictEntry.pronounTable
+        }
+        else return {[dictEntry.pos]: lemma}
     }
 }

@@ -1,12 +1,19 @@
 import StringUtils from '@/utils/StringUtils'
+import GreekAlphabet from './GreekAlphabet'
 
 export default class GreekWord
 {
-    static isVowel (letter)
+    static augment (part)
     {
-        const vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']
+        part = part.replace('ος', 'ός')
+        part = part.replace('ους', 'οὺς')
+        part = part.replace('ου', 'οῦ')
+        part = part.replace('ῳ', 'ῷ')
+        part = part.replace('ον', 'όν')
+        part = part.replace('ε', 'έ')
+        part = part.replace('ά', 'η')
 
-        return vowels.includes(StringUtils.removeAccents(letter[0].toLowerCase()))
+        return part
     }
     
     static getSyllables (word)
@@ -18,9 +25,9 @@ export default class GreekWord
             const letter = word[i]
             syllable += letter
 
-            if (this.isVowel(letter))
+            if (GreekAlphabet.isVowel(letter))
             {
-                if (!(i > 0 && this.isVowel(word[i - 1])))
+                if (!(i > 0 && GreekAlphabet.isVowel(word[i - 1])))
                 {
                     syllables.push(syllable)
                     syllable = ''
@@ -30,7 +37,7 @@ export default class GreekWord
         }
         if (syllable)
         {
-            if (syllable.split('').every(letter => !this.isVowel(letter)))
+            if (syllable.split('').every(letter => !GreekAlphabet.isVowel(letter)))
             {
                 syllables[syllables.length - 1] += syllable
             }

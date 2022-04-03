@@ -5,7 +5,7 @@
 * @typedef {"singular" | "plural"} NUMBERS
 */
 /**
-* @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive"} CASES
+* @typedef {"nominative" | "accusative" | "genitive"} CASES
 */
 /**
 * @typedef {"noun" | "pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
@@ -14,13 +14,13 @@
 * @typedef {"first" | "second" | "third"} PERSONS
 */
 /**
-* @typedef {"active" | "middle" | "passive"} VOICES
+* @typedef {"active" | "passive"} VOICES
 */
 /**
-* @typedef {"indicative" | "subjunctive" | "optative" | "imperative"} MOODS
+* @typedef {"indicative" | "perfect" | "continuous" | "compound" | "conditional" | "imperative" | "subjunctive"} MOODS
 */
 /**
-* @typedef {"present" | "imperfect" | "future" | "aorist" | "perfect" | "pluperfect"} TENSES
+* @typedef {"present" | "past" | "future"} TENSES
 */
 
 /**
@@ -41,9 +41,9 @@ export class Genders
      */
     constructor ({feminine = null, masculine = null, neuter = null} = {})
     {
-        this.feminine = feminine
-        this.masculine = masculine
-        this.neuter = neuter
+        this.feminine = feminine || masculine || neuter
+        this.masculine = masculine || neuter || feminine
+        this.neuter = neuter || masculine || feminine
     }
 }
 
@@ -63,8 +63,8 @@ export class Numbers
      */
     constructor ({singular = null, plural = null} = {})
     {
-        this.singular = singular
-        this.plural = plural
+        this.singular = singular || plural
+        this.plural = plural || singular
     }
 }
 
@@ -75,32 +75,26 @@ export class Numbers
 export class Cases
 {
     nominative
-    genitive
-    dative
     accusative
-    vocative
+    genitive
 
     /**
      * @param {Object} args
      * @param {T} [args.nominative]
-     * @param {T} [args.genitive]
-     * @param {T} [args.dative]
      * @param {T} [args.accusative]
-     * @param {T} [args.vocative]
+     * @param {T} [args.genitive]
      */
-    constructor ({nominative = null, genitive = null, dative = null, accusative = null, vocative = null} = {})
+    constructor ({nominative = null, accusative = null, genitive = null} = {})
     {
         this.nominative = nominative
-        this.genitive = genitive
-        this.dative = dative
-        this.accusative = accusative
-        this.vocative = vocative
+        this.accusative = accusative || this.nominative
+        this.genitive = genitive || this.accusative
     }
 }
 
 /**
  * @template T
- * @type {{[key: PERSONS]: T}}
+ * @type {{[key: Persons]: T}}
  */
 export class Persons
 {
@@ -116,9 +110,9 @@ export class Persons
      */
     constructor ({first = null, second = null, third = null} = {})
     {
-        this.first = first
-        this.second = second
-        this.third = third
+        this.first = first || second || third
+        this.second = second || this.first
+        this.third = third || this.second
     }
 }
 
@@ -140,9 +134,9 @@ export class Voices
      */
     constructor ({active = null, middle = null, passive = null} = {})
     {
-        this.active = active || middle || passive
-        this.middle = middle || this.active
-        this.passive = passive || this.middle
+        this.active = active
+        this.middle = middle
+        this.passive = passive
     }
 }
 
@@ -153,23 +147,32 @@ export class Voices
 export class Moods
 {
     indicative
-    subjunctive
-    optative
+    perfect
+    continuous
+    compound
+    conditional
     imperative
+    subjunctive
 
     /**
      * @param {Object} args
      * @param {T} [args.indicative]
-     * @param {T} [args.subjunctive]
-     * @param {T} [args.optative]
+     * @param {T} [args.perfect]
+     * @param {T} [args.continuous]
+     * @param {T} [args.compound]
+     * @param {T} [args.conditional]
      * @param {T} [args.imperative]
+     * @param {T} [args.subjunctive]
      */
-    constructor ({indicative = null, subjunctive = null, optative = null, imperative = null} = {})
+    constructor ({indicative = null, perfect = null, continuous = null, compound = null, conditional = null, imperative = null, subjunctive = null} = {})
     {
-        this.indicative = indicative || subjunctive || optative || imperative
-        this.subjunctive = subjunctive || this.indicative
-        this.optative = optative || this.subjunctive
-        this.imperative = imperative || this.optative
+        this.indicative = indicative
+        this.perfect = perfect
+        this.continuous = continuous
+        this.compound = compound
+        this.conditional = conditional
+        this.imperative = imperative
+        this.subjunctive = subjunctive
     }
 }
 
@@ -180,33 +183,24 @@ export class Moods
 export class Tenses
 {
     present
-    imperfect
+    past
     future
-    aorist
-    perfect
-    pluperfect
 
     /**
      * @param {Object} args
      * @param {T} [args.present]
-     * @param {T} [args.imperfect]
+     * @param {T} [args.past]
      * @param {T} [args.future]
-     * @param {T} [args.aorist]
-     * @param {T} [args.perfect]
-     * @param {T} [args.pluperfect]
      */
-    constructor ({present = null, imperfect = null, future = null, aorist = null, perfect = null, pluperfect = null} = {})
+    constructor ({present = null, past = null, future = null} = {})
     {
         this.present = present
-        this.imperfect = imperfect
+        this.past = past
         this.future = future
-        this.aorist = aorist
-        this.perfect = perfect
-        this.pluperfect = pluperfect
     }
 }
 
-export default class GreekGrammar
+export default class EnglishGrammar
 {
     /**
      * @type {{FEMININE: GENDERS, MASCULINE: GENDERS, NEUTER: GENDERS}}
@@ -226,14 +220,12 @@ export default class GreekGrammar
         PLURAL: 'plural'
     }
     /**
-     * @type {{VOCATIVE: CASES, NOMINATIVE: CASES, ACCUSATIVE: CASES, DATIVE: CASES, GENITIVE: CASES}}
+     * @type {{NOMINATIVE: CASES, ACCUSATIVE: CASES, GENITIVE: CASES}}
      */
     static CASES =
     {
-        VOCATIVE: 'vocative',
         NOMINATIVE: 'nominative',
         ACCUSATIVE: 'accusative',
-        DATIVE: 'dative',
         GENITIVE: 'genitive',
     }
     /**
@@ -264,34 +256,33 @@ export default class GreekGrammar
         THIRD: 'third'
     }
     /**
-    * @type {{ACTIVE: VOICES, MIDDLE: VOICES, PASSIVE: VOICES}}
+    * @type {{ACTIVE: VOICES, PASSIVE: VOICES}}
     */
     static VOICES =
     {
         ACTIVE: 'active',
-        MIDDLE: 'middle',
         PASSIVE: 'passive'
     }
     /**
-    * @type {{INDICATIVE: MOODS, SUBJUNCTIVE: MOODS, OPTATIVE: MOODS, IMPERATIVE: MOODS}}
+    * @type {{INDICATIVE: MOODS, PERFECT: MOODS, CONTINUOUS: MOODS, COMPOUND: MOODS, CONDITIONAL: MOODS, IMPERATIVE: MOODS, SUBJUNCTIVE: MOODS}}
     */
     static MOODS =
     {
         INDICATIVE: 'indicative',
-        SUBJUNCTIVE: 'subjunctive',
-        OPTATIVE: 'optative',
-        IMPERATIVE: 'imperative'
+        PERFECT: 'perfect',
+        CONTINUOUS: 'continuous',
+        COMPOUND: 'compound',
+        CONDITIONAL: 'conditional',
+        IMPERATIVE: 'imperative',
+        SUBJUNCTIVE: 'subjunctive'
     }
     /**
-    * @type {{PRESENT: TENSES, IMPERFECT: TENSES, FUTURE: TENSES, AORIST: TENSES, PERFECT: TENSES, PLUPERFECT: TENSES}}
+    * @type {{PRESENT: TENSES, PAST: TENSES, FUTURE: TENSES}}
     */
     static TENSES =
     {
         PRESENT: 'present',
-        IMPERFECT: 'imperfect',
-        FUTURE: 'future',
-        AORIST: 'aorist',
-        PERFECT: 'perfect',
-        PLUPERFECT: 'pluperfect'
+        PAST: 'past',
+        FUTURE: 'future'
     }
 }

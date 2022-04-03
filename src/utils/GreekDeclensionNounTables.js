@@ -1,6 +1,9 @@
 import ObjectUtils from '@/utils/ObjectUtils'
 import GreekWord from '@/utils/GreekWord'
 import StringUtils from '@/utils/StringUtils'
+import GreekGrammar from './GreekGrammar'
+import GreekAlphabet from './GreekAlphabet'
+import ArrayUtils from './ArrayUtils'
 
 class GreekDeclensionTableNounCase
 {
@@ -49,7 +52,7 @@ class GreekDeclensionTableNounNumber
      vocative
 }
 
-class GreekDeclensionTableNoun
+export class GreekDeclensionTableNoun
 {
     /**
      * @type {GreekDeclensionTableNounNumber}
@@ -78,11 +81,8 @@ export default class GreekDeclensionNounTables
      */
      static Table_Type = GreekDeclensionTableNoun
 
-    /**
-     * @type {GreekDeclensionTableNoun}
-     */
-    static INDECLINABLE =
-    {
+    static INDECLINABLE = new GreekDeclensionTableNoun
+    ({
         singular:
         {
             nominative: new GreekDeclensionTableNounCase(),
@@ -99,12 +99,28 @@ export default class GreekDeclensionNounTables
             genitive: new GreekDeclensionTableNounCase(),
             vocative: new GreekDeclensionTableNounCase(),
         }
-    }
-    /**
-     * @type {GreekDeclensionTableNoun}
-     */
-    static OS_OU =
-    {
+    })
+    static SEMITIC_PROPER_NAME = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase(),
+            accusative: new GreekDeclensionTableNounCase(),
+            dative: new GreekDeclensionTableNounCase(),
+            genitive: new GreekDeclensionTableNounCase(),
+            vocative: new GreekDeclensionTableNounCase(),
+        },
+        plural:
+        {
+            nominative: new GreekDeclensionTableNounCase(),
+            accusative: new GreekDeclensionTableNounCase(),
+            dative: new GreekDeclensionTableNounCase(),
+            genitive: new GreekDeclensionTableNounCase(),
+            vocative: new GreekDeclensionTableNounCase(),
+        }
+    })
+    static OS_OU = new GreekDeclensionTableNoun
+    ({
         singular:
         {
             nominative: new GreekDeclensionTableNounCase({ feminine: 'ος' }),
@@ -121,12 +137,9 @@ export default class GreekDeclensionNounTables
             genitive: new GreekDeclensionTableNounCase({ feminine: 'ων' }),
             vocative: new GreekDeclensionTableNounCase({ feminine: 'οι' }),
         }
-    }
-    /**
-     * @type {GreekDeclensionTableNoun}
-     */
-    static IS_EWS =
-    {
+    })
+    static IS_EWS = new GreekDeclensionTableNoun
+    ({
         singular:
         {
             nominative: new GreekDeclensionTableNounCase({ feminine: 'ις' }),
@@ -143,12 +156,9 @@ export default class GreekDeclensionNounTables
             genitive: new GreekDeclensionTableNounCase({ feminine: 'εων' }),
             vocative: new GreekDeclensionTableNounCase({ feminine: 'εις' }),
         }
-    }
-    /**
-     * @type {GreekDeclensionTableNoun}
-     */
-    static OUS_OU =
-    {
+    })
+    static OUS_OU = new GreekDeclensionTableNoun
+    ({
         singular:
         {
             nominative: new GreekDeclensionTableNounCase({ masculine: 'οῦς' }),
@@ -165,11 +175,22 @@ export default class GreekDeclensionNounTables
             genitive: new GreekDeclensionTableNounCase({ masculine: 'ῶν' }),
             vocative: new GreekDeclensionTableNounCase({ masculine: 'οῖ' }),
         }
-    }
+    })
+    static AS_OU = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: 'ς' }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: 'ν' }),
+            dative: new GreekDeclensionTableNounCase({ masculine: '' }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: '' }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: '' }),
+        },
+    })
 
     static moveAccent (radical, table, declension)
     {
-        if (table == this.IS_EWS && declension.includes('genitive'))
+        if (table == this.IS_EWS && declension.includes(GreekGrammar.CASES.GENITIVE))
         {
             var syllables = GreekWord.getSyllables(radical)
             for (var i = syllables.length - 1; i >= 0; i--)
@@ -187,26 +208,24 @@ export default class GreekDeclensionNounTables
             }
             return syllables.join('')
         }
+        if (table == this.SEMITIC_PROPER_NAME && declension.includes(GreekGrammar.CASES.ACCUSATIVE))
+        {
+            syllables = GreekWord.getSyllables(radical)
+            if (GreekAlphabet.isConsonant(ArrayUtils.getLast(ArrayUtils.getLast(syllables))))
+            {
+                syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ')
+            }
+            return syllables.join('')
+        }
         return radical
-    }
-
-    static augmentEnding (ending)
-    {
-        ending = ending.replace('ος', 'ός')
-        ending = ending.replace('ου', 'οῦ')
-        ending = ending.replace('ῳ', 'ῷ')
-        ending = ending.replace('ον', 'όν')
-        ending = ending.replace('ε', 'έ')
-
-        return ending
     }
 
     /**
      * 
-     * @param {GreekDeclensionNounTables.Table} table 
+     * @param {GreekDeclensionTableNoun} table 
      * @param {string} radical 
      * @param {string} lemma 
-     * @returns {GreekDeclensionNounTables.Table}
+     * @returns {GreekDeclensionTableNoun}
      */
     static conjugateTable (table, radical, lemma)
     {
@@ -214,7 +233,7 @@ export default class GreekDeclensionNounTables
         const flatTable = ObjectUtils.getValuesPathes(ObjectUtils.clone(table))
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
-            if (StringUtils.hasAccents(lemmaEnding)) ending = this.augmentEnding(ending)
+            if (StringUtils.hasAccents(lemmaEnding)) ending = GreekWord.augment(ending)
             flatTable[declension] = this.moveAccent(radical, table, declension) + ending
         })
         // @ts-ignore

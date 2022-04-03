@@ -2,11 +2,13 @@ export default class ObjectUtils
 {
     static getValuesPathes (obj)
     {
-        const pathes = []
+        if (!obj) return []
+        
+        const pathes = {}
         Object.keys(obj).forEach(key =>
         {
             const value = obj[key]
-            if (typeof value === 'object')
+            if (typeof value === 'object' && value)
             {
                 Object.assign(pathes, Object.fromEntries(Object.entries(this.getValuesPathes(value)).map(([k, v]) => [`${key}.${k}`, v])))
             }
@@ -18,7 +20,8 @@ export default class ObjectUtils
         return pathes
     }
 
-    static set (obj, path, value) {
+    static set (obj, path, value)
+    {
         var i;
         path = path.split('.');
         for (i = 0; i < path.length - 1; i++)

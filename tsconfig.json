@@ -11,7 +11,7 @@
         "~/*": ["/*"],
         "@/*": ["src/*"],
       },
-      "lib": ["es2017", "DOM"],
+      "lib": ["es2019", "DOM"],
     },
     "exclude": ["node_modules", "www", "dist", "platforms", "plugins", "res", "build"]
   }

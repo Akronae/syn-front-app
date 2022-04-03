@@ -11,6 +11,12 @@ import GreekGrammar from '@/utils/GreekGrammar'
 import GreekDictionary from '@/utils/GreekDictionary'
 import GreekParsedWord from '@/utils/GreekParsedWord'
 import GreekSemantic from '@/utils/GreekSemantic'
+import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables'
+import EnglishDeclensionNounTables from '@/utils/EnglishDeclensionNounTables'
+import EnglishDeclension from '@/utils/EnglishDeclension'
+import EnglishPersonalPronoun from '@/utils/EnglishPersonalPronoun'
+import EnglishGrammar from '@/utils/EnglishGrammar'
+import EnglishTranslator from '@/utils/EnglishTranslator'
 
 export default
 {
@@ -18,7 +24,6 @@ export default
 
     async created()
     {
-        
     },
 
     render () 
@@ -32,8 +37,11 @@ export default
             const verseParsed = []
             verse.split(' ').forEach(word =>
             {
-                const declension = GreekInflectionUtils.getDeclension(word.replace(/[.,]/g, ''))
-                const definition = GreekDictionary.get(declension.lemma)
+                const declensions = GreekInflectionUtils.getDeclension(word.replace(/[.,]/g, ''))
+                if (!declensions) return verseParsed.push(new GreekParsedWord({word}))
+                var declension = declensions[0]
+                const definition = GreekDictionary.get(declension.lemma)                
+                
                 verseParsed.push(new GreekParsedWord({word, declension, definition}))
             })
             GreekSemantic.correct(verseParsed)
@@ -50,23 +58,31 @@ export default
                         <div class='verse-number'>{matthew.shortName.en} {1}:{parsed.indexOf(verseWords) + 1}</div>
                         <div class='verse-text'>
                         {
-                            verseWords.map(({word, declension, definition}) =>
+                            verseWords.map(parsedWord =>
                             {
+                                const {word, declension, definition, translation} = parsedWord
+
                                 return (
-                                    <div class={{'verse-word': true, ['case-' + declension.case]: true}}>
+                                    <div class={{'verse-word': true, ['case-' + declension.case]: true, ['pos-' + definition.pos]: true, 'def-missing': !definition.translation}}>
                                         <div class='verse-word-text'>{word}</div>
                                         {
                                             declension &&
                                             [
-                                                definition && <div class='verse-word-translation'>
-                                                    {declension.case == GreekGrammar.CASES.GENITIVE && 'of '}
-                                                    {declension.case == GreekGrammar.CASES.DATIVE && 'to '}
-                                                    {definition.translation}
-                                                    {definition.le}
+                                                <div class='verse-word-translation'>
+                                                    {EnglishTranslator.translateGreek(parsedWord)}
                                                 </div>,
                                                 <div class='verse-word-declension'>
                                                     {definition && <div>{definition.pos}</div> }
-                                                    <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN} class='column align-center'>
+                                                        {GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}
+                                                    </div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB} class='column align-center'>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.tense || ''}-${declension.voice || ''}-${declension.mood || ''}`)}</div>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''}-${declension.number || ''}`)}</div>
+                                                    </div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.ARTICLE} class='column align-center'>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
+                                                    </div>
                                                 </div>,
                                             ]
                                         }
@@ -124,6 +140,7 @@ export default
         {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
 
             .verse-word
             {
@@ -160,10 +177,19 @@ export default
                 {
                     background-color: var(--theme-vocative-color);
                 }
+                &.pos-verb
+                {
+                    background-color: var(--theme-verb-color);
+                }
+                &.def-missing
+                {
+                    background-color: var(--theme-missing-color);
+                }
 
                 .verse-word-translation
                 {
                     margin-top: 5px;
+                    font-size: 80%;
                 }
 
                 .verse-word-declension
@@ -173,6 +199,8 @@ export default
                     align-items: center;
                     font-size: 70%;
                     margin-top: 5px;
+                    color: var(--theme-text-color-extra-light);
+                    width: max-content;
                 }
             }
         }

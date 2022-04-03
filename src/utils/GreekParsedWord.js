@@ -15,11 +15,16 @@ export default class GreekParsedWord
      * @type {GreekDictionary.Entry}
      */
     definition
+    /**
+     * @type {string}
+     */
+    translation
 
-    constructor({ word = '', declension = new GreekDeclension(), definition = new GreekDictionary.Entry() } = {})
+    constructor({ word = '', declension = new GreekDeclension(), definition = new GreekDictionary.Entry_Type(), translation = '' } = {})
     {
         this.word = word
         this.declension = declension
         this.definition = definition
+        this.translation = translation
     }
 }

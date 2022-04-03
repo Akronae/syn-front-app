@@ -50,7 +50,7 @@ module.exports =
     {
         cordova: 'readonly',
         process: 'readonly',
-        module: 'readonly',
+        modules: 'readonly',
         device: 'readonly',
         app: 'readonly',
         h: 'readonly',

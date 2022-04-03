@@ -11,17 +11,31 @@ import {InlineSvgPlugin} from 'vue-inline-svg';
 import GreekUtils from '@/utils/GreekUtils'
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
 import GreekDeclensionNounTables from '@/utils/GreekDeclensionNounTables'
+import GreekDeclensionVerbTables from '@/utils/GreekDeclensionVerbTables'
+import GreekGrammar from '@/utils/GreekGrammar'
 import StringUtils from '@/utils/StringUtils'
 import GreekWord from '@/utils/GreekWord'
-import Buffer from 'buffer'
+import GreekDictionary from '@/utils/GreekDictionary'
+import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables'
+import EnglishGrammar from '@/utils/EnglishGrammar'
+import ObjectUtils from '@/utils/ObjectUtils'
+import * as Buffer from 'buffer'
+
+GreekInflectionUtils.populate()
 
 window.modules =
 {
     GreekUtils,
     GreekInflectionUtils,
     GreekDeclensionNounTables,
+    GreekDeclensionVerbTables,
     StringUtils,
     GreekWord,
+    GreekGrammar,
+    GreekDictionary,
+    ObjectUtils,
+    EnglishDeclensionVerbTables,
+    EnglishGrammar,
     Buffer
 }
 
