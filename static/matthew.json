@@ -21,10 +21,66 @@
                     "1":
                     {
                         "_unit": "verse",
-                        "1": "Βίβλος γενέσεως Ἰησοῦ Χριστοῦ υἱοῦ Δαυεὶδ υἱοῦ Ἀβρααμ.",
-                        "2": "Ἀβραὰμ ἐγέννησεν τὸν Ἰσαάκ, Ἰσαὰκ δὲ ἐγέννησεν τὸν Ἰακώβ, Ἰακὼβ δὲ ἐγέννησεν τὸν Ἰούδαν καὶ τοὺς ἀδελφοὺς αὐτοῦ",
-                        "3": "Ἰούδας δὲ ἐγέννησεν τὸν Φαρὲς καὶ τὸν Ζαρὰ ἐκ τῆς Θάμαρ, Φαρὲς δὲ ἐγέννησεν τὸν Ἑσρώμ, Ἑσρὼμ δὲ ἐγέννησεν τὸν Ἀράμ,",
-                        "4": "Ἀρὰμ δὲ ἐγέννησεν τὸν Ἀμιναδάβ, Ἀμιναδὰβ δὲ ἐγέννησεν τὸν Ναασσών, Ναασσὼν δὲ ἐγέννησεν τὸν Σαλμών,"
+                        "1":
+                        {
+                            "en": "The book of the generation of Jesus Christ, the son of David, the son of Abraham.",
+                            "grc": "Βίβλος γενέσεως Ἰησοῦ Χριστοῦ υἱοῦ Δαυεὶδ υἱοῦ Ἀβρααμ."
+                        },
+                        "2":
+                        {
+                            "en": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;",
+                            "grc": "Ἀβραὰμ ἐγέννησεν τὸν Ἰσαάκ, Ἰσαὰκ δὲ ἐγέννησεν τὸν Ἰακώβ, Ἰακὼβ δὲ ἐγέννησεν τὸν Ἰούδαν καὶ τοὺς ἀδελφοὺς αὐτοῦ"
+                        },
+                        "3":
+                        {
+                            "en": "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;",
+                            "grc": "Ἰούδας δὲ ἐγέννησεν τὸν Φαρὲς καὶ τὸν Ζαρὰ ἐκ τῆς Θάμαρ, Φαρὲς δὲ ἐγέννησεν τὸν Ἑσρώμ, Ἑσρὼμ δὲ ἐγέννησεν τὸν Ἀράμ,"
+                        },
+                        "4":
+                        {
+                            "en": "And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;",
+                            "grc": "Ἀρὰμ δὲ ἐγέννησεν τὸν Ἀμιναδάβ, Ἀμιναδὰβ δὲ ἐγέννησεν τὸν Ναασσών, Ναασσὼν δὲ ἐγέννησεν τὸν Σαλμών,"
+                        },
+                        "5":
+                        {
+                            "en": "And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;",
+                            "grc": "Σαλμὼν δὲ ἐγέννησεν τὸν Βοὲς ἐκ τῆς Ῥαχάβ, Βοὲς δὲ ἐγέννησεν τὸν Ἰωβὴδ ἐκ τῆς Ῥούθ, Ἰωβὴδ δὲ ἐγέννησεν τὸν Ἰεσσαί,"
+                        },
+                        "6":
+                        {
+                            "en": "And Jesse begat David the king; and David the king begat Solomon of her [that had been the wife] of Urias;",
+                            "grc": "Ἰεσσαὶ δὲ ἐγέννησεν τὸν Δαυεὶδ τὸν βασιλέα. Δαυεὶδ δὲ ἐγέννησεν τὸν Σολομῶνα ἐκ τῆς τοῦ Οὐρίου,"
+                        },
+                        "7":
+                        {
+                            "en": "And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;",
+                            "grc": "Σολομὼν δὲ ἐγέννησεν τὸν Ῥοβοάμ, Ῥοβοὰμ δὲ ἐγέννησεν τὸν Ἀβιά, Ἀβιὰ δὲ ἐγέννησεν τὸν Ἀσάφ, Ἀσὰφ δὲ ἐγέννησεν τὸν Ἰωσαφάτ,"
+                        },
+                        "8":
+                        {
+                            "en": "And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;",
+                            "grc": "Ἰωσαφὰτ δὲ ἐγέννησεν τὸν Ἰωράμ, Ἰωρὰμ δὲ ἐγέννησεν τὸν Ὀζείαν,"
+                        },
+                        "9":
+                        {
+                            "en": "And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;",
+                            "grc": "Ὀζείας δὲ ἐγέννησεν τὸν Ἰωαθάμ, Ἰωαθὰμ δὲ ἐγέννησεν τὸν Ἄχας, Ἄχας δὲ ἐγέννησεν τὸν Ἑζεκίαν,"
+                        },
+                        "10":
+                        {
+                            "en": "And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;",
+                            "grc": "Ἑζεκίας δὲ ἐγέννησεν τὸν Μανασσῆ, Μανασσῆς δὲ ἐγέννησεν τὸν Ἀμώς, Ἀμὼς δὲ ἐγέννησεν τὸν Ἰωσείαν,"
+                        },
+                        "11":
+                        {
+                            "en": "And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:",
+                            "grc": "Ἰωσείας δὲ ἐγέννησεν τὸν Ἰεχονίαν καὶ τοὺς ἀδελφοὺς αὐτοῦ ἐπὶ τῆς μετοικεσίας Βαβυλῶνος."
+                        },
+                        "12":
+                        {
+                            "en": "And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;",
+                            "grc": "Μετὰ δὲ τὴν μετοικεσίαν Βαβυλῶνος Ἰεχονίας ἐγέννησεν τὸν Σαλαθιήλ, Σαλαθιὴλ δὲ ἐγέννησεν τὸν Ζοροβάβελ,"
+                        }
                     }
                 }
             }

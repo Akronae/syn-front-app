@@ -5,6 +5,7 @@ import ObjectUtils from '@/utils/ObjectUtils'
 import GreekGrammar from '@/utils/GreekGrammar'
 import GreekDeclension from './GreekDeclension'
 import GreekDeclensionVerbTables from './GreekDeclensionVerbTables'
+import ArrayUtils from './ArrayUtils'
 
 export default class GreekInflectionUtils
 {
@@ -53,6 +54,7 @@ export default class GreekInflectionUtils
                 Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
                 Object.entries(GreekGrammar.PERSONS).forEach(([k, v]) => { if (declStr.includes(v)) declension.person = GreekGrammar.PERSONS[k] })
                 Object.entries(GreekGrammar.GENDERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.gender = GreekGrammar.GENDERS[k] })
+                declension.variation = Number.parseInt((declStr.match(/\d+/gm) || ['0'])[0])
                 if (!this.DICTIONARY_INFLECTED[inflected]) this.DICTIONARY_INFLECTED[inflected] = []
                 this.DICTIONARY_INFLECTED[inflected].push(declension)
             }
@@ -84,10 +86,10 @@ export default class GreekInflectionUtils
         if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
         {
             const n = dictEntry.declensionNounTable.singular.nominative
-            radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(n.masculine || n.feminine || n.neuter), StringUtils.EMPTY)
+            radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(ArrayUtils.firstNotEmpty(n.masculine, n.feminine, n.neuter)[0]), StringUtils.EMPTY)
             radical = lemma.substring(0, radical.length)
 
-            return GreekDeclensionNounTables.conjugateTable(dictEntry.declensionNounTable, radical, lemma)
+            return GreekDeclensionNounTables.conjugateTable(dictEntry.declensionNounTable, radical, lemma, dictEntry.gender)
         }
         else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.VERB)
         {

@@ -1,22 +1,11 @@
 <script>
 import Button from '@/components/Button'
+import MattewCorrect from '~/static/matthew-correct.json'
 import Mattew from '~/static/matthew.json'
-import Axios from 'axios'
-import XMLJS from 'xml-js'
-import GreekUtils from '@/utils/GreekUtils'
-import StringUtils from '@/utils/StringUtils'
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
-import ObjectUtils from '@/utils/ObjectUtils'
 import GreekGrammar from '@/utils/GreekGrammar'
-import GreekDictionary from '@/utils/GreekDictionary'
 import GreekParsedWord from '@/utils/GreekParsedWord'
-import GreekSemantic from '@/utils/GreekSemantic'
-import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables'
-import EnglishDeclensionNounTables from '@/utils/EnglishDeclensionNounTables'
-import EnglishDeclension from '@/utils/EnglishDeclension'
-import EnglishPersonalPronoun from '@/utils/EnglishPersonalPronoun'
-import EnglishGrammar from '@/utils/EnglishGrammar'
-import EnglishTranslator from '@/utils/EnglishTranslator'
+import GreekParser from '@/utils/GreekParser'
 
 export default
 {
@@ -32,30 +21,32 @@ export default
         /**
          * @type {GreekParsedWord[][]}
          */
-        const parsed = Object.entries(matthew.milestones['1']).filter(([verseNumber]) => !verseNumber.includes('_')).map(([verseNumber, verse]) =>
+        const toCorrect = Object.entries(matthew.milestones[1]).filter(([verseNumber]) => !verseNumber.startsWith('_')).map(([verseNumber, verse]) =>
         {
-            const verseParsed = []
-            verse.split(' ').forEach(word =>
-            {
-                const declensions = GreekInflectionUtils.getDeclension(word.replace(/[.,]/g, ''))
-                if (!declensions) return verseParsed.push(new GreekParsedWord({word}))
-                var declension = declensions[0]
-                const definition = GreekDictionary.get(declension.lemma)                
-                
-                verseParsed.push(new GreekParsedWord({word, declension, definition}))
-            })
-            GreekSemantic.correct(verseParsed)
-            return verseParsed
+            return GreekParser.parseVerse(verse.grc)
+        })
+        MattewCorrect[1].forEach((chapter, chapIndex) => chapter.forEach((word, wordIndex) =>
+        {
+            const wordTest = toCorrect[chapIndex][wordIndex]
+            if (JSON.stringify(wordTest.declension) != JSON.stringify(word.declension)) console.error('Mismatch', wordTest, word)
+        }))
+        
+        /**
+         * @type {GreekParsedWord[][]}
+         */
+        const parsed = Object.entries(matthew.milestones[this.chapter]).filter(([verseNumber]) => !verseNumber.startsWith('_')).map(([verseNumber, verse]) =>
+        {
+            return GreekParser.parseVerse(verse.grc)
         })
 
         return (
             <div id='home-view'>
                 <div class='title'>{matthew.name.en}</div>
-
                 {
                     parsed.map(verseWords => (
                         <div class='verse'>
                         <div class='verse-number'>{matthew.shortName.en} {1}:{parsed.indexOf(verseWords) + 1}</div>
+                        <div class='verse-translation'>{matthew.milestones[this.chapter][parsed.indexOf(verseWords) + 1].en}</div>
                         <div class='verse-text'>
                         {
                             verseWords.map(parsedWord =>
@@ -69,7 +60,7 @@ export default
                                             declension &&
                                             [
                                                 <div class='verse-word-translation'>
-                                                    {EnglishTranslator.translateGreek(parsedWord)}
+                                                    {translation}
                                                 </div>,
                                                 <div class='verse-word-declension'>
                                                     {definition && <div>{definition.pos}</div> }
@@ -81,6 +72,10 @@ export default
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''}-${declension.number || ''}`)}</div>
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.ARTICLE} class='column align-center'>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
+                                                    </div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN} class='column align-center'>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''} pers`)}</div>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
                                                     </div>
                                                 </div>,
@@ -101,7 +96,7 @@ export default
     data () 
     {
         return {
-            words: {}
+            chapter: 1
         }
     },
 
@@ -129,11 +124,23 @@ export default
 
 #home-view
 {
+    padding: 40px;
+
     .verse
     {
         &:not(&:first-of-type)
         {
             margin-top: 50px;
+        }
+
+        .verse-translation
+        {
+            background-color: var(--theme-border-color-mega-light);
+            border-radius: 10px;
+            padding: 5px 10px;
+            width: fit-content;
+            color: var(--theme-border-color-extra-strong);
+            margin-top: 10px;
         }
 
         .verse-text
@@ -184,6 +191,11 @@ export default
                 &.def-missing
                 {
                     background-color: var(--theme-missing-color);
+                }
+
+                .verse-word-text
+                {
+                    font-family: 'Source Sans 3';
                 }
 
                 .verse-word-translation

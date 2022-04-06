@@ -8,7 +8,7 @@
 * @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive"} CASES
 */
 /**
-* @typedef {"noun" | "pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
+* @typedef {"noun" | "personal_noun" | "pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
 */
 /**
 * @typedef {"first" | "second" | "third"} PERSONS
@@ -237,11 +237,12 @@ export default class GreekGrammar
         GENITIVE: 'genitive',
     }
     /**
-     * @type {{NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
+     * @type {{NOUN: PARTS_OF_SPEECH, PERSONAL_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
      */
     static PARTS_OF_SPEECH =
     {
         NOUN: 'noun',
+        PERSONAL_NOUN: 'personal_noun',
         PRONOUN: 'pronoun',
         VERB: 'verb',
         ADJECTIVE: 'adjective',

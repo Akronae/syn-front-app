@@ -18,27 +18,23 @@ export default class GreekSemantic
         for (const word of words)
         {
             i++
-            if (word.declension.case == GreekGrammar.CASES.DATIVE && words.every(w => w.definition.pos != GreekGrammar.PARTS_OF_SPEECH.VERB))
+
+            if (i > 0 && word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
             {
                 const table = GreekInflectionUtils.inflect(word.declension.lemma)
-                if (table[word.declension.number].dative[word.declension.gender] == table[word.declension.number].genitive[word.declension.gender])
+                const w = table[word.declension.number][word.declension.case][word.declension.gender][word.declension.variation]
+
+                if (words[i - 1].declension.case == GreekGrammar.CASES.GENITIVE && Object.values(table[word.declension.number][GreekGrammar.CASES.GENITIVE][word.declension.gender]).includes(w))
                 {
                     word.declension.case = GreekGrammar.CASES.GENITIVE;
                 }
-            }
-
-            if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN && word.definition.declensionNounTable == GreekDeclensionNounTables.SEMITIC_PROPER_NAME)
-            {
-                const table = GreekInflectionUtils.inflect(word.declension.lemma)
-                const w = table[word.declension.number][word.declension.case][word.declension.gender]
-
-                if (i > 0 && words[i - 1].declension.case == GreekGrammar.CASES.GENITIVE && w == table[word.declension.number][GreekGrammar.CASES.GENITIVE][word.declension.gender] && !StringUtils.includesSome(words[i - 1].word, '.', ','))
-                {
-                    word.declension.case = GreekGrammar.CASES.GENITIVE;
-                }
-                if (i > 0 && words[i - 1].declension.case == GreekGrammar.CASES.ACCUSATIVE && w == table[word.declension.number][GreekGrammar.CASES.ACCUSATIVE][word.declension.gender] && !StringUtils.includesSome(words[i - 1].word, '.', ','))
+                if (words[i - 1].declension.case == GreekGrammar.CASES.ACCUSATIVE && Object.values(table[word.declension.number][GreekGrammar.CASES.ACCUSATIVE][word.declension.gender]).includes(w))
                 {
                     word.declension.case = GreekGrammar.CASES.ACCUSATIVE;
+                }
+                if (StringUtils.includesSome(words[i - 1].word, '.', ',') && Object.values(table[word.declension.number][GreekGrammar.CASES.NOMINATIVE][word.declension.gender]).includes(w))
+                {
+                    word.declension.case = GreekGrammar.CASES.NOMINATIVE;
                 }
             }
         }

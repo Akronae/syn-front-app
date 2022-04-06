@@ -33,6 +33,10 @@ export default class GreekDeclension
      * @type {import("@/utils/GreekGrammar").PERSONS}
      */
     person
+    /**
+     * @type {number}
+     */
+    variation
     
     /**
      * @param {Object} args
@@ -45,8 +49,9 @@ export default class GreekDeclension
      * @param {import("@/utils/GreekGrammar").MOODS} [args.mood]
      * @param {import("@/utils/GreekGrammar").VOICES} [args.voice]
      * @param {import("@/utils/GreekGrammar").PERSONS} [args.person]
+     * @param {number} [args.variation] - The variation of the declension. (e.g. for σι(ν), 0: σι, 1: σιν)
      */
-    constructor({ lemma = null, pos = null, gender = null, number = null, gramCase = null, tense = null, mood = null, voice = null, person = null} = {})
+    constructor({ lemma = null, pos = null, gender = null, number = null, gramCase = null, tense = null, mood = null, voice = null, person = null, variation = null} = {})
     {
         this.lemma = lemma
         this.pos = pos
@@ -57,5 +62,6 @@ export default class GreekDeclension
         this.mood = mood
         this.voice = voice
         this.person = person
+        this.variation = variation
     }
 }
