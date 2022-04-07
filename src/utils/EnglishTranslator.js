@@ -3,7 +3,7 @@ import EnglishDeclensionNounTables from '@/utils/EnglishDeclensionNounTables';
 import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables';
 import EnglishGrammar from '@/utils/EnglishGrammar';
 import EnglishPersonalPronoun from '@/utils/EnglishPersonalPronoun';
-import GreekGrammar from '@/utils/GreekGrammar';
+import GreekGrammar, { Cases } from '@/utils/GreekGrammar';
 import GreekParsedWord from '@/utils/GreekParsedWord';
 import StringUtils from '@/utils/StringUtils';
 
@@ -21,6 +21,11 @@ export default class EnglishTranslator
         var translation = word.definition.translation
         var declension = word.declension
         var definition = word.definition
+
+        if (word.definition.translation instanceof Cases)
+        {
+            return word.definition.translation[word.declension.case]
+        }
 
         const translatedDeclension = EnglishDeclension.fromGreek(declension)
         translation = StringUtils.EMPTY

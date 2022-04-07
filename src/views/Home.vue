@@ -6,6 +6,8 @@ import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
 import GreekGrammar from '@/utils/GreekGrammar'
 import GreekParsedWord from '@/utils/GreekParsedWord'
 import GreekParser from '@/utils/GreekParser'
+import GreekDictionary from '@/utils/GreekDictionary'
+import GreekAlphabet from '@/utils/GreekAlphabet'
 
 export default
 {
@@ -30,6 +32,10 @@ export default
             const wordTest = toCorrect[chapIndex][wordIndex]
             if (JSON.stringify(wordTest.declension) != JSON.stringify(word.declension)) console.error('Mismatch', wordTest, word)
         }))
+        Object.entries(GreekDictionary.DICTIONARY).forEach(([word, def]) =>
+        {
+            if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
+        })
         
         /**
          * @type {GreekParsedWord[][]}
@@ -77,6 +83,9 @@ export default
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN} class='column align-center'>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''} pers`)}</div>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
+                                                    </div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PREPOSITION} class='column align-center'>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`(+${declension.case || ''})`)}</div>
                                                     </div>
                                                 </div>,
                                             ]

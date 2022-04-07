@@ -81,6 +81,25 @@ export default class GreekDeclensionNounTables
      */
      static Table_Type = GreekDeclensionTableNoun
 
+     static INDECLINABLE = new GreekDeclensionTableNoun
+     ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase(),
+            accusative: new GreekDeclensionTableNounCase(),
+            dative: new GreekDeclensionTableNounCase(),
+            genitive: new GreekDeclensionTableNounCase(),
+            vocative: new GreekDeclensionTableNounCase(),
+        },
+        plural:
+        {
+            nominative: new GreekDeclensionTableNounCase(),
+            accusative: new GreekDeclensionTableNounCase(),
+            dative: new GreekDeclensionTableNounCase(),
+            genitive: new GreekDeclensionTableNounCase(),
+            vocative: new GreekDeclensionTableNounCase(),
+        }
+    })
     static SEMITIC_PROPER_NAME = new GreekDeclensionTableNoun
     ({
         singular:
@@ -161,10 +180,70 @@ export default class GreekDeclensionNounTables
     ({
         singular:
         {
-            nominative: new GreekDeclensionTableNounCase({ masculine: ['ς'] }),
-            accusative: new GreekDeclensionTableNounCase({ masculine: ['ν'] }),
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['ας'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['αν'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['ᾳ'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['ου'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['α'] }),
+        },
+    })
+    static A_AS = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['α'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['ας'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['ᾳ'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['αν'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['α'] }),
+        },
+        plural:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['αι'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['ων'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['αις'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['ας'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['αι'] }),
+        },
+    })
+    static EUS_EWS = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['εύς'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['έως'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['εῖ'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['έᾱ', 'έα'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['εῦ'] }),
+        },
+        plural:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['ῆς', 'εῖς'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['έων'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['εῦσῐ', 'εῦσῐν'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['έᾱς', 'έας'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['ῆς', 'εῖς'] }),
+        },
+    })
+    static WN_WNOS = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['ών', 'ὼν'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['ῶνος', 'ῶντος'] }),
+            dative: new GreekDeclensionTableNounCase({ masculine: ['ῶνῐ', 'ῶντῐ'] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['ῶνᾰ', 'ῶνα', 'ῶντᾰ'] }),
+            vocative: new GreekDeclensionTableNounCase({ masculine: ['ών', 'ὼν'] }),
+        },
+    })
+    static HS_H = new GreekDeclensionTableNoun
+    ({
+        singular:
+        {
+            nominative: new GreekDeclensionTableNounCase({ masculine: ['ῆς'] }),
+            genitive: new GreekDeclensionTableNounCase({ masculine: ['ῆ'] }),
             dative: new GreekDeclensionTableNounCase({ masculine: [''] }),
-            genitive: new GreekDeclensionTableNounCase({ masculine: [''] }),
+            accusative: new GreekDeclensionTableNounCase({ masculine: ['ῆ', 'ῆν'] }),
             vocative: new GreekDeclensionTableNounCase({ masculine: [''] }),
         },
     })
@@ -192,10 +271,7 @@ export default class GreekDeclensionNounTables
         if (table == this.SEMITIC_PROPER_NAME && declension.includes(GreekGrammar.CASES.ACCUSATIVE))
         {
             syllables = GreekWord.getSyllables(radical)
-            if (GreekAlphabet.isConsonant(ArrayUtils.getLast(ArrayUtils.getLast(syllables))))
-            {
-                syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ')
-            }
+            syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ').replace('ὶ', 'ί').replace('ὴ', 'ή').replace('ὲ', 'έ').replace('ὺ', 'ύ')
             return syllables.join('')
         }
         return radical
@@ -215,8 +291,8 @@ export default class GreekDeclensionNounTables
         const flatTable = ObjectUtils.getValuesPathes(ObjectUtils.clone(table))
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
-            if (!declension.includes(gender)) return
-            if (StringUtils.hasAccents(lemmaEnding)) ending = GreekWord.augment(ending)
+            if (!declension.includes(gender)) return flatTable[declension] = null
+            if (StringUtils.hasAccents(lemmaEnding) && !table.singular.nominative[gender].includes(lemmaEnding)) ending = GreekWord.augment(ending)
             flatTable[declension] = this.moveAccent(radical, table, declension) + ending
         })
         // @ts-ignore

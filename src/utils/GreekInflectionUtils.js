@@ -6,6 +6,7 @@ import GreekGrammar from '@/utils/GreekGrammar'
 import GreekDeclension from './GreekDeclension'
 import GreekDeclensionVerbTables from './GreekDeclensionVerbTables'
 import ArrayUtils from './ArrayUtils'
+import GreekAlphabet from './GreekAlphabet'
 
 export default class GreekInflectionUtils
 {
@@ -36,7 +37,7 @@ export default class GreekInflectionUtils
     {
         delete this.DICTIONARY_INFLECTED
         this.DICTIONARY_INFLECTED = {}
-        for (const [key, value] of Object.entries(GreekDictionary.DICTIONARY))
+        for (var [key, value] of Object.entries(GreekDictionary.DICTIONARY))
         {
             var table = this.inflect(key)
             var pathes = ObjectUtils.getValuesPathes(table)
@@ -68,8 +69,7 @@ export default class GreekInflectionUtils
      */
     static getDeclension (wordInflected)
     {
-        wordInflected = wordInflected.toLowerCase()
-        wordInflected = wordInflected.replace(/ί/gm, 'ί')
+        wordInflected = GreekAlphabet.sanitizeLetters(wordInflected).toLowerCase()
 
         const declensions = this.DICTIONARY_INFLECTED[wordInflected]
         if (!declensions) return null

@@ -14,7 +14,7 @@ export default class GreekArticles
         singular: new Genders
         ({
             masculine: new Cases({ nominative: ['ὁ'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
-            feminine: new Cases({ nominative: ['ἡ'], genitive: ['τῆς'], dative: ['τῇ'], accusative: ['τήν'] }),
+            feminine: new Cases({ nominative: ['ἡ'], genitive: ['τῆς'], dative: ['τῇ'], accusative: ['τήν', 'τὴν'] }),
             neuter: new Cases({ nominative: ['τό'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
         }),
         plural: new Genders

@@ -1,4 +1,4 @@
-import GreekGrammar from '@/utils/GreekGrammar'
+import GreekGrammar, { Cases } from '@/utils/GreekGrammar'
 import GreekDeclensionNounTables from '@/utils/GreekDeclensionNounTables'
 import GreekDeclensionVerbTables from './GreekDeclensionVerbTables'
 import GreekArticles from './GreekArticles'
@@ -31,11 +31,11 @@ class GreekDictionaryEntry
      */
     pos
     /**
-     * @type {string}
+     * @type {string|Cases<string>}
      */
     translation
 
-    constructor ({gender = null, declensionNounTable = null, declensionVerbTable = null, articleTable = null, pronounTable = null, pos = null, translation = ''} = {})
+    constructor ({gender = null, declensionNounTable = null, declensionVerbTable = null, articleTable = null, pronounTable = null, pos = null, translation = null} = {})
     {
         this.gender = gender
         this.declensionNounTable = declensionNounTable
@@ -61,32 +61,70 @@ export default class GreekDictionary
         get 'βύβλος' () { return GreekDictionary.get('βίβλος') },
         'γένεσις': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.IS_EWS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'origin' }),
         get 'γέννησις' () { return GreekDictionary.get('γένεσις') },
-        'ἰησοῦς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OUS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Jesus' }),
+        'ἰησοῦς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OUS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yesu' }),
         'χρῑστός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Christ' }),
         get 'χριστός' () { return GreekDictionary.get('χρῑστός') },
         'υἱός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'son' }),
         'ἀβρααμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Abraham' }),
         get 'ἀβραὰμ' () { return GreekDictionary.get('ἀβρααμ') },
-        'δαυεὶδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'David' }),
+        'δαυὶδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.INDECLINABLE, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'David' }),
         'γεννάω': new GreekDictionaryEntry({ declensionVerbTable: GreekDeclensionVerbTables.W, pos: GreekGrammar.PARTS_OF_SPEECH.VERB, translation: 'to beget' }),
         'ὁ': new GreekDictionaryEntry({ articleTable: GreekArticles.DEFINITE, pos: GreekGrammar.PARTS_OF_SPEECH.ARTICLE, translation: 'the' }),
-        'ἰσαὰκ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Isaac' }),
+        'ἰσαὰκ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yishaq' }),
         'δὲ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.CONJUNCTION, translation: 'then' }),
-        'ἰακὼβ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Jacob' }),
-        'ἰούδας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Judas' }),
+        'ἰακὼβ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yaaqob' }),
+        'ἰούδας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yehuda' }),
         'καὶ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.CONJUNCTION, translation: 'and' }),
         'ἀδελφός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'brother' }),
         'ἀδελφὸς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'brother' }),
         'ἐγώ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, pos: GreekGrammar.PARTS_OF_SPEECH.PRONOUN, pronounTable: GreekPersonalPronoun, translation: 'I' }),
         'φαρὲς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Phares' }),
-        'θάμαρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Thamar' }),
-        'ζαρὰ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Zara' }),
+        'θαμάρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Thamar' }),
+        'ζάρα': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Zerah' }),
         'ἐκ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PREPOSITION, translation: 'from' }),
-        'ἑσρὼμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Esrom' }),
-        'ἀρὰμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Haram' }),
-        'ἀμιναδὰβ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Haminadab' }),
-        'ναασσὼν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Naasson' }),
+        'ἑσρὼμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Hezron' }),
+        'ἀρὰμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Aram' }),
+        'ἀμιναδὰβ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Amminadab' }),
+        'ναασσὼν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Nahshon' }),
         'σαλμὼν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Salmon' }),
+        'βοὲς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Boaz' }),
+        get 'βόες' () { return GreekDictionary.get('βοὲς') },
+        'ῥαχάβ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Rahab' }),
+        'ἰωβὴδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.INDECLINABLE, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Obed' }),
+        'ῥούθ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Rut' }),
+        'ἰεσσαὶ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yishai' }),
+        'βασιλεύς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.EUS_EWS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'king' }),
+        'σολομὼν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.WN_WNOS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Selomo' }),
+        'οὐρίας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Urias' }),
+        'ῥοβοὰμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Rehoboam' }),
+        'ἀβιὰ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Abiyya' }),
+        'ἀσὰφ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Asa' }),
+        'ἰωσαφὰτ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yehosapat' }),
+        'ἰωρὰμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Joram' }),
+        'ὀζίας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Uzziah' }),
+        'ἰωαθὰμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Joatham' }),
+        'ἀχὰζ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Ahaz' }),
+        'ἑζεκίας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Hezekiah' }),
+        'μανασσῆς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.HS_H, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Manasse' }),
+        'ἀμὼς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Amos' }),
+        'ἰωσίας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yosiyya' }),
+        'ἰεχονίας': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.AS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Jechoniah' }),
+        'ἐπί': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PREPOSITION, translation: new Cases({genitive: 'on', dative: 'afer', accusative: 'for'}) }),
+        get 'ἐπὶ' () { return GreekDictionary.get('ἐπί') },
+        'μετοικεσία': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.A_AS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'deportation' }),
+        'βαβυλών': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.WN_WNOS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Babylon' }),
+        'μετὰ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PREPOSITION, translation: new Cases({genitive: 'with', dative: 'among', accusative: 'after'}) }),
+        'σαλαθιὴλ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Shealtiel' }),
+        'ζοροβαβὲλ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Zerubbabel' }),
+        'ἀβιοὺδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Abiud' }),
+        'ἐλιακὶμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Eliakim' }),
+        'ἀζὼρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Azor' }),
+        'σαδὼκ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Zadok' }),
+        'ἀχὶμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Achim' }),
+        'ἐλιοὺδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Eliud' }),
+        'ἐλεάζαρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Elazar' }),
+        'ματθὰν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Matthan' }),
+        'ἰωσὴφ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.INDECLINABLE, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'Yosep' }),
     }
 
     /**

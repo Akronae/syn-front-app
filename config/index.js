@@ -21,7 +21,7 @@ module.exports =
 		autoOpenBrowser: false,
 		
 		// Show an error overlay over the app in browser on compiler error.
-  		errorOverlay: true,
+  		errorOverlay: false,
 		  
 		// Native tooltip when build finished.
   		notifyOnErrors: false,

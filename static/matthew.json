@@ -21,65 +21,105 @@
                     "1":
                     {
                         "_unit": "verse",
-                        "1":
-                        {
-                            "en": "The book of the generation of Jesus Christ, the son of David, the son of Abraham.",
-                            "grc": "Βίβλος γενέσεως Ἰησοῦ Χριστοῦ υἱοῦ Δαυεὶδ υἱοῦ Ἀβρααμ."
+                        "1": {
+                            "grc": "Βίβλος γενέσεως Ἰησοῦ χριστοῦ υἱοῦ Δαυὶδ υἱοῦ Ἀβραάμ.",
+                            "en": "The book of the generation of Jesus Christ, the son of David, the son of Abraham."
                         },
-                        "2":
-                        {
-                            "en": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;",
-                            "grc": "Ἀβραὰμ ἐγέννησεν τὸν Ἰσαάκ, Ἰσαὰκ δὲ ἐγέννησεν τὸν Ἰακώβ, Ἰακὼβ δὲ ἐγέννησεν τὸν Ἰούδαν καὶ τοὺς ἀδελφοὺς αὐτοῦ"
+                        "2": {
+                            "grc": "Ἀβραὰμ ἐγέννησεν τὸν Ἰσαάκ, Ἰσαὰκ δὲ ἐγέννησεν τὸν Ἰακώβ, Ἰακὼβ δὲ ἐγέννησεν τὸν Ἰούδαν καὶ τοὺς ἀδελφοὺς αὐτοῦ,",
+                            "en": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;"
                         },
-                        "3":
-                        {
-                            "en": "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;",
-                            "grc": "Ἰούδας δὲ ἐγέννησεν τὸν Φαρὲς καὶ τὸν Ζαρὰ ἐκ τῆς Θάμαρ, Φαρὲς δὲ ἐγέννησεν τὸν Ἑσρώμ, Ἑσρὼμ δὲ ἐγέννησεν τὸν Ἀράμ,"
+                        "3": {
+                            "grc": "Ἰούδας δὲ ἐγέννησεν τὸν Φαρὲς καὶ τὸν Ζάρα ἐκ τῆς Θαμάρ, Φαρὲς δὲ ἐγέννησεν τὸν Ἑσρώμ, Ἑσρὼμ δὲ ἐγέννησεν τὸν Ἀράμ,",
+                            "en": "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;"
                         },
-                        "4":
-                        {
-                            "en": "And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;",
-                            "grc": "Ἀρὰμ δὲ ἐγέννησεν τὸν Ἀμιναδάβ, Ἀμιναδὰβ δὲ ἐγέννησεν τὸν Ναασσών, Ναασσὼν δὲ ἐγέννησεν τὸν Σαλμών,"
+                        "4": {
+                            "grc": "Ἀρὰμ δὲ ἐγέννησεν τὸν Ἀμιναδάβ, Ἀμιναδὰβ δὲ ἐγέννησεν τὸν Ναασσών, Ναασσὼν δὲ ἐγέννησεν τὸν Σαλμών,",
+                            "en": "And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;"
                         },
-                        "5":
-                        {
-                            "en": "And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;",
-                            "grc": "Σαλμὼν δὲ ἐγέννησεν τὸν Βοὲς ἐκ τῆς Ῥαχάβ, Βοὲς δὲ ἐγέννησεν τὸν Ἰωβὴδ ἐκ τῆς Ῥούθ, Ἰωβὴδ δὲ ἐγέννησεν τὸν Ἰεσσαί,"
+                        "5": {
+                            "grc": "Σαλμὼν δὲ ἐγέννησεν τὸν Βόες ἐκ τῆς Ῥαχάβ, Βόες δὲ ἐγέννησεν τὸν Ἰωβὴδ ἐκ τῆς Ῥούθ, Ἰωβὴδ δὲ ἐγέννησεν τὸν Ἰεσσαί,",
+                            "en": "And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;"
                         },
-                        "6":
-                        {
-                            "en": "And Jesse begat David the king; and David the king begat Solomon of her [that had been the wife] of Urias;",
-                            "grc": "Ἰεσσαὶ δὲ ἐγέννησεν τὸν Δαυεὶδ τὸν βασιλέα. Δαυεὶδ δὲ ἐγέννησεν τὸν Σολομῶνα ἐκ τῆς τοῦ Οὐρίου,"
+                        "6": {
+                            "grc": "Ἰεσσαὶ δὲ ἐγέννησεν τὸν Δαυὶδ τὸν βασιλέα. Δαυὶδ δὲ ἐγέννησεν τὸν Σολομῶνα ἐκ τῆς τοῦ Οὐρίου,",
+                            "en": "And Jesse begat David the king; and David the king…Solomon of her [that had been the wife] of Urias;"
                         },
-                        "7":
-                        {
-                            "en": "And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;",
-                            "grc": "Σολομὼν δὲ ἐγέννησεν τὸν Ῥοβοάμ, Ῥοβοὰμ δὲ ἐγέννησεν τὸν Ἀβιά, Ἀβιὰ δὲ ἐγέννησεν τὸν Ἀσάφ, Ἀσὰφ δὲ ἐγέννησεν τὸν Ἰωσαφάτ,"
+                        "7": {
+                            "grc": "Σολομὼν δὲ ἐγέννησεν τὸν Ῥοβοάμ, Ῥοβοὰμ δὲ ἐγέννησεν τὸν Ἀβιά, Ἀβιὰ δὲ ἐγέννησεν τὸν Ἀσάφ,",
+                            "en": "And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;"
                         },
-                        "8":
-                        {
-                            "en": "And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;",
-                            "grc": "Ἰωσαφὰτ δὲ ἐγέννησεν τὸν Ἰωράμ, Ἰωρὰμ δὲ ἐγέννησεν τὸν Ὀζείαν,"
+                        "8": {
+                            "grc": "Ἀσὰφ δὲ ἐγέννησεν τὸν Ἰωσαφάτ, Ἰωσαφὰτ δὲ ἐγέννησεν τὸν Ἰωράμ, Ἰωρὰμ δὲ ἐγέννησεν τὸν Ὀζίαν,",
+                            "en": "And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;"
                         },
-                        "9":
-                        {
-                            "en": "And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;",
-                            "grc": "Ὀζείας δὲ ἐγέννησεν τὸν Ἰωαθάμ, Ἰωαθὰμ δὲ ἐγέννησεν τὸν Ἄχας, Ἄχας δὲ ἐγέννησεν τὸν Ἑζεκίαν,"
+                        "9": {
+                            "grc": "Ὀζίας δὲ ἐγέννησεν τὸν Ἰωαθάμ, Ἰωαθὰμ δὲ ἐγέννησεν τὸν Ἀχάζ, Ἀχὰζ δὲ ἐγέννησεν τὸν Ἑζεκίαν,",
+                            "en": "And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;"
                         },
-                        "10":
-                        {
-                            "en": "And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;",
-                            "grc": "Ἑζεκίας δὲ ἐγέννησεν τὸν Μανασσῆ, Μανασσῆς δὲ ἐγέννησεν τὸν Ἀμώς, Ἀμὼς δὲ ἐγέννησεν τὸν Ἰωσείαν,"
+                        "10": {
+                            "grc": "Ἑζεκίας δὲ ἐγέννησεν τὸν Μανασσῆ, Μανασσῆς δὲ ἐγέννησεν τὸν Ἀμώς, Ἀμὼς δὲ ἐγέννησεν τὸν Ἰωσίαν,",
+                            "en": "And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;"
                         },
-                        "11":
-                        {
-                            "en": "And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:",
-                            "grc": "Ἰωσείας δὲ ἐγέννησεν τὸν Ἰεχονίαν καὶ τοὺς ἀδελφοὺς αὐτοῦ ἐπὶ τῆς μετοικεσίας Βαβυλῶνος."
+                        "11": {
+                            "grc": "Ἰωσίας δὲ ἐγέννησεν τὸν Ἰεχονίαν καὶ τοὺς ἀδελφοὺς αὐτοῦ ἐπὶ τῆς μετοικεσίας Βαβυλῶνος.",
+                            "en": "And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:"
                         },
-                        "12":
-                        {
-                            "en": "And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;",
-                            "grc": "Μετὰ δὲ τὴν μετοικεσίαν Βαβυλῶνος Ἰεχονίας ἐγέννησεν τὸν Σαλαθιήλ, Σαλαθιὴλ δὲ ἐγέννησεν τὸν Ζοροβάβελ,"
+                        "12": {
+                            "grc": "Μετὰ δὲ τὴν μετοικεσίαν Βαβυλῶνος Ἰεχονίας ἐγέννησεν τὸν Σαλαθιήλ, Σαλαθιὴλ δὲ ἐγέννησεν τὸν Ζοροβαβέλ,",
+                            "en": "And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;"
+                        },
+                        "13": {
+                            "grc": "Ζοροβαβὲλ δὲ ἐγέννησεν τὸν Ἀβιούδ, Ἀβιοὺδ δὲ ἐγέννησεν τὸν Ἐλιακίμ, Ἐλιακὶμ δὲ ἐγέννησεν τὸν Ἀζώρ,",
+                            "en": "And Zorobabel begat Abiud; and Abiud begat Eliakim; and Eliakim begat Azor;"
+                        },
+                        "14": {
+                            "grc": "Ἀζὼρ δὲ ἐγέννησεν τὸν Σαδώκ, Σαδὼκ δὲ ἐγέννησεν τὸν Ἀχίμ, Ἀχὶμ δὲ ἐγέννησεν τὸν Ἐλιούδ,",
+                            "en": "And Azor begat Sadoc; and Sadoc begat Achim; and Achim begat Eliud;"
+                        },
+                        "15": {
+                            "grc": "Ἐλιοὺδ δὲ ἐγέννησεν τὸν Ἐλεάζαρ, Ἐλεάζαρ δὲ ἐγέννησεν τὸν Ματθάν, Ματθὰν δὲ ἐγέννησεν τὸν Ἰακώβ,",
+                            "en": "And Eliud begat Eleazar; and Eleazar begat Matthan; and Matthan begat Jacob;"
+                        },
+                        "16": {
+                            "grc": "Ἰακὼβ δὲ ἐγέννησεν τὸν Ἰωσὴφ τὸν ἄνδρα Μαρίας, ἐξ ἧς ἐγεννήθη Ἰησοῦς ὁ λεγόμενος χριστός.",
+                            "en": "And Jacob begat Joseph the husband of Mary, of whom was born Jesus, who is called Christ."
+                        },
+                        "17": {
+                            "grc": "Πᾶσαι οὖν αἱ γενεαὶ ἀπὸ Ἀβραὰμ ἕως Δαυὶδ γενεαὶ δεκατέσσαρες, καὶ ἀπὸ Δαυὶδ ἕως τῆς μετοικεσίας Βαβυλῶνος γενεαὶ δεκατέσσαρες, καὶ ἀπὸ τῆς μετοικεσίας Βαβυλῶνος ἕως τοῦ χριστοῦ γενεαὶ δεκατέσσαρες.",
+                            "en": "So all the generations from Abraham to David [are]…o Babylon unto Christ [are] fourteen generations."
+                        },
+                        "18": {
+                            "grc": "Τοῦ δὲ Ἰησοῦ χριστοῦ ἡ γένεσις οὕτως ἦν. μνηστευθείσης τῆς μητρὸς αὐτοῦ Μαρίας τῷ Ἰωσήφ, πρὶν ἢ συνελθεῖν αὐτοὺς εὑρέθη ἐν γαστρὶ ἔχουσα ἐκ πνεύματος ἁγίου.",
+                            "en": "Now the birth of Jesus Christ was on this wise: Wh…ther, she was found with child of the Holy Ghost."
+                        },
+                        "19": {
+                            "grc": "Ἰωσὴφ δὲ ὁ ἀνὴρ αὐτῆς, δίκαιος ὢν καὶ μὴ θέλων αὐτὴν δειγματίσαι, ἐβουλήθη λάθρᾳ ἀπολῦσαι αὐτήν.",
+                            "en": "Then Joseph her husband, being a just [man,] and n…lick example, was minded to put her away privily."
+                        },
+                        "20": {
+                            "grc": "ταῦτα δὲ αὐτοῦ ἐνθυμηθέντος ἰδοὺ ἄγγελος κυρίου κατ’ ὄναρ ἐφάνη αὐτῷ λέγων · Ἰωσὴφ υἱὸς Δαυίδ, μὴ φοβηθῇς παραλαβεῖν Μαρίαν τὴν γυναῖκά σου, τὸ γὰρ ἐν αὐτῇ γεννηθὲν ἐκ πνεύματός ἐστιν ἁγίου ·",
+                            "en": "But while he thought on these things, behold, the …t which is conceived in her is of the Holy Ghost."
+                        },
+                        "21": {
+                            "grc": "τέξεται δὲ υἱὸν καὶ καλέσεις τὸ ὄνομα αὐτοῦ Ἰησοῦν, αὐτὸς γὰρ σώσει τὸν λαὸν αὐτοῦ ἀπὸ τῶν ἁμαρτιῶν αὐτῶν.",
+                            "en": "And she shall bring forth a son, and thou shalt ca…US: for he shall save his people from their sins."
+                        },
+                        "22": {
+                            "grc": "τοῦτο δὲ ὅλον γέγονεν ἵνα πληρωθῇ τὸ ῥηθὲν ὑπὸ κυρίου διὰ τοῦ προφήτου λέγοντος ·",
+                            "en": "Now all this was done, that it might be fulfilled …ch was spoken of the Lord by the prophet, saying,"
+                        },
+                        "23": {
+                            "grc": "Ἰδοὺ ἡ παρθένος ἐν γαστρὶ ἕξει καὶ τέξεται υἱόν, καὶ καλέσουσιν τὸ ὄνομα αὐτοῦ Ἐμμανουήλ · ὅ ἐστιν μεθερμηνευόμενον Μεθ’ ἡμῶν ὁ θεός.",
+                            "en": "Behold, a virgin shall be with child, and shall br…mmanuel, which being interpreted is, God with us."
+                        },
+                        "24": {
+                            "grc": "ἐγερθεὶς δὲ ὁ Ἰωσὴφ ἀπὸ τοῦ ὕπνου ἐποίησεν ὡς προσέταξεν αὐτῷ ὁ ἄγγελος κυρίου καὶ παρέλαβεν τὴν γυναῖκα αὐτοῦ ·",
+                            "en": "Then Joseph being raised from sleep did as the ang… Lord had bidden him, and took unto him his wife:"
+                        },
+                        "25": {
+                            "grc": "καὶ οὐκ ἐγίνωσκεν αὐτὴν ἕως οὗ ἔτεκεν υἱόν · καὶ ἐκάλεσεν τὸ ὄνομα αὐτοῦ Ἰησοῦν.",
+                            "en": "And knew her not till she had brought forth her firstborn son: and he called his name JESUS."
                         }
                     }
                 }

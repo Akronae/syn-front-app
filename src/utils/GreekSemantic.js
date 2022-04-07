@@ -1,5 +1,5 @@
 import GreekDeclensionNounTables from '@/utils/GreekDeclensionNounTables';
-import GreekGrammar from '@/utils/GreekGrammar';
+import GreekGrammar, { Cases } from '@/utils/GreekGrammar';
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils';
 import GreekParsedWord from '@/utils/GreekParsedWord';
 import GreekWord from './GreekWord';
@@ -7,8 +7,6 @@ import StringUtils from './StringUtils';
 
 export default class GreekSemantic
 {
-    static TONOS = ['ά', 'έ', 'ή', 'ί', 'ό', 'ύ', 'ώ'];
-
     /**
      * @param {GreekParsedWord[]} words 
      */
@@ -36,6 +34,11 @@ export default class GreekSemantic
                 {
                     word.declension.case = GreekGrammar.CASES.NOMINATIVE;
                 }
+            }
+
+            if (word.definition.translation instanceof Cases)
+            {
+                for (let j = i; j < words.length; j++) if (words[j].declension.case) word.declension.case = words[j].declension.case
             }
         }
     }
