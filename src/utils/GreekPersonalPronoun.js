@@ -9,17 +9,17 @@ export default class GreekPersonalPronoun
     ({
         first: new Genders
         ({
-            masculine: new Cases({ nominative: ['ἐγώ', 'ἔγωγε'], genitive: ['ἐμέ', 'μου', 'ἐμοῦγε'], dative: ['ἐμοί', 'μοι', 'ἔμοιγε'], accusative: ['ἐμέ', 'με', 'ἐμέγε'] })
+            masculine: new Cases({ nominative: ['ἐγώ', 'ἔγωγε'], genitive: ['ἐμέ', 'μου', 'ἐμοῦγε'], dative: ['ἐμοί', 'μοι', 'ἔμοιγε'], accusative: ['ἐμέ', 'με', 'ἐμέγε'] })
         }),
         second: new Genders
         ({
-            masculine: new Cases({ nominative: ['σῠ́'], genitive: ['σοῦ', 'σου'], dative: ['σοί', 'σοι'], accusative: ['σέ', 'σε'] })
+            masculine: new Cases({ nominative: ['σῠ́'], genitive: ['σοῦ', 'σου'], dative: ['σοί', 'σοι'], accusative: ['σέ', 'σε'] })
         }),
         third: new Genders
         ({
-            masculine: new Cases({ nominative: ['αὐτός'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτόν'] }),
-            feminine: new Cases({ nominative: ['αὐτή'], genitive: ['αὐτῆς'], dative: ['αὐτῇ'], accusative: ['αὐτήν'] }),
-            neuter: new Cases({ nominative: ['αὐτό'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτό'] }),
+            masculine: new Cases({ nominative: ['αὐτός'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτόν'] }),
+            feminine: new Cases({ nominative: ['αὐτή'], genitive: ['αὐτῆς'], dative: ['αὐτῇ'], accusative: ['αὐτήν'] }),
+            neuter: new Cases({ nominative: ['αὐτό'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτό'] }),
         })
     })
     static plural = new Persons
@@ -34,8 +34,8 @@ export default class GreekPersonalPronoun
         }),
         third: new Genders
         ({
-            masculine: new Cases({ nominative: ['αὐτοί'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτούς'] }),
-            feminine: new Cases({ nominative: ['αὐταί'], genitive: ['αὐτῶν'], dative: ['αὐταῖς'], accusative: ['αὐτᾱ́ς'] }),
+            masculine: new Cases({ nominative: ['αὐτοί'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτούς'] }),
+            feminine: new Cases({ nominative: ['αὐταί'], genitive: ['αὐτῶν'], dative: ['αὐταῖς'], accusative: ['αὐτᾱ́ς'] }),
             neuter: new Cases({ nominative: ['αὐτᾰ́'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτᾰ́'] }),
         })
     })

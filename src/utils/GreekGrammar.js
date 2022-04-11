@@ -8,7 +8,7 @@
 * @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive"} CASES
 */
 /**
-* @typedef {"noun" | "personal_noun" | "pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
+* @typedef {"noun" | "personal_noun" | "pronoun" | "personal_pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
 */
 /**
 * @typedef {"first" | "second" | "third"} PERSONS
@@ -17,10 +17,13 @@
 * @typedef {"active" | "middle" | "passive"} VOICES
 */
 /**
-* @typedef {"indicative" | "subjunctive" | "optative" | "imperative"} MOODS
+* @typedef {"indicative" | "subjunctive" | "optative" | "imperative" | "infinitive" | "participle"} MOODS
 */
 /**
 * @typedef {"present" | "imperfect" | "future" | "aorist" | "perfect" | "pluperfect"} TENSES
+*/
+/**
+* @typedef { "psili" | "dasia" | "varia" | "oxia" | "perispomeni" | "ypogergammeni" | "vrachy" | "macron" | "dialytika" } ACCENTS
 */
 
 /**
@@ -41,9 +44,9 @@ export class Genders
      */
     constructor ({feminine = null, masculine = null, neuter = null} = {})
     {
-        this.feminine = feminine
-        this.masculine = masculine
-        this.neuter = neuter
+        this.feminine = feminine || masculine || neuter
+        this.masculine = masculine || this.feminine
+        this.neuter = neuter || this.masculine
     }
 }
 
@@ -147,7 +150,7 @@ export class Voices
 }
 
 /**
- * @template T
+ * @template T, T2, T3
  * @type {{[key: MOODS]: T}}
  */
 export class Moods
@@ -156,6 +159,8 @@ export class Moods
     subjunctive
     optative
     imperative
+    infinitive
+    particple
 
     /**
      * @param {Object} args
@@ -163,13 +168,17 @@ export class Moods
      * @param {T} [args.subjunctive]
      * @param {T} [args.optative]
      * @param {T} [args.imperative]
+     * @param {T2} [args.infinitive]
+     * @param {T3} [args.participle]
      */
-    constructor ({indicative = null, subjunctive = null, optative = null, imperative = null} = {})
+    constructor ({indicative = null, subjunctive = null, optative = null, imperative = null, infinitive = null, participle = null} = {})
     {
         this.indicative = indicative || subjunctive || optative || imperative
         this.subjunctive = subjunctive || this.indicative
         this.optative = optative || this.subjunctive
         this.imperative = imperative || this.optative
+        this.infinitive = infinitive
+        this.participle = participle
     }
 }
 
@@ -237,13 +246,14 @@ export default class GreekGrammar
         GENITIVE: 'genitive',
     }
     /**
-     * @type {{NOUN: PARTS_OF_SPEECH, PERSONAL_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
+     * @type {{NOUN: PARTS_OF_SPEECH, PERSONAL_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, PERSONAL_PRONOUN, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
      */
     static PARTS_OF_SPEECH =
     {
         NOUN: 'noun',
         PERSONAL_NOUN: 'personal_noun',
         PRONOUN: 'pronoun',
+        PERSONAL_PRONOUN: 'personal_pronoun',
         VERB: 'verb',
         ADJECTIVE: 'adjective',
         ADVERB: 'adverb',
@@ -274,14 +284,16 @@ export default class GreekGrammar
         PASSIVE: 'passive'
     }
     /**
-    * @type {{INDICATIVE: MOODS, SUBJUNCTIVE: MOODS, OPTATIVE: MOODS, IMPERATIVE: MOODS}}
+    * @type {{INDICATIVE: MOODS, SUBJUNCTIVE: MOODS, OPTATIVE: MOODS, IMPERATIVE: MOODS, INFINITIVE: MOODS, PARTICIPLE: MOODS}}
     */
     static MOODS =
     {
         INDICATIVE: 'indicative',
         SUBJUNCTIVE: 'subjunctive',
         OPTATIVE: 'optative',
-        IMPERATIVE: 'imperative'
+        IMPERATIVE: 'imperative',
+        INFINITIVE: 'infinitive',
+        PARTICIPLE: 'participle'
     }
     /**
     * @type {{PRESENT: TENSES, IMPERFECT: TENSES, FUTURE: TENSES, AORIST: TENSES, PERFECT: TENSES, PLUPERFECT: TENSES}}
@@ -294,5 +306,20 @@ export default class GreekGrammar
         AORIST: 'aorist',
         PERFECT: 'perfect',
         PLUPERFECT: 'pluperfect'
+    }
+    /**
+     * @type {{PSILI: ACCENTS, DASIA: ACCENTS, VARIA: ACCENTS, OXIA: ACCENTS, PERISPOMENI: ACCENTS, YPOGEGRAMMENI: ACCENTS, VRACHY: ACCENTS, MACRON: ACCENTS, DIALYTIKA: ACCENTS}}
+     */
+    static ACCENTS =
+    {
+        PSILI: 'psili',
+        DASIA: 'dasia',
+        VARIA: 'varia',
+        OXIA: 'oxia',
+        PERISPOMENI: 'perispomeni',
+        YPOGEGRAMMENI: 'ypogergammeni',
+        VRACHY: 'vrachy',
+        MACRON: 'macron',
+        DIALYTIKA: 'dialytika',
     }
 }

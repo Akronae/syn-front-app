@@ -1,28 +1,25 @@
 import ObjectUtils from '@/utils/ObjectUtils'
 import StringUtils from '@/utils/StringUtils'
-import DeclensionTable from '@/utils/DeclensionTable'
-import { Moods, Numbers, Persons, Tenses } from '@/utils/EnglishGrammar'
+import { Moods, Numbers, Persons, Tenses, Voices } from '@/utils/EnglishGrammar'
+import EnglishIrregularVerbs from './EnglishIrregularVerbs'
+import { EnglishDeclensionVerbTable } from './EnglishDeclensionVerbTable'
 
-/**
- * @type {Tenses<Moods<Numbers<Persons<string[]>>>>}
- */
-export class EnglishDeclensionVerbTable extends Tenses
+export default class EnglishDeclensionVerbTables
 {
-}
-
-export default class EnglishDeclensionVerbTables extends DeclensionTable
-{
-    /**
-     * @type {EnglishDeclensionVerbTables}
-     */
     static BASIC = new EnglishDeclensionVerbTable
     ({
+        present: new Moods
+        ({
+            participle: ['ing']
+        }),
         past: new Moods
         ({
             indicative: new Numbers
             ({
-                singular: new Persons({ first: ['ed'] })
-            })
+                singular: new Persons({ first: new Voices({ active: ['ed'] }) })
+            }),
+
+            participle: ['ed']
         })
     })
 
@@ -46,15 +43,23 @@ export default class EnglishDeclensionVerbTables extends DeclensionTable
             
             if (radical.endsWith('get'))
             {
-                if (declension.includes('perfect'))
+                if (declension.includes('passive'))
                 {
                     ending = 'ten'
                 }
 
                 rad = StringUtils.replaceLast(radical, 'get', 'got')
             }
+
+            var aux = StringUtils.EMPTY
+            if (declension.includes('passive'))
+            {
+                if (declension.includes('present')) aux = declension.includes('singular') ? 'is' : 'are'
+                if (declension.includes('past')) aux = StringUtils.includesSome(declension, 'plural', 'second') ? 'were' : 'was'
+            }
             
-            flatTable[declension] = rad + ending
+            var conjugated = ObjectUtils.get(EnglishIrregularVerbs.DICTIONARY[radical], declension) || rad + ending
+            flatTable[declension] = `${aux} ${conjugated}`.trim()
         })
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)

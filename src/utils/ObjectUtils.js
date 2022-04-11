@@ -33,6 +33,26 @@ export default class ObjectUtils
         obj[path[i]] = value;
     }
 
+    /**
+     * @template T
+     * @param {object} obj 
+     * @param {string} path 
+     * @returns {T}
+     */
+    static get (obj, path)
+    {
+        if (!obj) return null
+        var i;
+        const pathSplit = path.split('.');
+        for (i = 0; i < pathSplit.length - 1; i++)
+        {
+            obj[pathSplit[i]] = obj[pathSplit[i]] || {};
+            obj = obj[pathSplit[i]];
+        }
+    
+        return obj[pathSplit[i]]
+    }
+
     static buildObjectFromPathes (pathes)
     {
         const obj = {}

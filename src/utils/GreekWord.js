@@ -1,19 +1,93 @@
 import StringUtils from '@/utils/StringUtils'
 import GreekAlphabet from './GreekAlphabet'
+import GreekGrammar from './GreekGrammar'
 
 export default class GreekWord
 {
+    /**
+     * @param {string} part 
+     * @returns {import('./GreekGrammar').ACCENTS[]}
+     */
+    static getAccents (part)
+    {
+        /** @type {import('./GreekGrammar').ACCENTS[]} */
+        const accents = []
+        for (let i = 0; i < part.length; i++)
+        {
+            if (StringUtils.includesSome(part[i], ...GreekAlphabet.DASIA)) accents.push(GreekGrammar.ACCENTS.DASIA)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.OXIA)) accents.push(GreekGrammar.ACCENTS.OXIA)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PSILI)) accents.push(GreekGrammar.ACCENTS.PSILI)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.VARIA)) accents.push(GreekGrammar.ACCENTS.VARIA)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PERISPOMENI)) accents.push(GreekGrammar.ACCENTS.PERISPOMENI)
+        }
+        return accents
+    }
+
     static augment (part)
     {
         part = part.replace('ος', 'ός')
-        part = part.replace('ους', 'οὺς')
-        part = part.replace('ου', 'οῦ')
-        part = part.replace('ῳ', 'ῷ')
         part = part.replace('ον', 'όν')
-        part = part.replace('ε', 'έ')
-        part = part.replace('ά', 'η')
+        part = part.replace('ο', 'ό')
+        part = part.replace('όυ', 'οῦ')
+        part = part.replace('ῳ', 'ῷ')
+        part = part.replace('η', 'ή')
+        part = part.replace('ά', 'η')
+        part = part.replace('ε', 'έ')
 
         return part
+    }
+
+    /**
+     * 
+     * @param {string} part 
+     * @param {import('./GreekGrammar').ACCENTS} accent
+     * @returns {string} 
+     */
+    static accentuate (part, accent)
+    {
+        const p = part.split('')
+        let i = 0
+        
+        while (true)
+        {
+            var changed
+            if (accent == GreekGrammar.ACCENTS.DASIA) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            if (accent == GreekGrammar.ACCENTS.OXIA) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            if (accent == GreekGrammar.ACCENTS.PSILI) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            if (accent == GreekGrammar.ACCENTS.VARIA) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            if (accent == GreekGrammar.ACCENTS.PERISPOMENI) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+
+            if (changed || !p[i])
+            {
+                p[i] = changed
+                break
+            }
+            i++
+        }
+
+        return p.join('').replace(/όυ/gm, 'οῦ').replace(/ὸυ/gm, 'οὺ')
+    }
+
+    static decrease (part)
+    {
+        return part
+            .replace('έ', 'ε')
+            .replace('ό', 'ο')
+    }
+
+    static shiftAccent (word, shift)
+    {
+        const syllables = this.getSyllables(word)
+        for (let i = 0; i < syllables.length && shift; i++)
+        {
+            if (StringUtils.hasAccents(syllables[i]) && syllables[i + 1])
+            {
+                syllables[i] = StringUtils.removeAccents(syllables[i])
+                syllables[i + 1] = this.augment(syllables[i + 1])
+                shift--
+            }
+        }
+        return syllables.join('')
     }
     
     static getSyllables (word)

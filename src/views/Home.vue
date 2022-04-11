@@ -21,17 +21,19 @@ export default
     {
         const matthew = Mattew.collections['New Testament']['The Book of Matthew']
         /**
-         * @type {GreekParsedWord[][]}
+         * @type {GreekParsedWord[][][]}
          */
-        const toCorrect = Object.entries(matthew.milestones[1]).filter(([verseNumber]) => !verseNumber.startsWith('_')).map(([verseNumber, verse]) =>
+        const toCorrect = Object.entries(matthew.milestones).filter(([v]) => !v.startsWith('_')).map(([_, milestone]) => Object.entries(milestone).filter(([verseNumber]) => !verseNumber.startsWith('_')).map(([_, verse]) =>
         {
             return GreekParser.parseVerse(verse.grc)
-        })
-        MattewCorrect[1].forEach((chapter, chapIndex) => chapter.forEach((word, wordIndex) =>
-        {
-            const wordTest = toCorrect[chapIndex][wordIndex]
-            if (JSON.stringify(wordTest.declension) != JSON.stringify(word.declension)) console.error('Mismatch', wordTest, word)
         }))
+        toCorrect.forEach(milestone => milestone.forEach(verse => verse.forEach(word => word.definition = null)))
+        // console.log(JSON.stringify(toCorrect, null, 2))
+        MattewCorrect.forEach((milestone, milestoneIndex) => milestone.forEach((verse, verseIndex) => verse.forEach((word, wordIndex) =>
+        {
+            const wordTest = toCorrect[milestoneIndex][verseIndex][wordIndex]
+            if (JSON.stringify(wordTest.declension) != JSON.stringify(word.declension)) console.error('Mismatch', wordTest, 'should be', word)
+        })))
         Object.entries(GreekDictionary.DICTIONARY).forEach(([word, def]) =>
         {
             if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
@@ -69,19 +71,22 @@ export default
                                                     {translation}
                                                 </div>,
                                                 <div class='verse-word-declension'>
-                                                    {definition && <div>{definition.pos}</div> }
+                                                    {definition && definition.pos && <div>{GreekInflectionUtils.shortenDeclensionString(definition.pos)}</div> }
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN} class='column align-center'>
                                                         {GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB} class='column align-center'>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.tense || ''}-${declension.voice || ''}-${declension.mood || ''}`)}</div>
-                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''}-${declension.number || ''}`)}</div>
+                                                        <div> {GreekInflectionUtils.shortenDeclensionString(`${declension.person || declension.gender || ''}-${declension.number || ''}`)}</div>
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.ARTICLE} class='column align-center'>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
                                                     </div>
-                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN} class='column align-center'>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN} class='column align-center'>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.person || ''} pers`)}</div>
+                                                        <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
+                                                    </div>
+                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN} class='column align-center'>
                                                         <div>{GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}</div>
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.PREPOSITION} class='column align-center'>

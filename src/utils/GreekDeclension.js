@@ -1,3 +1,5 @@
+import GreekGrammar from '@/utils/GreekGrammar'
+
 export default class GreekDeclension
 {
     /**
@@ -63,5 +65,25 @@ export default class GreekDeclension
         this.voice = voice
         this.person = person
         this.variation = variation
+    }
+
+    /**
+     * @param {string} str
+     * @returns {GreekDeclension}
+     */
+    static fromString (str)
+    {
+        var declension = new GreekDeclension()
+        Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (str.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
+        Object.entries(GreekGrammar.CASES).forEach(([k, v]) => { if (str.includes(v)) declension.case = GreekGrammar.CASES[k] })
+        Object.entries(GreekGrammar.TENSES).forEach(([k, v]) => { if (str.includes(v)) declension.tense = GreekGrammar.TENSES[k] })
+        Object.entries(GreekGrammar.MOODS).forEach(([k, v]) => { if (str.includes(v)) declension.mood = GreekGrammar.MOODS[k] })
+        Object.entries(GreekGrammar.VOICES).forEach(([k, v]) => { if (str.includes(v)) declension.voice = GreekGrammar.VOICES[k] })
+        Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (str.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
+        Object.entries(GreekGrammar.PERSONS).forEach(([k, v]) => { if (str.includes(v)) declension.person = GreekGrammar.PERSONS[k] })
+        Object.entries(GreekGrammar.GENDERS).forEach(([k, v]) => { if (str.includes(v)) declension.gender = GreekGrammar.GENDERS[k] })
+        declension.variation = Number.parseInt((str.match(/\d+/gm) || ['0'])[0])
+
+        return declension
     }
 }

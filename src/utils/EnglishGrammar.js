@@ -17,7 +17,7 @@
 * @typedef {"active" | "passive"} VOICES
 */
 /**
-* @typedef {"indicative" | "perfect" | "continuous" | "compound" | "conditional" | "imperative" | "subjunctive"} MOODS
+* @typedef {"indicative" | "perfect" | "continuous" | "compound" | "conditional" | "imperative" | "subjunctive" | "infinitive" | "participle"} MOODS
 */
 /**
 * @typedef {"present" | "past" | "future"} TENSES
@@ -29,8 +29,11 @@
  */
 export class Genders
 {
+    /** @type {T} */
     feminine
+    /** @type {T} */
     masculine
+    /** @type {T} */
     neuter
 
     /**
@@ -53,7 +56,9 @@ export class Genders
  */
 export class Numbers
 {
+    /** @type {T} */
     singular
+    /** @type {T} */
     plural
 
     /**
@@ -74,8 +79,11 @@ export class Numbers
  */
 export class Cases
 {
+    /** @type {T} */
     nominative
+    /** @type {T} */
     accusative
+    /** @type {T} */
     genitive
 
     /**
@@ -98,8 +106,11 @@ export class Cases
  */
 export class Persons
 {
+    /** @type {T} */
     first
+    /** @type {T} */
     second
+    /** @type {T} */
     third
 
     /**
@@ -122,8 +133,11 @@ export class Persons
  */
 export class Voices
 {
+    /** @type {T} */
     active
+    /** @type {T} */
     middle
+    /** @type {T} */
     passive
 
     /**
@@ -134,25 +148,36 @@ export class Voices
      */
     constructor ({active = null, middle = null, passive = null} = {})
     {
-        this.active = active
-        this.middle = middle
-        this.passive = passive
+        this.active = active || middle || passive
+        this.middle = middle || this.active
+        this.passive = passive || this.middle
     }
 }
 
 /**
- * @template T
+ * @template T, T2, T3
  * @type {{[key: MOODS]: T}}
  */
 export class Moods
 {
+    /** @type  {T} */
     indicative
+    /** @type {T} */
     perfect
+    /** @type {T} */
     continuous
+    /** @type {T} */
     compound
+    /** @type {T} */
     conditional
+    /** @type {T} */
     imperative
+    /** @type {T} */
     subjunctive
+    /** @type {T2} */
+    infinitive
+    /** @type {T3} */
+    participle
 
     /**
      * @param {Object} args
@@ -163,8 +188,10 @@ export class Moods
      * @param {T} [args.conditional]
      * @param {T} [args.imperative]
      * @param {T} [args.subjunctive]
+     * @param {T2} [args.infinitive]
+     * @param {T3} [args.participle]
      */
-    constructor ({indicative = null, perfect = null, continuous = null, compound = null, conditional = null, imperative = null, subjunctive = null} = {})
+    constructor ({indicative = null, perfect = null, continuous = null, compound = null, conditional = null, imperative = null, subjunctive = null, infinitive = null, participle = null} = {})
     {
         this.indicative = indicative
         this.perfect = perfect
@@ -173,6 +200,8 @@ export class Moods
         this.conditional = conditional
         this.imperative = imperative
         this.subjunctive = subjunctive
+        this.infinitive = infinitive
+        this.participle = participle
     }
 }
 
@@ -182,8 +211,17 @@ export class Moods
  */
 export class Tenses
 {
+    /**
+     * @type {T}
+     */
     present
+    /**
+     * @type {T}
+     */
     past
+    /**
+     * @type {T}
+     */
     future
 
     /**
@@ -264,7 +302,7 @@ export default class EnglishGrammar
         PASSIVE: 'passive'
     }
     /**
-    * @type {{INDICATIVE: MOODS, PERFECT: MOODS, CONTINUOUS: MOODS, COMPOUND: MOODS, CONDITIONAL: MOODS, IMPERATIVE: MOODS, SUBJUNCTIVE: MOODS}}
+    * @type {{INDICATIVE: MOODS, PERFECT: MOODS, CONTINUOUS: MOODS, COMPOUND: MOODS, CONDITIONAL: MOODS, IMPERATIVE: MOODS, SUBJUNCTIVE: MOODS, INFINITIVE: MOODS, PARTICIPLE: MOODS}}
     */
     static MOODS =
     {
@@ -274,7 +312,9 @@ export default class EnglishGrammar
         COMPOUND: 'compound',
         CONDITIONAL: 'conditional',
         IMPERATIVE: 'imperative',
-        SUBJUNCTIVE: 'subjunctive'
+        SUBJUNCTIVE: 'subjunctive',
+        INFINITIVE: 'infinitive',
+        PARTICIPLE: 'participle',
     }
     /**
     * @type {{PRESENT: TENSES, PAST: TENSES, FUTURE: TENSES}}

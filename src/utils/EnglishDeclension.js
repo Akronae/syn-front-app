@@ -82,6 +82,8 @@ export default class EnglishDeclension
         
         if (grc.mood == GreekGrammar.MOODS.IMPERATIVE) decl.mood = EnglishGrammar.MOODS.IMPERATIVE
         else if (grc.mood == GreekGrammar.MOODS.SUBJUNCTIVE) decl.mood = EnglishGrammar.MOODS.SUBJUNCTIVE
+        else if (grc.mood == GreekGrammar.MOODS.INFINITIVE) decl.mood = EnglishGrammar.MOODS.INFINITIVE
+        else if (grc.mood == GreekGrammar.MOODS.PARTICIPLE) decl.mood = EnglishGrammar.MOODS.PARTICIPLE
         else decl.mood = EnglishGrammar.MOODS.INDICATIVE
         
         if (grc.tense == GreekGrammar.TENSES.AORIST) decl.tense = EnglishGrammar.TENSES.PAST

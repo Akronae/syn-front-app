@@ -13,15 +13,15 @@ export default class GreekArticles
     ({
         singular: new Genders
         ({
-            masculine: new Cases({ nominative: ['ὁ'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
-            feminine: new Cases({ nominative: ['ἡ'], genitive: ['τῆς'], dative: ['τῇ'], accusative: ['τήν', 'τὴν'] }),
-            neuter: new Cases({ nominative: ['τό'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
+            masculine: new Cases({ nominative: ['ὁ'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
+            feminine: new Cases({ nominative: ['ἡ'], genitive: ['τῆς'], dative: ['τῇ'], accusative: ['τήν', 'τὴν'] }),
+            neuter: new Cases({ nominative: ['τό'], genitive: ['τοῦ'], dative: ['τῷ'], accusative: ['τόν', 'τὸν'] }),
         }),
         plural: new Genders
         ({
-            masculine: new Cases({ nominative: ['οἱ'], genitive: ['τῶν'], dative: ['τοῖς'], accusative: ['τούς', 'τοὺς'] }),
+            masculine: new Cases({ nominative: ['οἱ'], genitive: ['τῶν'], dative: ['τοῖς'], accusative: ['τούς', 'τοὺς'] }),
             feminine: new Cases({ nominative: ['αἱ'], genitive: ['τῶν'], dative: ['ταῖς'], accusative: ['τᾱ́ς'] }),
-            neuter: new Cases({ nominative: ['τᾰ́'], genitive: ['τῶν'], dative: ['τοῖς'], accusative: ['τούς', 'τοὺς'] }),
+            neuter: new Cases({ nominative: ['τᾰ́'], genitive: ['τῶν'], dative: ['τοῖς'], accusative: ['τούς', 'τοὺς'] }),
         }),
     })
 }

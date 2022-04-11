@@ -16,5 +16,6 @@ export default class ArrayUtils
         {
             if (arg && arg.length) return arg
         }
+        return []
     }
 }

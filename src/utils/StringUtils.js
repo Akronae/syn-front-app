@@ -93,11 +93,13 @@ export default class StringUtils
 
     static removeAccents (str)
     {
+        if (!str) return ''
         return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     }
 
     static hasAccents (str)
     {
+        if (!str) return false
         return str.normalize('NFD').match(/[\u0300-\u036f]/g, '')
     }
 
@@ -236,5 +238,10 @@ export default class StringUtils
     static endsWithSome (str, ...all)
     {
         return all.some(item => str.endsWith(item))
+    }
+
+    static indexOfAny (str, ...any)
+    {
+        return str.split('').findIndex(item => any.includes(item))
     }
 }

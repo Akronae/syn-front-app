@@ -1,11 +1,10 @@
 [
-  null,
   [
     [
       {
-        "word": "Βίβλος",
+        "word": "Βίβλος",
         "declension": {
-          "lemma": "βίβλος",
+          "lemma": "βίβλος",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -20,9 +19,9 @@
         "translation": "book"
       },
       {
-        "word": "γενέσεως",
+        "word": "γενέσεως",
         "declension": {
-          "lemma": "γένεσις",
+          "lemma": "γένεσις",
           "pos": "noun",
           "gender": "feminine",
           "number": "singular",
@@ -51,12 +50,12 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "of Jesus"
+        "translation": "of Yesu"
       },
       {
-        "word": "Χριστοῦ",
+        "word": "χριστοῦ",
         "declension": {
-          "lemma": "χριστός",
+          "lemma": "χριστός",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -73,7 +72,7 @@
       {
         "word": "υἱοῦ",
         "declension": {
-          "lemma": "υἱός",
+          "lemma": "υἱός",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -88,9 +87,9 @@
         "translation": "of son"
       },
       {
-        "word": "Δαυεὶδ",
+        "word": "Δαυὶδ",
         "declension": {
-          "lemma": "δαυεὶδ",
+          "lemma": "δαυὶδ",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -107,7 +106,7 @@
       {
         "word": "υἱοῦ",
         "declension": {
-          "lemma": "υἱός",
+          "lemma": "υἱός",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -122,9 +121,9 @@
         "translation": "of son"
       },
       {
-        "word": "Ἀβρααμ.",
+        "word": "Ἀβραάμ.",
         "declension": {
-          "lemma": "ἀβρααμ",
+          "lemma": "ἀβραὰμ",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -158,9 +157,9 @@
         "translation": "Abraham"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -192,7 +191,7 @@
         "translation": "the"
       },
       {
-        "word": "Ἰσαάκ,",
+        "word": "Ἰσαάκ,",
         "declension": {
           "lemma": "ἰσαὰκ",
           "pos": "noun",
@@ -206,7 +205,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Isaac"
+        "translation": "Yishaq"
       },
       {
         "word": "Ἰσαὰκ",
@@ -223,7 +222,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Isaac"
+        "translation": "Yishaq"
       },
       {
         "word": "δὲ",
@@ -243,9 +242,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -277,7 +276,7 @@
         "translation": "the"
       },
       {
-        "word": "Ἰακώβ,",
+        "word": "Ἰακώβ,",
         "declension": {
           "lemma": "ἰακὼβ",
           "pos": "noun",
@@ -291,7 +290,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Jacob"
+        "translation": "Yaaqob"
       },
       {
         "word": "Ἰακὼβ",
@@ -308,7 +307,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Jacob"
+        "translation": "Yaaqob"
       },
       {
         "word": "δὲ",
@@ -328,9 +327,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -362,9 +361,9 @@
         "translation": "the"
       },
       {
-        "word": "Ἰούδαν",
+        "word": "Ἰούδαν",
         "declension": {
-          "lemma": "ἰούδας",
+          "lemma": "ἰούδας",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -376,7 +375,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Judas"
+        "translation": "Yehuda"
       },
       {
         "word": "καὶ",
@@ -415,7 +414,7 @@
       {
         "word": "ἀδελφοὺς",
         "declension": {
-          "lemma": "ἀδελφός",
+          "lemma": "ἀδελφὸς",
           "pos": "noun",
           "gender": "masculine",
           "number": "plural",
@@ -430,10 +429,10 @@
         "translation": "brothers"
       },
       {
-        "word": "αὐτοῦ",
+        "word": "αὐτοῦ,",
         "declension": {
-          "lemma": "ἐγώ",
-          "pos": "pronoun",
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
           "gender": "masculine",
           "number": "singular",
           "case": "genitive",
@@ -444,14 +443,14 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "of his"
+        "translation": "his"
       }
     ],
     [
       {
-        "word": "Ἰούδας",
+        "word": "Ἰούδας",
         "declension": {
-          "lemma": "ἰούδας",
+          "lemma": "ἰούδας",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -463,7 +462,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Judas"
+        "translation": "Yehuda"
       },
       {
         "word": "δὲ",
@@ -483,9 +482,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -582,7 +581,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Zara"
+        "translation": "Zerah"
       },
       {
         "word": "ἐκ",
@@ -591,7 +590,7 @@
           "pos": "preposition",
           "gender": null,
           "number": null,
-          "case": null,
+          "case": "genitive",
           "tense": null,
           "mood": null,
           "voice": null,
@@ -619,9 +618,9 @@
         "translation": "of the"
       },
       {
-        "word": "Θάμαρ,",
+        "word": "Θαμάρ,",
         "declension": {
-          "lemma": "θάμαρ",
+          "lemma": "θαμάρ",
           "pos": "noun",
           "gender": "masculine",
           "number": "singular",
@@ -670,9 +669,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -704,7 +703,7 @@
         "translation": "the"
       },
       {
-        "word": "Ἑσρώμ,",
+        "word": "Ἑσρώμ,",
         "declension": {
           "lemma": "ἑσρὼμ",
           "pos": "noun",
@@ -718,7 +717,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Esrom"
+        "translation": "Hezron"
       },
       {
         "word": "Ἑσρὼμ",
@@ -735,7 +734,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Esrom"
+        "translation": "Hezron"
       },
       {
         "word": "δὲ",
@@ -755,9 +754,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -789,7 +788,7 @@
         "translation": "the"
       },
       {
-        "word": "Ἀράμ,",
+        "word": "Ἀράμ,",
         "declension": {
           "lemma": "ἀρὰμ",
           "pos": "noun",
@@ -803,7 +802,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Haram"
+        "translation": "Aram"
       }
     ],
     [
@@ -822,7 +821,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Haram"
+        "translation": "Aram"
       },
       {
         "word": "δὲ",
@@ -842,9 +841,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -876,7 +875,7 @@
         "translation": "the"
       },
       {
-        "word": "Ἀμιναδάβ,",
+        "word": "Ἀμιναδάβ,",
         "declension": {
           "lemma": "ἀμιναδὰβ",
           "pos": "noun",
@@ -890,7 +889,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Haminadab"
+        "translation": "Amminadab"
       },
       {
         "word": "Ἀμιναδὰβ",
@@ -907,7 +906,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Haminadab"
+        "translation": "Amminadab"
       },
       {
         "word": "δὲ",
@@ -927,9 +926,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -961,7 +960,7 @@
         "translation": "the"
       },
       {
-        "word": "Ναασσών,",
+        "word": "Ναασσών,",
         "declension": {
           "lemma": "ναασσὼν",
           "pos": "noun",
@@ -975,7 +974,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Naasson"
+        "translation": "Nahshon"
       },
       {
         "word": "Ναασσὼν",
@@ -992,7 +991,7 @@
           "variation": 0
         },
         "definition": null,
-        "translation": "Naasson"
+        "translation": "Nahshon"
       },
       {
         "word": "δὲ",
@@ -1012,9 +1011,9 @@
         "translation": "then"
       },
       {
-        "word": "ἐγέννησεν",
+        "word": "ἐγέννησεν",
         "declension": {
-          "lemma": "γεννάω",
+          "lemma": "γεννάω",
           "pos": "verb",
           "gender": null,
           "number": "singular",
@@ -1046,7 +1045,7 @@
         "translation": "the"
       },
       {
-        "word": "Σαλμών,",
+        "word": "Σαλμών,",
         "declension": {
           "lemma": "σαλμὼν",
           "pos": "noun",
@@ -1061,6 +1060,6506 @@
         },
         "definition": null,
         "translation": "Salmon"
+      }
+    ],
+    [
+      {
+        "word": "Σαλμὼν",
+        "declension": {
+          "lemma": "σαλμὼν",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Salmon"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Βόες",
+        "declension": {
+          "lemma": "βόες",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Boaz"
+      },
+      {
+        "word": "ἐκ",
+        "declension": {
+          "lemma": "ἐκ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "from"
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "Ῥαχάβ,",
+        "declension": {
+          "lemma": "ῥαχάβ",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Rahab"
+      },
+      {
+        "word": "Βόες",
+        "declension": {
+          "lemma": "βόες",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Boaz"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωβὴδ",
+        "declension": {
+          "lemma": "ἰωβὴδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Obed"
+      },
+      {
+        "word": "ἐκ",
+        "declension": {
+          "lemma": "ἐκ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "from"
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "Ῥούθ,",
+        "declension": {
+          "lemma": "ῥούθ",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Rut"
+      },
+      {
+        "word": "Ἰωβὴδ",
+        "declension": {
+          "lemma": "ἰωβὴδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Obed"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰεσσαί,",
+        "declension": {
+          "lemma": "ἰεσσαὶ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yishai"
+      }
+    ],
+    [
+      {
+        "word": "Ἰεσσαὶ",
+        "declension": {
+          "lemma": "ἰεσσαὶ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yishai"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Δαυὶδ",
+        "declension": {
+          "lemma": "δαυὶδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "David"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "βασιλέα.",
+        "declension": {
+          "lemma": "βασιλεύς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "king"
+      },
+      {
+        "word": "Δαυὶδ",
+        "declension": {
+          "lemma": "δαυὶδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "David"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Σολομῶνα",
+        "declension": {
+          "lemma": "σολομὼν",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "Selomo"
+      },
+      {
+        "word": "ἐκ",
+        "declension": {
+          "lemma": "ἐκ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "from"
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "τοῦ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "Οὐρίου,",
+        "declension": {
+          "lemma": "οὐρίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Urias"
+      }
+    ],
+    [
+      {
+        "word": "Σολομὼν",
+        "declension": {
+          "lemma": "σολομὼν",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Selomo"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ῥοβοάμ,",
+        "declension": {
+          "lemma": "ῥοβοὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Rehoboam"
+      },
+      {
+        "word": "Ῥοβοὰμ",
+        "declension": {
+          "lemma": "ῥοβοὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Rehoboam"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀβιά,",
+        "declension": {
+          "lemma": "ἀβιὰ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Abiyya"
+      },
+      {
+        "word": "Ἀβιὰ",
+        "declension": {
+          "lemma": "ἀβιὰ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Abiyya"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀσάφ,",
+        "declension": {
+          "lemma": "ἀσὰφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Asa"
+      }
+    ],
+    [
+      {
+        "word": "Ἀσὰφ",
+        "declension": {
+          "lemma": "ἀσὰφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Asa"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωσαφάτ,",
+        "declension": {
+          "lemma": "ἰωσαφὰτ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yehosapat"
+      },
+      {
+        "word": "Ἰωσαφὰτ",
+        "declension": {
+          "lemma": "ἰωσαφὰτ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yehosapat"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωράμ,",
+        "declension": {
+          "lemma": "ἰωρὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Joram"
+      },
+      {
+        "word": "Ἰωρὰμ",
+        "declension": {
+          "lemma": "ἰωρὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Joram"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ὀζίαν,",
+        "declension": {
+          "lemma": "ὀζίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Uzziah"
+      }
+    ],
+    [
+      {
+        "word": "Ὀζίας",
+        "declension": {
+          "lemma": "ὀζίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Uzziah"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωαθάμ,",
+        "declension": {
+          "lemma": "ἰωαθὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Joatham"
+      },
+      {
+        "word": "Ἰωαθὰμ",
+        "declension": {
+          "lemma": "ἰωαθὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Joatham"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀχάζ,",
+        "declension": {
+          "lemma": "ἀχὰζ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Ahaz"
+      },
+      {
+        "word": "Ἀχὰζ",
+        "declension": {
+          "lemma": "ἀχὰζ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Ahaz"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἑζεκίαν,",
+        "declension": {
+          "lemma": "ἑζεκίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Hezekiah"
+      }
+    ],
+    [
+      {
+        "word": "Ἑζεκίας",
+        "declension": {
+          "lemma": "ἑζεκίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Hezekiah"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Μανασσῆ,",
+        "declension": {
+          "lemma": "μανασσῆς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Manasse"
+      },
+      {
+        "word": "Μανασσῆς",
+        "declension": {
+          "lemma": "μανασσῆς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Manasse"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀμώς,",
+        "declension": {
+          "lemma": "ἀμὼς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Amos"
+      },
+      {
+        "word": "Ἀμὼς",
+        "declension": {
+          "lemma": "ἀμὼς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Amos"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωσίαν,",
+        "declension": {
+          "lemma": "ἰωσίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosiyya"
+      }
+    ],
+    [
+      {
+        "word": "Ἰωσίας",
+        "declension": {
+          "lemma": "ἰωσίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosiyya"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰεχονίαν",
+        "declension": {
+          "lemma": "ἰεχονίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Jechoniah"
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "τοὺς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "plural",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "ἀδελφοὺς",
+        "declension": {
+          "lemma": "ἀδελφὸς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "plural",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "brothers"
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "ἐπὶ",
+        "declension": {
+          "lemma": "ἐπὶ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "on"
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "μετοικεσίας",
+        "declension": {
+          "lemma": "μετοικεσία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of deportation"
+      },
+      {
+        "word": "Βαβυλῶνος.",
+        "declension": {
+          "lemma": "βαβυλών",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Babylon"
+      }
+    ],
+    [
+      {
+        "word": "Μετὰ",
+        "declension": {
+          "lemma": "μετὰ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "after"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "τὴν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "μετοικεσίαν",
+        "declension": {
+          "lemma": "μετοικεσία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "deportation"
+      },
+      {
+        "word": "Βαβυλῶνος",
+        "declension": {
+          "lemma": "βαβυλών",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Babylon"
+      },
+      {
+        "word": "Ἰεχονίας",
+        "declension": {
+          "lemma": "ἰεχονίας",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Jechoniah"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Σαλαθιήλ,",
+        "declension": {
+          "lemma": "σαλαθιὴλ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Shealtiel"
+      },
+      {
+        "word": "Σαλαθιὴλ",
+        "declension": {
+          "lemma": "σαλαθιὴλ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Shealtiel"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ζοροβαβέλ,",
+        "declension": {
+          "lemma": "ζοροβαβὲλ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Zerubbabel"
+      }
+    ],
+    [
+      {
+        "word": "Ζοροβαβὲλ",
+        "declension": {
+          "lemma": "ζοροβαβὲλ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Zerubbabel"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀβιούδ,",
+        "declension": {
+          "lemma": "ἀβιοὺδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Abiud"
+      },
+      {
+        "word": "Ἀβιοὺδ",
+        "declension": {
+          "lemma": "ἀβιοὺδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Abiud"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἐλιακίμ,",
+        "declension": {
+          "lemma": "ἐλιακὶμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Eliakim"
+      },
+      {
+        "word": "Ἐλιακὶμ",
+        "declension": {
+          "lemma": "ἐλιακὶμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Eliakim"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀζώρ,",
+        "declension": {
+          "lemma": "ἀζὼρ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Azor"
+      }
+    ],
+    [
+      {
+        "word": "Ἀζὼρ",
+        "declension": {
+          "lemma": "ἀζὼρ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Azor"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Σαδώκ,",
+        "declension": {
+          "lemma": "σαδὼκ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Zadok"
+      },
+      {
+        "word": "Σαδὼκ",
+        "declension": {
+          "lemma": "σαδὼκ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Zadok"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἀχίμ,",
+        "declension": {
+          "lemma": "ἀχὶμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Achim"
+      },
+      {
+        "word": "Ἀχὶμ",
+        "declension": {
+          "lemma": "ἀχὶμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Achim"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἐλιούδ,",
+        "declension": {
+          "lemma": "ἐλιοὺδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Eliud"
+      }
+    ],
+    [
+      {
+        "word": "Ἐλιοὺδ",
+        "declension": {
+          "lemma": "ἐλιοὺδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Eliud"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἐλεάζαρ,",
+        "declension": {
+          "lemma": "ἐλεάζαρ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Elazar"
+      },
+      {
+        "word": "Ἐλεάζαρ",
+        "declension": {
+          "lemma": "ἐλεάζαρ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Elazar"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ματθάν,",
+        "declension": {
+          "lemma": "ματθὰν",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Matthan"
+      },
+      {
+        "word": "Ματθὰν",
+        "declension": {
+          "lemma": "ματθὰν",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Matthan"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰακώβ,",
+        "declension": {
+          "lemma": "ἰακὼβ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yaaqob"
+      }
+    ],
+    [
+      {
+        "word": "Ἰακὼβ",
+        "declension": {
+          "lemma": "ἰακὼβ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yaaqob"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ἐγέννησεν",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "active",
+          "person": "third",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "he begot"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωσὴφ",
+        "declension": {
+          "lemma": "ἰωσὴφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosep"
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "ἄνδρα",
+        "declension": {
+          "lemma": "ἄνηρ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "man"
+      },
+      {
+        "word": "Μαρίας,",
+        "declension": {
+          "lemma": "μαρία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Maryam"
+      },
+      {
+        "word": "ἐξ",
+        "declension": {
+          "lemma": "ἐξ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "from"
+      },
+      {
+        "word": "ἧς",
+        "declension": {
+          "lemma": "ὅς",
+          "pos": "pronoun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "whose"
+      },
+      {
+        "word": "ἐγεννήθη",
+        "declension": {
+          "lemma": "γεννάω",
+          "pos": "verb",
+          "gender": null,
+          "number": "singular",
+          "case": null,
+          "tense": "aorist",
+          "mood": "indicative",
+          "voice": "passive",
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "he was begotten"
+      },
+      {
+        "word": "Ἰησοῦς",
+        "declension": {
+          "lemma": "ἰησοῦς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yesu"
+      },
+      {
+        "word": "ὁ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "λεγόμενος",
+        "declension": {
+          "lemma": "λέγω",
+          "pos": "verb",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": "present",
+          "mood": "participle",
+          "voice": "passive",
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "said"
+      },
+      {
+        "word": "χριστός.",
+        "declension": {
+          "lemma": "χριστός",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Christ"
+      }
+    ],
+    [
+      {
+        "word": "Πᾶσαι",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "οὖν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αἱ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "plural",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "γενεαὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἀπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Ἀβραὰμ",
+        "declension": {
+          "lemma": "ἀβραὰμ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Abraham"
+      },
+      {
+        "word": "ἕως",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Δαυὶδ",
+        "declension": {
+          "lemma": "δαυὶδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "David"
+      },
+      {
+        "word": "γενεαὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δεκατέσσαρες,",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "ἀπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Δαυὶδ",
+        "declension": {
+          "lemma": "δαυὶδ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "David"
+      },
+      {
+        "word": "ἕως",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "μετοικεσίας",
+        "declension": {
+          "lemma": "μετοικεσία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of deportation"
+      },
+      {
+        "word": "Βαβυλῶνος",
+        "declension": {
+          "lemma": "βαβυλών",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Babylon"
+      },
+      {
+        "word": "γενεαὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δεκατέσσαρες,",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "ἀπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "μετοικεσίας",
+        "declension": {
+          "lemma": "μετοικεσία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of deportation"
+      },
+      {
+        "word": "Βαβυλῶνος",
+        "declension": {
+          "lemma": "βαβυλών",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Babylon"
+      },
+      {
+        "word": "ἕως",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τοῦ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "χριστοῦ",
+        "declension": {
+          "lemma": "χριστός",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Christ"
+      },
+      {
+        "word": "γενεαὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δεκατέσσαρες.",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "Τοῦ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "Ἰησοῦ",
+        "declension": {
+          "lemma": "ἰησοῦς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Yesu"
+      },
+      {
+        "word": "χριστοῦ",
+        "declension": {
+          "lemma": "χριστός",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Christ"
+      },
+      {
+        "word": "ἡ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "γένεσις",
+        "declension": {
+          "lemma": "γένεσις",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "origin"
+      },
+      {
+        "word": "οὕτως",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἦν.",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "μνηστευθείσης",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τῆς",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "μητρὸς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "Μαρίας",
+        "declension": {
+          "lemma": "μαρία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of Maryam"
+      },
+      {
+        "word": "τῷ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "dative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "to the"
+      },
+      {
+        "word": "Ἰωσήφ,",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "πρὶν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἢ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "συνελθεῖν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοὺς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "εὑρέθη",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "γαστρὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἔχουσα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐκ",
+        "declension": {
+          "lemma": "ἐκ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null
+      },
+      {
+        "word": "πνεύματος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἁγίου.",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "Ἰωσὴφ",
+        "declension": {
+          "lemma": "ἰωσὴφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosep"
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ὁ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "ἀνὴρ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτῆς,",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "δίκαιος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὢν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "μὴ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "θέλων",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτὴν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δειγματίσαι,",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐβουλήθη",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "λάθρᾳ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἀπολῦσαι",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτήν.",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "he"
+      }
+    ],
+    [
+      {
+        "word": "ταῦτα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "ἐνθυμηθέντος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἰδοὺ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἄγγελος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "κυρίου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "κατ’",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὄναρ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐφάνη",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτῷ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "dative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "he"
+      },
+      {
+        "word": "λέγων",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Ἰωσὴφ",
+        "declension": {
+          "lemma": "ἰωσὴφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosep"
+      },
+      {
+        "word": "υἱὸς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Δαυίδ,",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "μὴ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "φοβηθῇς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "παραλαβεῖν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Μαρίαν",
+        "declension": {
+          "lemma": "μαρία",
+          "pos": "noun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Maryam"
+      },
+      {
+        "word": "τὴν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "γυναῖκά",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "σου,",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "second",
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "your"
+      },
+      {
+        "word": "τὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "γὰρ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτῇ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "dative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "he"
+      },
+      {
+        "word": "γεννηθὲν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐκ",
+        "declension": {
+          "lemma": "ἐκ",
+          "pos": "preposition",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null
+      },
+      {
+        "word": "πνεύματός",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐστιν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἁγίου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "τέξεται",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "υἱὸν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "καλέσεις",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὄνομα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "Ἰησοῦν,",
+        "declension": {
+          "lemma": "ἰησοῦς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yesu"
+      },
+      {
+        "word": "αὐτὸς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "γὰρ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "σώσει",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὸν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "λαὸν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "ἀπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τῶν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "plural",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "ἁμαρτιῶν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτῶν.",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "plural",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "their"
+      }
+    ],
+    [
+      {
+        "word": "τοῦτο",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ὅλον",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "γέγονεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἵνα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "πληρωθῇ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ῥηθὲν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὑπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "κυρίου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "διὰ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τοῦ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "προφήτου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "λέγοντος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "Ἰδοὺ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἡ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "παρθένος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "γαστρὶ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἕξει",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "τέξεται",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "υἱόν,",
+        "declension": {
+          "lemma": "υἱός",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "son"
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "καλέσουσιν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὄνομα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "Ἐμμανουήλ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὅ",
+        "declension": {
+          "lemma": "ὅς",
+          "pos": "pronoun",
+          "gender": "neuter",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "which"
+      },
+      {
+        "word": "ἐστιν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "μεθερμηνευόμενον",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "Μεθ’",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἡμῶν",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "feminine",
+          "number": "plural",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "first",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "our"
+      },
+      {
+        "word": "ὁ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "θεός.",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "ἐγερθεὶς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "δὲ",
+        "declension": {
+          "lemma": "δὲ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "then"
+      },
+      {
+        "word": "ὁ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "Ἰωσὴφ",
+        "declension": {
+          "lemma": "ἰωσὴφ",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yosep"
+      },
+      {
+        "word": "ἀπὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τοῦ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "of the"
+      },
+      {
+        "word": "ὕπνου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐποίησεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὡς",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "προσέταξεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτῷ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "dative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "he"
+      },
+      {
+        "word": "ὁ",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "nominative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "ἄγγελος",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "κυρίου",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "παρέλαβεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὴν",
+        "declension": {
+          "lemma": "ὁ",
+          "pos": "article",
+          "gender": "feminine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 1
+        },
+        "definition": null,
+        "translation": "the"
+      },
+      {
+        "word": "γυναῖκα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      }
+    ],
+    [
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "οὐκ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἐγίνωσκεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτὴν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ἕως",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "οὗ",
+        "declension": {
+          "lemma": "ὅς",
+          "pos": "pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "whose"
+      },
+      {
+        "word": "ἔτεκεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "υἱόν",
+        "declension": {
+          "lemma": "υἱός",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "son"
+      },
+      {
+        "word": "·",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "καὶ",
+        "declension": {
+          "lemma": "καὶ",
+          "pos": "conjunction",
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "and"
+      },
+      {
+        "word": "ἐκάλεσεν",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "τὸ",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "ὄνομα",
+        "declension": {
+          "lemma": null,
+          "pos": null,
+          "gender": null,
+          "number": null,
+          "case": null,
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": null
+        },
+        "definition": null,
+        "translation": ""
+      },
+      {
+        "word": "αὐτοῦ",
+        "declension": {
+          "lemma": "ἐγώ",
+          "pos": "personal_pronoun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "genitive",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": "third",
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "his"
+      },
+      {
+        "word": "Ἰησοῦν.",
+        "declension": {
+          "lemma": "ἰησοῦς",
+          "pos": "noun",
+          "gender": "masculine",
+          "number": "singular",
+          "case": "accusative",
+          "tense": null,
+          "mood": null,
+          "voice": null,
+          "person": null,
+          "variation": 0
+        },
+        "definition": null,
+        "translation": "Yesu"
       }
     ]
   ]

@@ -29,6 +29,11 @@ export default class GreekInflectionUtils
         str = str.replace(/active/gm, 'act')
         str = str.replace(/indicative/gm, 'ind')
         str = str.replace(/third/gm, '3rd')
+        str = str.replace(/personal/gm, 'pers')
+        str = str.replace(/present/gm, 'pres')
+        str = str.replace(/passive/gm, 'pas')
+        str = str.replace(/participle/gm, 'par')
+        str = str.replace(/_/gm, ' ')
 
         return str
     }
@@ -44,18 +49,9 @@ export default class GreekInflectionUtils
             for (const [declStr, inflected] of Object.entries(pathes))
             {
                 if (!inflected) continue
-                var declension = new GreekDeclension()
+                var declension = GreekDeclension.fromString(declStr)
                 declension.lemma = key
                 declension.pos = value.pos
-                Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
-                Object.entries(GreekGrammar.CASES).forEach(([k, v]) => { if (declStr.includes(v)) declension.case = GreekGrammar.CASES[k] })
-                Object.entries(GreekGrammar.TENSES).forEach(([k, v]) => { if (declStr.includes(v)) declension.tense = GreekGrammar.TENSES[k] })
-                Object.entries(GreekGrammar.MOODS).forEach(([k, v]) => { if (declStr.includes(v)) declension.mood = GreekGrammar.MOODS[k] })
-                Object.entries(GreekGrammar.VOICES).forEach(([k, v]) => { if (declStr.includes(v)) declension.voice = GreekGrammar.VOICES[k] })
-                Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
-                Object.entries(GreekGrammar.PERSONS).forEach(([k, v]) => { if (declStr.includes(v)) declension.person = GreekGrammar.PERSONS[k] })
-                Object.entries(GreekGrammar.GENDERS).forEach(([k, v]) => { if (declStr.includes(v)) declension.gender = GreekGrammar.GENDERS[k] })
-                declension.variation = Number.parseInt((declStr.match(/\d+/gm) || ['0'])[0])
                 if (!this.DICTIONARY_INFLECTED[inflected]) this.DICTIONARY_INFLECTED[inflected] = []
                 this.DICTIONARY_INFLECTED[inflected].push(declension)
             }
@@ -81,6 +77,7 @@ export default class GreekInflectionUtils
         lemma = lemma.toLowerCase()
 
         const dictEntry = GreekDictionary.get(lemma)
+        if (!dictEntry) return null
         
         var radical = StringUtils.EMPTY
         if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
@@ -106,6 +103,10 @@ export default class GreekInflectionUtils
         else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN)
         {
             return dictEntry.pronounTable
+        }
+        else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN)
+        {
+            return dictEntry.personalPronounTable
         }
         else return {[dictEntry.pos]: lemma}
     }

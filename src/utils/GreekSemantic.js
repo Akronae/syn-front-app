@@ -38,7 +38,11 @@ export default class GreekSemantic
 
             if (word.definition.translation instanceof Cases)
             {
-                for (let j = i; j < words.length; j++) if (words[j].declension.case) word.declension.case = words[j].declension.case
+                for (let j = i; j < words.length; j++) { if (words[j].declension.case)
+                {
+                    word.declension.case = words[j].declension.case
+                    break
+                }}
             }
         }
     }
