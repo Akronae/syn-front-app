@@ -7,6 +7,7 @@ import GreekDeclension from './GreekDeclension'
 import GreekDeclensionVerbTables from './GreekDeclensionVerbTables'
 import ArrayUtils from './ArrayUtils'
 import GreekAlphabet from './GreekAlphabet'
+import GreekNumerals from './GreekNumerals'
 
 export default class GreekInflectionUtils
 {
@@ -65,11 +66,12 @@ export default class GreekInflectionUtils
      */
     static getDeclension (wordInflected)
     {
-        wordInflected = GreekAlphabet.sanitizeLetters(wordInflected).toLowerCase()
+        wordInflected = GreekAlphabet.sanitizeLetters(wordInflected.toLowerCase())
 
         const declensions = this.DICTIONARY_INFLECTED[wordInflected]
+        if (GreekNumerals.isNumber(wordInflected)) return [new GreekDeclension({pos: GreekGrammar.PARTS_OF_SPEECH.NUMERAL, lemma: wordInflected})]
         if (!declensions) return null
-        return ObjectUtils.clone(declensions)
+        return declensions.map(d => d.clone())
     }
 
     static inflect (lemma)
@@ -80,8 +82,9 @@ export default class GreekInflectionUtils
         if (!dictEntry) return null
         
         var radical = StringUtils.EMPTY
-        if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
+        if (StringUtils.equalSome(dictEntry.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE))
         {
+            if (!dictEntry.declensionNounTable) console.error(`No declension table for ${lemma}`)
             const n = dictEntry.declensionNounTable.singular.nominative
             radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(ArrayUtils.firstNotEmpty(n.masculine, n.feminine, n.neuter)[0]), StringUtils.EMPTY)
             radical = lemma.substring(0, radical.length)
@@ -90,11 +93,7 @@ export default class GreekInflectionUtils
         }
         else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.VERB)
         {
-            const firstEnding = dictEntry.declensionVerbTable.present.indicative.active.singular.first[0]
-            radical = StringUtils.replaceLast(StringUtils.removeAccents(lemma), StringUtils.removeAccents(firstEnding), StringUtils.EMPTY)
-            radical = lemma.substring(0, radical.length)
-
-            return GreekDeclensionVerbTables.conjugateTable(dictEntry.declensionVerbTable, radical)
+            return GreekDeclensionVerbTables.conjugateTable(dictEntry.declensionVerbTable, lemma)
         }
         else if (dictEntry.pos == GreekGrammar.PARTS_OF_SPEECH.ARTICLE)
         {

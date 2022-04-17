@@ -1,216 +1,102 @@
 import ObjectUtils from '@/utils/ObjectUtils'
 import GreekWord from '@/utils/GreekWord'
 import StringUtils from '@/utils/StringUtils'
-import GreekGrammar, { Cases, Genders, Numbers, Voices } from './GreekGrammar'
-
-class GreekDeclensionTableVerbNumber
-{
-    /**
-     * @type {string[]}
-     */
-    first
-    /**
-     * @type {string[]}
-     */
-    second
-    /**
-     * @type {string[]}
-     */
-    third
-
-    constructor ({ first = [StringUtils.EMPTY], second = [StringUtils.EMPTY], third = [StringUtils.EMPTY] } = {})
-    {
-        this.first = first //|| second || third
-        this.second = second //|| first || third
-        this.third = third //|| first || second
-    }
-}
-
-class GreekDeclensionTableVerbVoice
-{
-    /**
-     * @type {GreekDeclensionTableVerbNumber}
-     */
-    singular
-    /**
-     * @type {GreekDeclensionTableVerbNumber}
-     */
-    plural
-
-    constructor ({ singular = null, plural = null } = {})
-    {
-        this.singular = singular
-        this.plural = plural
-    }
-}
-
-class GreekDeclensionTableVerbMood
-{
-    /**
-     * @type {GreekDeclensionTableVerbVoice}
-     */
-    active
-    /**
-     * @type {GreekDeclensionTableVerbVoice}
-     */
-    middle
-    /**
-     * @type {GreekDeclensionTableVerbVoice}
-     */
-    passive
-
-    constructor ({ active = null, middle = null, passive = null } = {})
-    {
-        this.active = active
-        this.middle = middle
-        this.passive = passive
-    }
-}
-
-class GreekDeclensionTableVerbTense
-{
-    /**
-     * @type {GreekDeclensionTableVerbMood}
-     */
-    indicative
-    /**
-     * @type {GreekDeclensionTableVerbMood}
-     */
-    subjunctive
-    /**
-     * @type {GreekDeclensionTableVerbMood}
-     */
-    optative
-    /**
-     * @type {GreekDeclensionTableVerbMood}
-     */
-    imperative
-    /**
-     * @type {Voices<string[]>}
-     */
-    infinitive
-    /**
-     * @type {Voices<Numbers<Cases<Genders<string[]>>>>}
-     */
-    participle
-
-    /**
-     * @param {Object} args
-     * @param {GreekDeclensionTableVerbMood} [args.indicative]
-     * @param {GreekDeclensionTableVerbMood} [args.subjunctive]
-     * @param {GreekDeclensionTableVerbMood} [args.optative]
-     * @param {GreekDeclensionTableVerbMood} [args.imperative]
-     * @param {Voices<string[]>} [args.infinitive]
-     * @param {Voices<Numbers<Cases<Genders<string[]>>>>} [args.participle]
-     */
-    constructor ({ indicative = null, subjunctive = null, optative = null, imperative = null, infinitive = null, participle = null } = {})
-    {
-        this.indicative = indicative
-        this.subjunctive = subjunctive
-        this.optative = optative
-        this.imperative = imperative
-        this.infinitive = infinitive
-        this.participle = participle
-    }
-}
-
-
-class GreekDeclensionTableVerbTable
-{
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    present
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    imperfect
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    future
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    aorist
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    perfect
-    /**
-     * @type {GreekDeclensionTableVerbTense}
-     */
-    pluperfect
-
-    constructor ({ present = null, imperfect = null, future = null, aorist = null, perfect = null, pluperfect = null } = {})
-    {
-        this.present = present
-        this.imperfect = imperfect
-        this.future = future
-        this.aorist = aorist
-        this.perfect = perfect
-        this.pluperfect = pluperfect
-    }
-}
+import GreekGrammar, { Cases, Genders, Numbers, Persons, Themes, Voices } from './GreekGrammar'
+import GreekIrregularVerbs from './GreekIrregularVerbs'
+import GreekVerbUtils from './GreekVerbUtils'
+import GreekDeclensionVerbTable, { GreekDeclensionTableVerbMoods } from './GreekDeclensionVerbTable'
 
 export default class GreekDeclensionVerbTables
 {
     /**
-     * @type {GreekDeclensionTableVerbTable}
+     * @type {GreekDeclensionVerbTable}
      */
-    static Table = new GreekDeclensionTableVerbTable()
+    static Table = new GreekDeclensionVerbTable()
     /**
-     * @type {typeof GreekDeclensionTableVerbTable}
+     * @type {typeof GreekDeclensionVerbTable}
      */
-     static Table_Type = GreekDeclensionTableVerbTable
+     static Table_Type = GreekDeclensionVerbTable
 
     /**
-     * @type {GreekDeclensionTableVerbTable}
+     * @type {GreekDeclensionVerbTable}
      */
-    static W = new GreekDeclensionTableVerbTable
+    static W = new GreekDeclensionVerbTable
     ({
-        present: new GreekDeclensionTableVerbTense
+        present: new GreekDeclensionTableVerbMoods
         ({
-            indicative: new GreekDeclensionTableVerbMood
+            indicative: new Voices
             ({
-                active: new GreekDeclensionTableVerbVoice
+                active: new Themes
                 ({
-                    singular: new GreekDeclensionTableVerbNumber({ first: ['ω'], second: ['εις'], third: ['ει'] }),
+                    thematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['ω'], second: ['εις'], third: ['ει'] }),
+                    }),
+                    athematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['μι'], second: ['ς'], third: ['σι', 'σιν'] }),
+                        plural: new Persons({ first: ['μεν'], second: ['τε'], third: ['ασι', 'ασιν'] }),
+                    })
                 })
             }),
-            infinitive: new Voices({ active: ['ειν'], middle: ['εσθαι'] }),
+            infinitive: new Voices({ active: new Themes({ thematic: ['ειν'] }), middle: new Themes({ thematic: ['εσθαι'] }) }),
             participle: new Voices
             ({
-
-                active: new Numbers
+                active: new Themes
                 ({
-                    singular: new Cases
+                    thematic: new Numbers
                     ({
-                        nominative: new Genders({ masculine: ['ων'], feminine: ['ουσᾰ'], neuter: ['ον'] }),
+                        singular: new Cases
+                        ({
+                            nominative: new Genders({ masculine: ['ων'], feminine: ['ουσᾰ'], neuter: ['ον'] }),
+                        })
                     })
                 }),
-                passive: new Numbers
+                passive: new Themes
                 ({
-                    singular: new Cases
+                    thematic: new Numbers
                     ({
-                        nominative: new Genders({ masculine: ['ομενος'], feminine: ['ομενη'], neuter: ['ομενον'] }),
+                        singular: new Cases
+                        ({
+                            nominative: new Genders({ masculine: ['ομενος'], feminine: ['ομενη'], neuter: ['ομενον'] }),
+                        })
                     })
                 })
             })
         }),
-        aorist: new GreekDeclensionTableVerbTense
+        aorist: new GreekDeclensionTableVerbMoods
         ({
-            indicative: new GreekDeclensionTableVerbMood
+            indicative: new Voices
             ({
-                active: new GreekDeclensionTableVerbVoice
+                active: new Themes
                 ({
-                    singular: new GreekDeclensionTableVerbNumber({ first: ['σᾰ'], second: ['σᾰς'], third: ['σε', 'σεν'], }),
-                    plural: new GreekDeclensionTableVerbNumber({ first: ['σᾰμεν'], second: ['σᾰτε'], third: ['σᾰν'] })
+                    thematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['σᾰ'], second: ['σᾰς'], third: ['σε', 'σεν'], }),
+                        plural: new Persons({ first: ['σᾰμεν'], second: ['σᾰτε'], third: ['σᾰν'] })
+                    })
                 }),
-                passive: new GreekDeclensionTableVerbVoice
+                passive: new Themes
                 ({
-                    singular: new GreekDeclensionTableVerbNumber({ first: ['θην'], second: ['θης'], third: ['θη'], }),
+                    thematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['θην'], second: ['θης'], third: ['θη'], }),
+                    })
                 })
+            })
+        }),
+        imperfect: new GreekDeclensionTableVerbMoods
+        ({
+            indicative: new Voices
+            ({
+                active: new Themes
+                ({
+                    athematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['ν'], second: ['σ', 'σθα'], third: [''] }),
+                        plural: new Persons({ first: ['μεν'], second: ['τε'], third: ['σαν'] }),
+                    })
+                }),
             })
         })
     })
@@ -218,14 +104,18 @@ export default class GreekDeclensionVerbTables
     /**
      * 
      * @param {GreekDeclensionVerbTables.Table} table
-     * @param {string} radical 
+     * @param {string} lemma 
      * @returns {GreekDeclensionVerbTables.Table}
      */
-    static conjugateTable (table, radical)
+    static conjugateTable (table, lemma)
     {
+        const radical = GreekVerbUtils.getRadical(lemma, table)
         const flatTable = ObjectUtils.getValuesPathes(ObjectUtils.clone(table))
+        const irregTable = GreekIrregularVerbs.DICTIONARY[lemma]
+
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
+            if (irregTable && ObjectUtils.get(irregTable, declension)) return flatTable[declension] = ObjectUtils.get(irregTable, declension)
             if (!ending) return
             var rad = radical
             if (StringUtils.includesEvery(declension, GreekGrammar.TENSES.AORIST, GreekGrammar.MOODS.INDICATIVE))

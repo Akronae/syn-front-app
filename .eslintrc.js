@@ -37,7 +37,7 @@ module.exports =
         'newline-before-return': 'off',
         'brace-style': ['off', 'allman', { allowSingleLine: true }],
         'indent': ['off', 4],
-        'quotes': ['warn', 'single', { allowTemplateLiterals: true }],
+        'quotes': ['warn', 'single', { allowTemplateLiterals: true, avoidEscape: true }],
         'no-console': 0,
         'valid-typeof': 0,
         'no-empty': 'warn',

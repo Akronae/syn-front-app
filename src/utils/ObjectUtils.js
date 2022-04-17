@@ -36,11 +36,12 @@ export default class ObjectUtils
     /**
      * @template T
      * @param {object} obj 
-     * @param {string} path 
+     * @param {Array<string|number>} pathes 
      * @returns {T}
      */
-    static get (obj, path)
+    static get (obj, ...pathes)
     {
+        const path = pathes.join('.')
         if (!obj) return null
         var i;
         const pathSplit = path.split('.');

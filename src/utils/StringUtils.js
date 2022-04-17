@@ -131,25 +131,6 @@ export default class StringUtils
         return str.split(/\r\n|\r|\n/).length
     }
 
-    static isOverflowing (str, {chars, lines} = {})
-    {
-        str = this.removeHtmlTags(str, true)
-
-        return str.length > chars || this.lineCount(str) > lines
-    }
-
-    static trim (str, {chars, lines} = {})
-    {
-        str = this.removeHtmlTags(str, true)
-        
-        if (!this.isOverflowing(str, {chars, lines})) return str
-
-        return str
-            .substring(0, chars)
-            .split('\n').slice(0, lines)
-            .join('\n') + '…'
-    }
-
     /**
      * Insert `toInsert` every `every` char into `str`.
      * @param {String|number} str 
@@ -235,6 +216,15 @@ export default class StringUtils
         return all.some(item => str.includes(item))
     }
 
+    /**
+     * @param {string} str 
+     * @param  {...string} all 
+     */
+    static equalSome (str, ...all)
+    {
+        return all.some(item => str == item)
+    }
+
     static endsWithSome (str, ...all)
     {
         return all.some(item => str.endsWith(item))
@@ -243,5 +233,38 @@ export default class StringUtils
     static indexOfAny (str, ...any)
     {
         return str.split('').findIndex(item => any.includes(item))
+    }
+
+    /**
+     * @param {string} string
+     * @returns {string}
+     */
+    static escapeRegExp (string)
+    {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    }
+
+    /**
+     * 
+     * @param {string} str 
+     * @param {string} find 
+     * @param {string} replace 
+     * @returns 
+     */
+    static replaceAll(str, find, replace)
+    {
+        return str.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
+    }
+
+    /**
+     * @param {string} str 
+     * @param {string[]} any 
+     * @param {string} replacement 
+     * @returns {string}
+     */
+    static replaceAny (str, any, replacement)
+    {
+        for (const a of any) str = this.replaceAll(str, a, replacement)
+        return str
     }
 }

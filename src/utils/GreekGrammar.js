@@ -8,7 +8,7 @@
 * @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive"} CASES
 */
 /**
-* @typedef {"noun" | "personal_noun" | "pronoun" | "personal_pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
+* @typedef {"noun" | "proper_noun" | "pronoun" | "personal_pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
 */
 /**
 * @typedef {"first" | "second" | "third"} PERSONS
@@ -21,6 +21,9 @@
 */
 /**
 * @typedef {"present" | "imperfect" | "future" | "aorist" | "perfect" | "pluperfect"} TENSES
+*/
+/**
+* @typedef {"thematic" | "athematic"} THEMES
 */
 /**
 * @typedef { "psili" | "dasia" | "varia" | "oxia" | "perispomeni" | "ypogergammeni" | "vrachy" | "macron" | "dialytika" } ACCENTS
@@ -215,6 +218,27 @@ export class Tenses
     }
 }
 
+/**
+* @template T
+* @type {{[key: THEMES]: T}}
+*/
+export class Themes
+{
+    thematic
+    athematic
+
+    /**
+     * @param {Object} args
+     * @param {T} [args.thematic]
+     * @param {T} [args.athematic]
+     */
+    constructor ({thematic = null, athematic = null} = {})
+    {
+        this.thematic = thematic
+        this.athematic = athematic
+    }
+}
+
 export default class GreekGrammar
 {
     /**
@@ -246,12 +270,12 @@ export default class GreekGrammar
         GENITIVE: 'genitive',
     }
     /**
-     * @type {{NOUN: PARTS_OF_SPEECH, PERSONAL_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, PERSONAL_PRONOUN, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
+     * @type {{NOUN: PARTS_OF_SPEECH, PROPER_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, PERSONAL_PRONOUN, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}
      */
     static PARTS_OF_SPEECH =
     {
         NOUN: 'noun',
-        PERSONAL_NOUN: 'personal_noun',
+        PROPER_NOUN: 'proper_noun',
         PRONOUN: 'pronoun',
         PERSONAL_PRONOUN: 'personal_pronoun',
         VERB: 'verb',
@@ -306,6 +330,14 @@ export default class GreekGrammar
         AORIST: 'aorist',
         PERFECT: 'perfect',
         PLUPERFECT: 'pluperfect'
+    }
+    /**
+    * @type {{THEMATIC: THEMES, ATHEMATIC: THEMES}}
+    */
+    static THEMES =
+    {
+        THEMATIC: 'thematic',
+        ATHEMATIC: 'athematic',
     }
     /**
      * @type {{PSILI: ACCENTS, DASIA: ACCENTS, VARIA: ACCENTS, OXIA: ACCENTS, PERISPOMENI: ACCENTS, YPOGEGRAMMENI: ACCENTS, VRACHY: ACCENTS, MACRON: ACCENTS, DIALYTIKA: ACCENTS}}

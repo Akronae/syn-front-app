@@ -5,6 +5,7 @@ import GreekGrammar, { Cases, Genders } from './GreekGrammar'
 import GreekIrregularNouns from './GreekIrregularNouns'
 import GreekDeclensionTableNoun from './GreekDeclensionTableNoun'
 import GreekDeclension from './GreekDeclension'
+import GreekAlphabet from './GreekAlphabet'
 
 export default class GreekDeclensionNounTables
 {
@@ -178,19 +179,19 @@ export default class GreekDeclensionNounTables
     ({
         singular: new Cases
         ({
-            nominative: new Genders({ masculine: ['ς'] }),
-            genitive: new Genders({ masculine: ['ος'] }),
-            dative: new Genders({ masculine: ['ῐ'] }),
-            accusative: new Genders({ masculine: ['ᾰ', 'α', 'ν'] }),
-            vocative: new Genders({ masculine: ['', 'ς'] }),
+            nominative: new Genders({ masculine: ['ς'], feminine: ['α'] }),
+            genitive: new Genders({ masculine: ['ος'], feminine: ['ης'] }),
+            dative: new Genders({ masculine: ['ῐ'], feminine: ['ῃ'] }),
+            accusative: new Genders({ masculine: ['ᾰ', 'α', 'ν'], feminine: ['αν'] }),
+            vocative: new Genders({ masculine: ['', 'ς'], feminine: ['α'] }),
         }),
         plural: new Cases
         ({
-            nominative: new Genders({ masculine: ['ες'] }),
+            nominative: new Genders({ masculine: ['ες'], feminine: ['αι'] }),
             genitive: new Genders({ masculine: ['ων'] }),
-            dative: new Genders({ masculine: ['σῐ', 'σῐν'] }),
-            accusative: new Genders({ masculine: ['ᾰς'] }),
-            vocative: new Genders({ masculine: ['ες'] }),
+            dative: new Genders({ masculine: ['σῐ', 'σῐν'], feminine: ['αις'] }),
+            accusative: new Genders({ masculine: ['ᾰς'], feminine: ['ας'] }),
+            vocative: new Genders({ masculine: ['ες'], feminine: ['αι'] }),
         }),
     })
 
@@ -224,25 +225,34 @@ export default class GreekDeclensionNounTables
         const lemmaEnding = lemma.substring(radical.length)
         const flatTable = ObjectUtils.getValuesPathes(ObjectUtils.clone(table))
         const irregTable = GreekIrregularNouns.DICTIONARY[lemma]
-        if (irregTable && irregTable.radical) radical = irregTable.radical
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
             if (irregTable && ObjectUtils.get(irregTable, declension)) return flatTable[declension] = ObjectUtils.get(irregTable, declension)
             if (!ending) ending = StringUtils.EMPTY
-            if (!declension.includes(gender)) return flatTable[declension] = null
+            if (gender && !declension.includes(gender)) return flatTable[declension] = null
             if (StringUtils.hasAccents(lemmaEnding))
             {
-                ending = GreekWord.accentuate(ending, GreekWord.getAccents(lemmaEnding)[0])
+                ending = GreekWord.accentuate(ending, GreekWord.getAccents(lemmaEnding))
 
                 if (table == GreekDeclensionNounTables.WN_WNOS)
                 {
                     if (!StringUtils.includesSome(declension, GreekGrammar.CASES.NOMINATIVE, GreekGrammar.CASES.VOCATIVE))
                     {
-                        ending = GreekWord.accentuate(ending, GreekGrammar.ACCENTS.PERISPOMENI)
+                        ending = GreekWord.accentuate(ending, [GreekGrammar.ACCENTS.PERISPOMENI])
                     } 
                 }
             }
-            flatTable[declension] = this.moveAccent(radical, table, declension) + ending
+            
+            const rad = irregTable ? irregTable.radical[GreekDeclension.fromString(declension).gender] : radical
+            var builded = this.moveAccent(rad, table, declension) + ending
+
+            while (StringUtils.includesEvery(builded, '[', ']'))
+            {
+                if (!GreekAlphabet.isVowel(builded[builded.indexOf(']') + 1])) builded = builded.replace(/\[.*?\]/, StringUtils.EMPTY)
+                else builded = builded.replace('[', StringUtils.EMPTY).replace(']', StringUtils.EMPTY)
+            }
+
+            flatTable[declension] = builded
         })
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)

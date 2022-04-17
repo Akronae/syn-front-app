@@ -17,7 +17,7 @@ export default class GreekSemantic
         {
             i++
 
-            if (i > 0 && word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
+            if (i > 0 && word.declension.isNoun)
             {
                 const table = GreekInflectionUtils.inflect(word.declension.lemma)
                 const w = table[word.declension.number][word.declension.case][word.declension.gender][word.declension.variation]
@@ -36,13 +36,28 @@ export default class GreekSemantic
                 }
             }
 
+            if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && !word.verbObject)
+            {
+                const potentialObjects = words
+                    .filter(w => w.declension.isNoun)
+                    .sort((a, b) => Math.abs(words.indexOf(a) - i) - Math.abs(words.indexOf(b) - i))
+                
+                word.verbObject = potentialObjects[0] // taking the closest noun as verb object
+            }
+
             if (word.definition.translation instanceof Cases)
             {
-                for (let j = i; j < words.length; j++) { if (words[j].declension.case)
-                {
-                    word.declension.case = words[j].declension.case
-                    break
-                }}
+                for (let j = i; j < words.length; j++)
+                { 
+                    const c = words[j].declension.case
+                    if (c && word.definition.translation[c])
+                    {
+                        word.declension.case = c
+                        break
+                    }
+                }
+                // @ts-ignore
+                if (!word.declension.case) word.declension.case = Object.keys(word.definition.translation)[0]
             }
         }
     }

@@ -40,22 +40,25 @@ export default class GreekWord
     /**
      * 
      * @param {string} part 
-     * @param {import('./GreekGrammar').ACCENTS} accent
+     * @param {import('./GreekGrammar').ACCENTS[]} accents
      * @returns {string} 
      */
-    static accentuate (part, accent)
+    static accentuate (part, accents)
     {
-        const p = part.split('')
+        var p = part.split('')
         let i = 0
         
         while (true)
         {
             var changed
-            if (accent == GreekGrammar.ACCENTS.DASIA) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-            if (accent == GreekGrammar.ACCENTS.OXIA) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-            if (accent == GreekGrammar.ACCENTS.PSILI) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-            if (accent == GreekGrammar.ACCENTS.VARIA) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-            if (accent == GreekGrammar.ACCENTS.PERISPOMENI) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            for (const accent of accents)
+            {
+                if (accent == GreekGrammar.ACCENTS.DASIA) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+                if (accent == GreekGrammar.ACCENTS.OXIA) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+                if (accent == GreekGrammar.ACCENTS.PSILI) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+                if (accent == GreekGrammar.ACCENTS.VARIA) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+                if (accent == GreekGrammar.ACCENTS.PERISPOMENI) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
+            }
 
             if (changed || !p[i])
             {
@@ -65,7 +68,18 @@ export default class GreekWord
             i++
         }
 
-        return p.join('').replace(/όυ/gm, 'οῦ').replace(/ὸυ/gm, 'οὺ')
+        p = p.join('').replace(/όυ/gm, 'οῦ').split('')
+
+        for (let i = 0; i < p.length; i++)
+        {
+            if (GreekAlphabet.isVowel(p[i]) && StringUtils.equalSome(p[i+1], 'υ', 'ι'))
+            {
+                p[i+1] = this.accentuate(p[i+1], this.getAccents(p[i]))
+                p[i] = StringUtils.removeAccents(p[i])
+            }
+        }
+
+        return p.join('')
     }
 
     static decrease (part)

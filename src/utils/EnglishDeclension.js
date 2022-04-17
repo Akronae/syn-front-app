@@ -61,6 +61,27 @@ export default class EnglishDeclension
     }
 
     /**
+     * 
+     * @param {string} str 
+     * @returns {EnglishDeclension}
+     */
+    static fromString (str)
+    {
+        const decl = new EnglishDeclension()
+        const parts = str.split('.')
+
+        Object.entries(EnglishGrammar.CASES).forEach(([k, v]) => { if (parts.includes(v)) decl.case = EnglishGrammar.CASES[k] })
+        Object.entries(EnglishGrammar.GENDERS).forEach(([k, v]) => { if (parts.includes(v)) decl.gender = EnglishGrammar.GENDERS[k] })
+        Object.entries(EnglishGrammar.MOODS).forEach(([k, v]) => { if (parts.includes(v)) decl.mood = EnglishGrammar.MOODS[k] })
+        Object.entries(EnglishGrammar.NUMBERS).forEach(([k, v]) => { if (parts.includes(v)) decl.number = EnglishGrammar.NUMBERS[k] })
+        Object.entries(EnglishGrammar.PERSONS).forEach(([k, v]) => { if (parts.includes(v)) decl.person = EnglishGrammar.PERSONS[k] })
+        Object.entries(EnglishGrammar.TENSES).forEach(([k, v]) => { if (parts.includes(v)) decl.tense = EnglishGrammar.TENSES[k] })
+        Object.entries(EnglishGrammar.VOICES).forEach(([k, v]) => { if (parts.includes(v)) decl.voice = EnglishGrammar.VOICES[k] })
+
+        return decl
+    }
+
+    /**
      * @param {GreekDeclension} grc 
      * @returns {EnglishDeclension}
      */

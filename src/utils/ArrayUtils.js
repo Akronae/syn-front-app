@@ -18,4 +18,9 @@ export default class ArrayUtils
         }
         return []
     }
+
+    static isEmpty (arr)
+    {
+        return (!Array.isArray(arr) || arr.length == 0)
+    }
 }

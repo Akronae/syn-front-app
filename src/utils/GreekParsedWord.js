@@ -1,5 +1,5 @@
 import GreekDeclension from '@/utils/GreekDeclension'
-import GreekDictionary from '@/utils/GreekDictionary'
+import GreekDictionary, { GreekDictionaryEntry } from '@/utils/GreekDictionary'
 
 export default class GreekParsedWord
 {
@@ -12,19 +12,32 @@ export default class GreekParsedWord
      */
     declension
     /**
-     * @type {GreekDictionary.Entry}
+     * @type {GreekDictionaryEntry}
      */
     definition
     /**
      * @type {string}
      */
     translation
+    /**
+     * @type {GreekParsedWord}
+     */
+    verbObject
 
-    constructor({ word = '', declension = new GreekDeclension(), definition = new GreekDictionary.Entry_Type(), translation = '' } = {})
+    /**
+     * @param {Object} args 
+     * @param {string} [args.word] 
+     * @param {GreekDeclension} [args.declension] 
+     * @param {GreekDictionaryEntry} [args.definition] 
+     * @param {string} [args.translation] 
+     * @param {GreekParsedWord} [args.verbObject] 
+     */
+    constructor({ word = '', declension = new GreekDeclension(), definition = new GreekDictionary.Entry_Type(), translation = '', verbObject = null } = {})
     {
         this.word = word
         this.declension = declension
         this.definition = definition
         this.translation = translation
+        this.verbObject = verbObject
     }
 }

@@ -1,6 +1,7 @@
 <script>
-import Button from '@/components/Button'
+// @ts-ignore
 import MattewCorrect from '~/static/matthew-correct.json'
+// @ts-ignore
 import Mattew from '~/static/matthew.json'
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
 import GreekGrammar from '@/utils/GreekGrammar'
@@ -8,6 +9,8 @@ import GreekParsedWord from '@/utils/GreekParsedWord'
 import GreekParser from '@/utils/GreekParser'
 import GreekDictionary from '@/utils/GreekDictionary'
 import GreekAlphabet from '@/utils/GreekAlphabet'
+import StringUtils from '@/utils/StringUtils'
+import ObjectUtils from '@/utils/ObjectUtils'
 
 export default
 {
@@ -29,10 +32,23 @@ export default
         }))
         toCorrect.forEach(milestone => milestone.forEach(verse => verse.forEach(word => word.definition = null)))
         // console.log(JSON.stringify(toCorrect, null, 2))
+        // const UNTIL_VERSE = 16
         MattewCorrect.forEach((milestone, milestoneIndex) => milestone.forEach((verse, verseIndex) => verse.forEach((word, wordIndex) =>
         {
+            const IGNORED_ERRORS = ["'proper_noun' should be 'noun'"]
+            const UNTIL_VERSE = 16
+            if (verseIndex > UNTIL_VERSE - 1) return
             const wordTest = toCorrect[milestoneIndex][verseIndex][wordIndex]
-            if (JSON.stringify(wordTest.declension) != JSON.stringify(word.declension)) console.error('Mismatch', wordTest, 'should be', word)
+            const wordPathes = ObjectUtils.getValuesPathes(word)
+            for (const [path, val] of Object.entries(wordPathes))
+            {
+                const testVal = ObjectUtils.get(wordTest, path)
+                if (testVal !== val)
+                {
+                    const error = `Matthew ${milestoneIndex}:${verseIndex}:${wordIndex} ${wordTest.word}, ${path}: '${testVal}' should be '${val}'`
+                    if (!StringUtils.includesSome(error, ...IGNORED_ERRORS)) console.error(error)
+                }
+            }
         })))
         Object.entries(GreekDictionary.DICTIONARY).forEach(([word, def]) =>
         {
@@ -60,6 +76,7 @@ export default
                             verseWords.map(parsedWord =>
                             {
                                 const {word, declension, definition, translation} = parsedWord
+                                if (word == 'δεκατέσσαρες,') console.log(parsedWord)
 
                                 return (
                                     <div class={{'verse-word': true, ['case-' + declension.case]: true, ['pos-' + definition.pos]: true, 'def-missing': !definition.translation}}>
@@ -72,7 +89,7 @@ export default
                                                 </div>,
                                                 <div class='verse-word-declension'>
                                                     {definition && definition.pos && <div>{GreekInflectionUtils.shortenDeclensionString(definition.pos)}</div> }
-                                                    <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN} class='column align-center'>
+                                                    <div v-show={definition && StringUtils.equalSome(definition.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE)} class='column align-center'>
                                                         {GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB} class='column align-center'>
@@ -128,7 +145,6 @@ export default
 
     components:
     {
-        Button,
     }
 }
 </script>

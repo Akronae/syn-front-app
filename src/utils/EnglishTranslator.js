@@ -6,6 +6,8 @@ import EnglishPersonalPronoun from '@/utils/EnglishPersonalPronoun';
 import GreekGrammar, { Cases } from '@/utils/GreekGrammar';
 import GreekParsedWord from '@/utils/GreekParsedWord';
 import StringUtils from '@/utils/StringUtils';
+import GreekDeclension from './GreekDeclension';
+import ObjectUtils from './ObjectUtils';
 
 export default class EnglishTranslator
 {
@@ -44,15 +46,23 @@ export default class EnglishTranslator
         {
             const table = EnglishDeclensionVerbTables.conjugateTable(EnglishDeclensionVerbTables.BASIC, translation)
 
-            if (declension.mood != EnglishGrammar.MOODS.PARTICIPLE)
+            const gender = word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN ? word.verbObject.declension.gender : EnglishGrammar.GENDERS.NEUTER
+            const person = translatedDeclension.mood == GreekGrammar.MOODS.PARTICIPLE ? EnglishGrammar.PERSONS.THIRD : word.declension.person
+            finalTranslation += EnglishPersonalPronoun[translatedDeclension.number][person][gender][translatedDeclension.case] + ' '
+            if (translatedDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
             {
-                finalTranslation += EnglishPersonalPronoun[translatedDeclension.number][translatedDeclension.person][translatedDeclension.gender][translatedDeclension.case] + ' '
+                if (translatedDeclension.tense == EnglishGrammar.TENSES.PRESENT) finalTranslation += (translatedDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are') + ' '
             }
 
             if (declension.mood == EnglishGrammar.MOODS.PARTICIPLE) finalTranslation += table[translatedDeclension.tense][translatedDeclension.mood][0]
-            else finalTranslation += table[translatedDeclension.tense][translatedDeclension.mood][translatedDeclension.number][translatedDeclension.person][translatedDeclension.voice][0]
+            else
+            {
+                const conj = ObjectUtils.get(table, translatedDeclension.tense, translatedDeclension.mood, translatedDeclension.number, translatedDeclension.person, translatedDeclension.voice, 0)
+                if (conj == null) console.error('Cannot find English translation for verb', translatedDeclension, 'in', table)
+                finalTranslation += conj
+            }
         }
-        else if (definition.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN)
+        else if (GreekDeclension.isNoun(definition.pos))
         {
             const table = EnglishDeclensionNounTables.conjugateTable(EnglishDeclensionNounTables.BASIC, translation)
             finalTranslation += table[translatedDeclension.number][translatedDeclension.case][0]

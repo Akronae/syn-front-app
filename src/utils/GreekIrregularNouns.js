@@ -9,7 +9,7 @@ export class GreekIrregularNoun
 
     /**
      * @param {Object} args
-     * @param {string} [args.radical] 
+     * @param {Genders} [args.radical] 
      * @param {GreekDeclensionTableNoun} [args.table] 
      */
     constructor ({ radical = null, table = null } = {})
@@ -28,7 +28,7 @@ export default class GreekIrregularNouns
     {
         'ἄνηρ': new GreekIrregularNoun
         ({
-            radical: 'ἄνδρ',
+            radical: new Genders({ masculine: 'ἄνδρ' }),
             table: new GreekDeclensionTableNoun
             ({
                 singular: new Cases
@@ -37,6 +37,10 @@ export default class GreekIrregularNouns
                     vocative: new Genders({ masculine: ['ἄνερ'] })
                 })
             })
+        }),
+        'πᾶς': new GreekIrregularNoun
+        ({
+            radical: new Genders({ masculine: 'πᾶ[ντ]', feminine: 'πᾶσ' }),
         })
     }
 }

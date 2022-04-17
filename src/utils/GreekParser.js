@@ -1,8 +1,10 @@
 import EnglishTranslator from '@/utils/EnglishTranslator'
-import GreekDictionary from '@/utils/GreekDictionary'
+import GreekDictionary, { GreekDictionaryEntry } from '@/utils/GreekDictionary'
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
 import GreekParsedWord from '@/utils/GreekParsedWord'
 import GreekSemantic from '@/utils/GreekSemantic'
+import GreekGrammar from './GreekGrammar'
+import GreekNumerals from './GreekNumerals'
 
 export default class GreekParser
 {
@@ -18,8 +20,11 @@ export default class GreekParser
             const declensions = GreekInflectionUtils.getDeclension(word.replace(/[.,]/g, ''))
             if (!declensions) return verseParsed.push(new GreekParsedWord({word}))
             var declension = declensions[0]
-            const definition = GreekDictionary.get(declension.lemma)                
             
+            var definition
+            if (declension.pos != GreekGrammar.PARTS_OF_SPEECH.NUMERAL) definition = GreekDictionary.get(declension.lemma)
+            else definition = new GreekDictionaryEntry({pos: GreekGrammar.PARTS_OF_SPEECH.NUMERAL, lemma: declension.lemma, translation: GreekNumerals.wordsToNumber(declension.lemma)})
+
             verseParsed.push(new GreekParsedWord({word, declension, definition}))
         })
         GreekSemantic.correct(verseParsed)

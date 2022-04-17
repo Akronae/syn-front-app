@@ -1,8 +1,9 @@
 import ObjectUtils from '@/utils/ObjectUtils'
 import StringUtils from '@/utils/StringUtils'
-import { Moods, Numbers, Persons, Tenses, Voices } from '@/utils/EnglishGrammar'
+import EnglishGrammar, { Moods, Numbers, Persons, Tenses, Voices } from '@/utils/EnglishGrammar'
 import EnglishIrregularVerbs from './EnglishIrregularVerbs'
 import { EnglishDeclensionVerbTable } from './EnglishDeclensionVerbTable'
+import EnglishDeclension from './EnglishDeclension'
 
 export default class EnglishDeclensionVerbTables
 {
@@ -17,6 +18,10 @@ export default class EnglishDeclensionVerbTables
             indicative: new Numbers
             ({
                 singular: new Persons({ first: new Voices({ active: ['ed'] }) })
+            }),
+            continuous: new Numbers
+            ({
+                singular: new Persons({ first: new Voices({ active: [''] }) })
             }),
 
             participle: ['ed']
@@ -35,15 +40,14 @@ export default class EnglishDeclensionVerbTables
         const flatTable = ObjectUtils.getValuesPathes(ObjectUtils.clone(table))
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
-            if (!ending) return
-            
             var rad = radical
+            const decl = EnglishDeclension.fromString(declension)
             
             if (StringUtils.endsWithSome(radical, 't', 'd')) ending = StringUtils.EMPTY
             
             if (radical.endsWith('get'))
             {
-                if (declension.includes('passive'))
+                if (decl.voice == EnglishGrammar.VOICES.PASSIVE)
                 {
                     ending = 'ten'
                 }
@@ -52,10 +56,18 @@ export default class EnglishDeclensionVerbTables
             }
 
             var aux = StringUtils.EMPTY
-            if (declension.includes('passive'))
+            if (decl.voice == EnglishGrammar.VOICES.PASSIVE || decl.mood == EnglishGrammar.MOODS.CONTINUOUS)
             {
-                if (declension.includes('present')) aux = declension.includes('singular') ? 'is' : 'are'
-                if (declension.includes('past')) aux = StringUtils.includesSome(declension, 'plural', 'second') ? 'were' : 'was'
+                if (decl.tense == EnglishGrammar.TENSES.PRESENT) aux = decl.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are'
+                if (decl.tense == EnglishGrammar.TENSES.PAST)
+                {
+                    aux = (decl.number == EnglishGrammar.NUMBERS.PLURAL || decl.person == EnglishGrammar.PERSONS.SECOND) ? 'were' : 'was'
+                }
+            }
+
+            if (decl.mood == EnglishGrammar.MOODS.CONTINUOUS)
+            {
+                if (radical == 'be') rad = StringUtils.EMPTY
             }
             
             var conjugated = ObjectUtils.get(EnglishIrregularVerbs.DICTIONARY[radical], declension) || rad + ending

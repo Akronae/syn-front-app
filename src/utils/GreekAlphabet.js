@@ -1,4 +1,5 @@
 import StringUtils from '@/utils/StringUtils'
+import ArrayUtils from './ArrayUtils'
 
 export default class GreekAlphabet
 {
@@ -10,13 +11,23 @@ export default class GreekAlphabet
     static DASIA = ['ἁ', 'ἑ', 'ἡ', 'ἱ', 'ὁ', 'ὑ', 'ὡ']
     static PERISPOMENI = ['ᾶ', 'ῆ', 'ῖ', 'ῦ', 'ῶ']
 
-    static isVowel (letter)
+    /**
+     * @param  {...string} letters 
+     * @returns {boolean} 
+     */
+    static isVowel (...letters)
     {
-        return GreekAlphabet.VOWELS.includes(StringUtils.removeAccents(letter[0].toLowerCase()))
+        if (ArrayUtils.isEmpty(letters)) return false
+        return letters.every(l => l && GreekAlphabet.VOWELS.includes(StringUtils.removeAccents(l.toLowerCase())))
     }
-    static isConsonant (letter)
+    /**
+     * @param  {...string} letters 
+     * @returns {boolean} 
+     */
+    static isConsonant (...letters)
     {
-        return GreekAlphabet.CONSONANTS.includes(StringUtils.removeAccents(letter[0].toLowerCase()))
+        if (ArrayUtils.isEmpty(letters)) return false
+        return letters.every(l => l && GreekAlphabet.CONSONANTS.includes(StringUtils.removeAccents(l.toLowerCase())))
     }
 
     static sanitizeLetters (letters)
