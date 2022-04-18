@@ -32,6 +32,7 @@ export default class GreekInflectionUtils
         str = str.replace(/third/gm, '3rd')
         str = str.replace(/personal/gm, 'pers')
         str = str.replace(/present/gm, 'pres')
+        str = str.replace(/imperfect/gm, 'imp')
         str = str.replace(/passive/gm, 'pas')
         str = str.replace(/participle/gm, 'par')
         str = str.replace(/_/gm, ' ')

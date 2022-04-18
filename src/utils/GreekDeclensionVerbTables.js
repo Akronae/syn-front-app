@@ -5,6 +5,7 @@ import GreekGrammar, { Cases, Genders, Numbers, Persons, Themes, Voices } from '
 import GreekIrregularVerbs from './GreekIrregularVerbs'
 import GreekVerbUtils from './GreekVerbUtils'
 import GreekDeclensionVerbTable, { GreekDeclensionTableVerbMoods } from './GreekDeclensionVerbTable'
+import GreekDeclension from './GreekDeclension'
 
 export default class GreekDeclensionVerbTables
 {
@@ -83,6 +84,33 @@ export default class GreekDeclensionVerbTables
                         singular: new Persons({ first: ['θην'], second: ['θης'], third: ['θη'], }),
                     })
                 })
+            }),
+            participle: new Voices
+            ({
+                active: new Themes(),
+                middle: new Themes(),
+                passive: new Themes
+                ({
+                    thematic: new Numbers
+                    ({
+                        singular: new Cases
+                        ({
+                            nominative: new Genders({ masculine: ['θεις'], neuter: ['θεν'], feminine: ['θεισα'] }),
+                            accusative: new Genders({ masculine: ['θεντα'], neuter: ['θεν'], feminine: ['θεισαν'] }),
+                            dative: new Genders({ masculine: ['θεντι'], feminine: ['θειση'] }),
+                            genitive: new Genders({ masculine: ['θεντος'], feminine: ['θεισης'] }),
+                            vocative: new Genders({ masculine: ['θεις'], neuter: ['θεν'], feminine: ['θεισα'] }),
+                        }),
+                        plural: new Cases
+                        ({
+                            nominative: new Genders({ masculine: ['θεντες'], neuter: ['θεντα'], feminine: ['θεισαι'] }),
+                            accusative: new Genders({ masculine: ['θεντας'], neuter: ['θεντα'], feminine: ['θεισας'] }),
+                            dative: new Genders({ masculine: ['θεισι', 'θεισιν'], feminine: ['θεισαις'] }),
+                            genitive: new Genders({ masculine: ['θεντων'], feminine: ['θεισων'] }),
+                            vocative: new Genders({ masculine: ['θεντες'], neuter: ['θεντα'], feminine: ['θεισαι'] }),
+                        })
+                    })
+                })
             })
         }),
         imperfect: new GreekDeclensionTableVerbMoods
@@ -117,13 +145,14 @@ export default class GreekDeclensionVerbTables
         {
             if (irregTable && ObjectUtils.get(irregTable, declension)) return flatTable[declension] = ObjectUtils.get(irregTable, declension)
             if (!ending) return
+            const decl = GreekDeclension.fromString(declension)
             var rad = radical
-            if (StringUtils.includesEvery(declension, GreekGrammar.TENSES.AORIST, GreekGrammar.MOODS.INDICATIVE))
+            if (decl.tense == GreekGrammar.TENSES.AORIST && decl.mood == GreekGrammar.MOODS.INDICATIVE)
             {
                 const syllables = GreekWord.getSyllables(rad)
                 syllables[syllables.length - 1] = GreekWord.augment(syllables[syllables.length - 1])
                 // the penultimate is sometimes accentued https://en.wikipedia.org/wiki/Aorist_(Ancient_Greek)#First_aorist_endings
-                if (StringUtils.includesEvery(declension, GreekGrammar.VOICES.PASSIVE) || StringUtils.includesEvery(declension, GreekGrammar.NUMBERS.PLURAL))
+                if (decl.voice == GreekGrammar.VOICES.PASSIVE || decl.number == GreekGrammar.NUMBERS.PLURAL)
                 {
                     syllables[syllables.length - 1] = GreekWord.augment(syllables[syllables.length - 1])
                 }
@@ -136,11 +165,11 @@ export default class GreekDeclensionVerbTables
 
             flatTable[declension] = rad + ending
 
-            if (StringUtils.includesEvery(declension, GreekGrammar.TENSES.PRESENT, GreekGrammar.MOODS.PARTICIPLE))
+            if (decl.mood == GreekGrammar.MOODS.PARTICIPLE)
             {
                 flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
 
-                if (StringUtils.includesEvery(declension, GreekGrammar.GENDERS.FEMININE))
+                if (decl.tense == GreekGrammar.TENSES.PRESENT && decl.gender == GreekGrammar.GENDERS.FEMININE)
                 {
                     flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
                 }

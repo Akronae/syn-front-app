@@ -38,6 +38,18 @@ export default class GreekIrregularNouns
                 })
             })
         }),
+        'μήτηρ': new GreekIrregularNoun
+        ({
+            radical: new Genders({ feminine: 'μητέρ' }),
+            table: new GreekDeclensionTableNoun
+            ({
+                singular: new Cases
+                ({
+                    genitive: new Genders({ feminine: ['μητέρος', 'μητρός', 'μητρὸς'] }),
+                    dative: new Genders({ feminine: ['μητέρῐ', 'μητρῐ́'] })
+                })
+            })
+        }),
         'πᾶς': new GreekIrregularNoun
         ({
             radical: new Genders({ masculine: 'πᾶ[ντ]', feminine: 'πᾶσ' }),

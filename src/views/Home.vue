@@ -11,6 +11,8 @@ import GreekDictionary from '@/utils/GreekDictionary'
 import GreekAlphabet from '@/utils/GreekAlphabet'
 import StringUtils from '@/utils/StringUtils'
 import ObjectUtils from '@/utils/ObjectUtils'
+import GreekIrregularNouns from '@/utils/GreekIrregularNouns'
+import GreekIrregularVerbs from '@/utils/GreekIrregularVerbs'
 
 export default
 {
@@ -35,7 +37,7 @@ export default
         // const UNTIL_VERSE = 16
         MattewCorrect.forEach((milestone, milestoneIndex) => milestone.forEach((verse, verseIndex) => verse.forEach((word, wordIndex) =>
         {
-            const IGNORED_ERRORS = ["'proper_noun' should be 'noun'"]
+            const IGNORED_ERRORS = ["'proper_noun' should be 'noun'", "translation: 'he is said' should be 'said'"]
             const UNTIL_VERSE = 16
             if (verseIndex > UNTIL_VERSE - 1) return
             const wordTest = toCorrect[milestoneIndex][verseIndex][wordIndex]
@@ -50,7 +52,15 @@ export default
                 }
             }
         })))
-        Object.entries(GreekDictionary.DICTIONARY).forEach(([word, def]) =>
+        Object.entries(GreekInflectionUtils.DICTIONARY_INFLECTED).forEach(([word, def]) =>
+        {
+            if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
+        })
+        Object.entries(GreekIrregularNouns.DICTIONARY).forEach(([word, def]) =>
+        {
+            if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
+        })
+        Object.entries(GreekIrregularVerbs.DICTIONARY).forEach(([word, def]) =>
         {
             if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
         })
@@ -89,7 +99,7 @@ export default
                                                 </div>,
                                                 <div class='verse-word-declension'>
                                                     {definition && definition.pos && <div>{GreekInflectionUtils.shortenDeclensionString(definition.pos)}</div> }
-                                                    <div v-show={definition && StringUtils.equalSome(definition.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE)} class='column align-center'>
+                                                    <div v-show={definition && StringUtils.equalSome(definition.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE)} class='column align-center'>
                                                         {GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB} class='column align-center'>
@@ -194,6 +204,14 @@ export default
                     margin-right: 10px;
                 }
 
+                &.pos-verb
+                {
+                    background-color: var(--theme-verb-color);
+                }
+                &.def-missing
+                {
+                    background-color: var(--theme-missing-color);
+                }
                 &.case-nominative
                 {
                     background-color: var(--theme-nominative-color);
@@ -213,14 +231,6 @@ export default
                 &.case-vocative
                 {
                     background-color: var(--theme-vocative-color);
-                }
-                &.pos-verb
-                {
-                    background-color: var(--theme-verb-color);
-                }
-                &.def-missing
-                {
-                    background-color: var(--theme-missing-color);
                 }
 
                 .verse-word-text

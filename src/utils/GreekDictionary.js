@@ -145,7 +145,7 @@ export default class GreekDictionary
         'ἐλιοὺδ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Eliud' }),
         'ἐλεάζαρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Elazar' }),
         'ματθὰν': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Matthan' }),
-        'ἰωσὴφ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.INDECLINABLE, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Yosep' }),
+        'ἰωσὴφ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Yosep' }),
         'ἄνηρ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.S_OS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'man' }),
         'μαρία': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.A_AS, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Maryam' }),
         [GreekPronouns.RELATIVE.singular.masculine.nominative[0]]: new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PRONOUN, pronounTable: GreekPronouns.RELATIVE, translation: EnglishPronouns.RELATIVE }),
@@ -157,6 +157,8 @@ export default class GreekDictionary
         'ἕως': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.CONJUNCTION, translation: 'until' }),
         'οὕτως': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.ADVERB, translation: 'thus' }),
         'εἰμί': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to be' }),
+        'μνηστεύω': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to engage' }),
+        'μήτηρ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables._OS, translation: 'mother' }),
     }
 
     /**

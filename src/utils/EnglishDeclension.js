@@ -91,14 +91,15 @@ export default class EnglishDeclension
         decl.lemma = grc.lemma
 
         if (grc.case == GreekGrammar.CASES.ACCUSATIVE) decl.case = EnglishGrammar.CASES.ACCUSATIVE
-        if (grc.case == GreekGrammar.CASES.GENITIVE) decl.case = EnglishGrammar.CASES.GENITIVE
+        else if (grc.case == GreekGrammar.CASES.DATIVE) decl.case = EnglishGrammar.CASES.ACCUSATIVE
+        else if (grc.case == GreekGrammar.CASES.GENITIVE) decl.case = EnglishGrammar.CASES.GENITIVE
         else decl.case = EnglishGrammar.CASES.NOMINATIVE
 
         if (grc.number == GreekGrammar.NUMBERS.SINGULAR) decl.number = EnglishGrammar.NUMBERS.SINGULAR
-        if (grc.number == GreekGrammar.NUMBERS.PLURAL) decl.number = EnglishGrammar.NUMBERS.PLURAL
+        else if (grc.number == GreekGrammar.NUMBERS.PLURAL) decl.number = EnglishGrammar.NUMBERS.PLURAL
 
         if (grc.gender == GreekGrammar.GENDERS.FEMININE) decl.gender = EnglishGrammar.GENDERS.FEMININE
-        if (grc.gender == GreekGrammar.GENDERS.NEUTER) decl.gender = EnglishGrammar.GENDERS.NEUTER
+        else if (grc.gender == GreekGrammar.GENDERS.NEUTER) decl.gender = EnglishGrammar.GENDERS.NEUTER
         else decl.gender = EnglishGrammar.GENDERS.MASCULINE
         
         if (grc.mood == GreekGrammar.MOODS.IMPERATIVE) decl.mood = EnglishGrammar.MOODS.IMPERATIVE
@@ -124,8 +125,8 @@ export default class EnglishDeclension
         decl.voice = grc.voice == GreekGrammar.VOICES.ACTIVE ? EnglishGrammar.VOICES.ACTIVE : EnglishGrammar.VOICES.PASSIVE
 
         if (grc.person == GreekGrammar.PERSONS.FIRST) decl.person = EnglishGrammar.PERSONS.FIRST
-        if (grc.person == GreekGrammar.PERSONS.SECOND) decl.person = EnglishGrammar.PERSONS.SECOND
-        if (grc.person == GreekGrammar.PERSONS.THIRD) decl.person = EnglishGrammar.PERSONS.THIRD
+        else if (grc.person == GreekGrammar.PERSONS.SECOND) decl.person = EnglishGrammar.PERSONS.SECOND
+        else if (grc.person == GreekGrammar.PERSONS.THIRD) decl.person = EnglishGrammar.PERSONS.THIRD
 
         return decl
     }

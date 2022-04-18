@@ -32,7 +32,7 @@ export default class EnglishTranslator
          */
         let translation = definition.translation.toString()
 
-        const translatedDeclension = EnglishDeclension.fromGreek(declension)
+        const enTransDeclension = EnglishDeclension.fromGreek(declension)
         var finalTranslation = StringUtils.EMPTY
 
         if (!StringUtils.includesSome(word.definition.pos, GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN, GreekGrammar.PARTS_OF_SPEECH.PRONOUN))
@@ -46,34 +46,38 @@ export default class EnglishTranslator
         {
             const table = EnglishDeclensionVerbTables.conjugateTable(EnglishDeclensionVerbTables.BASIC, translation)
 
-            const gender = word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN ? word.verbObject.declension.gender : EnglishGrammar.GENDERS.NEUTER
-            const person = translatedDeclension.mood == GreekGrammar.MOODS.PARTICIPLE ? EnglishGrammar.PERSONS.THIRD : word.declension.person
-            finalTranslation += EnglishPersonalPronoun[translatedDeclension.number][person][gender][translatedDeclension.case] + ' '
-            if (translatedDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
+            var gender = word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN ? word.verbObject.declension.gender : EnglishGrammar.GENDERS.NEUTER
+            if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE) gender = word.declension.gender
+            const person = enTransDeclension.mood == GreekGrammar.MOODS.PARTICIPLE ? EnglishGrammar.PERSONS.THIRD : word.declension.person
+            finalTranslation += EnglishPersonalPronoun[enTransDeclension.number][person][gender][enTransDeclension.case] + ' '
+            if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
             {
-                if (translatedDeclension.tense == EnglishGrammar.TENSES.PRESENT) finalTranslation += (translatedDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are') + ' '
+                // TODO: EnglishVerb.inflect('be')[enTransDeclension.tense][enTransDeclension.number][enTransDeclension.person]
+                if (word.declension.case == GreekGrammar.CASES.GENITIVE) finalTranslation += 'being '
+                else if (enTransDeclension.tense == EnglishGrammar.TENSES.PRESENT) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are') + ' '
+                else if (enTransDeclension.tense == EnglishGrammar.TENSES.PAST) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'was' : 'were') + ' '
             }
 
-            if (declension.mood == EnglishGrammar.MOODS.PARTICIPLE) finalTranslation += table[translatedDeclension.tense][translatedDeclension.mood][0]
+            if (declension.mood == EnglishGrammar.MOODS.PARTICIPLE) finalTranslation += table[enTransDeclension.tense][enTransDeclension.mood][0]
             else
             {
-                const conj = ObjectUtils.get(table, translatedDeclension.tense, translatedDeclension.mood, translatedDeclension.number, translatedDeclension.person, translatedDeclension.voice, 0)
-                if (conj == null) console.error('Cannot find English translation for verb', translatedDeclension, 'in', table)
+                const conj = ObjectUtils.get(table, enTransDeclension.tense, enTransDeclension.mood, enTransDeclension.number, enTransDeclension.person, enTransDeclension.voice, 0)
+                if (conj == null) console.error('Cannot find English translation for verb', enTransDeclension, 'in', table)
                 finalTranslation += conj
             }
         }
         else if (GreekDeclension.isNoun(definition.pos))
         {
             const table = EnglishDeclensionNounTables.conjugateTable(EnglishDeclensionNounTables.BASIC, translation)
-            finalTranslation += table[translatedDeclension.number][translatedDeclension.case][0]
+            finalTranslation += table[enTransDeclension.number][enTransDeclension.case][0]
         }
         else if (definition.pos == GreekGrammar.PARTS_OF_SPEECH.PRONOUN)
         {
-            finalTranslation += definition.translation[translatedDeclension.number][translatedDeclension.gender][translatedDeclension.case]
+            finalTranslation += definition.translation[enTransDeclension.number][enTransDeclension.gender][enTransDeclension.case]
         }
         else if (definition.pos == GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN)
         {
-            finalTranslation += definition.translation[translatedDeclension.number][translatedDeclension.person][translatedDeclension.gender][translatedDeclension.case]
+            finalTranslation += definition.translation[enTransDeclension.number][enTransDeclension.person][enTransDeclension.gender][enTransDeclension.case]
         }
         else finalTranslation += definition.translation
         

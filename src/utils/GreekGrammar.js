@@ -158,12 +158,18 @@ export class Voices
  */
 export class Moods
 {
+    /** @type {T} */
     indicative
+    /** @type {T} */
     subjunctive
+    /** @type {T} */
     optative
+    /** @type {T} */
     imperative
+    /** @type {T2} */
     infinitive
-    particple
+    /** @type {T3} */
+    participle
 
     /**
      * @param {Object} args

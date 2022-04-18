@@ -6,6 +6,7 @@ import GreekIrregularNouns from './GreekIrregularNouns'
 import GreekDeclensionTableNoun from './GreekDeclensionTableNoun'
 import GreekDeclension from './GreekDeclension'
 import GreekAlphabet from './GreekAlphabet'
+import ArrayUtils from './ArrayUtils'
 
 export default class GreekDeclensionNounTables
 {
@@ -138,7 +139,7 @@ export default class GreekDeclensionNounTables
     ({
         singular: new Cases
         ({
-            nominative: new Genders({ masculine: ['εύς'] }),
+            nominative: new Genders({ masculine: ['εύς'] }),
             genitive: new Genders({ masculine: ['έως'] }),
             dative: new Genders({ masculine: ['εῖ'] }),
             accusative: new Genders({ masculine: ['έᾱ', 'έα'] }),
@@ -194,6 +195,25 @@ export default class GreekDeclensionNounTables
             vocative: new Genders({ masculine: ['ες'], feminine: ['αι'] }),
         }),
     })
+    static _OS = new GreekDeclensionTableNoun
+    ({
+        singular: new Cases
+        ({
+            nominative: new Genders({ masculine: [''] }),
+            genitive: new Genders({ masculine: ['ος'] }),
+            dative: new Genders({ masculine: ['ῐ'] }),
+            accusative: new Genders({ masculine: ['ᾰ', 'α', 'ν'] }),
+            vocative: new Genders({ masculine: ['', 'ς'] }),
+        }),
+        plural: new Cases
+        ({
+            nominative: new Genders({ masculine: ['ες'] }),
+            genitive: new Genders({ masculine: ['ων'] }),
+            dative: new Genders({ masculine: ['σῐ', 'σῐν'] }),
+            accusative: new Genders({ masculine: ['ᾰς'] }),
+            vocative: new Genders({ masculine: ['ες'] }),
+        }),
+    })
 
     static moveAccent (radical, table, declension)
     {
@@ -203,7 +223,7 @@ export default class GreekDeclensionNounTables
         {
             return GreekWord.shiftAccent(radical, 1)
         }
-        if (table == this.SEMITIC_PROPER_NAME && declension.includes(GreekGrammar.CASES.ACCUSATIVE))
+        if (table == this.SEMITIC_PROPER_NAME && StringUtils.includesSome(declension, GreekGrammar.CASES.ACCUSATIVE, GreekGrammar.CASES.DATIVE))
         {
             syllables = GreekWord.getSyllables(radical)
             syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ').replace('ὶ', 'ί').replace('ὴ', 'ή').replace('ὲ', 'έ').replace('ὺ', 'ύ')
@@ -227,7 +247,14 @@ export default class GreekDeclensionNounTables
         const irregTable = GreekIrregularNouns.DICTIONARY[lemma]
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
-            if (irregTable && ObjectUtils.get(irregTable, declension)) return flatTable[declension] = ObjectUtils.get(irregTable, declension)
+            if (irregTable)
+            {
+                var declensionEndingsPath = declension.split('.')
+                declensionEndingsPath.pop()
+                const irregEndings = ObjectUtils.get(irregTable.table, declensionEndingsPath.join('.'))
+                if (!ArrayUtils.isEmpty(irregEndings)) return irregEndings.forEach((e, i) => flatTable[declensionEndingsPath.join('.') + '.' + i] = e)
+            }
+            
             if (!ending) ending = StringUtils.EMPTY
             if (gender && !declension.includes(gender)) return flatTable[declension] = null
             if (StringUtils.hasAccents(lemmaEnding))

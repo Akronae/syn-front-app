@@ -69,7 +69,7 @@ const themes =
         nominativeColor: '#ffffff08',
         genitiveColor: '#89ff6412',
         accusativeColor: '#f7414114',
-        dativeColor: '#ffffff08',
+        dativeColor: '#d747d312',
         vocativeColor: '#ffffff08',
         verbColor: '#6666f917',
         missingColor: '#0000000d',

@@ -6,6 +6,7 @@ import { Cases, Genders, Moods, Numbers, Persons, Tenses, Themes, Voices } from 
  */
  export class GreekDeclensionTableVerbMoods extends Moods
  {
+     
  }
  
  

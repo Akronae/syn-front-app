@@ -70,6 +70,7 @@ export default class EnglishDeclensionVerbTables
                 if (radical == 'be') rad = StringUtils.EMPTY
             }
             
+            if (rad.endsWith('e') && ending && ending.startsWith('e')) ending = ending.replace('e', StringUtils.EMPTY)
             var conjugated = ObjectUtils.get(EnglishIrregularVerbs.DICTIONARY[radical], declension) || rad + ending
             flatTable[declension] = `${aux} ${conjugated}`.trim()
         })

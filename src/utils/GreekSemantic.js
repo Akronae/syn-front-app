@@ -38,9 +38,11 @@ export default class GreekSemantic
 
             if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && !word.verbObject)
             {
-                const potentialObjects = words
+                var potentialObjects = words
                     .filter(w => w.declension.isNoun)
                     .sort((a, b) => Math.abs(words.indexOf(a) - i) - Math.abs(words.indexOf(b) - i))
+                if (word.declension.case) potentialObjects = potentialObjects.filter(w => w.declension.case == word.declension.case)
+                if (potentialObjects.length == 0) console.error('Cannot find object for verb', word);
                 
                 word.verbObject = potentialObjects[0] // taking the closest noun as verb object
             }

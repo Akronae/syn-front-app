@@ -96,8 +96,8 @@ export default class GreekWord
         {
             if (StringUtils.hasAccents(syllables[i]) && syllables[i + 1])
             {
+                syllables[i + 1] = this.accentuate(syllables[i + 1], this.getAccents(syllables[i]))
                 syllables[i] = StringUtils.removeAccents(syllables[i])
-                syllables[i + 1] = this.augment(syllables[i + 1])
                 shift--
             }
         }
