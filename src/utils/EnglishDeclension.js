@@ -1,6 +1,7 @@
 import EnglishGrammar from '@/utils/EnglishGrammar'
 import GreekDeclension from '@/utils/GreekDeclension'
 import GreekGrammar from '@/utils/GreekGrammar'
+import StringUtils from './StringUtils'
 
 export default class EnglishDeclension
 {
@@ -108,7 +109,7 @@ export default class EnglishDeclension
         else if (grc.mood == GreekGrammar.MOODS.PARTICIPLE) decl.mood = EnglishGrammar.MOODS.PARTICIPLE
         else decl.mood = EnglishGrammar.MOODS.INDICATIVE
         
-        if (grc.tense == GreekGrammar.TENSES.AORIST) decl.tense = EnglishGrammar.TENSES.PAST
+        if (StringUtils.equalsSome(grc.tense, GreekGrammar.TENSES.AORIST,  GreekGrammar.TENSES.AORIST_2ND)) decl.tense = EnglishGrammar.TENSES.PAST
         else if (grc.tense == GreekGrammar.TENSES.FUTURE) decl.tense = EnglishGrammar.TENSES.FUTURE
         else if (grc.tense == GreekGrammar.TENSES.PERFECT || grc.tense == GreekGrammar.TENSES.PLUPERFECT)
         {

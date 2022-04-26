@@ -18,6 +18,7 @@ export default class EnglishTranslator
      */
     static translateGreek (word)
     {
+        if (!word.declension) console.error(word, 'has no declension')
         if (!word.definition || !word.definition.translation) return StringUtils.EMPTY
         
         var declension = word.declension
@@ -35,30 +36,43 @@ export default class EnglishTranslator
         const enTransDeclension = EnglishDeclension.fromGreek(declension)
         var finalTranslation = StringUtils.EMPTY
 
-        if (!StringUtils.includesSome(word.definition.pos, GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN, GreekGrammar.PARTS_OF_SPEECH.PRONOUN))
-        {
-            if (declension.case == GreekGrammar.CASES.GENITIVE) finalTranslation += 'of '
-            if (declension.case == GreekGrammar.CASES.DATIVE) finalTranslation += 'to '
-        }
-        
+        // if (!StringUtils.includesSome(word.definition.pos, GreekGrammar.PARTS_OF_SPEECH.PERSONAL_PRONOUN, GreekGrammar.PARTS_OF_SPEECH.PRONOUN))
+        // {
+            const isCommonNoun = word.declension.pos == GreekGrammar.PARTS_OF_SPEECH.NOUN
+            if (declension.case == GreekGrammar.CASES.GENITIVE) finalTranslation += 'of ' + (isCommonNoun ? 'the ' : '')
+            if (declension.case == GreekGrammar.CASES.DATIVE) finalTranslation += 'to ' + (isCommonNoun ? 'the ' : '')
+        // }
         
         if (definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB)
         {
             const table = EnglishDeclensionVerbTables.conjugateTable(EnglishDeclensionVerbTables.BASIC, translation)
 
-            var gender = word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN ? word.verbObject.declension.gender : EnglishGrammar.GENDERS.NEUTER
+            var gender = (word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN || word.verbObject.declension.mood == GreekGrammar.MOODS.PARTICIPLE)
+                ? word.verbObject.declension.gender
+                : EnglishGrammar.GENDERS.NEUTER
             if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE) gender = word.declension.gender
             const person = enTransDeclension.mood == GreekGrammar.MOODS.PARTICIPLE ? EnglishGrammar.PERSONS.THIRD : word.declension.person
-            finalTranslation += EnglishPersonalPronoun[enTransDeclension.number][person][gender][enTransDeclension.case] + ' '
+            if (enTransDeclension.mood != EnglishGrammar.MOODS.INFINITIVE)
+            {
+                if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
+                {
+                    finalTranslation += `[${EnglishPersonalPronoun[enTransDeclension.number][person][gender][EnglishGrammar.CASES.ACCUSATIVE]}] `
+                }
+                else
+                {
+                    finalTranslation += EnglishPersonalPronoun[enTransDeclension.number][person][gender][enTransDeclension.case] + ' '
+                }
+            }
             if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
             {
                 // TODO: EnglishVerb.inflect('be')[enTransDeclension.tense][enTransDeclension.number][enTransDeclension.person]
                 if (word.declension.case == GreekGrammar.CASES.GENITIVE) finalTranslation += 'being '
-                else if (enTransDeclension.tense == EnglishGrammar.TENSES.PRESENT) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are') + ' '
-                else if (enTransDeclension.tense == EnglishGrammar.TENSES.PAST) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'was' : 'were') + ' '
+                // else if (enTransDeclension.tense == EnglishGrammar.TENSES.PRESENT) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'is' : 'are') + ' '
+                // else if (enTransDeclension.tense == EnglishGrammar.TENSES.PAST) finalTranslation += (enTransDeclension.number == EnglishGrammar.NUMBERS.SINGULAR ? 'was' : 'were') + ' '
             }
 
             if (declension.mood == EnglishGrammar.MOODS.PARTICIPLE) finalTranslation += table[enTransDeclension.tense][enTransDeclension.mood][0]
+            else if (declension.mood == EnglishGrammar.MOODS.INFINITIVE) finalTranslation += table[enTransDeclension.tense][enTransDeclension.mood][0]
             else
             {
                 const conj = ObjectUtils.get(table, enTransDeclension.tense, enTransDeclension.mood, enTransDeclension.number, enTransDeclension.person, enTransDeclension.voice, 0)

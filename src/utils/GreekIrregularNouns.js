@@ -26,14 +26,14 @@ export default class GreekIrregularNouns
      */
     static DICTIONARY =
     {
-        'ἄνηρ': new GreekIrregularNoun
+        'ἀνήρ': new GreekIrregularNoun
         ({
-            radical: new Genders({ masculine: 'ἄνδρ' }),
+            radical: new Genders({ masculine: 'ἄνδ' }),
             table: new GreekDeclensionTableNoun
             ({
                 singular: new Cases
                 ({
-                    nominative: new Genders({ masculine: ['ἄνηρ'] }),
+                    nominative: new Genders({ masculine: ['ἀνήρ'] }),
                     vocative: new Genders({ masculine: ['ἄνερ'] })
                 })
             })

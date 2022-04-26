@@ -18,7 +18,7 @@ export default class GreekPersonalPronoun
         third: new Genders
         ({
             masculine: new Cases({ nominative: ['αὐτός'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτόν'] }),
-            feminine: new Cases({ nominative: ['αὐτή'], genitive: ['αὐτῆς'], dative: ['αὐτῇ'], accusative: ['αὐτήν'] }),
+            feminine: new Cases({ nominative: ['αὐτή'], genitive: ['αὐτῆς'], dative: ['αὐτῇ'], accusative: ['αὐτήν', 'αὐτὴν'] }),
             neuter: new Cases({ nominative: ['αὐτό'], genitive: ['αὐτοῦ'], dative: ['αὐτῷ'], accusative: ['αὐτό'] }),
         })
     })
@@ -34,7 +34,7 @@ export default class GreekPersonalPronoun
         }),
         third: new Genders
         ({
-            masculine: new Cases({ nominative: ['αὐτοί'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτούς'] }),
+            masculine: new Cases({ nominative: ['αὐτοί'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτούς', 'αὐτοὺς'] }),
             feminine: new Cases({ nominative: ['αὐταί'], genitive: ['αὐτῶν'], dative: ['αὐταῖς'], accusative: ['αὐτᾱ́ς'] }),
             neuter: new Cases({ nominative: ['αὐτᾰ́'], genitive: ['αὐτῶν'], dative: ['αὐτοῖς'], accusative: ['αὐτᾰ́'] }),
         })

@@ -3,6 +3,7 @@ import GreekDictionary, { GreekDictionaryEntry } from '@/utils/GreekDictionary'
 import GreekInflectionUtils from '@/utils/GreekInflectionUtils'
 import GreekParsedWord from '@/utils/GreekParsedWord'
 import GreekSemantic from '@/utils/GreekSemantic'
+import ArrayUtils from './ArrayUtils'
 import GreekGrammar from './GreekGrammar'
 import GreekNumerals from './GreekNumerals'
 
@@ -17,8 +18,8 @@ export default class GreekParser
         const verseParsed = []
         verse.split(' ').forEach(word =>
         {
-            const declensions = GreekInflectionUtils.getDeclension(word.replace(/[.,]/g, ''))
-            if (!declensions) return verseParsed.push(new GreekParsedWord({word}))
+            const declensions = GreekInflectionUtils.getDeclensions(word)
+            if (ArrayUtils.isEmpty(declensions)) return verseParsed.push(new GreekParsedWord({word}))
             var declension = declensions[0]
             
             var definition

@@ -1,3 +1,5 @@
+import ArrayUtils from './ArrayUtils'
+
 export default class StringUtils
 {
     static ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
@@ -91,6 +93,11 @@ export default class StringUtils
         return hash
     }
 
+    /**
+     * 
+     * @param {string} str 
+     * @returns {string}
+     */
     static removeAccents (str)
     {
         if (!str) return ''
@@ -193,9 +200,25 @@ export default class StringUtils
         return str.replace(/\W/g, '')
     }
 
+        /**
+     * @param {string} str 
+     * @param {string} search 
+     * @param {string} replace 
+     * @returns {string}
+     */
     static replaceLast (str, search, replace)
     {
         return str.replace(new RegExp(search + '$'), replace);
+    }
+
+    /**
+     * @param {string} str 
+     * @param {string} replace 
+     * @returns {string}
+     */
+    static replaceLastLetter (str, replace)
+    {
+        return str.substring(0, str.length - 1) + replace
     }
 
     /**
@@ -220,14 +243,31 @@ export default class StringUtils
      * @param {string} str 
      * @param  {...string} all 
      */
-    static equalSome (str, ...all)
+    static equalsSome (str, ...all)
     {
         return all.some(item => str == item)
     }
 
+    /**
+     * @param {string} str 
+     * @param  {...string} all 
+     * @returns {boolean}
+     */
     static endsWithSome (str, ...all)
     {
+        if (!str || ArrayUtils.isEmpty(all)) return false
         return all.some(item => str.endsWith(item))
+    }
+
+    /**
+     * @param {string} str 
+     * @param  {...string} all 
+     * @returns {boolean}
+     */
+    static startsWithSome (str, ...all)
+    {
+        if (!str || ArrayUtils.isEmpty(all)) return false
+        return all.some(item => str.startsWith(item))
     }
 
     static indexOfAny (str, ...any)
@@ -266,5 +306,15 @@ export default class StringUtils
     {
         for (const a of any) str = this.replaceAll(str, a, replacement)
         return str
+    }
+
+    /**
+     * @param {string} str 
+     * @param {...string} any 
+     * @returns {string}
+     */
+    static deleteAny (str, ...any)
+    {
+        return this.replaceAny(str, any, StringUtils.EMPTY)
     }
 }

@@ -13,7 +13,9 @@ export default class GreekVerbUtils
         [
             ...table.present.indicative.active.thematic.singular.first,
             ...table.present.indicative.active.athematic.singular.first,
-            ...table.present.indicative.passive.athematic.singular.first,
+            ...table.present.indicative.middle.thematic.singular.first,
+            ...table.present.indicative.middle.athematic.singular.first,
+            ...table.present.indicative.passive.thematic.singular.first,
             ...table.present.indicative.passive.athematic.singular.first,
         ].map(e => StringUtils.removeAccents(e))
         const lemmaNoAccents = StringUtils.removeAccents(lemma)

@@ -6,6 +6,8 @@ import GreekIrregularVerbs from './GreekIrregularVerbs'
 import GreekVerbUtils from './GreekVerbUtils'
 import GreekDeclensionVerbTable, { GreekDeclensionTableVerbMoods } from './GreekDeclensionVerbTable'
 import GreekDeclension from './GreekDeclension'
+import ArrayUtils from './ArrayUtils'
+import GreekAlphabet from './GreekAlphabet'
 
 export default class GreekDeclensionVerbTables
 {
@@ -38,7 +40,20 @@ export default class GreekDeclensionVerbTables
                         singular: new Persons({ first: ['μι'], second: ['ς'], third: ['σι', 'σιν'] }),
                         plural: new Persons({ first: ['μεν'], second: ['τε'], third: ['ασι', 'ασιν'] }),
                     })
-                })
+                }),
+                middle: new Themes
+                ({
+                    athematic: new Numbers
+                    ({
+                        singular: new Persons({ first: [] }),
+                        plural: new Persons({ first: [] }),
+                    }),
+                    thematic: new Numbers
+                    ({
+                        singular: new Persons({ first: ['ομαι'], second: ['ῃ', 'ει', 'εσαι'], third: ['εται'] }),
+                        plural: new Persons({ first: ['ομεθα'], second: ['εσθε'], third: ['ονται'] }),
+                    }),
+                }),
             }),
             infinitive: new Voices({ active: new Themes({ thematic: ['ειν'] }), middle: new Themes({ thematic: ['εσθαι'] }) }),
             participle: new Voices
@@ -49,7 +64,7 @@ export default class GreekDeclensionVerbTables
                     ({
                         singular: new Cases
                         ({
-                            nominative: new Genders({ masculine: ['ων'], feminine: ['ουσᾰ'], neuter: ['ον'] }),
+                            nominative: new Genders({ masculine: ['ων'], feminine: ['ουσα'], neuter: ['ον'] }),
                         })
                     })
                 }),
@@ -82,9 +97,11 @@ export default class GreekDeclensionVerbTables
                     thematic: new Numbers
                     ({
                         singular: new Persons({ first: ['θην'], second: ['θης'], third: ['θη'], }),
+                        plural: new Persons({ first: ['θωμεν'], second: ['θητε'], third: ['θωσι', 'θωσιν'], }),
                     })
                 })
             }),
+            infinitive: new Voices({ active: new Themes({ thematic: ['σαι'] }), middle: new Themes({ thematic: ['σασθαι'] }) }),
             participle: new Voices
             ({
                 active: new Themes(),
@@ -112,6 +129,10 @@ export default class GreekDeclensionVerbTables
                     })
                 })
             })
+        }),
+        aorist_2nd: new GreekDeclensionTableVerbMoods
+        ({
+            infinitive: new Voices({ active: new Themes({ thematic: ['εῖν'] }) }),
         }),
         imperfect: new GreekDeclensionTableVerbMoods
         ({
@@ -143,29 +164,53 @@ export default class GreekDeclensionVerbTables
 
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
-            if (irregTable && ObjectUtils.get(irregTable, declension)) return flatTable[declension] = ObjectUtils.get(irregTable, declension)
+            if (irregTable && ObjectUtils.get(irregTable.table, declension)) return flatTable[declension] = ObjectUtils.get(irregTable.table, declension)
             if (!ending) return
             const decl = GreekDeclension.fromString(declension)
-            var rad = radical
+            const irregRadicals = irregTable && irregTable.radicals && irregTable.radicals[decl.tense]
+            var rad = ArrayUtils.isEmpty(irregRadicals) ? radical : irregRadicals[0]
+            var syllables = GreekWord.getSyllables(rad)
+
             if (decl.tense == GreekGrammar.TENSES.AORIST && decl.mood == GreekGrammar.MOODS.INDICATIVE)
             {
-                const syllables = GreekWord.getSyllables(rad)
-                syllables[syllables.length - 1] = GreekWord.augment(syllables[syllables.length - 1])
+                // γεννά(ω) -> γεννη
+                if (StringUtils.removeAccents(ArrayUtils.getLast(syllables)).endsWith('α')) ArrayUtils.setLast(syllables, StringUtils.replaceLastLetter(ArrayUtils.getLast(syllables), 'η'))
                 // the penultimate is sometimes accentued https://en.wikipedia.org/wiki/Aorist_(Ancient_Greek)#First_aorist_endings
                 if (decl.voice == GreekGrammar.VOICES.PASSIVE || decl.number == GreekGrammar.NUMBERS.PLURAL)
                 {
+                    if (!GreekAlphabet.endsWithVowel(syllables[syllables.length - 1]))
+                    {
+                        // [βούλομαι] rad: βούλ -> βούλη
+                        syllables = GreekWord.getSyllables(syllables.join('') + 'η')
+                        // [βούλομαι] βούληθη -> βουλήθη
+                        syllables = GreekWord.getSyllables(GreekWord.shiftAccent(syllables.join(''), 1))
+
+                    }
+                    // (ἐ)γεννη(θη) -> (ἐ)γεννή(θη)
                     syllables[syllables.length - 1] = GreekWord.augment(syllables[syllables.length - 1])
                 }
                 else
                 {
                     syllables[0] = GreekWord.augment(syllables[0])
                 }
-                rad = 'ἐ' + syllables.join('')
+
+                // verbs starting with 'ευ' do not take augment
+                if (!StringUtils.removeAccents(rad).startsWith('ευ'))
+                {
+                    syllables = GreekWord.getSyllables('ἐ' + syllables.join(''))
+                }
             }
+
+            if (decl.tense == GreekGrammar.TENSES.AORIST && decl.mood == GreekGrammar.MOODS.INFINITIVE)
+            {
+                ArrayUtils.setLast(syllables, GreekWord.augment(ArrayUtils.getLast(syllables)))
+            }
+
+            rad = syllables.join('')
 
             flatTable[declension] = rad + ending
 
-            if (decl.mood == GreekGrammar.MOODS.PARTICIPLE)
+            if (decl.mood == GreekGrammar.MOODS.PARTICIPLE && decl.voice == GreekGrammar.VOICES.PASSIVE)
             {
                 flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
 
@@ -174,6 +219,8 @@ export default class GreekDeclensionVerbTables
                     flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
                 }
             }
+
+            flatTable[declension] = flatTable[declension].replace(/ζσ/gm, 'σ')
         })
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)

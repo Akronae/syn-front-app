@@ -1,4 +1,5 @@
 import StringUtils from '@/utils/StringUtils'
+import ArrayUtils from './ArrayUtils'
 import GreekAlphabet from './GreekAlphabet'
 import GreekGrammar from './GreekGrammar'
 
@@ -10,6 +11,7 @@ export default class GreekWord
      */
     static getAccents (part)
     {
+        if (!part) return []
         /** @type {import('./GreekGrammar').ACCENTS[]} */
         const accents = []
         for (let i = 0; i < part.length; i++)
@@ -19,6 +21,8 @@ export default class GreekWord
             else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PSILI)) accents.push(GreekGrammar.ACCENTS.PSILI)
             else if (StringUtils.includesSome(part[i], ...GreekAlphabet.VARIA)) accents.push(GreekGrammar.ACCENTS.VARIA)
             else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PERISPOMENI)) accents.push(GreekGrammar.ACCENTS.PERISPOMENI)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.DASIA_OXIA)) accents.push(GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA)
+            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PSILI_OXIA)) accents.push(GreekGrammar.ACCENTS.PSILI, GreekGrammar.ACCENTS.OXIA)
         }
         return accents
     }
@@ -33,6 +37,7 @@ export default class GreekWord
         part = part.replace('η', 'ή')
         part = part.replace('ά', 'η')
         part = part.replace('ε', 'έ')
+        part = part.replace('ύ', 'ῦ')
 
         return part
     }
@@ -50,15 +55,17 @@ export default class GreekWord
         
         while (true)
         {
-            var changed
-            for (const accent of accents)
-            {
-                if (accent == GreekGrammar.ACCENTS.DASIA) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-                if (accent == GreekGrammar.ACCENTS.OXIA) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-                if (accent == GreekGrammar.ACCENTS.PSILI) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-                if (accent == GreekGrammar.ACCENTS.VARIA) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-                if (accent == GreekGrammar.ACCENTS.PERISPOMENI) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == StringUtils.removeAccents(p[i]))
-            }
+            var changed = StringUtils.EMPTY
+            const targetAccents = [...this.getAccents(p[i]), ...accents]
+            const letter = StringUtils.removeAccents(p[i])
+
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.DASIA], {ignoreOrder: true})) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PSILI], {ignoreOrder: true})) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.VARIA], {ignoreOrder: true})) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PERISPOMENI], {ignoreOrder: true})) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.DASIA_OXIA.find(l => StringUtils.removeAccents(l) == letter)
+            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PSILI, GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.PSILI_OXIA.find(l => StringUtils.removeAccents(l) == letter)
 
             if (changed || !p[i])
             {
@@ -72,13 +79,42 @@ export default class GreekWord
 
         for (let i = 0; i < p.length; i++)
         {
-            if (GreekAlphabet.isVowel(p[i]) && StringUtils.equalSome(p[i+1], 'υ', 'ι'))
+            if (GreekAlphabet.isVowel(p[i]) && StringUtils.equalsSome(p[i+1], 'υ', 'ι'))
             {
                 p[i+1] = this.accentuate(p[i+1], this.getAccents(p[i]))
                 p[i] = StringUtils.removeAccents(p[i])
             }
         }
 
+        return p.join('')
+    }
+
+    /**
+     * 
+     * @param {string} part 
+     * @param {import('./GreekGrammar').ACCENTS[]} accents
+     * @returns {string} 
+     */
+    static removeAccents (part, accents)
+    {
+        var p = part.split('')
+        let i = 0
+        
+        while (true)
+        {
+            var changed = StringUtils.EMPTY
+            const targetAccents = ArrayUtils.removeAll(this.getAccents(p[i]), ...accents) 
+    
+            changed = this.accentuate(StringUtils.removeAccents(p[i]), targetAccents)
+    
+            if (changed != p[i] || !p[i])
+            {
+                p[i] = changed
+                break
+            }
+            i++
+        }
+    
         return p.join('')
     }
 
@@ -104,34 +140,22 @@ export default class GreekWord
         return syllables.join('')
     }
     
+    /**
+     * @param {string} word 
+     * @returns {string[]}
+     */
     static getSyllables (word)
     {
         const syllables = []
-        let syllable = ''
-        for (var i = 0; i < word.length; i++)
+        while (word.length > 0)
         {
-            const letter = word[i]
-            syllable += letter
-
-            if (GreekAlphabet.isVowel(letter))
-            {
-                if (!(i > 0 && GreekAlphabet.isVowel(word[i - 1])))
-                {
-                    syllables.push(syllable)
-                    syllable = ''
-                }
-            }
-
+            const nextVowelIndex = word.indexOf(GreekAlphabet.getFirstVowel(word)) + GreekAlphabet.getFirstVowel(word).length
+            if (nextVowelIndex <= 0) break
+            syllables.push(word.substring(0, nextVowelIndex))
+            word = word.substring(nextVowelIndex)
         }
-        if (syllable)
-        {
-            if (syllable.split('').every(letter => !GreekAlphabet.isVowel(letter)))
-            {
-                syllables[syllables.length - 1] += syllable
-            }
-            else syllables.push(syllable)
-        }
-
+        syllables[syllables.length - 1] += word
+        
         return syllables
     }
 }

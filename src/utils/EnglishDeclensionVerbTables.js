@@ -4,6 +4,8 @@ import EnglishGrammar, { Moods, Numbers, Persons, Tenses, Voices } from '@/utils
 import EnglishIrregularVerbs from './EnglishIrregularVerbs'
 import { EnglishDeclensionVerbTable } from './EnglishDeclensionVerbTable'
 import EnglishDeclension from './EnglishDeclension'
+import EnglishWord from './EnglishWord'
+import LatinAlphabet from './LatinAlphabet'
 
 export default class EnglishDeclensionVerbTables
 {
@@ -11,20 +13,22 @@ export default class EnglishDeclensionVerbTables
     ({
         present: new Moods
         ({
-            participle: ['ing']
+            participle: ['ing'],
+            infinitive: ['']
         }),
         past: new Moods
         ({
             indicative: new Numbers
             ({
-                singular: new Persons({ first: new Voices({ active: ['ed'] }) })
+                singular: new Persons({ first: new Voices({ active: ['ed'], passive: ['ed'] }) })
             }),
             continuous: new Numbers
             ({
                 singular: new Persons({ first: new Voices({ active: [''] }) })
             }),
 
-            participle: ['ed']
+            participle: ['ed'],
+            infinitive: ['']
         })
     })
 
@@ -41,10 +45,8 @@ export default class EnglishDeclensionVerbTables
         Object.entries(flatTable).forEach(([declension, ending]) =>
         {
             var rad = radical
-            const decl = EnglishDeclension.fromString(declension)
-            
-            if (StringUtils.endsWithSome(radical, 't', 'd')) ending = StringUtils.EMPTY
-            
+            const decl = EnglishDeclension.fromString(declension) 
+                        
             if (radical.endsWith('get'))
             {
                 if (decl.voice == EnglishGrammar.VOICES.PASSIVE)
@@ -52,8 +54,9 @@ export default class EnglishDeclensionVerbTables
                     ending = 'ten'
                 }
 
-                rad = StringUtils.replaceLast(radical, 'get', 'got')
+                if (decl.tense == EnglishGrammar.TENSES.PAST) rad = StringUtils.replaceLast(radical, 'get', 'got')
             }
+
 
             var aux = StringUtils.EMPTY
             if (decl.voice == EnglishGrammar.VOICES.PASSIVE || decl.mood == EnglishGrammar.MOODS.CONTINUOUS)
@@ -70,9 +73,24 @@ export default class EnglishDeclensionVerbTables
                 if (radical == 'be') rad = StringUtils.EMPTY
             }
             
-            if (rad.endsWith('e') && ending && ending.startsWith('e')) ending = ending.replace('e', StringUtils.EMPTY)
+            if (rad.endsWith('e') && (StringUtils.startsWithSome(ending, ...LatinAlphabet.VOWELS)))
+            {
+                const radSyllabes = EnglishWord.getSyllables(rad)
+                if (radSyllabes.length > 1 && !EnglishWord.isConsonant(radSyllabes[radSyllabes.length - 2].split('').pop()))
+                {
+                    rad = StringUtils.replaceLast(rad, 'e', StringUtils.EMPTY)
+                }
+            }
+            
             var conjugated = ObjectUtils.get(EnglishIrregularVerbs.DICTIONARY[radical], declension) || rad + ending
-            flatTable[declension] = `${aux} ${conjugated}`.trim()
+            conjugated = StringUtils.deleteAny(conjugated, '[', ']')
+
+            if (conjugated.endsWith('inded')) conjugated = StringUtils.replaceLast(conjugated, 'inded', 'ound')
+            if (conjugated.endsWith('ded')) conjugated = StringUtils.replaceLast(conjugated, 'ded', 'd')
+            if (conjugated.endsWith('ted')) conjugated = StringUtils.replaceLast(conjugated, 'ted', 't')
+
+            const to = decl.mood == EnglishGrammar.MOODS.INFINITIVE ? 'to ' : StringUtils.EMPTY
+            flatTable[declension] = `${to} ${aux} ${conjugated}`.trim()
         })
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)

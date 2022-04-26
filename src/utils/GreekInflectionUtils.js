@@ -26,9 +26,13 @@ export default class GreekInflectionUtils
         str = str.replace(/plural/gm, 'plur')
         str = str.replace(/masculine/gm, 'mas')
         str = str.replace(/feminine/gm, 'fem')
+        str = str.replace(/aorist_2nd/gm, '2aor')
         str = str.replace(/aorist/gm, 'aor')
         str = str.replace(/active/gm, 'act')
+        str = str.replace(/infinitive/gm, 'inf')
         str = str.replace(/indicative/gm, 'ind')
+        str = str.replace(/first/gm, '1st')
+        str = str.replace(/second/gm, '2nd')
         str = str.replace(/third/gm, '3rd')
         str = str.replace(/personal/gm, 'pers')
         str = str.replace(/present/gm, 'pres')
@@ -54,6 +58,7 @@ export default class GreekInflectionUtils
                 var declension = GreekDeclension.fromString(declStr)
                 declension.lemma = key
                 declension.pos = value.pos
+                if (declension.isNoun && !declension.person) declension.person = GreekGrammar.PERSONS.THIRD
                 if (!this.DICTIONARY_INFLECTED[inflected]) this.DICTIONARY_INFLECTED[inflected] = []
                 this.DICTIONARY_INFLECTED[inflected].push(declension)
             }
@@ -65,13 +70,13 @@ export default class GreekInflectionUtils
      * @param {string} wordInflected 
      * @returns {GreekDeclension[]}
      */
-    static getDeclension (wordInflected)
+    static getDeclensions (wordInflected)
     {
-        wordInflected = GreekAlphabet.sanitizeLetters(wordInflected.toLowerCase())
+        wordInflected = GreekAlphabet.sanitizeLetters(wordInflected.toLowerCase()).replace(/[.,]/g, '')
 
         const declensions = this.DICTIONARY_INFLECTED[wordInflected]
         if (GreekNumerals.isNumber(wordInflected)) return [new GreekDeclension({pos: GreekGrammar.PARTS_OF_SPEECH.NUMERAL, lemma: wordInflected})]
-        if (!declensions) return null
+        if (!declensions) return []
         return declensions.map(d => d.clone())
     }
 
@@ -83,7 +88,7 @@ export default class GreekInflectionUtils
         if (!dictEntry) return null
         
         var radical = StringUtils.EMPTY
-        if (StringUtils.equalSome(dictEntry.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE))
+        if (StringUtils.equalsSome(dictEntry.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE))
         {
             if (!dictEntry.declensionNounTable) console.error(`No declension table for ${lemma}`)
             const n = dictEntry.declensionNounTable.singular.nominative

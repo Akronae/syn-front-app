@@ -135,6 +135,25 @@ export default class GreekDeclensionNounTables
             vocative: new Genders({ masculine: ['αι'] }),
         }),
     })
+    static A_ATOS = new GreekDeclensionTableNoun
+    ({
+        singular: new Cases
+        ({
+            nominative: new Genders({ neuter: ['α'] }),
+            genitive: new Genders({ neuter: ['ατος'] }),
+            dative: new Genders({ neuter: ['ατι'] }),
+            accusative: new Genders({ neuter: ['α'] }),
+            vocative: new Genders({ neuter: ['α'] }),
+        }),
+        plural: new Cases
+        ({
+            nominative: new Genders({ neuter: ['ατα'] }),
+            genitive: new Genders({ neuter: ['ατων'] }),
+            dative: new Genders({ neuter: ['ασι', 'ασιν'] }),
+            accusative: new Genders({ neuter: ['ατα'] }),
+            vocative: new Genders({ neuter: ['ατα'] }),
+        }),
+    })
     static EUS_EWS = new GreekDeclensionTableNoun
     ({
         singular: new Cases
@@ -214,22 +233,80 @@ export default class GreekDeclensionNounTables
             vocative: new Genders({ masculine: ['ες'] }),
         }),
     })
+    static HR_EROS = new GreekDeclensionTableNoun
+    ({
+        singular: new Cases
+        ({
+            nominative: new Genders({ masculine: ['ηρ'] }),
+            genitive: new Genders({ masculine: ['ερος', 'ρος'] }),
+            dative: new Genders({ masculine: ['ερι', 'ρι'] }),
+            accusative: new Genders({ masculine: ['ερα', 'ρα'] }),
+            vocative: new Genders({ masculine: ['ηρ'] }),
+        }),
+        plural: new Cases
+        ({
+            nominative: new Genders({ masculine: ['ερες'] }),
+            genitive: new Genders({ masculine: ['ερων'] }),
+            dative: new Genders({ masculine: ['ηρσι', 'ηρσιν', 'ρασι', 'ρασιν'] }),
+            accusative: new Genders({ masculine: ['ερας'] }),
+            vocative: new Genders({ masculine: ['ερες'] }),
+        }),
+    })
 
-    static moveAccent (radical, table, declension)
+    /**
+     * 
+     * @param {string} radical 
+     * @param {string} ending 
+     * @param {GreekDeclensionTableNoun} table 
+     * @param {GreekDeclension} declension 
+     * @returns {string}
+     */
+    static moveAccent (radical, ending, table, declension)
     {
         var syllables
+        var rad = radical
+        var end = ending
 
-        if (table == this.IS_EWS && (declension.includes(GreekGrammar.CASES.GENITIVE) || declension.includes(GreekGrammar.CASES.DATIVE)))
+        if (table == this.IS_EWS && StringUtils.equalsSome(declension.case, GreekGrammar.CASES.GENITIVE, GreekGrammar.CASES.DATIVE))
         {
-            return GreekWord.shiftAccent(radical, 1)
+            rad = GreekWord.shiftAccent(radical, 1)
         }
-        if (table == this.SEMITIC_PROPER_NAME && StringUtils.includesSome(declension, GreekGrammar.CASES.ACCUSATIVE, GreekGrammar.CASES.DATIVE))
+        else if (table == this.SEMITIC_PROPER_NAME && StringUtils.equalsSome(declension.case, GreekGrammar.CASES.ACCUSATIVE, GreekGrammar.CASES.DATIVE))
         {
             syllables = GreekWord.getSyllables(radical)
             syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ').replace('ὶ', 'ί').replace('ὴ', 'ή').replace('ὲ', 'έ').replace('ὺ', 'ύ')
-            return syllables.join('')
+            rad = syllables.join('')
         }
-        return radical
+        //https://en.wiktionary.org/wiki/ἀνήρ
+        else if (table == this.HR_EROS)
+        {
+            const endingFirstVowel = GreekAlphabet.getFirstVowel(end)
+            if (StringUtils.equalsSome(StringUtils.removeAccents(endingFirstVowel), 'α', 'ε'))
+            {
+                rad = GreekWord.accentuate(rad, GreekWord.getAccents(endingFirstVowel))
+                end = GreekWord.removeAccents(end, GreekWord.getAccents(endingFirstVowel))
+            }
+        }
+        // https://en.wiktionary.org/wiki/ἅγιος
+        else if (ArrayUtils.areEqual(GreekWord.getAccents(rad[0]), [GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA]))
+        {
+            if (!StringUtils.equalsSome(declension.case, GreekGrammar.CASES.NOMINATIVE, GreekGrammar.CASES.VOCATIVE))
+            {
+                rad = GreekWord.accentuate(rad, [GreekGrammar.ACCENTS.OXIA])
+                rad = GreekWord.removeAccents(rad, [GreekGrammar.ACCENTS.OXIA])
+            }
+        }
+
+        // https://en.wiktionary.org/wiki/πνεῦμα#Ancient_Greek
+        if (rad.includes('εῦ'))
+        {
+            if (declension.number == GreekGrammar.NUMBERS.PLURAL || StringUtils.equalsSome(declension.case, GreekGrammar.CASES.GENITIVE, GreekGrammar.CASES.DATIVE))
+            {
+                rad = rad.replace('εῦ', 'εύ')
+            }
+        }
+
+        return rad + end
     }
 
     /**
@@ -257,21 +334,22 @@ export default class GreekDeclensionNounTables
             
             if (!ending) ending = StringUtils.EMPTY
             if (gender && !declension.includes(gender)) return flatTable[declension] = null
+            const decl = GreekDeclension.fromString(declension)
             if (StringUtils.hasAccents(lemmaEnding))
             {
                 ending = GreekWord.accentuate(ending, GreekWord.getAccents(lemmaEnding))
 
                 if (table == GreekDeclensionNounTables.WN_WNOS)
                 {
-                    if (!StringUtils.includesSome(declension, GreekGrammar.CASES.NOMINATIVE, GreekGrammar.CASES.VOCATIVE))
+                    if (!StringUtils.equalsSome(decl.case, GreekGrammar.CASES.NOMINATIVE, GreekGrammar.CASES.VOCATIVE))
                     {
-                        ending = GreekWord.accentuate(ending, [GreekGrammar.ACCENTS.PERISPOMENI])
+                        ending = GreekWord.accentuate(StringUtils.removeAccents(ending), [GreekGrammar.ACCENTS.PERISPOMENI])
                     } 
                 }
             }
             
-            const rad = irregTable ? irregTable.radical[GreekDeclension.fromString(declension).gender] : radical
-            var builded = this.moveAccent(rad, table, declension) + ending
+            const rad = irregTable ? irregTable.radical[decl.gender] : radical
+            var builded = this.moveAccent(rad, ending, table, decl)
 
             while (StringUtils.includesEvery(builded, '[', ']'))
             {

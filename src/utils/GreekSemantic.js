@@ -39,12 +39,21 @@ export default class GreekSemantic
             if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && !word.verbObject)
             {
                 var potentialObjects = words
-                    .filter(w => w.declension.isNoun)
+                    .filter(w => w.declension.isNoun || w.declension.mood == GreekGrammar.MOODS.PARTICIPLE)
                     .sort((a, b) => Math.abs(words.indexOf(a) - i) - Math.abs(words.indexOf(b) - i))
-                if (word.declension.case) potentialObjects = potentialObjects.filter(w => w.declension.case == word.declension.case)
+                
+                const wordCase = word.declension.case || GreekGrammar.CASES.NOMINATIVE
+                potentialObjects = potentialObjects.filter(w => w.declension.case == wordCase)
                 if (potentialObjects.length == 0) console.error('Cannot find object for verb', word);
                 
                 word.verbObject = potentialObjects[0] // taking the closest noun as verb object
+            }
+
+            if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && GreekInflectionUtils.getDeclensions(word.word).length > 1)
+            {
+                const declensions = GreekInflectionUtils.getDeclensions(word.word)
+                const accorded = declensions.find(d => d.number == word.verbObject.declension.number && d.person == word.verbObject.declension.person)
+                if (accorded) word.declension = accorded
             }
 
             if (word.definition.translation instanceof Cases)

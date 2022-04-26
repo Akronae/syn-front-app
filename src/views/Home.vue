@@ -25,26 +25,27 @@ export default
     render () 
     {
         const matthew = Mattew.collections['New Testament']['The Book of Matthew']
+        const CORRECT_UNTIL_VERSE = 19
         /**
          * @type {GreekParsedWord[][][]}
          */
-        const toCorrect = Object.entries(matthew.milestones).filter(([v]) => !v.startsWith('_')).map(([_, milestone]) => Object.entries(milestone).filter(([verseNumber]) => !verseNumber.startsWith('_')).map(([_, verse]) =>
+        const toCorrect = Object.entries(matthew.milestones).filter(([v]) => !v.startsWith('_')).map(([_, milestone]) => Object.entries(milestone).filter(([verseNumber]) => !verseNumber.startsWith('_') && Number.parseInt(verseNumber) <= CORRECT_UNTIL_VERSE).map(([_, verse]) =>
         {
             return GreekParser.parseVerse(verse.grc)
         }))
-        toCorrect.forEach(milestone => milestone.forEach(verse => verse.forEach(word => word.definition = null)))
+        toCorrect.forEach(milestone => milestone.forEach(verse => verse.forEach(word => {word.definition = null; word.verbObject = null})))
         // console.log(JSON.stringify(toCorrect, null, 2))
-        // const UNTIL_VERSE = 16
         MattewCorrect.forEach((milestone, milestoneIndex) => milestone.forEach((verse, verseIndex) => verse.forEach((word, wordIndex) =>
         {
-            const IGNORED_ERRORS = ["'proper_noun' should be 'noun'", "translation: 'he is said' should be 'said'"]
-            const UNTIL_VERSE = 16
-            if (verseIndex > UNTIL_VERSE - 1) return
+            const IGNORED_ERRORS = []
+            if (verseIndex > CORRECT_UNTIL_VERSE - 1) return
             const wordTest = toCorrect[milestoneIndex][verseIndex][wordIndex]
             const wordPathes = ObjectUtils.getValuesPathes(word)
             for (const [path, val] of Object.entries(wordPathes))
             {
                 const testVal = ObjectUtils.get(wordTest, path)
+                    // console.log(testVal, val)
+
                 if (testVal !== val)
                 {
                     const error = `Matthew ${milestoneIndex}:${verseIndex}:${wordIndex} ${wordTest.word}, ${path}: '${testVal}' should be '${val}'`
@@ -64,6 +65,10 @@ export default
         {
             if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
         })
+        Object.entries(GreekDictionary.DICTIONARY).forEach(([word, def]) =>
+        {
+            if (word != GreekAlphabet.sanitizeLetters(word)) console.error(`'${word}' is not sanitized, should be '${GreekAlphabet.sanitizeLetters(word)}'`)
+        })
         
         /**
          * @type {GreekParsedWord[][]}
@@ -72,6 +77,7 @@ export default
         {
             return GreekParser.parseVerse(verse.grc)
         })
+        window.parsed = parsed
 
         return (
             <div id='home-view'>
@@ -99,7 +105,7 @@ export default
                                                 </div>,
                                                 <div class='verse-word-declension'>
                                                     {definition && definition.pos && <div>{GreekInflectionUtils.shortenDeclensionString(definition.pos)}</div> }
-                                                    <div v-show={definition && StringUtils.equalSome(definition.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE)} class='column align-center'>
+                                                    <div v-show={definition && StringUtils.equalsSome(definition.pos, GreekGrammar.PARTS_OF_SPEECH.NOUN, GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, GreekGrammar.PARTS_OF_SPEECH.ADJECTIVE)} class='column align-center'>
                                                         {GreekInflectionUtils.shortenDeclensionString(`${declension.case || ''}-${declension.number || ''}-${declension.gender || ''}`)}
                                                     </div>
                                                     <div v-show={definition && definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB} class='column align-center'>

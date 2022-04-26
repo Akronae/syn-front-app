@@ -20,7 +20,7 @@
 * @typedef {"indicative" | "subjunctive" | "optative" | "imperative" | "infinitive" | "participle"} MOODS
 */
 /**
-* @typedef {"present" | "imperfect" | "future" | "aorist" | "perfect" | "pluperfect"} TENSES
+* @typedef {"present" | "imperfect" | "future" | "aorist" | "aorist_2nd" | "perfect" | "pluperfect"} TENSES
 */
 /**
 * @typedef {"thematic" | "athematic"} THEMES
@@ -182,10 +182,10 @@ export class Moods
      */
     constructor ({indicative = null, subjunctive = null, optative = null, imperative = null, infinitive = null, participle = null} = {})
     {
-        this.indicative = indicative || subjunctive || optative || imperative
-        this.subjunctive = subjunctive || this.indicative
-        this.optative = optative || this.subjunctive
-        this.imperative = imperative || this.optative
+        this.indicative = indicative 
+        this.subjunctive = subjunctive 
+        this.optative = optative
+        this.imperative = imperative
         this.infinitive = infinitive
         this.participle = participle
     }
@@ -201,6 +201,7 @@ export class Tenses
     imperfect
     future
     aorist
+    aorist_2nd
     perfect
     pluperfect
 
@@ -210,15 +211,17 @@ export class Tenses
      * @param {T} [args.imperfect]
      * @param {T} [args.future]
      * @param {T} [args.aorist]
+     * @param {T} [args.aorist_2nd]
      * @param {T} [args.perfect]
      * @param {T} [args.pluperfect]
      */
-    constructor ({present = null, imperfect = null, future = null, aorist = null, perfect = null, pluperfect = null} = {})
+    constructor ({present = null, imperfect = null, future = null, aorist = null, aorist_2nd = null, perfect = null, pluperfect = null} = {})
     {
         this.present = present
         this.imperfect = imperfect
         this.future = future
         this.aorist = aorist
+        this.aorist_2nd = aorist_2nd
         this.perfect = perfect
         this.pluperfect = pluperfect
     }
@@ -326,7 +329,7 @@ export default class GreekGrammar
         PARTICIPLE: 'participle'
     }
     /**
-    * @type {{PRESENT: TENSES, IMPERFECT: TENSES, FUTURE: TENSES, AORIST: TENSES, PERFECT: TENSES, PLUPERFECT: TENSES}}
+    * @type {{PRESENT: TENSES, IMPERFECT: TENSES, FUTURE: TENSES, AORIST: TENSES, AORIST_2ND: TENSES, PERFECT: TENSES, PLUPERFECT: TENSES}}
     */
     static TENSES =
     {
@@ -334,6 +337,7 @@ export default class GreekGrammar
         IMPERFECT: 'imperfect',
         FUTURE: 'future',
         AORIST: 'aorist',
+        AORIST_2ND: 'aorist_2nd',
         PERFECT: 'perfect',
         PLUPERFECT: 'pluperfect'
     }

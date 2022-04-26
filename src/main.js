@@ -20,6 +20,7 @@ import GreekDictionary from '@/utils/GreekDictionary'
 import GreekNumerals from '@/utils/GreekNumerals'
 import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables'
 import EnglishGrammar from '@/utils/EnglishGrammar'
+import EnglishWord from '@/utils/EnglishWord'
 import ObjectUtils from '@/utils/ObjectUtils'
 import * as Buffer from 'buffer'
 
@@ -40,6 +41,7 @@ window.modules =
     ObjectUtils,
     EnglishDeclensionVerbTables,
     EnglishGrammar,
+    EnglishWord,
     Buffer
 }
 
