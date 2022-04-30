@@ -1,15 +1,16 @@
 import {Cases, Genders, Numbers} from '@/utils/GreekGrammar';
 
 /**
- * @typedef {Numbers<Genders<Cases<string[]>>>} GreekArticle
+ * @extends {Numbers<Genders<Cases<string[]>>>}
  */
+export class GreekArticle extends Numbers
+{
+
+}
 
 export default class GreekArticles
 {
-    /**
-     * @type {GreekArticle}
-     */
-    static DEFINITE = new Numbers
+    static DEFINITE = new GreekArticle
     ({
         singular: new Genders
         ({

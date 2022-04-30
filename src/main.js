@@ -18,6 +18,7 @@ import StringUtils from '@/utils/StringUtils'
 import GreekWord from '@/utils/GreekWord'
 import GreekDictionary from '@/utils/GreekDictionary'
 import GreekNumerals from '@/utils/GreekNumerals'
+import GreekPronouns from '@/utils/GreekPronouns'
 import EnglishDeclensionVerbTables from '@/utils/EnglishDeclensionVerbTables'
 import EnglishGrammar from '@/utils/EnglishGrammar'
 import EnglishWord from '@/utils/EnglishWord'
@@ -38,6 +39,7 @@ window.modules =
     GreekDictionary,
     GreekAlphabet,
     GreekNumerals,
+    GreekPronouns,
     ObjectUtils,
     EnglishDeclensionVerbTables,
     EnglishGrammar,

@@ -1,11 +1,32 @@
 export default class ArrayUtils
 {
+    /**
+     * @template T
+     * @param {T} type 
+     * @returns {T[]}
+     */
+    static empty (type)
+    {
+        return []
+    }
+
+    /**
+     * @template T
+     * @param {T[]} arr 
+     * @returns T
+     */
     static getLast (arr)
     {
         if (this.isEmpty(arr)) return null
         return arr[arr.length - 1]
     } 
 
+    /**
+     * @template T
+     * @param {T[]} arr 
+     * @param {T} value 
+     * @returns {T}
+     */
     static setLast (arr, value)
     {
         if (this.isEmpty(arr)) return null

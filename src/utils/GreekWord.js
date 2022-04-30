@@ -12,17 +12,14 @@ export default class GreekWord
     static getAccents (part)
     {
         if (!part) return []
+
         /** @type {import('./GreekGrammar').ACCENTS[]} */
         const accents = []
         for (let i = 0; i < part.length; i++)
         {
-            if (StringUtils.includesSome(part[i], ...GreekAlphabet.DASIA)) accents.push(GreekGrammar.ACCENTS.DASIA)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.OXIA)) accents.push(GreekGrammar.ACCENTS.OXIA)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PSILI)) accents.push(GreekGrammar.ACCENTS.PSILI)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.VARIA)) accents.push(GreekGrammar.ACCENTS.VARIA)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PERISPOMENI)) accents.push(GreekGrammar.ACCENTS.PERISPOMENI)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.DASIA_OXIA)) accents.push(GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA)
-            else if (StringUtils.includesSome(part[i], ...GreekAlphabet.PSILI_OXIA)) accents.push(GreekGrammar.ACCENTS.PSILI, GreekGrammar.ACCENTS.OXIA)
+            const letter = part[i].toLocaleLowerCase()
+            const entry = Array.from(GreekAlphabet.ACCENTUATED.entries()).find(([k, v]) => v.includes(letter))
+            if (entry) accents.push(...entry[0])
         }
         return accents
     }
@@ -48,24 +45,21 @@ export default class GreekWord
      * @param {import('./GreekGrammar').ACCENTS[]} accents
      * @returns {string} 
      */
-    static accentuate (part, accents)
+    static accentuate (part, accents, {fromEnd = false} = {})
     {
         var p = part.split('')
         let i = 0
+
+        if (fromEnd) p = p.reverse()
         
         while (true)
         {
             var changed = StringUtils.EMPTY
             const targetAccents = [...this.getAccents(p[i]), ...accents]
             const letter = StringUtils.removeAccents(p[i])
-
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.DASIA], {ignoreOrder: true})) changed = GreekAlphabet.DASIA.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.OXIA.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PSILI], {ignoreOrder: true})) changed = GreekAlphabet.PSILI.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.VARIA], {ignoreOrder: true})) changed = GreekAlphabet.VARIA.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PERISPOMENI], {ignoreOrder: true})) changed = GreekAlphabet.PERISPOMENI.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.DASIA_OXIA.find(l => StringUtils.removeAccents(l) == letter)
-            if (ArrayUtils.areEqual(targetAccents, [GreekGrammar.ACCENTS.PSILI, GreekGrammar.ACCENTS.OXIA], {ignoreOrder: true})) changed = GreekAlphabet.PSILI_OXIA.find(l => StringUtils.removeAccents(l) == letter)
+            const targetAccentsLetters = GreekAlphabet.ACCENTUATED.get(targetAccents)
+            if (targetAccentsLetters)
+                changed = targetAccentsLetters.find(l => StringUtils.removeAccents(l) == letter)
 
             if (changed || !p[i])
             {
@@ -74,6 +68,8 @@ export default class GreekWord
             }
             i++
         }
+
+        if (fromEnd) p = p.reverse()
 
         p = p.join('').replace(/όυ/gm, 'οῦ').split('')
 
@@ -125,18 +121,31 @@ export default class GreekWord
             .replace('ό', 'ο')
     }
 
-    static shiftAccent (word, shift)
+    /**
+     * 
+     * @param {string} word
+     * @param {number} shift 
+     * @param {Object} options 
+     * @param {import('./GreekGrammar').ACCENTS[]} [options.except] 
+     * @returns 
+     */
+    static shiftAccent (word, shift, {except = []} = {})
     {
-        const syllables = this.getSyllables(word)
+        const isReversed = shift < 0
+        shift = Math.abs(shift)
+        var syllables = this.getSyllables(word)
+        if (isReversed) syllables = syllables.reverse()
         for (let i = 0; i < syllables.length && shift; i++)
         {
             if (StringUtils.hasAccents(syllables[i]) && syllables[i + 1])
             {
-                syllables[i + 1] = this.accentuate(syllables[i + 1], this.getAccents(syllables[i]))
-                syllables[i] = StringUtils.removeAccents(syllables[i])
+                const accents = this.getAccents(syllables[i]).filter(a => !except.includes(a))
+                syllables[i + 1] = this.accentuate(syllables[i + 1], accents)
+                syllables[i] = this.removeAccents(syllables[i], accents)
                 shift--
             }
         }
+        if (isReversed) syllables = syllables.reverse()
         return syllables.join('')
     }
     
