@@ -179,6 +179,7 @@ export default class GreekDictionary
         'βούλομαι': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to will' }),
         'λάθρᾳ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.ADVERB, translation: 'secretly' }),
         'ἀπολύω': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to release' }),
+        [GreekPronouns.DEMONSTRATIVE.singular.masculine.nominative[0]]: new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PRONOUN, pronounTable: GreekPronouns.DEMONSTRATIVE, translation: EnglishPronouns.DEMONSTRATIVE }),
     }
 
     /**

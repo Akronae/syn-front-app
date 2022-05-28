@@ -27,4 +27,21 @@ export default class EnglishPronouns
             })
         }),
     })
+    static DEMONSTRATIVE = new EnglishPronoun
+    ({
+        singular: new Genders
+        ({
+            masculine: new Cases
+            ({
+                nominative: 'this',
+            }),
+        }),
+        plural: new Genders
+        ({
+            masculine: new Cases
+            ({
+                nominative: 'these',
+            }),
+        }),
+    })
 }

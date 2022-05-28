@@ -66,6 +66,10 @@ export default class GreekPronouns
             })
         })
     })
+    /**
+     * @type {GreekPronoun}
+     */
+    // @ts-ignore
     static DEMONSTRATIVE = ObjectUtils.buildObjectFromPathes(Object.fromEntries(Object.entries(ObjectUtils.getValuesPathes(GreekPronouns.RELATIVE)).map(([key, value]) =>
     {
         if (!value) return [key, value]
@@ -106,6 +110,6 @@ export default class GreekPronouns
         const shiftedSyllables = GreekWord.getSyllables(shifted)
         if (StringUtils.includesSome(StringUtils.removeAccents(ArrayUtils.getLast(shiftedSyllables)), 'η', 'α')) shifted = shifted.replace('ο', 'α')
 
-        return [key, value + '->'+shifted]
+        return [key, shifted]
     })))
 }
