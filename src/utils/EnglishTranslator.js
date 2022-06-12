@@ -47,12 +47,15 @@ export default class EnglishTranslator
         {
             const table = EnglishDeclensionVerbTables.conjugateTable(EnglishDeclensionVerbTables.BASIC, translation)
 
-            var gender = (word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN || word.verbObject.declension.mood == GreekGrammar.MOODS.PARTICIPLE)
-                ? word.verbObject.declension.gender
-                : EnglishGrammar.GENDERS.NEUTER
+            var gender = EnglishGrammar.GENDERS.NEUTER
+            if (word.verbObject)
+            {
+                if (word.verbObject.declension.pos == GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN || word.verbObject.declension.mood == GreekGrammar.MOODS.PARTICIPLE)
+                    gender = word.verbObject.declension.gender
+            }
             if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE) gender = word.declension.gender
             const person = enTransDeclension.mood == GreekGrammar.MOODS.PARTICIPLE ? EnglishGrammar.PERSONS.THIRD : word.declension.person
-            if (enTransDeclension.mood != EnglishGrammar.MOODS.INFINITIVE)
+            if (enTransDeclension.mood != EnglishGrammar.MOODS.INFINITIVE && enTransDeclension.mood != EnglishGrammar.MOODS.IMPERATIVE)
             {
                 if (enTransDeclension.mood == EnglishGrammar.MOODS.PARTICIPLE)
                 {
@@ -79,6 +82,9 @@ export default class EnglishTranslator
                 if (conj == null) console.error('Cannot find English translation for verb', enTransDeclension, 'in', table)
                 finalTranslation += conj
             }
+
+            if (enTransDeclension.mood == EnglishGrammar.MOODS.IMPERATIVE)
+                finalTranslation += '!'
         }
         else if (GreekDeclension.isNoun(definition.pos))
         {

@@ -26,8 +26,26 @@ export default class EnglishDeclensionVerbTables
             ({
                 singular: new Persons({ first: new Voices({ active: [''] }) })
             }),
+            imperative: new Numbers
+            ({
+                singular: new Persons({ first: new Voices({ active: [''] }), second: new Voices({ active: [''] }) })
+            }),
 
             participle: ['ed'],
+            infinitive: ['']
+        }),
+        future: new Moods
+        ({
+            indicative: new Numbers
+            ({
+                singular: new Persons({ first: new Voices({ active: [''], passive: [''] }) })
+            }),
+            continuous: new Numbers
+            ({
+                singular: new Persons({ first: new Voices({ active: [''] }) })
+            }),
+
+            participle: [''],
             infinitive: ['']
         })
     })
@@ -95,7 +113,6 @@ export default class EnglishDeclensionVerbTables
             const to = decl.mood == EnglishGrammar.MOODS.INFINITIVE ? 'to ' : StringUtils.EMPTY
             flatTable[declension] = `${to} ${aux} ${conjugated}`.trim()
         })
-        console.log(ObjectUtils.buildObjectFromPathes(flatTable), flatTable)
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)
     }

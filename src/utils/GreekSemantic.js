@@ -44,12 +44,11 @@ export default class GreekSemantic
                 
                 const wordCase = word.declension.case || GreekGrammar.CASES.NOMINATIVE
                 potentialObjects = potentialObjects.filter(w => w.declension.case == wordCase)
-                if (potentialObjects.length == 0) console.error('Cannot find object for verb', word);
-                
-                word.verbObject = potentialObjects[0] // taking the closest noun as verb object
+                if (potentialObjects.length > 0)
+                    word.verbObject = potentialObjects[0] // taking the closest noun as verb object
             }
 
-            if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && GreekInflectionUtils.getDeclensions(word.word).length > 1)
+            if (word.definition.pos == GreekGrammar.PARTS_OF_SPEECH.VERB && GreekInflectionUtils.getDeclensions(word.word).length > 1 && word.verbObject)
             {
                 const declensions = GreekInflectionUtils.getDeclensions(word.word)
                 const accorded = declensions.find(d => d.number == word.verbObject.declension.number && d.person == word.verbObject.declension.person)

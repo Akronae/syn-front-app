@@ -263,17 +263,16 @@ export default class GreekDeclensionNounTables
      */
     static moveAccent (radical, ending, table, declension)
     {
-        var syllables
+        var syllables = GreekWord.getSyllables(radical)
         var rad = radical
         var end = ending
-
+        
         if (table == this.IS_EWS && StringUtils.equalsSome(declension.case, GreekGrammar.CASES.GENITIVE, GreekGrammar.CASES.DATIVE))
         {
             rad = GreekWord.shiftAccent(radical, 1)
         }
         else if (table == this.SEMITIC_PROPER_NAME && StringUtils.equalsSome(declension.case, GreekGrammar.CASES.ACCUSATIVE, GreekGrammar.CASES.DATIVE))
         {
-            syllables = GreekWord.getSyllables(radical)
             syllables[syllables.length - 1] = syllables[syllables.length - 1].replace('ὰ', 'ά').replace('ὼ', 'ώ').replace('ὶ', 'ί').replace('ὴ', 'ή').replace('ὲ', 'έ').replace('ὺ', 'ύ')
             rad = syllables.join('')
         }
@@ -287,8 +286,11 @@ export default class GreekDeclensionNounTables
                 end = GreekWord.removeAccents(end, GreekWord.getAccents(endingFirstVowel))
             }
         }
+        
         // https://en.wiktionary.org/wiki/ἅγιος
-        else if (ArrayUtils.areEqual(GreekWord.getAccents(rad[0]), [GreekGrammar.ACCENTS.DASIA, GreekGrammar.ACCENTS.OXIA]))
+        // https://en.wiktionary.org/wiki/κύριος
+        // ἅγιος -> ἁγίου; κύριος -> κυρίου
+        if (table == this.OS_OU && GreekWord.getAccents(syllables[0]).includes(GreekGrammar.ACCENTS.OXIA))
         {
             if (!StringUtils.equalsSome(declension.case, GreekGrammar.CASES.NOMINATIVE, GreekGrammar.CASES.VOCATIVE))
             {
@@ -306,7 +308,18 @@ export default class GreekDeclensionNounTables
             }
         }
 
-        return rad + end
+        var built = rad + end
+
+        // if (table == this.OS_OU && StringUtils.equalsSome(declension.case, GreekGrammar.CASES.GENITIVE, GreekGrammar.CASES.DATIVE)
+        //     && StringUtils.hasAccents(rad))
+        // {
+        //     console.log(built)
+
+        //     built = GreekWord.shiftAccent(built, 1)
+        //     console.log(built)
+        // }
+
+        return built
     }
 
     /**

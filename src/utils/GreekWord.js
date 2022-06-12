@@ -138,7 +138,7 @@ export default class GreekWord
         if (isReversed) syllables = syllables.reverse()
         for (let i = 0; i < syllables.length && shift; i++)
         {
-            if (StringUtils.hasAccents(syllables[i]) && syllables[i + 1])
+            if (StringUtils.hasAccents(syllables[i]) && syllables[i + 1] && !StringUtils.hasAccents(syllables[i + 1]))
             {
                 const accents = this.getAccents(syllables[i]).filter(a => !except.includes(a))
                 syllables[i + 1] = this.accentuate(syllables[i + 1], accents)

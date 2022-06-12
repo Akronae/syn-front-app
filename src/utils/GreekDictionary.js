@@ -83,8 +83,7 @@ export default class GreekDictionary
         'γένεσις': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.FEMININE, declensionNounTable: GreekDeclensionNounTables.IS_EWS, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'origin' }),
         get 'γέννησις' () { return GreekDictionary.get('γένεσις') },
         'ἰησοῦς': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OUS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Yesu' }),
-        'χρῑστός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Christ' }),
-        get 'χριστός' () { return GreekDictionary.get('χρῑστός') },
+        'χριστός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Christ' }),
         'υἱός': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, translation: 'son' }),
         'ἀβρααμ': new GreekDictionaryEntry({ gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.SEMITIC_PROPER_NAME, pos: GreekGrammar.PARTS_OF_SPEECH.PROPER_NOUN, translation: 'Abraham' }),
         get 'ἀβραὰμ' () { return GreekDictionary.get('ἀβρααμ') },
@@ -182,6 +181,12 @@ export default class GreekDictionary
         'ἐνθυμέομαι': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to concentrate' }),
         'ὁράω': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to look' }),
         [GreekPronouns.DEMONSTRATIVE.singular.masculine.nominative[0]]: new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PRONOUN, pronounTable: GreekPronouns.DEMONSTRATIVE, translation: EnglishPronouns.DEMONSTRATIVE }),
+        'ἄγγελος': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, gender: GreekGrammar.GENDERS.MASCULINE, declensionNounTable: GreekDeclensionNounTables.OS_OU, translation: 'messenger' }),
+        'κύριος': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, declensionNounTable: GreekDeclensionNounTables.OS_OU, translation: 'lord' }),
+        'κατά': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.PREPOSITION, translation: new Cases({ genitive: 'against', accusative: 'through' }) }),
+        get 'κατ’' () { return GreekDictionary.get('κατά') },
+        'ὄναρ': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.NOUN, gender: GreekGrammar.GENDERS.NEUTER, declensionNounTable: GreekDeclensionNounTables.INDECLINABLE, translation: 'dream' }),
+        'φαίνω': new GreekDictionaryEntry({ pos: GreekGrammar.PARTS_OF_SPEECH.VERB, declensionVerbTable: GreekDeclensionVerbTables.W, translation: 'to appear' }),
     }
 
     /**
