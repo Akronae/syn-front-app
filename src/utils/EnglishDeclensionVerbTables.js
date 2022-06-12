@@ -49,12 +49,15 @@ export default class EnglishDeclensionVerbTables
                         
             if (radical.endsWith('get'))
             {
+                if (decl.tense == EnglishGrammar.TENSES.PAST)
+                {
+                    rad = StringUtils.replaceLast(radical, 'get', 'got')
+                    ending = ''
+                }
                 if (decl.voice == EnglishGrammar.VOICES.PASSIVE)
                 {
                     ending = 'ten'
                 }
-
-                if (decl.tense == EnglishGrammar.TENSES.PAST) rad = StringUtils.replaceLast(radical, 'get', 'got')
             }
 
 
@@ -87,11 +90,12 @@ export default class EnglishDeclensionVerbTables
 
             if (conjugated.endsWith('inded')) conjugated = StringUtils.replaceLast(conjugated, 'inded', 'ound')
             if (conjugated.endsWith('ded')) conjugated = StringUtils.replaceLast(conjugated, 'ded', 'd')
-            if (conjugated.endsWith('ted')) conjugated = StringUtils.replaceLast(conjugated, 'ted', 't')
+            // if (conjugated.endsWith('ted')) conjugated = StringUtils.replaceLast(conjugated, 'ted', 't')
 
             const to = decl.mood == EnglishGrammar.MOODS.INFINITIVE ? 'to ' : StringUtils.EMPTY
             flatTable[declension] = `${to} ${aux} ${conjugated}`.trim()
         })
+        console.log(ObjectUtils.buildObjectFromPathes(flatTable), flatTable)
         // @ts-ignore
         return ObjectUtils.buildObjectFromPathes(flatTable)
     }

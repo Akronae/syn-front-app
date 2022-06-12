@@ -51,6 +51,16 @@ export default class GreekAlphabet
         if (!str) return false
         return StringUtils.endsWithSome(StringUtils.removeAccents(str), ...GreekAlphabet.VOWELS)
     }
+    
+    /**
+     * @param  {string} str 
+     * @returns {boolean} 
+     */
+    static endsWithConsonant (str)
+    {
+        if (!str) return false
+        return StringUtils.endsWithSome(StringUtils.removeAccents(str), ...GreekAlphabet.CONSONANTS)
+    }
 
      /**
      * @param  {...string} strs

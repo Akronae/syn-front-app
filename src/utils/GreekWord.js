@@ -33,6 +33,7 @@ export default class GreekWord
         part = part.replace('ῳ', 'ῷ')
         part = part.replace('η', 'ή')
         part = part.replace('ά', 'η')
+        part = part.replace('έ', 'η')
         part = part.replace('ε', 'έ')
         part = part.replace('ύ', 'ῦ')
 

@@ -317,4 +317,17 @@ export default class StringUtils
     {
         return this.replaceAny(str, any, StringUtils.EMPTY)
     }
+
+    /**
+     * @param {string} str 
+     * @param {number} index 
+     * @param {string} replacement 
+     * @returns 
+     */
+    static replaceAt (str, index, replacement)
+    {
+        if (index < 0) index = str.length + index
+        if (index < 0 || index >= str.length) throw new Error(`Index (${index}) out of bounds "${str}"`)
+        return str.substring(0, index) + replacement + str.substring(index + 1);
+    }
 }

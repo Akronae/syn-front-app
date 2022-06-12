@@ -115,7 +115,7 @@ export default class GreekDeclensionVerbTables
                             nominative: new Genders({ masculine: ['θεις'], neuter: ['θεν'], feminine: ['θεισα'] }),
                             accusative: new Genders({ masculine: ['θεντα'], neuter: ['θεν'], feminine: ['θεισαν'] }),
                             dative: new Genders({ masculine: ['θεντι'], feminine: ['θειση'] }),
-                            genitive: new Genders({ masculine: ['θεντος'], feminine: ['θεισης'] }),
+                            genitive: new Genders({ masculine: ['θέντος'], feminine: ['θεισης'] }),
                             vocative: new Genders({ masculine: ['θεις'], neuter: ['θεν'], feminine: ['θεισα'] }),
                         }),
                         plural: new Cases
@@ -132,6 +132,17 @@ export default class GreekDeclensionVerbTables
         }),
         aorist_2nd: new GreekDeclensionTableVerbMoods
         ({
+            imperative: new Voices
+            ({
+                middle: new Themes
+                ({
+                    thematic: new Numbers
+                    ({
+                        singular: new Persons({ second: ['οὺ'], third: ['εσθω'], }),
+                        plural: new Persons({ second: ['εσθε'], third: ['εσθωσαν', 'εσθων'], }),
+                    })
+                })
+            }),
             infinitive: new Voices({ active: new Themes({ thematic: ['εῖν'] }) }),
         }),
         imperfect: new GreekDeclensionTableVerbMoods
@@ -206,13 +217,24 @@ export default class GreekDeclensionVerbTables
                 ArrayUtils.setLast(syllables, GreekWord.augment(ArrayUtils.getLast(syllables)))
             }
 
+            if (decl.tense == GreekGrammar.TENSES.AORIST && decl.mood == GreekGrammar.MOODS.PARTICIPLE && decl.voice == GreekGrammar.VOICES.PASSIVE)
+            {
+                // ἐνθυμέ(θέντος) -> ἐνθυμη(θέντος)
+                if (StringUtils.removeAccents(syllables.at(-1).at(-1)) == 'ε')
+                {
+                    ArrayUtils.setLast(syllables, StringUtils.replaceAt(syllables.at(-1), -1, 'η'))
+                }
+            }
+
             rad = syllables.join('')
 
             flatTable[declension] = rad + ending
 
             if (decl.mood == GreekGrammar.MOODS.PARTICIPLE && decl.voice == GreekGrammar.VOICES.PASSIVE)
             {
-                flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
+                // μνηστεύθεισης -> μνηστευθείσης
+                if (StringUtils.hasAccents(GreekWord.getSyllables(rad).at(-1)))
+                    flatTable[declension] = GreekWord.shiftAccent(flatTable[declension], 1)
 
                 if (decl.tense == GreekGrammar.TENSES.PRESENT && decl.gender == GreekGrammar.GENDERS.FEMININE)
                 {

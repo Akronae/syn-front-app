@@ -79,13 +79,6 @@ export default class GreekPronouns
              + 'ουτ' + value
         const builtSyllables = GreekWord.getSyllables(built)
 
-        // var removedYpogegrammeni = false
-        // if (GreekWord.getAccents(ArrayUtils.getLast(builtSyllables)).includes(GreekGrammar.ACCENTS.YPOGEGRAMMENI))
-        // {
-        //     removedYpogegrammeni = true
-        //     ArrayUtils.setLast(builtSyllables, GreekWord.removeAccents(ArrayUtils.getLast(builtSyllables), [GreekGrammar.ACCENTS.YPOGEGRAMMENI]))
-        // }
-
         var shifted = GreekWord.shiftAccent(builtSyllables.join(''), -1, {except: [GreekGrammar.ACCENTS.YPOGEGRAMMENI]})
         if (decl.case == GreekGrammar.CASES.NOMINATIVE)
         {
@@ -94,18 +87,13 @@ export default class GreekPronouns
         }
         else if (decl.case == GreekGrammar.CASES.ACCUSATIVE && decl.gender == GreekGrammar.GENDERS.FEMININE)
         {
-            shifted = shifted.replace(/ὕ/gm, 'ύ')
+            shifted = shifted.replace(/ὕ/gm, 'ύ')
         }
         else
         {
-            shifted = shifted.replace(/ὗ/gm, 'ύ')
+            shifted = shifted.replace(/ὗ/gm, 'ύ')
             if (decl.gender != GreekGrammar.GENDERS.FEMININE) shifted = shifted.replace(/ὕ|ὔ/gm, 'ῦ')
         }
-        // shifted = shifted.replace(/ὕ/gm, 'ῦ').replace(/ὗ/gm, 'ύ').replace(/ὕ/gm, 'ὗ')
-        // if (removedYpogegrammeni)
-        // {
-        //     shifted = GreekWord.accentuate(shifted, [GreekGrammar.ACCENTS.YPOGEGRAMMENI], {fromEnd: true})
-        // }
 
         const shiftedSyllables = GreekWord.getSyllables(shifted)
         if (StringUtils.includesSome(StringUtils.removeAccents(ArrayUtils.getLast(shiftedSyllables)), 'η', 'α')) shifted = shifted.replace('ο', 'α')

@@ -105,7 +105,14 @@ export default class GreekIrregularVerbs
         ({
             radicals: new Tenses
             ({
-                aorist: ['εὑρέ']
+                aorist: ['εὑρε']
+            })
+        }),
+        'ὁράω': new GreekIrregularVerb
+        ({
+            radicals: new Tenses
+            ({
+                aorist_2nd: ['ἰδ']
             })
         })
     }
