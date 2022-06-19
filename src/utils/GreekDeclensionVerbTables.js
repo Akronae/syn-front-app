@@ -195,7 +195,8 @@ export default class GreekDeclensionVerbTables
                         syllables = GreekWord.getSyllables(syllables.join('') + 'η')
                         // [βούλομαι] βούληθη -> βουλήθη
                         syllables = GreekWord.getSyllables(GreekWord.shiftAccent(syllables.join(''), 1))
-
+                        // βούλ|ομαι -> βουλή|θη
+                        // φαίν|ω -> εφαν|η
                     }
                     // (ἐ)γεννη(θη) -> (ἐ)γεννή(θη)
                     syllables[syllables.length - 1] = GreekWord.augment(syllables[syllables.length - 1])
