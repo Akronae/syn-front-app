@@ -201,19 +201,20 @@ const properties =
     },
     get horizontalMenuHeight()
     {
-        if (DOMUtils.getMatchingMediaName() == 'mobile')
-        {
-            if (DeviceUtils.isIphoneXOrNewer)
-            {
-                return '9.5vh'
-            }
-            else if (DOMUtils.isSmallMobile())
-            {
-                return '9vh'
-            }
-            else return '8vh'
-        }
-        else return '6vh'
+        // if (DOMUtils.getMatchingMediaName() == 'mobile')
+        // {
+        //     if (DeviceUtils.isIphoneXOrNewer)
+        //     {
+        //         return '9.5vh'
+        //     }
+        //     else if (DOMUtils.isSmallMobile())
+        //     {
+        //         return '9vh'
+        //     }
+        //     else return '8vh'
+        // }
+        // else return '6vh'
+        return '60px'
     },
     get horizontalMenuItemMargin ()
     {
