@@ -95,6 +95,7 @@ export default class GreekDeclension
         Object.entries(GreekGrammar.NUMBERS).forEach(([k, v]) => { if (strSplit.includes(v)) declension.number = GreekGrammar.NUMBERS[k] })
         Object.entries(GreekGrammar.PERSONS).forEach(([k, v]) => { if (strSplit.includes(v)) declension.person = GreekGrammar.PERSONS[k] })
         Object.entries(GreekGrammar.GENDERS).forEach(([k, v]) => { if (strSplit.includes(v)) declension.gender = GreekGrammar.GENDERS[k] })
+        Object.entries(GreekGrammar.PARTS_OF_SPEECH).forEach(([k, v]) => { if (strSplit.includes(v)) declension.pos = GreekGrammar.PARTS_OF_SPEECH[k] })
         declension.variation = Number.parseInt((str.match(/\d+/gm) || ['0'])[0])
 
         return declension

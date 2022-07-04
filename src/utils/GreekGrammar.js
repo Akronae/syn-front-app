@@ -5,7 +5,7 @@
 * @typedef {"singular" | "plural"} NUMBERS
 */
 /**
-* @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive"} CASES
+* @typedef {"vocative" | "nominative" | "accusative" | "dative" | "genitive" | "indeclinable"} CASES
 */
 /**
 * @typedef {"noun" | "proper_noun" | "pronoun" | "personal_pronoun" | "verb" | "adjective" | "adverb" | "preposition" | "conjunction" | "interjection" | "particle" | "numeral" | "article" | "determiner"} PARTS_OF_SPEECH
@@ -268,7 +268,7 @@ export default class GreekGrammar
         PLURAL: 'plural'
     }
     /**
-     * @type {{VOCATIVE: CASES, NOMINATIVE: CASES, ACCUSATIVE: CASES, DATIVE: CASES, GENITIVE: CASES}}
+     * @type {{VOCATIVE: CASES, NOMINATIVE: CASES, ACCUSATIVE: CASES, DATIVE: CASES, GENITIVE: CASES, INDECLINABLE: CASES}}
      */
     static CASES =
     {
@@ -277,6 +277,7 @@ export default class GreekGrammar
         ACCUSATIVE: 'accusative',
         DATIVE: 'dative',
         GENITIVE: 'genitive',
+        INDECLINABLE: 'indeclinable',
     }
     /**
      * @type {{NOUN: PARTS_OF_SPEECH, PROPER_NOUN: PARTS_OF_SPEECH, PRONOUN: PARTS_OF_SPEECH, PERSONAL_PRONOUN, VERB: PARTS_OF_SPEECH, ADJECTIVE: PARTS_OF_SPEECH, ADVERB: PARTS_OF_SPEECH, PREPOSITION: PARTS_OF_SPEECH, CONJUNCTION: PARTS_OF_SPEECH, INTERJECTION: PARTS_OF_SPEECH, PARTICLE: PARTS_OF_SPEECH, NUMERAL: PARTS_OF_SPEECH, ARTICLE: PARTS_OF_SPEECH, DETERMINER: PARTS_OF_SPEECH}}

@@ -330,4 +330,14 @@ export default class StringUtils
         if (index < 0 || index >= str.length) throw new Error(`Index (${index}) out of bounds "${str}"`)
         return str.substring(0, index) + replacement + str.substring(index + 1);
     }
+
+    /**
+     * @param {string} str 
+     * @param {string} symb 
+     * @returns 
+     */
+    static trim (str, symb)
+    {
+        return str.replace(new RegExp(`^${symb}+|${symb}+$`), '')
+    }
 }

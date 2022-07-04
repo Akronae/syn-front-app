@@ -1,4 +1,6 @@
 <script>
+import ResponsiveMenu from '@/components/ResponsiveMenu/ResponsiveMenu'
+import ResponsiveMenuItem from '@/components/ResponsiveMenu/ResponsiveMenuItem'
 
 export default
 {
@@ -8,6 +10,10 @@ export default
     {
         return (
             <div id='app' ref='app'>
+                <ResponsiveMenu on-item-selected={i => this.$router.push(i.path)}>
+                    <ResponsiveMenuItem icon={require('@/assets/img/translate.svg')} name='Auto Translate' path='/' />
+                    <ResponsiveMenuItem icon={require('@/assets/img/book.svg')} name='Hard Coded' path='/hardcoded' />
+                </ResponsiveMenu>
                 <keep-alive>
                     <router-view ref='router' />
                 </keep-alive>
