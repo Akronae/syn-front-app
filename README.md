@@ -1,4 +1,5 @@
-# A tool to read and translate Ancient Greek  
+# Syneidesis
+> ### A tool to read and translate Ancient Greek  
 <img src="https://github.com/Akronae/syneidesis/blob/master/res/marketing/iphone_x-min.png?raw=true" width="1000">
 
 Syneidesis is a proof of concept that uses various Ancient Greek grammatical rules and syntactic deductions to guess a word declension, based on a limited dictionnary and tries to give an accurate translation.  
