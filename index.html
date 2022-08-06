@@ -2,19 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
-    <link type="image/x-icon" rel="icon" href="/static/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap: file: filesystem:; media-src * polyblob:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 
-    <meta property="og:title" content="Mintree">
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="Mint a tree, act for the planet" />
-    <meta property="og:image" content="https://www.mintree.app-maville.com/static/banner.jpeg" />
+    <!-- Loads the appropriate cordova.js script -->
+    <!-- <%= htmlWebpackPlugin.options.cordovaScript || '' %> -->
+    <link type="image/x-icon" rel="icon" href="/static/favicon.png">
+    <title>Ma Ville</title>
   </head>
-    <title>Syneidesis</title>
+  <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

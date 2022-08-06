@@ -53,3 +53,18 @@
     text-align: center;
   }
 }
+
+.row
+{
+  display: flex;
+  flex-direction: row;
+
+  &.extend
+  {
+    width: -webkit-fill-available;
+  }
+  &.space-between
+  {
+    justify-content: space-between;
+  }
+}

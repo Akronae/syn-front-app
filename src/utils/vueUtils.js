@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import DOMUtils from '@/utils/DOMUtils'
+import EventsUtils from './eventsUtils'
 
 const LifecycleHooksInterceptorPlugin = 
 {
@@ -107,5 +108,33 @@ function createComponent (componentConstructor, props)
     return instance
 }
 
+const vueEvents = {}
+/**
+ * @param {import('vue/types/vue').CombinedVueInstance} instance 
+ * @param {string} event 
+ * @param {Function} callback 
+ * @param {Object} options 
+ * @param {number} [options.debounce] 
+ */
+function addEventListener(instance, event, callback, options = {})
+{
+    if (options.debounce) callback = EventsUtils.debounce(callback, options.debounce)
+    if (!vueEvents[instance]) vueEvents[instance] = []
+    vueEvents[instance].push([event, callback])
+    document.addEventListener(event, callback)
+
+}
+
+function removeEventListeners(element)
+{
+    if (!vueEvents[element]) return
+
+    for (const e of vueEvents[element])
+    {
+        document.removeEventListener(e[0], e[1])
+    }
+    delete vueEvents[element]
+}
+
 export default { isInstanceOfComponent, destroyInstance, getObserverless, isVNode, getChildrenOfType, createComponent,
-    LifecycleHooksInterceptorPlugin }
+    LifecycleHooksInterceptorPlugin, addEventListener, removeEventListeners }

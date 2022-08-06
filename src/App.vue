@@ -59,5 +59,6 @@ export default
 
 #app
 {
+    margin-bottom: calc(var(--theme-horizontal-menu-height) + 5px);
 }
 </style>

@@ -36,13 +36,57 @@ const url =
     get finalUrl () { return `${this.baseUrl}/${this.book}/${this.book}-${this.chapter}-parsed.html` }
 }
 
+const BOOKS_CHAPTERS =
+{
+    Matthew: [1, 28],
+    Mark: [1, 16],
+    Luke: [1, 24],
+    John: [1, 21],
+    Acts: [1, 28],
+    // Romans: [1, 16],
+    // Corinthians1: [1, 16],
+    // Corinthians2: [1, 13],
+    // Galatians: [1, 6],
+    // Ephesians: [1, 6],
+    // Philippians: [1, 4],
+    // Colossians: [1, 4],
+    // Thessalonians1: [1, 5],
+    // Thessalonians2: [1, 3],
+    // Timothy1: [1, 6],
+    // Timothy2: [1, 4],
+    // Titus: [1, 3],
+    // Philemon: [1, 1],
+    // Hebrews: [1, 13],
+    // James: [1, 5],
+    // Peter1: [1, 5],
+    // Peter2: [1, 3],
+    // John1: [1, 5],
+    // John2: [1, 1],
+    // John3: [1, 1],
+    // Jude: [1, 1],
+    // Revelation: [1, 22]
+}
+
 ;(async () =>
 {
-    const data = {matthew: {}}
-    for (let index = 1; index < 2; index++)
+    const data = {}
+    for (let [key, value] of Object.entries(BOOKS_CHAPTERS))
     {
-        url.chapter = index
-        data.matthew[index] = await parsedChapter(url)
+        for (let index = value[0]; index <= value[1]; index++)
+        {
+            console.log('parsing chapter', index, 'of', key)
+            url.book = key
+            url.chapter = index
+            data[key] = data[key] || {}
+            // data[key][index] = await parsedChapter(url)
+
+            const dir = `static/${url.book}`
+            const file = `${dir}/${url.chapter}.json`
+            fs.mkdirSync(dir, {recursive: true})
+            if (fs.existsSync(file)) continue
+            fs.writeFileSync(file, JSON.stringify(await parsedChapter(url), null, 2))
+
+        }
     }
-    fs.writeFileSync(`abarim.json`, JSON.stringify(data, null, 2))
+    // fs.writeFileSync(`abarim.json`, JSON.stringify(data, null, 2))
 })()

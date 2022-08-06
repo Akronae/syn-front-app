@@ -2,6 +2,7 @@
 plugins/
 platforms/
 www/
+android/
 
 # iOS Platform
 platforms/ios/build/

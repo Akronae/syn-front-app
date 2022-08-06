@@ -1,0 +1,2425 @@
+{
+  "book": "Matthew",
+  "versesParsed": [
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 1,
+      "wordsParsed": [
+        {
+          "greek": "βιβλος",
+          "english": "paper",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "γενεσεως",
+          "english": "of origin",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "χριστου",
+          "english": "of Christ",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "υιου",
+          "english": "of son",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "υιου",
+          "english": "of son",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "αβρααμ",
+          "english": "Abraham",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "The book of the generation of Jesus Christ, the son of David, the son of Abraham."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 2,
+      "wordsParsed": [
+        {
+          "greek": "αβρααμ",
+          "english": "Abraham",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ισαακ",
+          "english": "Isaac",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ισαακ",
+          "english": "Isaac",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιακωβ",
+          "english": "Jacob",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ιακωβ",
+          "english": "Jacob",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιουδαν",
+          "english": "Judas",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "αδελφους",
+          "english": "brothers",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 3,
+      "wordsParsed": [
+        {
+          "greek": "ιουδας",
+          "english": "Judas",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "φαρες",
+          "english": "Perez",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ζαρα",
+          "english": "Zerah",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "θαμαρ",
+          "english": "Tamar",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "φαρες",
+          "english": "Perez",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "εσρωμ",
+          "english": "Hezron",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εσρωμ",
+          "english": "Hezron",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αραμ",
+          "english": "Aram",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 4,
+      "wordsParsed": [
+        {
+          "greek": "αραμ",
+          "english": "Aram",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αμιναδαβ",
+          "english": "Amminadab",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αμιναδαβ",
+          "english": "Amminadab",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ναασσων",
+          "english": "Nahshon",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ναασσων",
+          "english": "Nahshon",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "σαλμων",
+          "english": "Salmon",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 5,
+      "wordsParsed": [
+        {
+          "greek": "σαλμων",
+          "english": "Salmon",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "βοοζ",
+          "english": "Boaz",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "ραχαβ",
+          "english": "Rahab",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "βοοζ",
+          "english": "Boaz",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ωβηδ",
+          "english": "Obed",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "ρουθ",
+          "english": "Ruth",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ωβηδ",
+          "english": "Obed",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιεσσαι",
+          "english": "Jesse",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 6,
+      "wordsParsed": [
+        {
+          "greek": "ιεσσαι",
+          "english": "Jesse",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "βασιλεα",
+          "english": "king",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "βασιλευς",
+          "english": "king",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "σολομωνα",
+          "english": "Solomon",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "ουριου",
+          "english": "of Uriah",
+          "parsing": "noun (name)\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "And Jesse begat David the king; and David the king begat Solomon of her [that had been the wife] of Urias;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 7,
+      "wordsParsed": [
+        {
+          "greek": "σολομων",
+          "english": "Solomon",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ροβοαμ",
+          "english": "Rehoboam",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ροβοαμ",
+          "english": "Rehoboam",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αβια",
+          "english": "Abijah",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αβια",
+          "english": "Abijah",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ασα",
+          "english": "Asa",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 8,
+      "wordsParsed": [
+        {
+          "greek": "ασα",
+          "english": "Asa",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιωσαφατ",
+          "english": "Jehoshaphat",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ιωσαφατ",
+          "english": "Jehoshaphat",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιωραμ",
+          "english": "Joram",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ιωραμ",
+          "english": "Joram",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "οζιαν",
+          "english": "Uzziah",
+          "parsing": "noun (name)\nacc-si-mas"
+        }
+      ],
+      "verseTranslated": "And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 9,
+      "wordsParsed": [
+        {
+          "greek": "οζιας",
+          "english": "Uzziah",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιωαθαμ",
+          "english": "Jotham",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ιωαθαμ",
+          "english": "Jotham",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αχαζ",
+          "english": "Ahaz",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αχαζ",
+          "english": "Ahaz",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "εζεκιαν",
+          "english": "Hezekiah",
+          "parsing": "noun (name)\nacc-si-mas"
+        }
+      ],
+      "verseTranslated": "And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 10,
+      "wordsParsed": [
+        {
+          "greek": "εζεκιας",
+          "english": "Hezekiah",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "μανασση",
+          "english": "Manasseh",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "μανασσης",
+          "english": "Manasseh",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αμων",
+          "english": "Amon",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αμων",
+          "english": "Amon",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιωσιαν",
+          "english": "Josiah",
+          "parsing": "noun (name)\nacc-si-mas"
+        }
+      ],
+      "verseTranslated": "And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 11,
+      "wordsParsed": [
+        {
+          "greek": "ιωσιας",
+          "english": "Josiah",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιεχονιαν",
+          "english": "Jehoiachin",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "αδελφους",
+          "english": "brothers",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "μετοικεσιας",
+          "english": "of deportation",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "βαβυλωνος",
+          "english": "of Babylon",
+          "parsing": "noun (name)\ngen-si-fem"
+        }
+      ],
+      "verseTranslated": "And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 12,
+      "wordsParsed": [
+        {
+          "greek": "μετα",
+          "english": "with(in)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "μετοικεσιαν",
+          "english": "deportation",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "βαβυλωνος",
+          "english": "of Babylon",
+          "parsing": "noun (name)\ngen-si-fem"
+        },
+        {
+          "greek": "ιεχονιας",
+          "english": "Jehoiachin",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "σαλαθιηλ",
+          "english": "Shealtiel",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "σαλαθιηλ",
+          "english": "Shealtiel",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ζοροβαβελ",
+          "english": "Zerubbabel",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 13,
+      "wordsParsed": [
+        {
+          "greek": "ζοροβαβελ",
+          "english": "Zerubbabel",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αβιουδ",
+          "english": "Abiud",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αβιουδ",
+          "english": "Abiud",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ελιακειμ",
+          "english": "Eliakim",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ελιακειμ",
+          "english": "Eliakim",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αζωρ",
+          "english": "Azzur",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Zorobabel begat Abiud; and Abiud begat Eliakim; and Eliakim begat Azor;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 14,
+      "wordsParsed": [
+        {
+          "greek": "αζωρ",
+          "english": "Azzur",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "σαδωκ",
+          "english": "Zadok",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "σαδωκ",
+          "english": "Zadok",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αχειμ",
+          "english": "Achim",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "αχειμ",
+          "english": "Achim",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ελιουδ",
+          "english": "Eliud",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Azor begat Sadoc; and Sadoc begat Achim; and Achim begat Eliud;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 15,
+      "wordsParsed": [
+        {
+          "greek": "ελιουδ",
+          "english": "Eliud",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ελεαζαρ",
+          "english": "Eleazar",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ελεαζαρ",
+          "english": "Eleazar",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ματθαν",
+          "english": "Matthan",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ματθαν",
+          "english": "Matthan",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιακωβ",
+          "english": "Jacob",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And Eliud begat Eleazar; and Eleazar begat Matthan; and Matthan begat Jacob;"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 16,
+      "wordsParsed": [
+        {
+          "greek": "ιακωβ",
+          "english": "Jacob",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγεννησεν",
+          "english": "he begat",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ιωσηφ",
+          "english": "Joseph",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ανδρα",
+          "english": "man",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "μαριας",
+          "english": "of Mary",
+          "parsing": "noun (name)\ngen-si-fem"
+        },
+        {
+          "greek": "εξ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ης",
+          "english": "of which",
+          "parsing": "rel pron\ngen-si-fem"
+        },
+        {
+          "greek": "εγεννηθη",
+          "english": "he was born",
+          "parsing": "verb\naor-pas-ind\n3rd-p si"
+        },
+        {
+          "greek": "ιησους",
+          "english": "Jesus",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "λεγομενος",
+          "english": "being called",
+          "parsing": "participle\npres-pas-par\nnom-si-mas"
+        },
+        {
+          "greek": "χριστος",
+          "english": "Christ",
+          "parsing": "noun (name)\nnom-si-mas"
+        }
+      ],
+      "verseTranslated": "And Jacob begat Joseph the husband of Mary, of whom was born Jesus, who is called Christ."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 17,
+      "wordsParsed": [
+        {
+          "greek": "πασαι",
+          "english": "all",
+          "parsing": "adjective\nnom-pl-fem"
+        },
+        {
+          "greek": "ουν",
+          "english": "therefore",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-fem"
+        },
+        {
+          "greek": "γενεαι",
+          "english": "generations",
+          "parsing": "noun\nnom-pl-fem"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αβρααμ",
+          "english": "Abraham",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εως",
+          "english": "until",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "γενεαι",
+          "english": "generations",
+          "parsing": "noun\nnom-pl-fem"
+        },
+        {
+          "greek": "δεκατεσσαρες",
+          "english": "fourteen",
+          "parsing": "adjective\nnom-pl-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "εως",
+          "english": "until",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "μετοικεσιας",
+          "english": "of deportation",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "βαβυλωνος",
+          "english": "of Babylon",
+          "parsing": "noun (name)\ngen-si-fem"
+        },
+        {
+          "greek": "γενεαι",
+          "english": "generations",
+          "parsing": "noun\nnom-pl-fem"
+        },
+        {
+          "greek": "δεκατεσσαρες",
+          "english": "fourteen",
+          "parsing": "adjective\nnom-pl-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "μετοικεσιας",
+          "english": "of deportation",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "βαβυλωνος",
+          "english": "of Babylon",
+          "parsing": "noun (name)\ngen-si-fem"
+        },
+        {
+          "greek": "εως",
+          "english": "until",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "χριστου",
+          "english": "of Christ",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "γενεαι",
+          "english": "generations",
+          "parsing": "noun\nnom-pl-fem"
+        },
+        {
+          "greek": "δεκατεσσαρες",
+          "english": "fourteen",
+          "parsing": "adjective\nnom-pl-fem"
+        }
+      ],
+      "verseTranslated": "So all the generations from Abraham to David [are] fourteen generations; and from David until the carrying away into Babylon [are] fourteen generations; and from the carrying away into Babylon unto Christ [are] fourteen generations."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 18,
+      "wordsParsed": [
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "χριστου",
+          "english": "of Christ",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "γεννησις",
+          "english": "birth",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "ουτως",
+          "english": "thus",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "ην",
+          "english": "it was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "μνηστευθεισης",
+          "english": "of being pledged",
+          "parsing": "participle\naor-pas-par\ngen-si-fem"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "μητρος",
+          "english": "of mother",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "μαριας",
+          "english": "of Mary",
+          "parsing": "noun (name)\ngen-si-fem"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-mas"
+        },
+        {
+          "greek": "ιωσηφ",
+          "english": "Joseph",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "πριν",
+          "english": "before",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "η",
+          "english": "than",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "συνελθειν",
+          "english": "to come together",
+          "parsing": "verb\n2aor-act-inf"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "ευρεθη",
+          "english": "she was found",
+          "parsing": "verb\naor-pas-ind\n3rd-p si"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "γαστρι",
+          "english": "to stomach",
+          "parsing": "noun\ndat-si-fem"
+        },
+        {
+          "greek": "εχουσα",
+          "english": "having",
+          "parsing": "participle\npres-act-par\nnom-si-fem"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "πνευματος",
+          "english": "of spirit",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "αγιου",
+          "english": "of holy",
+          "parsing": "adjective\ngen-si-neu"
+        }
+      ],
+      "verseTranslated": "Now the birth of Jesus Christ was on this wise: When as his mother Mary was espoused to Joseph, before they came together, she was found with child of the Holy Ghost."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 19,
+      "wordsParsed": [
+        {
+          "greek": "ιωσηφ",
+          "english": "Joseph",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "ανηρ",
+          "english": "man",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "αυτης",
+          "english": "of her",
+          "parsing": "3rd-p pers pron\ngen-si-fem"
+        },
+        {
+          "greek": "δικαιος",
+          "english": "just",
+          "parsing": "adjective\nnom-si-mas"
+        },
+        {
+          "greek": "ων",
+          "english": "being",
+          "parsing": "participle\npres-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μη",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "θελων",
+          "english": "wanting",
+          "parsing": "participle\npres-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "αυτην",
+          "english": "her",
+          "parsing": "3rd-p pers pron\nacc-si-fem"
+        },
+        {
+          "greek": "παραδειγματισαι",
+          "english": "to make a public spectacle of",
+          "parsing": "verb\naor-act-inf"
+        },
+        {
+          "greek": "εβουληθη",
+          "english": "he had a mind to",
+          "parsing": "verb\naor-pDe-ind\n3rd-p si"
+        },
+        {
+          "greek": "λαθρα",
+          "english": "covertly",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "απολυσαι",
+          "english": "to discharge",
+          "parsing": "verb\naor-act-inf"
+        },
+        {
+          "greek": "αυτην",
+          "english": "her",
+          "parsing": "3rd-p pers pron\nacc-si-fem"
+        }
+      ],
+      "verseTranslated": "Then Joseph her husband, being a just [man,] and not willing to make her a publick example, was minded to put her away privily."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 20,
+      "wordsParsed": [
+        {
+          "greek": "ταυτα",
+          "english": "these",
+          "parsing": "dem pron\nacc-pl-neu"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "ενθυμηθεντος",
+          "english": "of agitated",
+          "parsing": "participle\naor-pDe-par\ngen-si-mas"
+        },
+        {
+          "greek": "ιδου",
+          "english": "you see",
+          "parsing": "verb\n2aor-mid-imp\n2nd-p si"
+        },
+        {
+          "greek": "αγγελος",
+          "english": "messenger",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "κυριου",
+          "english": "of lord",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "κατ",
+          "english": "down (to/on)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "οναρ",
+          "english": "dream",
+          "parsing": "indeclinable\nnoun"
+        },
+        {
+          "greek": "εφανη",
+          "english": "he was revealed",
+          "parsing": "verb\n2aor-pas-ind\n3rd-p si"
+        },
+        {
+          "greek": "αυτω",
+          "english": "to him",
+          "parsing": "3rd-p pers pron\ndat-si-mas"
+        },
+        {
+          "greek": "λεγων",
+          "english": "saying",
+          "parsing": "participle\npres-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "ιωσηφ",
+          "english": "Joseph",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "υιος",
+          "english": "son",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "μη",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "φοβηθης",
+          "english": "you might fear",
+          "parsing": "verb\naor-pDe-sub\n2nd-p si"
+        },
+        {
+          "greek": "παραλαβειν",
+          "english": "to take close",
+          "parsing": "verb\n2aor-act-inf"
+        },
+        {
+          "greek": "μαριαμ",
+          "english": "Miriam",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "γυναικα",
+          "english": "woman",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nnom-si-neu"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτη",
+          "english": "to her",
+          "parsing": "3rd-p pers pron\ndat-si-fem"
+        },
+        {
+          "greek": "γεννηθεν",
+          "english": "having been generated",
+          "parsing": "participle\naor-pas-par\nnom-si-neu"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "πνευματος",
+          "english": "of spirit",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "εστιν",
+          "english": "he is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "αγιου",
+          "english": "of holy",
+          "parsing": "adjective\ngen-si-neu"
+        }
+      ],
+      "verseTranslated": "But while he thought on these things, behold, the angel of the Lord appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 21,
+      "wordsParsed": [
+        {
+          "greek": "τεξεται",
+          "english": "she will give birth",
+          "parsing": "verb\nfut-mDe-ind\n3rd-p si"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "υιον",
+          "english": "son",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καλεσεις",
+          "english": "you will call",
+          "parsing": "verb\nfut-act-ind\n2nd-p si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "ονομα",
+          "english": "name",
+          "parsing": "noun\nacc-si-neu"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "ιησουν",
+          "english": "Jesus",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "αυτος",
+          "english": "he",
+          "parsing": "3rd-p pers pron\nnom-si-mas"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "σωσει",
+          "english": "he will save",
+          "parsing": "verb\nfut-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λαον",
+          "english": "people",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-fem"
+        },
+        {
+          "greek": "αμαρτιων",
+          "english": "of errors",
+          "parsing": "noun\ngen-pl-fem"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        }
+      ],
+      "verseTranslated": "And she shall bring forth a son, and thou shalt call his name JESUS: for he shall save his people from their sins."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 22,
+      "wordsParsed": [
+        {
+          "greek": "τουτο",
+          "english": "this",
+          "parsing": "dem pron\nnom-si-neu"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ολον",
+          "english": "whole",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "γεγονεν",
+          "english": "it has become",
+          "parsing": "verb\n2perf-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ινα",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "πληρωθη",
+          "english": "it might be accomplished",
+          "parsing": "verb\naor-pas-sub\n3rd-p si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nnom-si-neu"
+        },
+        {
+          "greek": "ρηθεν",
+          "english": "being spoken",
+          "parsing": "participle\naor-pas-par\nnom-si-neu"
+        },
+        {
+          "greek": "υπο",
+          "english": "by",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "κυριου",
+          "english": "of lord",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "δια",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "προφητου",
+          "english": "of prophet",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "λεγοντος",
+          "english": "of saying",
+          "parsing": "participle\npres-act-par\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "Now all this was done, that it might be fulfilled which was spoken of the Lord by the prophet, saying,"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 23,
+      "wordsParsed": [
+        {
+          "greek": "ιδου",
+          "english": "you see",
+          "parsing": "verb\n2aor-mid-imp\n2nd-p si"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "παρθενος",
+          "english": "virgin",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "γαστρι",
+          "english": "to stomach",
+          "parsing": "noun\ndat-si-fem"
+        },
+        {
+          "greek": "εξει",
+          "english": "she will have",
+          "parsing": "verb\nfut-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τεξεται",
+          "english": "she will give birth",
+          "parsing": "verb\nfut-mDe-ind\n3rd-p si"
+        },
+        {
+          "greek": "υιον",
+          "english": "son",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καλεσουσιν",
+          "english": "they will call",
+          "parsing": "verb\nfut-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "ονομα",
+          "english": "name",
+          "parsing": "noun\nacc-si-neu"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "εμμανουηλ",
+          "english": "Immanuel",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "ο",
+          "english": "which",
+          "parsing": "rel pron\nnom-si-neu"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "μεθερμηνευομενον",
+          "english": "with interpretation being",
+          "parsing": "participle\npres-pas-par\nnom-si-neu"
+        },
+        {
+          "greek": "μεθ",
+          "english": "with(in)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ημων",
+          "english": "of us",
+          "parsing": "1st pers pron\ngen-pl"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "θεος",
+          "english": "God",
+          "parsing": "noun\nnom-si-mas"
+        }
+      ],
+      "verseTranslated": "Behold, a virgin shall be with child, and shall bring forth a son, and they shall call his name Emmanuel, which being interpreted is, God with us."
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 24,
+      "wordsParsed": [
+        {
+          "greek": "διεγερθεις",
+          "english": "having been roused",
+          "parsing": "participle\naor-pas-par\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "ιωσηφ",
+          "english": "Joseph",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "υπνου",
+          "english": "of sleep",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "εποιησεν",
+          "english": "he did",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ως",
+          "english": "as",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "προσεταξεν",
+          "english": "he directed toward",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "αυτω",
+          "english": "to him",
+          "parsing": "3rd-p pers pron\ndat-si-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "αγγελος",
+          "english": "messenger",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "κυριου",
+          "english": "of lord",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "παρελαβεν",
+          "english": "he took close",
+          "parsing": "verb\n2aor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "γυναικα",
+          "english": "woman",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "Then Joseph being raised from sleep did as the angel of the Lord had bidden him, and took unto him his wife:"
+    },
+    {
+      "book": "Matthew",
+      "chapter": 1,
+      "verseNumber": 25,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ουκ",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγινωσκεν",
+          "english": "he knew",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "αυτην",
+          "english": "her",
+          "parsing": "3rd-p pers pron\nacc-si-fem"
+        },
+        {
+          "greek": "εως",
+          "english": "until",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "ου",
+          "english": "of which",
+          "parsing": "rel pron\ngen-si-mas"
+        },
+        {
+          "greek": "ετεκεν",
+          "english": "she gave birth",
+          "parsing": "verb\n2aor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "υιον",
+          "english": "son",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "αυτης",
+          "english": "of her",
+          "parsing": "3rd-p pers pron\ngen-si-fem"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "πρωτοτοκον",
+          "english": "firstborn",
+          "parsing": "adjective\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εκαλεσεν",
+          "english": "he called",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "ονομα",
+          "english": "name",
+          "parsing": "noun\nacc-si-neu"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        },
+        {
+          "greek": "ιησουν",
+          "english": "Jesus",
+          "parsing": "noun (name)\nacc-si-mas"
+        }
+      ],
+      "verseTranslated": "And knew her not till she had brought forth her firstborn son: and he called his name JESUS."
+    }
+  ]
+}
