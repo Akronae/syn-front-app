@@ -1,1 +1,0 @@
-# This directory contains files copied by `CopyWebpackPlugin` to the build directory, these files are used by the application as static resources.
