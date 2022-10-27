@@ -1,0 +1,70 @@
+@screen-xs-min: 480px;
+@screen-sm-min: 682px;
+@screen-md-min: 992px;
+@screen-lg-min: 1500px;
+
+@screen-xs-max: calc(@screen-sm-min - 1px);
+@screen-sm-max: calc(@screen-md-min - 1px);
+@screen-md-max: calc(@screen-lg-min - 1px);
+
+@small-mobile:    ~"only screen and (max-width: 320px) and (max-height: 566px)";
+@mobile:          ~"only screen and (max-width: @{screen-xs-min})";
+@large-mobile:    ~"only screen and (min-device-width: 375px) and (min-device-height: 668px) and (max-width: @{screen-xs-max})";
+@tablet:          ~"only screen and (min-width: @{screen-sm-min})";
+@tablet-and-less: ~"only screen and (max-width: @{screen-md-min})";
+@tablet-strict:   ~"only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+@desktop:         ~"only screen and (min-width: @{screen-md-min})";
+@desktop-strict:  ~"only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+@large:           ~"only screen and (min-width: @{screen-lg-min})";
+
+.OnSmallMobile(@rules)   { @media @small-mobile { @rules(); } };
+.OnMobile(@rules)        { @media @mobile { @rules(); } };
+.OnLargeMobile(@rules)   { @media @large-mobile { @rules(); } };
+.OnTablet(@rules)        { @media @tablet { @rules(); } };
+.OnTabletAndLess(@rules) { @media @tablet-and-less { @rules(); } };
+.OnTabletOnly(@rules)    { @media @tablet-strict { @rules(); } };
+.OnDesktop(@rules)       { @media @desktop { @rules(); } };
+.OnDesktopOnly(@rules)   { @media @desktop-strict { @rules(); } };
+.OnLarge(@rules)         { @media @large { @rules(); } };
+
+.CapitalizeFirstLetter
+{
+    &:first-letter
+    {
+      text-transform: uppercase;
+    }
+}
+
+.WidthHeight (@size)
+{
+  width: @size;
+  height: @size;
+}
+
+.column
+{
+  display: flex;
+  flex-direction: column;
+
+  &.align-center
+  {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.row
+{
+  display: flex;
+  flex-direction: row;
+
+  &.extend
+  {
+    width: -webkit-fill-available;
+  }
+  &.space-between
+  {
+    justify-content: space-between;
+  }
+}
