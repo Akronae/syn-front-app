@@ -1,6 +1,6 @@
 import * as React from 'react-native'
 import { Text } from '~/components/Text'
-import { ExView, ExViewProps } from '~/components/ExView'
+import { View, ExViewProps } from '~/components/View'
 import { Word } from '~/components/Word'
 import { column } from '~/styles/column'
 import * as Types from '~/types'
@@ -14,7 +14,7 @@ export function Verse(props: VerseProps) {
   const { children, verse, ...passed } = props
 
   return (
-    <ExView style={[column]} {...passed}>
+    <View style={[column]} {...passed}>
       <Text>
         {verse.book} {verse.chapter}:{verse.verseNumber}
       </Text>
@@ -27,11 +27,11 @@ export function Verse(props: VerseProps) {
         ))}
       </VerseWrapper>
       {children}
-    </ExView>
+    </View>
   )
 }
 
-const VerseWrapper = styled(ExView)`
+const VerseWrapper = styled(View)`
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;

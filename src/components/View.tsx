@@ -1,38 +1,38 @@
 import { castArray } from 'lodash-es'
-import { View, StyleSheet, Platform } from 'react-native'
+import * as ReactNative from 'react-native'
 import { Base, BaseProps } from '~/components/Base'
 import { useInterval } from '~/utils/react/useInterval'
 import { useState } from '~/utils/react/useState'
 
 export interface ExViewProps extends BaseProps {
   gap?: number
-  childRenderInterval?: number
+  childRendering?: { interval?: number; instantForFirst?: number }
 }
 
 function Divider(props: { gap?: number }) {
-  return <View style={{ height: props.gap }} />
+  return <ReactNative.View style={{ height: props.gap }} />
 }
 
-export function ExView(props: ExViewProps) {
-  const { style, children, gap, childRenderInterval, ...passed } = props
+export function View(props: ExViewProps) {
+  const { style, children, gap, childRendering, ...passed } = props
 
   const flatChildren = castArray(children).flatMap((e, i) => [
     e,
     gap && <Divider key={i + 100000} gap={gap} />,
   ])
 
-  const renderedChildren = useState(0)
+  const renderedChildren = useState(childRendering?.instantForFirst ?? 0)
 
-  if (!childRenderInterval && renderedChildren.state !== flatChildren.length) {
+  if (!childRendering && renderedChildren.state !== flatChildren.length) {
     renderedChildren.state = flatChildren.length
   }
-  
+
   useInterval((id) => {
     renderedChildren.state += 1
     if (renderedChildren.state >= flatChildren.length) {
       clearInterval(id)
     }
-  }, childRenderInterval)
+  }, childRendering?.interval)
 
   return (
     <Base style={[style, styles.ExView]} {...passed}>
@@ -45,10 +45,10 @@ export function ExView(props: ExViewProps) {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = ReactNative.StyleSheet.create({
   ExView: {
-    minHeight: Platform.OS == `web` ? `revert` : undefined,
-    minWidth: Platform.OS == `web` ? `revert` : undefined,
+    minHeight: ReactNative.Platform.OS == `web` ? `revert` : undefined,
+    minWidth: ReactNative.Platform.OS == `web` ? `revert` : undefined,
   },
 })
 

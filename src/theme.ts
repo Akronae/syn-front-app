@@ -2,11 +2,13 @@ export interface Theme {
     dark: boolean
     colors: {
         primary: string
-        background: string
-        card: string
+        surface: {
+          primary: string
+        }
         text: {
             primary: string
             sub: string
+            contrast: string
         }
         border: string
         notification: string
@@ -14,14 +16,16 @@ export interface Theme {
 }
 
 export const DarkTheme: Theme = {
-  dark: false,
+  dark: true,
   colors: {
     primary: `#83a8fa`,
-    background: `#14191f`,
-    card: `#14191f`,
+    surface: {
+      primary: `#14191f`,
+    },
     text: {
       primary: `#acaeb4`,
-      sub: `#64656d`
+      sub: `#64656d`,
+      contrast: `#fff`,
     },
     border: `#32373e`,
     notification: `#abc`

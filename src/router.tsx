@@ -1,33 +1,21 @@
-
-
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs'
 import { BookContext } from './contexts/BookContext'
-import { ReadChapter } from './views/ReadChapter'
 import React, { useContext } from 'react'
 import { Home } from './views/Home'
 import { NavigationContainer } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from 'styled-components/native'
+import { ReadChapterIndex } from './views/ReadChapterIndex'
 
 export type RootStackParamList = {
   Home: undefined
-  ReadChapter: undefined
-  Feed: { sort: `latest` | `top` } | undefined
+  ReadChapterIndex: undefined
 }
 
-export const Tab = createBottomTabNavigator()
-
-const tabScreenOptions: BottomTabNavigationOptions = {
-  headerTintColor: `#fff`,
-  headerTitleStyle: { fontWeight: `bold` },
-  tabBarStyle: {
-    height: 80,
-  },
-  tabBarItemStyle: { padding: 10 },
-}
+export const Tab = createBottomTabNavigator<RootStackParamList>()
 
 export function Router() {
   const book = useContext(BookContext)
@@ -37,12 +25,21 @@ export function Router() {
     dark: theme.dark,
     colors: {
       primary: theme.colors.primary,
-      background: theme.colors.background,
-      card: theme.colors.card,
+      background: theme.colors.surface.primary,
+      card: theme.colors.surface.primary,
       text: theme.colors.text.primary,
       border: theme.colors.border,
       notification: theme.colors.notification,
     },
+  }
+
+  const tabScreenOptions: BottomTabNavigationOptions = {
+    headerTintColor: theme.colors.text.contrast,
+    headerTitleStyle: { fontWeight: `bold` },
+    tabBarStyle: {
+      height: 80,
+    },
+    tabBarItemStyle: { padding: 10 },
   }
 
   return (
@@ -58,8 +55,8 @@ export function Router() {
           }}
         />
         <Tab.Screen
-          name='ReadChapter'
-          component={ReadChapter}
+          name='ReadChapterIndex'
+          component={ReadChapterIndex}
           options={{
             headerTitle: `${book.book} ${book.versesParsed[0].chapter}`,
             title: `Read`,
@@ -72,3 +69,4 @@ export function Router() {
     </NavigationContainer>
   )
 }
+

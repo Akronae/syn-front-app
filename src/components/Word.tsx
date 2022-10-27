@@ -1,7 +1,7 @@
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
 import { Text } from '~/components/Text'
-import { ExView, ExViewProps } from '~/components/ExView'
+import { View, ExViewProps } from '~/components/View'
 import { GrammaticalCase, PartOfSpeech } from '~/types'
 import * as Types from '~/types'
 import styled from 'styled-components/native'
@@ -33,10 +33,10 @@ export function Word(props: WordProps) {
       {...passed}
     >
       <Greek>{word.greek}</Greek>
-      <ExView>
+      <View>
         <English>{word.english}</English>
         <English>{word.parsing}</English>
-      </ExView>
+      </View>
     </WordWrapper>
   )
 }
@@ -47,7 +47,7 @@ const English = styled(Text)`
   text-align: center;
 `
 
-const WordWrapper = styled(ExView)`
+const WordWrapper = styled(View)`
   padding: 15px;
   border-radius: 20px;
   margin: 5px;

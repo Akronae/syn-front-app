@@ -1,14 +1,14 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { DrawerScreenProps } from '@react-navigation/drawer'
 import { useContext } from 'react'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { Base } from '~/components/Base'
-import { ExView } from '~/components/ExView'
+import { View } from '~/components/View'
 import { Verse } from '~/components/Verse'
 import { BookContext } from '~/contexts/BookContext'
-import { RootStackParamList } from '~/router'
+import { ReadChapterDrawerParamList } from './ReadChapterIndex'
 
-export type ReadChapterProps = NativeStackScreenProps<RootStackParamList>
+export type ReadChapterProps = DrawerScreenProps<ReadChapterDrawerParamList, `Index`>
 
 export function ReadChapter(props: ReadChapterProps) {
   const book = useContext(BookContext)
@@ -16,11 +16,11 @@ export function ReadChapter(props: ReadChapterProps) {
   return (
     <ReadChapterBase>
       <ScrollView>
-        <ExView gap={40} childRenderInterval={100}>
+        <View gap={40} childRendering={{interval: 50, instantForFirst: 5}}>
           {book.versesParsed.map((verse, i) => (
             <Verse key={i} verse={verse} />
           ))}
-        </ExView>
+        </View>
       </ScrollView>
     </ReadChapterBase>
   )
@@ -33,5 +33,5 @@ const ReadChapterBase = styled(Base)`
 const ScrollView = styled(React.ScrollView)`
   padding: 20px;
   padding-top: 50px;
-  background-color: ${(p) => p.theme.colors.background};
+  background-color: ${(p) => p.theme.colors.surface.primary};
 `

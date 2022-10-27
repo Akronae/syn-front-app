@@ -1,15 +1,13 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import * as React from 'react-native'
 import { Base } from '~/components/Base'
 import { RootStackParamList } from '~/router'
 
-export type HomeProps = NativeStackScreenProps<RootStackParamList>
+export type HomeProps = BottomTabScreenProps<RootStackParamList, `Home`> & {navigation: any, route: any}
 
 export function Home(props: HomeProps) {
-  const { navigation } = props
 
   return <Base style={[styles.Home]}>
-    <React.Button title='Acts' onPress={() => navigation.push(`ReadChapter`)}></React.Button>
   </Base>
 }
 
