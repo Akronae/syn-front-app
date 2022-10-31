@@ -1,4 +1,4 @@
 import React from 'react'
-import BookText from '~/assets/text/NT/Acts/1.json'
+import text from '~/assets/text'
 
-export const BookContext = React.createContext(BookText)
+export const BookContext = React.createContext(text.NT.Acts)

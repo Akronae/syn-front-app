@@ -6,7 +6,7 @@ import { useState } from '~/utils/react/useState'
 
 export interface ExViewProps extends BaseProps {
   gap?: number
-  childRendering?: { interval?: number; instantForFirst?: number }
+  childRendering?: { interval?: {ms: number, skipFirst: number} }
 }
 
 function Divider(props: { gap?: number }) {
@@ -21,7 +21,7 @@ export function View(props: ExViewProps) {
     gap && <Divider key={i + 100000} gap={gap} />,
   ])
 
-  const renderedChildren = useState(childRendering?.instantForFirst ?? 0)
+  const renderedChildren = useState(childRendering?.interval?.skipFirst ?? 0)
 
   if (!childRendering && renderedChildren.state !== flatChildren.length) {
     renderedChildren.state = flatChildren.length
@@ -32,7 +32,7 @@ export function View(props: ExViewProps) {
     if (renderedChildren.state >= flatChildren.length) {
       clearInterval(id)
     }
-  }, childRendering?.interval)
+  }, childRendering?.interval?.ms)
 
   return (
     <Base style={[style, styles.ExView]} {...passed}>

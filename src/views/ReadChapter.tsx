@@ -1,23 +1,26 @@
 import { DrawerScreenProps } from '@react-navigation/drawer'
-import { useContext } from 'react'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { Base } from '~/components/Base'
 import { View } from '~/components/View'
 import { Verse } from '~/components/Verse'
+import { Book } from '~/types'
+import { useContext } from 'react'
 import { BookContext } from '~/contexts/BookContext'
-import { ReadChapterDrawerParamList } from './ReadChapterIndex'
 
-export type ReadChapterProps = DrawerScreenProps<ReadChapterDrawerParamList, `Index`>
+export type ReadChapterProps = DrawerScreenProps<Record<string, any>>
 
 export function ReadChapter(props: ReadChapterProps) {
+  const { route } = props
   const book = useContext(BookContext)
+  const chapter = book?.[route.name as never] as Book
+  if (!chapter) return null
 
   return (
     <ReadChapterBase>
       <ScrollView>
-        <View gap={40} childRendering={{interval: 50, instantForFirst: 5}}>
-          {book.versesParsed.map((verse, i) => (
+        <View gap={40} childRendering={{ interval: { ms: 50, skipFirst: 5 } }}>
+          {chapter.versesParsed.map((verse, i) => (
             <Verse key={i} verse={verse} />
           ))}
         </View>

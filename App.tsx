@@ -6,8 +6,6 @@ import {
 } from 'react-native'
 
 import { Router } from '~/router'
-import { BookContext } from '~/contexts/BookContext'
-import Text from '~/assets/text'
 import { DarkTheme } from '~/theme'
 import styled, {ThemeProvider, useTheme} from 'styled-components/native'
 
@@ -28,9 +26,7 @@ export default function App() {
     <ThemeProvider theme={DarkTheme} >
       <Page>
         <StatusBar style='light' />
-        <BookContext.Provider value={Text.NT.Acts[`1.json`]}>
-          <Router />
-        </BookContext.Provider>
+        <Router />
       </Page>
     </ThemeProvider>
   )

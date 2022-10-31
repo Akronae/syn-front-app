@@ -2,24 +2,41 @@ import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs'
-import { BookContext } from './contexts/BookContext'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Home } from './views/Home'
 import { NavigationContainer } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from 'styled-components/native'
-import { ReadChapterIndex } from './views/ReadChapterIndex'
+import { ReadIndex } from './views/ReadIndex'
+import { Theme } from './theme'
 
 export type RootStackParamList = {
   Home: undefined
-  ReadChapterIndex: undefined
+  Read: Record<string, unknown>
 }
 
 export const Tab = createBottomTabNavigator<RootStackParamList>()
 
+export function getHeaderScreenOptions(theme: Theme) {
+  return {
+    headerTintColor: theme.colors.text.contrast,
+    // headerTitleStyle: { fontWeight: `bold` },
+  }
+}
+
+export function getScreenOptions(theme: Theme): BottomTabNavigationOptions {
+  return {
+    ...getHeaderScreenOptions(theme),
+    tabBarStyle: {
+      height: 80,
+    },
+    tabBarItemStyle: { padding: 10 },
+  } as BottomTabNavigationOptions
+}
+
 export function Router() {
-  const book = useContext(BookContext)
   const theme = useTheme()
+  const bottomTabNavigationOptions = getScreenOptions(theme)
 
   const navigationContainerTheme = {
     dark: theme.dark,
@@ -33,18 +50,12 @@ export function Router() {
     },
   }
 
-  const tabScreenOptions: BottomTabNavigationOptions = {
-    headerTintColor: theme.colors.text.contrast,
-    headerTitleStyle: { fontWeight: `bold` },
-    tabBarStyle: {
-      height: 80,
-    },
-    tabBarItemStyle: { padding: 10 },
-  }
-
   return (
-    <NavigationContainer theme={navigationContainerTheme} linking={{prefixes: [``]}}>
-      <Tab.Navigator screenOptions={{...tabScreenOptions}}>
+    <NavigationContainer
+      theme={navigationContainerTheme}
+      linking={{ prefixes: [``] }}
+    >
+      <Tab.Navigator screenOptions={{ ...bottomTabNavigationOptions }}>
         <Tab.Screen
           name='Home'
           component={Home}
@@ -56,9 +67,9 @@ export function Router() {
         />
         <Tab.Screen
           name='ReadChapterIndex'
-          component={ReadChapterIndex}
+          component={ReadIndex}
           options={{
-            headerTitle: `${book.book} ${book.versesParsed[0].chapter}`,
+            headerShown: false,
             title: `Read`,
             tabBarIcon: ({ focused, color, size }) => (
               <Ionicons name='book' size={size} color={color} />
@@ -69,4 +80,3 @@ export function Router() {
     </NavigationContainer>
   )
 }
-

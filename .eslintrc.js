@@ -25,6 +25,8 @@ module.exports = {
     'prefer-template': 'error',
     // not required since react 17
     'react/react-in-jsx-scope': 'off',
+    // typescript is handling this
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       { vars: 'all', args: 'none' },
