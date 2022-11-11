@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator<ReadChapterDrawerParamList>()
 
 export type ReadIndexProps = BottomTabScreenProps<RootStackParamList, `Read`>
 
-export function ReadIndex(props: ReadIndexProps) {
+export function Read(props: ReadIndexProps) {
   const { navigation, route } = props
   const theme = useTheme()
   const chapter = useState(1)
@@ -28,7 +28,7 @@ export function ReadIndex(props: ReadIndexProps) {
   }
 
   return (
-    <ReadIndexBase>
+    <ReadBase>
       <Drawer.Navigator
         screenListeners={{
           drawerItemPress: () => navigate(route.name, (chapter.state = 1)),
@@ -51,10 +51,10 @@ export function ReadIndex(props: ReadIndexProps) {
           />
         ))}
       </Drawer.Navigator>
-    </ReadIndexBase>
+    </ReadBase>
   )
 }
 
-const ReadIndexBase = styled(Base)`
+const ReadBase = styled(Base)`
   flex: 1;
 `

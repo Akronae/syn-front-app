@@ -2,7 +2,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { Base } from '~/components/Base'
-import { ReadChapterDrawerParamList } from './ReadIndex'
+import { ReadChapterDrawerParamList } from './Read'
 import text from '~/assets/text'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ReadChapter } from './ReadChapter'
@@ -20,7 +20,7 @@ export function ReadBook(props: ReadBookProps) {
   return (
     <ReadBookBase>
       <BookContext.Provider value={book}>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           {Object.entries(book).map(([chapter, bookChapter], i) => (
             <Stack.Screen
               name={chapter as never}

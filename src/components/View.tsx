@@ -1,5 +1,6 @@
 import { castArray } from 'lodash-es'
 import * as ReactNative from 'react-native'
+import styled from 'styled-components/native'
 import { Base, BaseProps } from '~/components/Base'
 import { useInterval } from '~/utils/react/useInterval'
 import { useState } from '~/utils/react/useState'
@@ -14,7 +15,7 @@ function Divider(props: { gap?: number }) {
 }
 
 export function View(props: ExViewProps) {
-  const { style, children, gap, childRendering, ...passed } = props
+  const { children, gap, childRendering, ...passed } = props
 
   const flatChildren = castArray(children).flatMap((e, i) => [
     e,
@@ -35,21 +36,17 @@ export function View(props: ExViewProps) {
   }, childRendering?.interval?.ms)
 
   return (
-    <Base style={[style, styles.ExView]} {...passed}>
+    <ViewBase {...passed}>
       {flatChildren.map((c, i) => {
         if (i < renderedChildren.state) {
           return c
         }
       })}
-    </Base>
+    </ViewBase>
   )
 }
 
-const styles = ReactNative.StyleSheet.create({
-  ExView: {
-    minHeight: ReactNative.Platform.OS == `web` ? `revert` : undefined,
-    minWidth: ReactNative.Platform.OS == `web` ? `revert` : undefined,
-  },
-})
-
-export const ExViewStyles = styles
+const ViewBase = styled(Base)`
+  min-height: ${p =>  ReactNative.Platform.OS == `web` ? `revert` : undefined};
+  min-width: ${p =>  ReactNative.Platform.OS == `web` ? `revert` : undefined};
+`;

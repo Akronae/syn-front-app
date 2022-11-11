@@ -1,18 +1,16 @@
 import * as React from 'react-native'
+import styled from 'styled-components/native'
 import { Base, BaseProps } from '~/components/Base'
 
 export type _TemplateProps = BaseProps
 
 export function _Template(props: _TemplateProps) {
-  const { style, ...passed } = props
+  const { ...passed } = props
 
-  return <Base style={[style, styles._Template]} {...passed}>
+  return <_TemplateBase {...passed}>
 
-  </Base>
+  </_TemplateBase>
 }
 
-const styles = React.StyleSheet.create({
-  _Template: {},
-})
-
-export const _TemplateStyles = styles
+export const _TemplateBase = styled(Base)`
+`;

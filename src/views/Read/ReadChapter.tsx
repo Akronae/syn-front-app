@@ -7,6 +7,7 @@ import { Verse } from '~/components/Verse'
 import { Book } from '~/types'
 import { useContext } from 'react'
 import { BookContext } from '~/contexts/BookContext'
+import ReadStorage from '~/storage/ReadStorage'
 
 export type ReadChapterProps = DrawerScreenProps<Record<string, any>>
 
@@ -15,6 +16,8 @@ export function ReadChapter(props: ReadChapterProps) {
   const book = useContext(BookContext)
   const chapter = book?.[route.name as never] as Book
   if (!chapter) return null
+
+  ReadStorage.set({book: chapter.book, chapter: parseInt(route.name)})
 
   return (
     <ReadChapterBase>

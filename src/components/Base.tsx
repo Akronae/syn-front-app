@@ -1,23 +1,19 @@
 import { PropsWithChildren } from 'react'
 import * as React from 'react-native'
-import { StyleProp, View, ViewStyle } from 'react-native'
+import styled from 'styled-components/native'
 
-export interface BaseProps<TStyle = ViewStyle> extends PropsWithChildren {
-  style?: StyleProp<TStyle>
+export interface BaseProps extends PropsWithChildren {
 }
 
 export function Base(props: BaseProps) {
-  const { style, children, ...passed } = props
+  const { children, ...passed } = props
 
   return (
-    <View style={[style, styles.Base]} {...passed}>
+    <BaseWrapper {...passed}>
       {children}
-    </View>
+    </BaseWrapper>
   )
 }
 
-const styles = React.StyleSheet.create({
-  Base: {},
-})
-
-export const BaseStyles = styles
+const BaseWrapper = styled.View`
+`;

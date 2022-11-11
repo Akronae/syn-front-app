@@ -7,7 +7,7 @@ import { Home } from './views/Home'
 import { NavigationContainer } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from 'styled-components/native'
-import { ReadIndex } from './views/ReadIndex'
+import { Read } from './views/Read/index'
 import { Theme } from './theme'
 
 export type RootStackParamList = {
@@ -66,8 +66,8 @@ export function Router() {
           }}
         />
         <Tab.Screen
-          name='ReadChapterIndex'
-          component={ReadIndex}
+          name='Read'
+          component={Read}
           options={{
             headerShown: false,
             title: `Read`,
