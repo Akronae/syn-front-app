@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
-import { Base } from '~/components/Base'
+import { Base } from '@proto-native/base'
 import { ReadChapterDrawerParamList } from './Read'
 import text from '~/assets/text'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'

@@ -1,12 +1,12 @@
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
-import { Base } from '~/components/Base'
+import { Base } from '@proto-native/base'
 import { ReadBook } from './ReadBook'
 import { getHeaderScreenOptions, RootStackParamList } from '~/router'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import text from '~/assets/text'
-import { useState } from '~/utils/react/useState'
+import { useState } from '@proto-native/use-state'
 
 export type ReadChapterDrawerParamList = {
   [key in keyof typeof text.NT]: { chapter: number }

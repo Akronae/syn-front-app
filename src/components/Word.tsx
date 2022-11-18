@@ -1,7 +1,7 @@
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
 import { Text } from '~/components/Text'
-import { View, ExViewProps } from '~/components/View'
+import { View, ExViewProps } from '@proto-native/view'
 import { GrammaticalCase, PartOfSpeech } from '~/types'
 import * as Types from '~/types'
 import styled from 'styled-components/native'

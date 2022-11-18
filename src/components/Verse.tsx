@@ -1,6 +1,6 @@
 import * as React from 'react-native'
 import { Text } from '~/components/Text'
-import { View, ExViewProps } from '~/components/View'
+import { View, ExViewProps } from '@proto-native/view'
 import { Word } from '~/components/Word'
 import { column } from '~/styles/column'
 import * as Types from '~/types'

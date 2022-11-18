@@ -20,12 +20,12 @@ export const DarkTheme: Theme = {
   colors: {
     primary: `#83a8fa`,
     surface: {
-      primary: `#14191f`,
+      primary: `#121212`,
     },
     text: {
       primary: `#acaeb4`,
       sub: `#64656d`,
-      contrast: `#fff`,
+      contrast: `#ededed`,
     },
     border: `#32373e`,
     notification: `#abc`
