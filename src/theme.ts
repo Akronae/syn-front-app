@@ -1,18 +1,18 @@
 export interface Theme {
-    dark: boolean
-    colors: {
-        primary: string
-        surface: {
-          primary: string
-        }
-        text: {
-            primary: string
-            sub: string
-            contrast: string
-        }
-        border: string
-        notification: string
+  dark: boolean
+  colors: {
+    primary: string
+    surface: {
+      primary: string
     }
+    text: {
+      primary: string
+      sub: string
+      contrast: string
+    }
+    border: string
+    notification: string
+  }
 }
 
 export const DarkTheme: Theme = {
@@ -28,8 +28,8 @@ export const DarkTheme: Theme = {
       contrast: `#ededed`,
     },
     border: `#32373e`,
-    notification: `#abc`
-  }
+    notification: `#abc`,
+  },
 }
 
 export const LightTheme: Theme = DarkTheme

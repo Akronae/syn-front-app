@@ -1,4 +1,7 @@
-export function get<T>(obj: Record<string, any>, ...pathes: string[]): T | null {
+export function get<T>(
+  obj: Record<string, any>,
+  ...pathes: string[]
+): T | null {
   const path = pathes.join(`.`)
   if (!obj) return null
   let i

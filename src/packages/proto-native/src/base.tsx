@@ -9,12 +9,7 @@ export interface BaseProps extends PropsWithChildren<any> {
 export function Base(props: BaseProps) {
   const { children, ...passed } = props
 
-  return (
-    <BaseWrapper {...passed}>
-      {children}
-    </BaseWrapper>
-  )
+  return <BaseWrapper {...passed}>{children}</BaseWrapper>
 }
 
-const BaseWrapper = styled.View`
-`
+const BaseWrapper = styled.View``

@@ -1,12 +1,13 @@
-import { DrawerScreenProps } from '@react-navigation/drawer'
-import * as React from 'react-native'
-import styled from 'styled-components/native'
 import { Base } from '@proto-native/base'
-import { ReadChapterDrawerParamList } from './Read'
-import text from 'src/assets/text'
+import { DrawerScreenProps } from '@react-navigation/drawer'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { ReadChapter } from './ReadChapter'
+import * as React from 'react-native'
+import text from 'src/assets/text'
 import { BookContext } from 'src/contexts/BookContext'
+import styled from 'styled-components/native'
+
+import { ReadChapterDrawerParamList } from './Read'
+import { ReadChapter } from './ReadChapter'
 
 export type StackType = Record<string, any>
 const Stack = createNativeStackNavigator<StackType>()
@@ -20,7 +21,7 @@ export function ReadBook(props: ReadBookProps) {
   return (
     <ReadBookBase>
       <BookContext.Provider value={book}>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           {Object.entries(book).map(([chapter, bookChapter], i) => (
             <Stack.Screen
               name={chapter as never}

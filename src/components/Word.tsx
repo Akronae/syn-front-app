@@ -1,7 +1,7 @@
+import { Text } from '@proto-native/text'
+import { ExViewProps, View } from '@proto-native/view'
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
-import { Text } from '@proto-native/text'
-import { View, ExViewProps } from '@proto-native/view'
 import { GrammaticalCase, PartOfSpeech } from 'src/types'
 import * as Types from 'src/types'
 import styled from 'styled-components/native'
@@ -43,7 +43,7 @@ export function Word(props: WordProps) {
 
 const English = styled(Text)`
   font-size: 12px;
-  color: ${p => p.theme.colors.text.sub};
+  color: ${(p) => p.theme.colors.text.sub};
   text-align: center;
 `
 
@@ -62,34 +62,21 @@ const Greek = styled(Text)`
 `
 
 export const styles = StyleSheet.create({
-  [PartOfSpeech.Adjective]: {
-  },
-  [PartOfSpeech.Adverb]: {
-  },
-  [PartOfSpeech.Article]: {
-  },
-  [PartOfSpeech.Conjunction]: {
-  },
-  [PartOfSpeech.Determiner]: {
-  },
-  [PartOfSpeech.Interjection]: {
-  },
-  [PartOfSpeech.Noun]: {
-  },
-  [PartOfSpeech.Numeral]: {
-  },
-  [PartOfSpeech.Particle]: {
-  },
-  [PartOfSpeech.PersonalPronoun]: {
-  },
-  [PartOfSpeech.Preposition]: {
-  },
-  [PartOfSpeech.ProperNoun]: {
-  },
-  [PartOfSpeech.Pronoun]: {
-  },
+  [PartOfSpeech.Adjective]: {},
+  [PartOfSpeech.Adverb]: {},
+  [PartOfSpeech.Article]: {},
+  [PartOfSpeech.Conjunction]: {},
+  [PartOfSpeech.Determiner]: {},
+  [PartOfSpeech.Interjection]: {},
+  [PartOfSpeech.Noun]: {},
+  [PartOfSpeech.Numeral]: {},
+  [PartOfSpeech.Particle]: {},
+  [PartOfSpeech.PersonalPronoun]: {},
+  [PartOfSpeech.Preposition]: {},
+  [PartOfSpeech.ProperNoun]: {},
+  [PartOfSpeech.Pronoun]: {},
   [PartOfSpeech.Verb]: {
-    backgroundColor: `#6666f917`
+    backgroundColor: `#6666f917`,
   },
   [GrammaticalCase.Accusative]: {
     backgroundColor: `#f7414114`,

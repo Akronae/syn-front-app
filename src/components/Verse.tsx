@@ -1,6 +1,6 @@
-import * as React from 'react-native'
 import { Text } from '@proto-native/text'
-import { View, ExViewProps } from '@proto-native/view'
+import { ExViewProps, View } from '@proto-native/view'
+import * as React from 'react-native'
 import { Word } from 'src/components/Word'
 import { column } from 'src/styles/column'
 import * as Types from 'src/types'
@@ -18,9 +18,7 @@ export function Verse(props: VerseProps) {
       <Text>
         {verse.book} {verse.chapter}:{verse.verseNumber}
       </Text>
-      <VerseTranslated>
-        {verse.verseTranslated}
-      </VerseTranslated>
+      <VerseTranslated>{verse.verseTranslated}</VerseTranslated>
       <VerseWrapper gap={50}>
         {verse.wordsParsed.map((word, i) => (
           <Word key={i} word={word} />
@@ -45,5 +43,5 @@ const VerseTranslated = styled(Text)`
   padding-top: 10px;
   padding-bottom: 20px;
   font-size: 14px;
-  color: ${p => p.theme.colors.text.sub};
+  color: ${(p) => p.theme.colors.text.sub};
 `

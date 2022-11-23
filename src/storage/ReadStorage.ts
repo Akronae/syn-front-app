@@ -1,4 +1,4 @@
-import { LocalStored } from "./LocalStored";
+import { LocalStored } from './LocalStored'
 
 export interface ReadPayload {
   book: string
@@ -6,7 +6,7 @@ export interface ReadPayload {
 }
 
 export class ReadStorage extends LocalStored<ReadPayload> {
-  key = 'Read';
+  key = `Read`
 }
 
-export default new ReadStorage();
+export default new ReadStorage()

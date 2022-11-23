@@ -1,12 +1,13 @@
+import { Base } from '@proto-native/base'
+import { useState } from '@proto-native/use-state'
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
-import styled, { useTheme } from 'styled-components/native'
-import { Base } from '@proto-native/base'
-import { ReadBook } from './ReadBook'
-import { getHeaderScreenOptions, RootStackParamList } from 'src/router'
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import text from 'src/assets/text'
-import { useState } from '@proto-native/use-state'
+import { RootStackParamList, getHeaderScreenOptions } from 'src/router'
+import styled, { useTheme } from 'styled-components/native'
+
+import { ReadBook } from './ReadBook'
 
 export type ReadChapterDrawerParamList = {
   [key in keyof typeof text.NT]: { chapter: number }

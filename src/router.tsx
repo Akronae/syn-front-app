@@ -1,14 +1,15 @@
-import {
-  createBottomTabNavigator,
-  BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs'
-import React from 'react'
-import { Home } from './views/Home'
-import { NavigationContainer } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
+import {
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
+import React from 'react'
 import { useTheme } from 'styled-components/native'
-import { Read } from './views/Read/index'
+
 import { Theme } from './theme'
+import { Home } from './views/Home'
+import { Read } from './views/Read/index'
 
 export type RootStackParamList = {
   Home: undefined

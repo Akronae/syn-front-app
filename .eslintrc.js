@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -14,12 +15,13 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'unused-imports'],
+  plugins: ['react', '@typescript-eslint', 'unused-imports', 'import-quotes'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'backtick'],
     'jsx-quotes': ['error', 'prefer-single'],
+    quotes: ['error', 'backtick'],
+    '@typescript-eslint/quotes': ['error', 'backtick'],
     semi: ['error', 'never'],
     'unused-imports/no-unused-imports': 'error',
     'prefer-template': 'error',
@@ -32,6 +34,13 @@ module.exports = {
       { vars: 'all', args: 'none' },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
+    'import-quotes/import-quotes': [1, 'single'],
+    'eol-last': ['error', 'always'],
   },
   ignorePatterns: ['node_modules', 'dist', 'build', '*.d.ts'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  }
 }
