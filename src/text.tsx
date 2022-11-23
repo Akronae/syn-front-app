@@ -8,6 +8,6 @@ export function Text(props: TextProps) {
 }
 
 const TextBase = styled.Text`
-  color: ${p => p.theme.colors.text.primary};
+  color: ${(p) => p.theme.colors.text.primary};
   font-size: 18px;
 `
