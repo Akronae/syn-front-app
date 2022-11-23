@@ -2,6 +2,10 @@ module.exports = {
   semi: false,
   singleQuote: true,
   jsxSingleQuote: true,
-  trailingComma: 'all',
-  tabs: 2,
+  trailingComma: `all`,
+  tabWidth: 2,
+
+  importOrder: [`^components/(.*)$`, `^[./]`],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
 }
