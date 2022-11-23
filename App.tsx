@@ -5,14 +5,14 @@ import {
   Platform,
 } from 'react-native'
 
-import { Router } from 'src/router'
-import { DarkTheme } from 'src/theme'
+import { Router } from '~/router'
+import { DarkTheme } from '~/theme'
 import styled, {ThemeProvider, useTheme} from 'styled-components/native'
 
 
 export default function App() {
   const theme = useTheme()
-  NavigationBar.setBackgroundColorAsync(theme?.colors?.surface?.primary || `#000`)
+  NavigationBar.setBackgroundColorAsync(theme?.colors?.background || `#000`)
   NavigationBar.setVisibilityAsync(`hidden`)
 
 

@@ -1,9 +1,9 @@
 import * as React from 'react-native'
-import { Text } from '@proto-native/text'
+import { Text } from '~/components/Text'
 import { View, ExViewProps } from '@proto-native/view'
-import { Word } from 'src/components/Word'
-import { column } from 'src/styles/column'
-import * as Types from 'src/types'
+import { Word } from '~/components/Word'
+import { column } from '~/styles/column'
+import * as Types from '~/types'
 import styled from 'styled-components/native'
 
 export interface VerseProps extends ExViewProps {

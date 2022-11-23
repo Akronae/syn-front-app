@@ -1,4 +1,4 @@
 import React from 'react'
-import { DarkTheme } from 'src/theme'
+import { DarkTheme } from '~/theme'
 
 export const ThemeContext = React.createContext(DarkTheme)

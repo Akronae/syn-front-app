@@ -1,6 +1,7 @@
-import { get, set } from "lodash-es"
 import { SetStateAction } from "react"
-import { ReactiveState } from "./reactive-state"
+import { ReactiveState } from "~/utils/react/ReactiveState"
+import { set } from "~/utils/object/set"
+import { get } from "~/utils/object/get"
 
 /**
  * Creates a reactive state based on a child of an object.

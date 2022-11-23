@@ -9,7 +9,7 @@ module.exports = function (api) {
         {
           "root": ["./"],
           alias: {
-            "src": "./src",
+            "~": "./src",
             "@proto-native": "./src/packages/proto-native/src",
           },
         },

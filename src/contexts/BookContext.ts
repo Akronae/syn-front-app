@@ -1,4 +1,4 @@
 import React from 'react'
-import text from 'src/assets/text'
+import text from '~/assets/text'
 
 export const BookContext = React.createContext(text.NT.Acts)

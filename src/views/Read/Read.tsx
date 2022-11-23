@@ -3,9 +3,9 @@ import * as React from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
 import { Base } from '@proto-native/base'
 import { ReadBook } from './ReadBook'
-import { getHeaderScreenOptions, RootStackParamList } from 'src/router'
+import { getHeaderScreenOptions, RootStackParamList } from '~/router'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import text from 'src/assets/text'
+import text from '~/assets/text'
 import { useState } from '@proto-native/use-state'
 
 export type ReadChapterDrawerParamList = {
