@@ -3,10 +3,10 @@ import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { Base } from '@proto-native/base'
 import { ReadChapterDrawerParamList } from './Read'
-import text from '~/assets/text'
+import text from 'src/assets/text'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ReadChapter } from './ReadChapter'
-import { BookContext } from '~/contexts/BookContext'
+import { BookContext } from 'src/contexts/BookContext'
 
 export type StackType = Record<string, any>
 const Stack = createNativeStackNavigator<StackType>()

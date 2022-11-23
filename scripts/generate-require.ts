@@ -44,7 +44,7 @@ async function main() {
   let files = await toArray(getFiles(texts))
   files = files.map(f => relative(texts, f))
   const reqs = Object.fromEntries(files.map(f => [f, `require('./${f}')`]))
-  const done = JSON.stringify(toObj(reqs, '/'), null, 2)
+  const done = JSON.stringify(toObj(reqs, 'src/'), null, 2)
   console.log(done)
 }
 main()

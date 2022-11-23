@@ -3,11 +3,11 @@ import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { Base } from '@proto-native/base'
 import { View } from '@proto-native/view'
-import { Verse } from '~/components/Verse'
-import { Book } from '~/types'
+import { Verse } from 'src/components/Verse'
+import { Book } from 'src/types'
 import { useContext } from 'react'
-import { BookContext } from '~/contexts/BookContext'
-import ReadStorage from '~/storage/ReadStorage'
+import { BookContext } from 'src/contexts/BookContext'
+import ReadStorage from 'src/storage/ReadStorage'
 
 export type ReadChapterProps = DrawerScreenProps<Record<string, any>>
 
