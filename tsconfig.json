@@ -4,8 +4,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "@proto-native/*": ["./src/packages/proto-native/src/*"],
+      "@proto-native/*": ["./src/*"],
     }
   },
 }
