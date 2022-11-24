@@ -19,7 +19,7 @@ export class ReactiveState<T> extends Array<T | Dispatch<SetStateAction<T>>> {
     return this[0]
   }
   set state(state: T) {
-    if (this.state === state) return
+    if (JSON.stringify(this.state) === JSON.stringify(state)) return
     this[1](state)
   }
 
