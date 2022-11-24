@@ -54,7 +54,7 @@ export function Router() {
   return (
     <NavigationContainer
       theme={navigationContainerTheme}
-      linking={{ prefixes: [``] }}
+      linking={{ prefixes: [``], config: { screens: { Home: { path: `/` } } } }}
     >
       <Tab.Navigator screenOptions={{ ...bottomTabNavigationOptions }}>
         <Tab.Screen

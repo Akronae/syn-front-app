@@ -1,4 +1,6 @@
-export interface Theme {
+import * as ProtoNative from '@proto-native/theme'
+
+export interface Theme extends ProtoNative.Theme {
   dark: boolean
   colors: {
     primary: string

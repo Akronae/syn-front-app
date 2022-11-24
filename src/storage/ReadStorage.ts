@@ -5,7 +5,7 @@ export interface ReadPayload {
   chapter: number
 }
 
-export class ReadStorage extends LocalStored<ReadPayload> {
+class ReadStorage extends LocalStored<ReadPayload> {
   key = `Read`
 }
 
