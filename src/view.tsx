@@ -13,9 +13,9 @@ export interface ExViewProps extends BaseProps {
 export function View(props: ExViewProps) {
   const { children, gap, childRendering, ...passed } = props
 
-  const flatChildren = castArray(children).flatMap((e, i) => [
+  const flatChildren = castArray(children).flatMap((e, i, arr) => [
     e,
-    gap && <Divider key={i + 100000} gap={gap} />,
+    gap && i != arr.length - 1 && <Divider key={i + 100000} gap={gap} />,
   ])
 
   const renderedChildren = useState(childRendering?.interval?.skipFirst ?? 0)
@@ -43,8 +43,13 @@ export function View(props: ExViewProps) {
 }
 
 const ViewBase = styled(Base)`
-  min-height: ${(p) => (React.Platform.OS == `web` ? `revert` : undefined)};
-  min-width: ${(p) => (React.Platform.OS == `web` ? `revert` : undefined)};
+  ${(p) => {
+    if (React.Platform.OS === `web`)
+      return `
+        min-height: revert;
+        min-width: revert;
+      `
+  }}
 `
 
 const Divider = styled.View<{ gap?: number }>`
