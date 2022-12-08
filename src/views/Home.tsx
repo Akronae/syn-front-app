@@ -2,26 +2,48 @@ import { Base } from '@proto-native/base'
 import { Text } from '@proto-native/text'
 import { View } from '@proto-native/view'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import * as React from 'react-native'
-import { useAsync } from 'react-use'
-import { RootStackParamList } from 'src/router'
+import * as React from 'react'
+import { RootStackParamList } from 'src/alala'
+import { Button } from 'src/packages/proto-native/src/Button'
 import ReadStorage from 'src/storage/ReadStorage'
 import styled from 'styled-components/native'
 
 export type HomeProps = BottomTabScreenProps<RootStackParamList, `Home`>
 
+function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
+  const [state, setState] = React.useState<{
+    loading: boolean
+    error: Error | null
+    value: T | null
+  }>({
+    loading: true,
+    error: null,
+    value: null,
+  })
+
+  React.useEffect(() => {
+    fn()
+      .then((value) => setState({ loading: false, error: null, value }))
+      .catch((error) => setState({ loading: false, error, value: null }))
+  }, deps)
+
+  return state
+}
+
 export function Home(props: HomeProps) {
   const a = useAsync(async () => await ReadStorage.get())
+  console.log(a)
 
   return (
     <HomeBase>
       <Card showIf={!a.loading}>
         <Text>Get back where you left</Text>
-        <CardBtn onPress={() => props.navigation.navigate(`Read`, {})}>
-          <CardBtnText>
-            {a.value?.book} {a.value?.chapter}
-          </CardBtnText>
-        </CardBtn>
+        <Button
+          onPress={() => props.navigation.navigate(`Read`, {})}
+          icon='chevron-forward'
+        >
+          {a.value?.book} {a.value?.chapter}
+        </Button>
       </Card>
     </HomeBase>
   )
@@ -36,16 +58,4 @@ const Card = styled(View)`
   border: 1px solid #1e4894;
   border-radius: 16px;
   padding: 20px;
-`
-
-const CardBtn = styled.Pressable`
-  background-color: ${({ theme }) => `#3f83df`};
-  margin-top: 30px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-`
-
-const CardBtnText = styled(Text)`
-  color: #122447;
 `
