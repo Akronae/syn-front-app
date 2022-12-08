@@ -1,39 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
-import {
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
+import { RootStackParamList, getScreenOptions } from 'src/router/router-config'
+import { Read } from 'src/views/Read/index'
 import { useTheme } from 'styled-components/native'
 
-import { Theme } from './theme'
-import { Home } from './views/Home'
-import { Read } from './views/Read/index'
-
-export type RootStackParamList = {
-  Home: undefined
-  Read: Record<string, unknown>
-}
+import { Home } from 'src/views/Home'
 
 export const Tab = createBottomTabNavigator<RootStackParamList>()
-
-export function getHeaderScreenOptions(theme: Theme) {
-  return {
-    headerTintColor: theme.colors.text.contrast,
-    // headerTitleStyle: { fontWeight: `bold` },
-  }
-}
-
-export function getScreenOptions(theme: Theme): BottomTabNavigationOptions {
-  return {
-    ...getHeaderScreenOptions(theme),
-    tabBarStyle: {
-      height: 80,
-    },
-    tabBarItemStyle: { padding: 10 },
-  } as BottomTabNavigationOptions
-}
 
 export function Router() {
   const theme = useTheme()

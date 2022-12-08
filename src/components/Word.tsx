@@ -25,6 +25,7 @@ export function Word(props: WordProps) {
 
   return (
     <WordWrapper
+      gap={5}
       style={[
         pos && styles[pos],
         gramcase && styles[gramcase],
@@ -33,13 +34,18 @@ export function Word(props: WordProps) {
       {...passed}
     >
       <Greek>{word.greek}</Greek>
-      <View>
+      <View gap={1}>
         <English>{word.english}</English>
         <English>{word.parsing}</English>
       </View>
     </WordWrapper>
   )
 }
+
+const Greek = styled(Text)`
+  font-size: 20px;
+  color: ${(p) => p.theme.colors.text.sub};
+`
 
 const English = styled(Text)`
   font-size: 12px;
@@ -55,10 +61,6 @@ const WordWrapper = styled(View)`
   border-width: 1px;
   border-color: #ffffff18;
   background-color: #1c2434;
-`
-
-const Greek = styled(Text)`
-  font-size: 20px;
 `
 
 export const styles = StyleSheet.create({
