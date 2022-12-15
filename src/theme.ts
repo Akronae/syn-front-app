@@ -11,7 +11,10 @@ export interface Theme {
       bold: string
     }
     size: {
-      regular: number
+      xxl: number
+      xl: number
+      lg: number
+      md: number
     }
   }
 }
