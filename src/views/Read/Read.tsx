@@ -3,8 +3,11 @@ import { useState } from '@proto-native/use-state'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
-import { RootStackParamList, getHeaderScreenOptions } from 'src/router/router-config'
 import text from 'src/assets/text'
+import {
+  RootStackParamList,
+  getHeaderScreenOptions,
+} from 'src/router/router-config'
 import styled, { useTheme } from 'styled-components/native'
 
 import { ReadBook } from './ReadBook'

@@ -3,10 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { RootStackParamList, getScreenOptions } from 'src/router/router-config'
+import { Home } from 'src/views/Home'
 import { Read } from 'src/views/Read/index'
 import { useTheme } from 'styled-components/native'
-
-import { Home } from 'src/views/Home'
 
 export const Tab = createBottomTabNavigator<RootStackParamList>()
 

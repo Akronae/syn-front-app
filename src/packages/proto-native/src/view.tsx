@@ -2,13 +2,12 @@ import { Base, BaseProps } from '@proto-native/base'
 import { useInterval } from '@proto-native/use-interval'
 import { useState } from '@proto-native/use-state'
 import { castArray } from 'lodash-es'
-import { useRef } from 'react'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 
 export interface ExViewProps extends BaseProps {
   gap?: number
-  childRendering?: { instant?: { first?: number }, interval?: { ms: number; } }
+  childRendering?: { instant?: { first?: number }; interval?: { ms: number } }
 }
 
 export function View(props: ExViewProps) {

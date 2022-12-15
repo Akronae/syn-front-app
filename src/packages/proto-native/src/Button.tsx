@@ -22,7 +22,11 @@ export type ButtonProps = BaseProps<React.TextStyle> &
 
 const usePressAnimation = {
   [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation,
-  [ButtonPressAnimation.None]: () => ({animStyle: {}, animStart: () => {}, animRevert: () => {}}),
+  [ButtonPressAnimation.None]: () => ({
+    animStyle: {},
+    animStart: () => {},
+    animRevert: () => {},
+  }),
 }
 
 function useScaleDownPressAnimation() {
@@ -38,7 +42,9 @@ function useScaleDownPressAnimation() {
   const animStart = () => {
     isBeingPressed.value = true
     scale.value = withSpring(scale.value * scaleTo, undefined, () => {
-      if (!isBeingPressed.value) {scale.value = scaleFrom}
+      if (!isBeingPressed.value) {
+        scale.value = scaleFrom
+      }
     })
   }
   const animRevert = () => {
@@ -47,7 +53,7 @@ function useScaleDownPressAnimation() {
     scale.value = withSpring((scale.value = scaleFrom))
   }
 
-  return {animStyle, animStart, animRevert}
+  return { animStyle, animStart, animRevert }
 }
 
 export function Button(props: ButtonProps) {
@@ -56,16 +62,23 @@ export function Button(props: ButtonProps) {
   const { children, icon, ...takenRest } = ownProps.taken
   const fontSize =
     React.StyleSheet.flatten(takenRest.style)?.fontSize ||
-    theme.typography.size.regular
+    theme.typography.size.md
 
-  const {animRevert, animStart, animStyle} = usePressAnimation[props.pressAnimation || ButtonPressAnimation.None]()
+  const { animRevert, animStart, animStyle } =
+    usePressAnimation[props.pressAnimation || ButtonPressAnimation.None]()
 
   return (
     <ButtonBase {...ownProps.rest} style={[animStyle]}>
       <Pressable
         {...takenRest}
-        onTouchStart={() => {takenRest.onTouchStart?.(); animStart()}}
-        onTouchEnd={() => {takenRest.onTouchEnd?.(); animRevert()}}
+        onTouchStart={() => {
+          takenRest.onTouchStart?.()
+          animStart()
+        }}
+        onTouchEnd={() => {
+          takenRest.onTouchEnd?.()
+          animRevert()
+        }}
       >
         <CardBtnText>{children}</CardBtnText>
         <Icon name={icon} size={fontSize} />

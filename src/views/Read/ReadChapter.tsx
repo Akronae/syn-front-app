@@ -20,16 +20,22 @@ export function ReadChapter(props: ReadChapterProps) {
   ReadStorage.set({ book: chapter.book, chapter: parseInt(route.name) })
 
   const onScroll = (e: React.NativeSyntheticEvent<React.NativeScrollEvent>) => {
-    console.log(e.nativeEvent, React.Dimensions.get('screen'))
+    console.log(e.nativeEvent, React.Dimensions.get(`screen`))
   }
 
   return (
     <ReadChapterBase>
       <ScrollView onScroll={onScroll}>
-        <View gap={40} childRendering={{ interval: { ms: 500000000000000 }, instant: {first: 5} }}>
-          {chapter.versesParsed.map((verse, i) => (
-            i < 10 && <Verse key={i} verse={verse} />
-          ))}
+        <View
+          gap={40}
+          childRendering={{
+            interval: { ms: 500000000000000 },
+            instant: { first: 5 },
+          }}
+        >
+          {chapter.versesParsed.map(
+            (verse, i) => i < 10 && <Verse key={i} verse={verse} />,
+          )}
         </View>
       </ScrollView>
     </ReadChapterBase>
