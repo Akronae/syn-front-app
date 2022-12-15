@@ -3,32 +3,13 @@ import { Text } from '@proto-native/text'
 import { View } from '@proto-native/view'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
-import { Button } from 'src/packages/proto-native/src/Button'
+import { Button } from '@proto-native/Button'
+import { useAsync } from '@proto-native/use-async'
 import { RootStackParamList } from 'src/router'
 import ReadStorage from 'src/storage/ReadStorage'
 import styled from 'styled-components/native'
 
 export type HomeProps = BottomTabScreenProps<RootStackParamList, `Home`>
-
-function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
-  const [state, setState] = React.useState<{
-    loading: boolean
-    error: Error | null
-    value: T | null
-  }>({
-    loading: true,
-    error: null,
-    value: null,
-  })
-
-  React.useEffect(() => {
-    fn()
-      .then((value) => setState({ loading: false, error: null, value }))
-      .catch((error) => setState({ loading: false, error, value: null }))
-  }, deps)
-
-  return state
-}
 
 export function Home(props: HomeProps) {
   const a = useAsync(async () => await ReadStorage.get())
