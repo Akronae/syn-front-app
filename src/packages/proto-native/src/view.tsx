@@ -2,12 +2,13 @@ import { Base, BaseProps } from '@proto-native/base'
 import { useInterval } from '@proto-native/use-interval'
 import { useState } from '@proto-native/use-state'
 import { castArray } from 'lodash-es'
+import { useRef } from 'react'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 
 export interface ExViewProps extends BaseProps {
   gap?: number
-  childRendering?: { interval?: { ms: number; skipFirst: number } }
+  childRendering?: { instant?: { first?: number }, interval?: { ms: number; } }
 }
 
 export function View(props: ExViewProps) {
@@ -18,7 +19,7 @@ export function View(props: ExViewProps) {
     gap && i != arr.length - 1 && <Divider key={i + 100000} gap={gap} />,
   ])
 
-  const renderedChildren = useState(childRendering?.interval?.skipFirst ?? 0)
+  const renderedChildren = useState(childRendering?.instant?.first ?? 0)
 
   if (!childRendering && renderedChildren.state !== flatChildren.length) {
     renderedChildren.state = flatChildren.length

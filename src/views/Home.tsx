@@ -3,8 +3,8 @@ import { Text } from '@proto-native/text'
 import { View } from '@proto-native/view'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
-import { RootStackParamList } from 'src/alala'
 import { Button } from 'src/packages/proto-native/src/Button'
+import { RootStackParamList } from 'src/router'
 import ReadStorage from 'src/storage/ReadStorage'
 import styled from 'styled-components/native'
 
@@ -36,7 +36,7 @@ export function Home(props: HomeProps) {
 
   return (
     <HomeBase>
-      <Card showIf={!a.loading}>
+      <Card showIf={a.value}>
         <Text>Get back where you left</Text>
         <Button
           onPress={() => props.navigation.navigate(`Read`, {})}
