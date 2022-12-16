@@ -5,46 +5,50 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+    `eslint:recommended`,
+    `plugin:react/recommended`,
+    `plugin:@typescript-eslint/recommended`,
   ],
   overrides: [],
-  parser: '@typescript-eslint/parser',
+  parser: `@typescript-eslint/parser`,
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: `latest`,
+    sourceType: `module`,
   },
-  plugins: ['react', '@typescript-eslint', 'unused-imports', 'import-quotes'],
+  plugins: [`react`, `@typescript-eslint`, `unused-imports`, `import-quotes`],
   rules: {
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    'jsx-quotes': ['error', 'prefer-single'],
-    quotes: ['error', 'backtick'],
-    '@typescript-eslint/quotes': ['error', 'backtick'],
-    semi: ['error', 'never'],
-    'unused-imports/no-unused-imports': 'error',
-    'prefer-template': 'error',
+    indent: [`error`, 2],
+    'linebreak-style': [`error`, `unix`],
+    'jsx-quotes': [`error`, `prefer-single`],
+    quotes: [`error`, `backtick`],
+    '@typescript-eslint/quotes': [`error`, `backtick`],
+    semi: [`error`, `never`],
+    'unused-imports/no-unused-imports': `error`,
+    'prefer-template': `error`,
     // not required since react 17
-    'react/react-in-jsx-scope': 'off',
+    'react/react-in-jsx-scope': `off`,
     // typescript is handling this
-    'react/prop-types': 'off',
+    'react/prop-types': `off`,
     '@typescript-eslint/no-unused-vars': [
-      'error',
-      { vars: 'all', args: 'none' },
+      `error`,
+      { vars: `all`, args: `none` },
     ],
-    '@typescript-eslint/no-explicit-any': 'off',
-    'import-quotes/import-quotes': [1, 'single'],
-    'eol-last': ['error', 'always'],
+    '@typescript-eslint/no-explicit-any': `off`,
+    '@typescript-eslint/no-empty-function': `off`,
+    'import-quotes/import-quotes': [1, `single`],
+    'eol-last': [`error`, `always`],
     // forbids relative parent imports
-    'no-restricted-imports': ['error', {
-      'patterns': ['..*']
-    }],
+    'no-restricted-imports': [
+      `error`,
+      {
+        patterns: [`..*`],
+      },
+    ],
   },
-  ignorePatterns: ['node_modules', 'dist', 'build', '*.d.ts'],
+  ignorePatterns: [`node_modules`, `dist`, `build`, `*.d.ts`],
   settings: {
     react: {
-      version: 'detect',
+      version: `detect`,
     },
-  }
+  },
 }
