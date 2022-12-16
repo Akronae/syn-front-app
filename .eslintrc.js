@@ -29,12 +29,12 @@ module.exports = {
     'react/react-in-jsx-scope': `off`,
     // typescript is handling this
     'react/prop-types': `off`,
+    '@typescript-eslint/no-empty-function': `off`,
     '@typescript-eslint/no-unused-vars': [
       `error`,
       { vars: `all`, args: `none` },
     ],
     '@typescript-eslint/no-explicit-any': `off`,
-    '@typescript-eslint/no-empty-function': `off`,
     'import-quotes/import-quotes': [1, `single`],
     'eol-last': [`error`, `always`],
     // forbids relative parent imports
