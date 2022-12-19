@@ -1,7 +1,13 @@
 export interface Theme {
   colors: {
+    surface: {
+      default: string
+      primary: string
+    }
     text: {
       primary: string
+      sub: string
+      contrast: string
     }
   }
   typography: {
