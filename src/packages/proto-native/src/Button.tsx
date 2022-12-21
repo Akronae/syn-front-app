@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'
-import { Base, BaseProps } from '@proto-native/base'
-import { Text } from '@proto-native/text'
+import { Base, BaseProps, takeBaseOwnProps } from '@proto-native/base'
+import { Text, TextProps, takeTextOwnProps } from '@proto-native/text'
 import * as React from 'react-native'
 import {
   useAnimatedStyle,
@@ -10,23 +10,29 @@ import {
 import styled, { useTheme } from 'styled-components/native'
 
 export enum ButtonPressAnimation {
-  ScaleDown,
   None,
+  ScaleDown,
 }
 
-export type ButtonProps = BaseProps<React.TextStyle> &
+export type ButtonProps = BaseProps &
+  TextProps &
+  React.PressableProps &
   Omit<React.PressableProps, `style`> & {
     icon?: keyof typeof Ionicons.glyphMap
     pressAnimation?: ButtonPressAnimation
   }
 
-const usePressAnimation = {
-  [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation,
-  [ButtonPressAnimation.None]: () => ({
-    animStyle: {},
-    animStart: () => {},
-    animRevert: () => {},
-  }),
+function usePressAnimation(animation: ButtonPressAnimation) {
+  const anims = {
+    [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation(),
+    [ButtonPressAnimation.None]: {
+      animStyle: {},
+      animStart: () => {},
+      animRevert: () => {},
+    },
+  }
+
+  return anims[animation]
 }
 
 function useScaleDownPressAnimation() {
@@ -58,41 +64,46 @@ function useScaleDownPressAnimation() {
 
 export function Button(props: ButtonProps) {
   const theme = useTheme()
-  const ownProps = takeButtonOwnProps(props)
-  const { children, icon, ...takenRest } = ownProps.taken
-  const fontSize =
-    React.StyleSheet.flatten(takenRest.style)?.fontSize ||
-    theme.typography.size.md
+  const textProps = takeTextOwnProps(props)
+  const baseProps = takeBaseOwnProps(textProps.rest)
+  const btnProps = takeButtonOwnProps(baseProps.rest)
 
-  const { animRevert, animStart, animStyle } =
-    usePressAnimation[props.pressAnimation || ButtonPressAnimation.None]()
+  const flatStyle = React.StyleSheet.flatten(props.style) as Record<
+    string,
+    unknown
+  >
+  const fontSize = flatStyle?.fontSize || theme.typography.size.md
+
+  const pressAnimation =
+    btnProps.taken.pressAnimation || ButtonPressAnimation.None
+  const { animRevert, animStart, animStyle } = usePressAnimation(pressAnimation)
 
   return (
-    <ButtonBase {...ownProps.rest} style={[animStyle]}>
+    <ButtonBase {...baseProps.taken} style={[animStyle]}>
       <Pressable
-        {...takenRest}
-        onTouchStart={() => {
-          takenRest.onTouchStart?.()
+        {...baseProps.rest}
+        onTouchStart={(e) => {
+          btnProps.taken.onTouchStart?.(e)
           animStart()
         }}
-        onTouchEnd={() => {
-          takenRest.onTouchEnd?.()
+        onTouchEnd={(e) => {
+          btnProps.taken.onTouchEnd?.(e)
           animRevert()
         }}
       >
-        <CardBtnText>{children}</CardBtnText>
-        <Icon name={icon} size={fontSize} />
+        <CardBtnText {...textProps.taken} />
+        <Icon name={btnProps.taken.icon} size={fontSize} />
       </Pressable>
     </ButtonBase>
   )
 }
 
 export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
-  const { showIf, ...taken } = props
+  const { icon, onTouchStart, onTouchEnd, pressAnimation, ...rest } = props
 
   return {
-    taken,
-    rest: { showIf },
+    taken: { icon, onTouchStart, onTouchEnd, pressAnimation },
+    rest,
   }
 }
 
@@ -101,8 +112,7 @@ const ButtonBase = styled(Base)``
 const Pressable = styled.Pressable`
   display: flex;
   flex-direction: row;
-  background-color: ${({ theme }) => `#3f83df`};
-  color: #122447;
+  background-color: ${(p) => p.theme.colors.surface.primary};
   margin-top: 30px;
   padding: 10px 15px;
   border-radius: 8px;

@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 export function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
   const [state, setState] = React.useState<{

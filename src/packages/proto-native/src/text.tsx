@@ -17,10 +17,10 @@ export function Text(props: TextProps) {
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
   const { children, style, ...rest } = props
-  const { color, fontWeight, fontSize, textAlign, ...styleRest } =
+  const { color, fontWeight, fontSize, fontFamily, textAlign, ...styleRest } =
     React.StyleSheet.flatten(style || [])
   const takenStyle = omitBy(
-    { color, fontWeight, fontSize, textAlign },
+    { color, fontWeight, fontSize, fontFamily, textAlign },
     isUndefined,
   )
 
