@@ -1,8 +1,5 @@
-import { Ionicons } from "@expo/vector-icons"
-import { BaseProps } from "@proto-native/base"
-import { TextProps } from "@proto-native/text"
-import { PressableProps } from "react-native"
 import {
+  AnimatedStyleProp,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -13,40 +10,49 @@ export enum ButtonPressAnimation {
   ScaleDown,
 }
 
-function useScaleDownPressAnimation() {
+export type AnimationHandle = {
+  style: AnimatedStyleProp<unknown>
+  start: (callback?: () => void) => void
+  revert: (callback?: () => void) => void
+}
+
+function useScaleDownPressAnimation(): AnimationHandle {
   const scale = useSharedValue(1)
   const scaleFrom = 1
   const scaleTo = 0.97
-  const animStyle = useAnimatedStyle(() => {
+  const style = useAnimatedStyle(() => {
     return {
       transform: [{ scale: scale.value }],
     }
   })
   const isBeingPressed = useSharedValue(false)
-  const animStart = () => {
+  const start = (callback?: () => void) => {
     isBeingPressed.value = true
     scale.value = withSpring(scale.value * scaleTo, undefined, () => {
       if (!isBeingPressed.value) {
         scale.value = scaleFrom
       }
+      callback?.()
     })
   }
-  const animRevert = () => {
+  const revert = (callback?: () => void) => {
     isBeingPressed.value = false
     if (scale.value != scaleTo) return
-    scale.value = withSpring((scale.value = scaleFrom))
+    scale.value = withSpring((scale.value = scaleFrom), undefined, callback)
   }
 
-  return { animStyle, animStart, animRevert }
+  return { style, start, revert }
 }
 
-export function usePressAnimation(animation: ButtonPressAnimation) {
+export function usePressAnimation(
+  animation: ButtonPressAnimation,
+): AnimationHandle {
   const anims = {
     [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation(),
     [ButtonPressAnimation.None]: {
-      animStyle: {},
-      animStart: () => {},
-      animRevert: () => {},
+      style: {},
+      start: () => {},
+      revert: () => {},
     },
   }
 
