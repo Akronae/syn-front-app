@@ -2,65 +2,28 @@ import { Ionicons } from '@expo/vector-icons'
 import { Base, BaseProps, takeBaseOwnProps } from '@proto-native/base'
 import { Text, TextProps, takeTextOwnProps } from '@proto-native/text'
 import * as React from 'react-native'
+import { PressableProps } from 'react-native'
 import {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
 import styled, { useTheme } from 'styled-components/native'
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
-export enum ButtonPressAnimation {
-  None,
-  ScaleDown,
+export enum ButtonType {
+  Primary,
+  Text
 }
 
 export type ButtonProps = BaseProps &
   TextProps &
-  React.PressableProps &
-  Omit<React.PressableProps, `style`> & {
+  PressableProps &
+  Omit<PressableProps, `style`> & {
     icon?: keyof typeof Ionicons.glyphMap
     pressAnimation?: ButtonPressAnimation
+    type?: ButtonType
   }
-
-function usePressAnimation(animation: ButtonPressAnimation) {
-  const anims = {
-    [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation(),
-    [ButtonPressAnimation.None]: {
-      animStyle: {},
-      animStart: () => {},
-      animRevert: () => {},
-    },
-  }
-
-  return anims[animation]
-}
-
-function useScaleDownPressAnimation() {
-  const scale = useSharedValue(1)
-  const scaleFrom = 1
-  const scaleTo = 0.97
-  const animStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scale.value }],
-    }
-  })
-  const isBeingPressed = useSharedValue(false)
-  const animStart = () => {
-    isBeingPressed.value = true
-    scale.value = withSpring(scale.value * scaleTo, undefined, () => {
-      if (!isBeingPressed.value) {
-        scale.value = scaleFrom
-      }
-    })
-  }
-  const animRevert = () => {
-    isBeingPressed.value = false
-    if (scale.value != scaleTo) return
-    scale.value = withSpring((scale.value = scaleFrom))
-  }
-
-  return { animStyle, animStart, animRevert }
-}
 
 export function Button(props: ButtonProps) {
   const theme = useTheme()
@@ -99,10 +62,10 @@ export function Button(props: ButtonProps) {
 }
 
 export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
-  const { icon, onTouchStart, onTouchEnd, pressAnimation, ...rest } = props
+  const { icon, type, onTouchStart, onTouchEnd, pressAnimation, ...rest } = props
 
   return {
-    taken: { icon, onTouchStart, onTouchEnd, pressAnimation },
+    taken: { icon, type, onTouchStart, onTouchEnd, pressAnimation },
     rest,
   }
 }
@@ -117,6 +80,7 @@ const Pressable = styled.Pressable`
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
+  border: 5px solid red;
 `
 
 const CardBtnText = styled(Text)`
