@@ -49,5 +49,4 @@ const ReadChapterBase = styled(Base)`
 const ScrollView = styled(React.ScrollView)`
   padding: 20px;
   padding-top: 50px;
-  background-color: ${(p) => p.theme.colors.surface.primary};
 `

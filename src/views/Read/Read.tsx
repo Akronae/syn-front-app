@@ -4,6 +4,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import text from 'src/assets/text'
+import { Button } from 'src/packages/proto-native/src/Button'
 import {
   RootStackParamList,
   getHeaderScreenOptions,
@@ -40,10 +41,9 @@ export function Read(props: ReadIndexProps) {
         screenOptions={({ route, navigation }) => ({
           ...(getHeaderScreenOptions(theme) as any),
           headerRight: () => (
-            <React.Button
-              title='Next'
+            <Button
               onPress={() => navigate(route.name, (chapter.state += 1))}
-            />
+            >Next</Button>
           ),
         })}
       >

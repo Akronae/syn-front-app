@@ -6,6 +6,7 @@ export interface Theme extends ProtoNative.Theme {
     primary: string
     surface: {
       primary: string
+      default: string
     }
     text: {
       primary: string
@@ -31,7 +32,8 @@ export const DarkTheme: Theme = {
   colors: {
     primary: `#83a8fa`,
     surface: {
-      primary: `#000`,
+      primary: `#564f95`,
+      default: `#000000`,
     },
     text: {
       primary: `#acaeb4`,
@@ -57,7 +59,10 @@ export const DarkTheme: Theme = {
       bold: `MazzardH-Bold`,
     },
     size: {
-      regular: 18,
+      xxl: 48,
+      xl: 32,
+      lg: 24,
+      md: 18,
     },
   },
 }

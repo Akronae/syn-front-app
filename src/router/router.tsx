@@ -16,9 +16,9 @@ export function Router() {
   const navigationContainerTheme = {
     dark: theme.dark,
     colors: {
-      primary: theme.colors.primary,
-      background: theme.colors.surface.primary,
-      card: theme.colors.surface.primary,
+      primary: theme.colors.surface.primary,
+      background: theme.colors.surface.default,
+      card: theme.colors.surface.default,
       text: theme.colors.text.primary,
       border: theme.colors.border,
       notification: theme.colors.notification,
