@@ -12,15 +12,15 @@ export type TextInputProps = BaseProps &
 
 function TextInputBase(props: TextInputProps) {
   const theme = useTheme()
-  const {children, ...passed} = props
+  const { children, ...passed } = props
   const textProps = takeTextOwnProps(passed)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
   const firstChild = React.Children.toArray(children)?.[0]
-  const placeholder = typeof firstChild === 'string' ? firstChild : undefined
+  const placeholder = typeof firstChild === `string` ? firstChild : undefined
 
   const onTextChange = (val: string) => {
-    if (val && props.model) props.model.state = val
+    if (props.model) props.model.state = val
   }
 
   return (
