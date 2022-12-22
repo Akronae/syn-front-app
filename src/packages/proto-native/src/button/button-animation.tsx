@@ -2,7 +2,11 @@ import { Ionicons } from "@expo/vector-icons"
 import { BaseProps } from "@proto-native/base"
 import { TextProps } from "@proto-native/text"
 import { PressableProps } from "react-native"
-import { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
+import {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
 
 export enum ButtonPressAnimation {
   None,
