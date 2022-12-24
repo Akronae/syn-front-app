@@ -1,4 +1,4 @@
-import { Base, BaseProps } from '@proto-native/base'
+import { Base, BaseProps } from '@proto-native/components'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react-native'
 import styled, { DefaultTheme } from 'styled-components/native'

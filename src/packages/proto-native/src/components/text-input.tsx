@@ -1,6 +1,10 @@
-import { Base, BaseProps, takeBaseOwnProps } from '@proto-native/base'
-import { ReactiveState } from '@proto-native/reactive-state'
-import { takeTextOwnProps } from '@proto-native/text'
+import {
+  Base,
+  BaseProps,
+  ReactiveState,
+  takeBaseOwnProps,
+  takeTextOwnProps,
+} from '@proto-native'
 import React from 'react'
 import * as ReactNative from 'react-native'
 import styled, { useTheme } from 'styled-components/native'

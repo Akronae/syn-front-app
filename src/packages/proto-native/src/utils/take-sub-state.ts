@@ -1,6 +1,5 @@
 import { get, set } from 'lodash-es'
 import { SetStateAction } from 'react'
-
 import { ReactiveState } from './reactive-state'
 
 /**

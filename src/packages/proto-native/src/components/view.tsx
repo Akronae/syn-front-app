@@ -1,6 +1,5 @@
-import { Base, BaseProps } from '@proto-native/base'
-import { useInterval } from '@proto-native/use-interval'
-import { useState } from '@proto-native/use-state'
+import { Base, BaseProps } from '@proto-native/components'
+import { useInterval, useState } from '@proto-native/utils'
 import { castArray } from 'lodash-es'
 import * as React from 'react-native'
 import styled from 'styled-components/native'

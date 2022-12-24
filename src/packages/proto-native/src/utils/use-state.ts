@@ -1,4 +1,4 @@
-import { ReactiveState } from '@proto-native/reactive-state'
+import { ReactiveState } from '@proto-native'
 import React from 'react'
 
 /**
