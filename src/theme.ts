@@ -3,6 +3,7 @@ export interface Theme {
     surface: {
       default: string
       primary: string
+      contrast: string
     }
     text: {
       primary: string

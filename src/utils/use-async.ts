@@ -5,16 +5,24 @@ export function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
     loading: boolean
     error: Error | null
     value: T | null
-  }>({
-    loading: true,
-    error: null,
-    value: null,
-  })
+    reload: () => Promise<void>
+      }>({
+        loading: true,
+        error: null,
+        value: null,
+        reload: () => fetch(),
+      })
+
+  const fetch: () => Promise<void> = () => {
+    return fn()
+      .then((value) => setState({ ...state, loading: false, value }))
+      .catch((error) =>
+        setState({ ...state, loading: false, value: null, error }),
+      )
+  }
 
   React.useEffect(() => {
-    fn()
-      .then((value) => setState({ loading: false, error: null, value }))
-      .catch((error) => setState({ loading: false, error, value: null }))
+    fetch()
   }, deps)
 
   return state
