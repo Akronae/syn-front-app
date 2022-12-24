@@ -1,4 +1,4 @@
-import { Base, BaseProps } from '@proto-native/base'
+import { Base, BaseProps } from '@proto-native'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 

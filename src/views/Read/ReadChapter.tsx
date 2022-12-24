@@ -1,10 +1,12 @@
-import { Base } from '@proto-native/base'
-import { View } from '@proto-native/view'
+import { Base } from '@proto-native'
+import { View } from '@proto-native'
 import { DrawerScreenProps } from '@react-navigation/drawer'
+import { useEffect } from 'react'
 import { useContext } from 'react'
 import * as React from 'react-native'
 import { Verse } from 'src/components/Verse'
 import { BookContext } from 'src/contexts/BookContext'
+import { ChapterContext } from 'src/contexts/ChapterContext'
 import ReadStorage from 'src/storage/ReadStorage'
 import { Book } from 'src/types'
 import styled from 'styled-components/native'
@@ -14,6 +16,7 @@ export type ReadChapterProps = DrawerScreenProps<Record<string, any>>
 export function ReadChapter(props: ReadChapterProps) {
   const { route } = props
   const book = useContext(BookContext)
+  const chapterCtx = useContext(ChapterContext)
   const chapter = book?.[route.name as never] as Book
   if (!chapter) return null
 
@@ -22,6 +25,10 @@ export function ReadChapter(props: ReadChapterProps) {
   const onScroll = (e: React.NativeSyntheticEvent<React.NativeScrollEvent>) => {
     console.log(e.nativeEvent, React.Dimensions.get(`screen`))
   }
+
+  useEffect(() => {
+    if (chapterCtx) chapterCtx.chapter.state = parseInt(route.name)
+  }, [])
 
   return (
     <ReadChapterBase>

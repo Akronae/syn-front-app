@@ -1,5 +1,5 @@
-import { Text } from '@proto-native/text'
-import { ExViewProps, View } from '@proto-native/view'
+import { Text } from '@proto-native'
+import { ExViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { Word } from 'src/components/Word'
 import { column } from 'src/styles/column'

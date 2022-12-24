@@ -1,4 +1,4 @@
-import * as ProtoNative from '@proto-native/theme'
+import * as ProtoNative from '@proto-native'
 
 export interface Theme extends ProtoNative.Theme {
   dark: boolean
@@ -7,6 +7,7 @@ export interface Theme extends ProtoNative.Theme {
     surface: {
       primary: string
       default: string
+      contrast: string
     }
     text: {
       primary: string
@@ -34,6 +35,7 @@ export const DarkTheme: Theme = {
     surface: {
       primary: `#564f95`,
       default: `#000000`,
+      contrast: `#ffffff`,
     },
     text: {
       primary: `#acaeb4`,

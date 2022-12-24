@@ -1,10 +1,12 @@
-import { Base } from '@proto-native/base'
-import { useState } from '@proto-native/use-state'
+import { Base } from '@proto-native'
+import { useState } from '@proto-native'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import text from 'src/assets/text'
-import { Button } from 'src/packages/proto-native/src/Button'
+import { ChapterContext } from 'src/contexts/ChapterContext'
+import { Button } from 'src/packages/proto-native/src/button'
+import { ButtonType } from 'src/packages/proto-native/src/button/button'
 import {
   RootStackParamList,
   getHeaderScreenOptions,
@@ -34,27 +36,32 @@ export function Read(props: ReadIndexProps) {
 
   return (
     <ReadBase>
-      <Drawer.Navigator
-        screenListeners={{
-          drawerItemPress: () => navigate(route.name, (chapter.state = 1)),
-        }}
-        screenOptions={({ route, navigation }) => ({
-          ...(getHeaderScreenOptions(theme) as any),
-          headerRight: () => (
-            <Button onPress={() => navigate(route.name, (chapter.state += 1))}>
-              Next
-            </Button>
-          ),
-        })}
-      >
-        {Object.entries(text.NT).map(([book, bookChapters], i) => (
-          <Drawer.Screen
-            name={book as keyof ReadChapterDrawerParamList}
-            component={ReadBook}
-            key={i}
-          />
-        ))}
-      </Drawer.Navigator>
+      <ChapterContext.Provider value={{ chapter }}>
+        <Drawer.Navigator
+          screenListeners={{
+            drawerItemPress: () => navigate(route.name, (chapter.state = 1)),
+          }}
+          screenOptions={({ route, navigation }) => ({
+            ...(getHeaderScreenOptions(theme) as any),
+            headerRight: () => (
+              <Button
+                onPress={() => navigate(route.name, (chapter.state += 1))}
+                type={ButtonType.Text}
+              >
+                Next
+              </Button>
+            ),
+          })}
+        >
+          {Object.entries(text.NT).map(([book, bookChapters], i) => (
+            <Drawer.Screen
+              name={book as keyof ReadChapterDrawerParamList}
+              component={ReadBook}
+              key={i}
+            />
+          ))}
+        </Drawer.Navigator>
+      </ChapterContext.Provider>
     </ReadBase>
   )
 }

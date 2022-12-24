@@ -1,4 +1,4 @@
-import { Base } from '@proto-native/base'
+import { Base } from '@proto-native'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react-native'
