@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'
-import { Base, BaseProps, takeBaseOwnProps } from '@proto-native/base'
-import { Text, TextProps, takeTextOwnProps } from '@proto-native/text'
+import { Base, BaseProps, takeBaseOwnProps } from '@proto-native/components'
+import { Text, TextProps, takeTextOwnProps } from '@proto-native/components'
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, useTheme } from 'styled-components/native'
