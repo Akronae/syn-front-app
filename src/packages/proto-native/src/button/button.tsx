@@ -1,3 +1,4 @@
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -9,8 +10,7 @@ import {
 } from '@proto-native/components'
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
-import styled, { css, useTheme } from 'styled-components/native'
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
+import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
 
 export enum ButtonType {
   Primary,
@@ -40,6 +40,9 @@ export function Button(props: ButtonProps) {
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
   const anim = usePressAnimation(pressAnimation)
+  const pressableStyle = [style]
+  if (btnProps.taken.type !== ButtonType.Text)
+    pressableStyle.push(elevation(theme))
 
   return (
     <ButtonBase {...baseProps.taken} style={[anim.style]}>
@@ -51,7 +54,7 @@ export function Button(props: ButtonProps) {
         onTouchEnd={(e) => {
           anim.revert(() => btnProps.taken.onTouchEnd?.(e))
         }}
-        style={[elevation, style]}
+        style={pressableStyle}
       >
         <CardBtnText {...textProps.taken} />
         <Icon name={btnProps.taken.icon} size={fontSize} />
@@ -72,39 +75,46 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
 
 const ButtonBase = styled(Base)``
 
-const PressableDisabled = css`
+const Disabled = css`
   background-color: gray;
+`
+
+const ButtonText = css`
+  background-color: transparent;
+  color: ${(p) => p.theme.colors.text.primary};
 `
 
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
   flex-direction: row;
   background-color: ${(p) => p.theme.colors.surface.primary};
-  margin-top: 30px;
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
+  color: #122447;
 
-  ${(p) => p.disabled && PressableDisabled}
+  ${(p) => p.disabled && Disabled}
+  ${(p) => p.type === ButtonType.Text && ButtonText}
 ` as typeof React.Pressable
 
 const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
-  color: #122447;
+  color: inherit;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
   margin-left: auto;
-  color: #122447;
+  color: inherit;
 `
 
-const elevation = React.StyleSheet.create({
-  elevation: {
-    shadowColor: `#fff`,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 5,
-  },
-}).elevation
+const elevation = (theme: DefaultTheme) =>
+  React.StyleSheet.create({
+    elevation: {
+      shadowColor: theme.colors.surface.constrast,
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.2,
+      shadowRadius: 2,
+      elevation: 5,
+    },
+  }).elevation
