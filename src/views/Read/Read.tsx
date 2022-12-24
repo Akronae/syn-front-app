@@ -41,9 +41,9 @@ export function Read(props: ReadIndexProps) {
         screenOptions={({ route, navigation }) => ({
           ...(getHeaderScreenOptions(theme) as any),
           headerRight: () => (
-            <Button
-              onPress={() => navigate(route.name, (chapter.state += 1))}
-            >Next</Button>
+            <Button onPress={() => navigate(route.name, (chapter.state += 1))}>
+              Next
+            </Button>
           ),
         })}
       >

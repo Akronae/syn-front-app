@@ -1,10 +1,10 @@
+import { Button, ButtonPressAnimation } from '@proto-native/Button'
 import { Base } from '@proto-native/base'
 import { Text } from '@proto-native/text'
+import { useAsync } from '@proto-native/use-async'
 import { View } from '@proto-native/view'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
-import { Button } from '@proto-native/Button'
-import { useAsync } from '@proto-native/use-async'
 import { RootStackParamList } from 'src/router'
 import ReadStorage from 'src/storage/ReadStorage'
 import styled from 'styled-components/native'
@@ -19,12 +19,13 @@ export function Home(props: HomeProps) {
     <HomeBase>
       <Card showIf={a.value}>
         <Text>Get back where you left</Text>
-        <Button
-          onPress={() => props.navigation.navigate(`Read`, {})}
+        <Btn
+          onTouchEnd={() => props.navigation.navigate(`Read`, {})}
           icon='chevron-forward'
+          pressAnimation={ButtonPressAnimation.ScaleDown}
         >
           {a.value?.book} {a.value?.chapter}
-        </Button>
+        </Btn>
       </Card>
     </HomeBase>
   )
@@ -40,3 +41,7 @@ const Card = styled(View)`
   border-radius: 16px;
   padding: 20px;
 `
+
+const Btn = styled(Button)`
+  background-color: #1e4894;
+` as typeof Button
