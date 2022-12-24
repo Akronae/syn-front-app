@@ -4,8 +4,4 @@ module.exports = {
   jsxSingleQuote: true,
   trailingComma: `all`,
   tabWidth: 2,
-
-  importOrder: [`^components/(.*)$`, `^[./]`],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
 }
