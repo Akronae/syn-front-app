@@ -3,9 +3,9 @@ import { Base } from '@proto-native'
 import { Text } from '@proto-native'
 import { useAsync } from '@proto-native'
 import { View } from '@proto-native'
+import { useOnRouteEnter } from '@proto-native'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
-import { useOnRouteEnter } from 'src/packages/proto-native/src/utils/react-navigation/onRouteEnter'
 import { RootStackParamList } from 'src/router'
 import ReadStorage from 'src/storage/ReadStorage'
 import styled from 'styled-components/native'
@@ -13,27 +13,30 @@ import styled from 'styled-components/native'
 export type HomeProps = BottomTabScreenProps<RootStackParamList, `Home`>
 
 export function Home(props: HomeProps) {
-  const a = useAsync(async () => await ReadStorage.get())
+  const read = useAsync(async () => await ReadStorage.get())
 
   useOnRouteEnter(() => {
-    a.reload()
+    read.refresh()
   })
 
   return (
     <HomeBase>
-      <Card showIf={a.value}>
+      <Card showIf={read.value}>
         <Text>Get back where you left</Text>
         <Btn
           onTouchEnd={() =>
             props.navigation.navigate(`Read`, {
-              screen: a.value?.book,
-              params: { screen: a.value?.chapter.toString() },
+              screen: read.value?.book,
+              params: {
+                screen: read.value?.chapter.toString(),
+                params: { verse: read.value?.verse },
+              },
             })
           }
           icon='chevron-forward'
           pressAnimation={ButtonPressAnimation.ScaleDown}
         >
-          {a.value?.book} {a.value?.chapter}
+          {read.value?.book} {read.value?.chapter}:{read.value?.verse}
         </Btn>
       </Card>
     </HomeBase>

@@ -1,24 +1,21 @@
-import { Base } from '@proto-native'
+import { ReadBook } from './ReadBook'
+import { Base, Button, ButtonType } from '@proto-native'
 import { useState } from '@proto-native'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import * as React from 'react-native'
 import text from 'src/assets/text'
 import { ChapterContext } from 'src/contexts/ChapterContext'
-import { Button } from 'src/packages/proto-native/src/button'
-import { ButtonType } from 'src/packages/proto-native/src/button/button'
 import {
   RootStackParamList,
   getHeaderScreenOptions,
 } from 'src/router/router-config'
 import styled, { useTheme } from 'styled-components/native'
 
-import { ReadBook } from './ReadBook'
-
-export type ReadChapterDrawerParamList = {
-  [key in keyof typeof text.NT]: { chapter: number }
+export type ReadDrawerParamList = {
+  [key: string]: { chapter: number }
 }
-const Drawer = createDrawerNavigator<ReadChapterDrawerParamList>()
+const Drawer = createDrawerNavigator<ReadDrawerParamList>()
 
 export type ReadIndexProps = BottomTabScreenProps<RootStackParamList, `Read`>
 
@@ -55,7 +52,7 @@ export function Read(props: ReadIndexProps) {
         >
           {Object.entries(text.NT).map(([book, bookChapters], i) => (
             <Drawer.Screen
-              name={book as keyof ReadChapterDrawerParamList}
+              name={book as keyof ReadDrawerParamList}
               component={ReadBook}
               key={i}
             />

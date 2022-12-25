@@ -1,12 +1,12 @@
 import { Text } from '@proto-native'
-import { ExViewProps, View } from '@proto-native'
+import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
 import { GrammaticalCase, PartOfSpeech } from 'src/types'
 import * as Types from 'src/types'
 import styled from 'styled-components/native'
 
-export interface WordProps extends ExViewProps {
+export interface WordProps extends ViewProps {
   word: Types.Word
 }
 

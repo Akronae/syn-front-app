@@ -1,12 +1,12 @@
 import { Text } from '@proto-native'
-import { ExViewProps, View } from '@proto-native'
+import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { Word } from 'src/components/Word'
 import { column } from 'src/styles/column'
 import * as Types from 'src/types'
 import styled from 'styled-components/native'
 
-export interface VerseProps extends ExViewProps {
+export interface VerseProps extends ViewProps {
   verse: Types.Verse
 }
 

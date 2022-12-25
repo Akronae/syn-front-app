@@ -1,3 +1,5 @@
+import { ReadDrawerParamList } from './Read'
+import { ReadChapter } from './ReadChapter'
 import { Base } from '@proto-native'
 import { DrawerScreenProps } from '@react-navigation/drawer'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -6,13 +8,13 @@ import text from 'src/assets/text'
 import { BookContext } from 'src/contexts/BookContext'
 import styled from 'styled-components/native'
 
-import { ReadChapterDrawerParamList } from './Read'
-import { ReadChapter } from './ReadChapter'
-
 export type StackType = Record<string, any>
 const Stack = createNativeStackNavigator<StackType>()
 
-export type ReadBookProps = DrawerScreenProps<ReadChapterDrawerParamList>
+export type ReadBookDrawerParamList = {
+  [key: string]: { verse: number }
+}
+export type ReadBookProps = DrawerScreenProps<ReadDrawerParamList>
 
 export function ReadBook(props: ReadBookProps) {
   const { route } = props
