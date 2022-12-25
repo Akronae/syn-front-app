@@ -4,10 +4,12 @@ import {
   Base,
   BaseProps,
   takeBaseOwnProps,
+} from '@proto-native/components/base'
+import {
   takeTextOwnProps,
   Text,
   TextProps,
-} from '@proto-native/components'
+} from '@proto-native/components/text'
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
@@ -111,7 +113,7 @@ const Icon = styled(Ionicons)`
 const elevation = (theme: DefaultTheme) =>
   React.StyleSheet.create({
     elevation: {
-      shadowColor: theme.colors.surface.constrast,
+      shadowColor: theme.colors.surface.contrast,
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.2,
       shadowRadius: 2,

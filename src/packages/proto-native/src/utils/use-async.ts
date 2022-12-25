@@ -5,12 +5,12 @@ export function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
     loading: boolean
     error: Error | null
     value: T | null
-    reload: () => Promise<void>
+    refresh: () => Promise<void>
       }>({
         loading: true,
         error: null,
         value: null,
-        reload: () => fetch(),
+        refresh: () => fetch(),
       })
 
   const fetch: () => Promise<void> = () => {
