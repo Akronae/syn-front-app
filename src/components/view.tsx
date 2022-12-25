@@ -4,22 +4,23 @@ import { castArray } from 'lodash-es'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 
-export interface ExViewProps extends BaseProps {
+export interface ViewProps extends BaseProps {
   gap?: number
   childRendering?: { instant?: { first?: number }; interval?: { ms: number } }
 }
 
-export function View(props: ExViewProps) {
+export function View(props: ViewProps) {
   const { children, gap, childRendering, ...passed } = props
-
-  const flatChildren = castArray(children).flatMap((e, i, arr) => [
-    e,
-    gap && i != arr.length - 1 && <Divider key={i + 100000} gap={gap} />,
-  ])
-
   const renderedChildren = useState(childRendering?.instant?.first ?? 0)
 
-  if (!childRendering && renderedChildren.state !== flatChildren.length) {
+  const flatChildren = castArray(children).flatMap((e, i, arr) => {
+    if (i >= renderedChildren.state) return []
+
+    const hasDivider = gap && i != arr.length - 1
+    return [e, hasDivider && <Divider key={i + 100000} gap={gap} />]
+  })
+
+  if (!childRendering) {
     renderedChildren.state = flatChildren.length
   }
 
@@ -30,26 +31,18 @@ export function View(props: ExViewProps) {
     }
   }, childRendering?.interval?.ms)
 
-  return (
-    <ViewBase {...passed}>
-      {flatChildren.map((c, i) => {
-        if (i < renderedChildren.state) {
-          return c
-        }
-      })}
-    </ViewBase>
-  )
+  return <ViewBase {...passed}>{flatChildren}</ViewBase>
 }
 
 const ViewBase = styled(Base)`
   ${(p) => {
-    if (React.Platform.OS === `web`)
-      return `
+  if (React.Platform.OS === `web`)
+    return `
         min-height: revert;
         min-width: revert;
       `
-  }}
-`
+}}
+` as typeof Base
 
 const Divider = styled.View<{ gap?: number }>`
   height: ${(p) => p.gap};

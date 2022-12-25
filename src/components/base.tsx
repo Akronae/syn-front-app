@@ -4,7 +4,8 @@ import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 
 export interface BaseProps<TStyle extends Record<string, any> = React.ViewStyle>
-  extends PropsWithChildren<any> {
+  extends PropsWithChildren<any>,
+    React.ViewProps {
   style?: React.StyleProp<TStyle>
   showIf?: boolean
 }
