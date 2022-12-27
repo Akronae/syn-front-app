@@ -1,4 +1,3 @@
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -13,6 +12,7 @@ import {
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export enum ButtonType {
   Primary,
@@ -78,12 +78,12 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
 const ButtonBase = styled(Base)``
 
 const Disabled = css`
-  background-color: gray;
+  background-color: ${(p) => p.theme.colors.surface.disabled};
+  color: ${(p) => p.theme.colors.text.primary};
 `
 
 const ButtonText = css`
   background-color: transparent;
-  color: ${(p) => p.theme.colors.text.primary};
 `
 
 const Pressable = styled.Pressable<ButtonProps>`
@@ -93,7 +93,7 @@ const Pressable = styled.Pressable<ButtonProps>`
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
-  color: #122447;
+  color: ${(p) => p.theme.colors.text.light};
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === ButtonType.Text && ButtonText}
