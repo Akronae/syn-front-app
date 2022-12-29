@@ -50,6 +50,9 @@ const TextWrapper = styled(Base)``
 
 const TextBase = styled.Text`
   color: ${(p) => p.theme.colors.text.primary};
+  color: inherit;
   font-size: ${(p) => p.theme.typography.size.md};
+  font-size: inherit;
   font-family: ${(p) => boldnessToFont(getStyleBoldness(p.style), p.theme)};
+  font-family: inherit;
 `

@@ -2,8 +2,8 @@ import { RgbaColor } from './rgba-color'
 
 export function rgbaToHex(rgba: RgbaColor): string {
   const { r, g, b, a } = rgba
-  const hex = `#${Math.round(r).toString(16)}${Math.round(g).toString(
-    16,
-  )}${Math.round(b).toString(16)}${Math.round(a * 255).toString(16)}`
+
+  const toHex = (value: number) => Math.round(value).toString(16).padStart(2, `0`)
+  const hex = `#${toHex(r)}${toHex(g)}${toHex(b)}${Math.round(a * 255).toString(16).padStart(2, `0`)}`
   return hex
 }

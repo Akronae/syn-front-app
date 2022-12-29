@@ -4,6 +4,7 @@ import {
   ReactiveState,
   takeBaseOwnProps,
   takeTextOwnProps,
+  useEnsureChildrenType,
   useExistingStateOr,
   useState,
 } from '@proto-native'
@@ -18,64 +19,113 @@ import styled, {
   ThemeProps,
   useTheme,
 } from 'styled-components/native'
-import { TextInputSuggestionProps } from './text-input-suggestion'
+import {
+  TextInputSuggestion,
+  TextInputSuggestionProps,
+} from './text-input-suggestion'
+
+declare module '.' {
+  export namespace TextInput {
+    export let Suggestion: typeof TextInputSuggestion
+  }
+}
+
+type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
 export type TextInputProps = BaseProps &
   ReactNative.TextInputProps & {
     model?: ReactiveState<string>
-    isFocused?: ReactiveState<boolean>
-    focus?: {
+    focused?: {
+      isFocused?: ReactiveState<boolean>
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     suggestions?: {
-      values?: React.ReactElement<TextInputSuggestionProps>[]
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      values?: TextInputSuggestion[]
       show?: ReactiveState<boolean>
+      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      focused?: {
+        style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      }
     }
   }
 
-function TextInputBase(props: TextInputProps) {
+export function TextInput(props: TextInputProps) {
   const theme = useTheme()
-  const { children, suggestions, ...passed } = props
+  let {
+    children,
+    focused,
+    suggestions,
+    onChangeText,
+    numberOfLines,
+    multiline,
+    onKeyPress,
+    onSubmitEditing,
+    ...passed
+  } = props
+  numberOfLines ??= 1
+  multiline ??= numberOfLines > 1
   const textProps = takeTextOwnProps(passed)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
+  useEnsureChildrenType(children, TextInputSuggestion)
   const model = useExistingStateOr(props.model, ``)
-  const isFocused = useExistingStateOr(props.isFocused, false)
-  const showSuggestions = useState(false)
+  if (!focused) focused = {}
+  focused.isFocused = useExistingStateOr(focused?.isFocused, false)
+  const showSuggestions = useState(suggestions?.show?.state ?? false)
 
   useEffect(() => {
-    showSuggestions.state = isFocused.state && !isEmpty(suggestions?.values)
-  }, [suggestions?.values, isFocused.state])
+    showSuggestions.state =
+      focused!.isFocused!.state && !isEmpty(suggestions?.values)
+  }, [suggestions?.values, focused!.isFocused!.state])
 
   const placeholder = React.Children.toArray(children).reduce(
     (acc, child) => `${acc} ${child.toString()}`,
     ``,
   ) as string
 
-  const onChangeText = (val: string) => {
+  const onChangeTextBase = (val: string) => {
+    onChangeText?.(val)
     model.state = val
   }
 
+  const onKeyPressBase = (
+    e: ReactNative.NativeSyntheticEvent<ReactNative.TextInputKeyPressEventData>,
+  ) => {
+    onKeyPress?.(e)
+
+    if (ReactNative.Platform.OS === `web`) {
+      const event = e.nativeEvent as KeyboardEvent
+      if (event.key === `Enter` && event.ctrlKey) {
+        onSubmitEditing?.({
+          ...e,
+          nativeEvent: { ...e.nativeEvent, text: model.state },
+        })
+      }
+    }
+  }
+
   return (
-    <Base {...baseProps.taken} {...textProps.rest}>
+    <TextInputBase {...baseProps.taken} {...textProps.rest}>
       <NativeInput
-        isFocused={isFocused}
+        focused={focused}
         model={model}
         suggestions={suggestions}
-        onChangeText={onChangeText}
         placeholder={placeholder}
+        onChangeText={onChangeTextBase}
         placeholderTextColor={theme.colors.text.primary}
         value={model.state}
-        numberOfLines={1}
+        numberOfLines={numberOfLines}
+        multiline={multiline}
+        onKeyPress={onKeyPressBase}
+        onSubmitEditing={onSubmitEditing}
         {...textProps.taken}
         {...baseProps.rest}
         onFocus={(e) => {
-          isFocused.state = true
+          focused!.isFocused!.state = true
           props.onFocus?.(e)
         }}
         onBlur={(e) => {
-          isFocused.state = false
+          focused!.isFocused!.state = false
           props.onBlur?.(e)
         }}
       />
@@ -92,11 +142,13 @@ function TextInputBase(props: TextInputProps) {
           </Base>
         ))}
       </SuggestionsContainer>
-    </Base>
+    </TextInputBase>
   )
 }
 
-export const TextInput = styled(TextInputBase)`` as typeof TextInputBase
+TextInput.Suggestion = TextInputSuggestion
+
+const TextInputBase = styled(Base)`` as typeof Base
 
 const NativeInputOnFocus = css`
   border-color: ${(p) =>
@@ -118,9 +170,10 @@ const NativeInput = styled(ReactNative.TextInput)<TextInputProps>`
   border: 2px solid transparent;
   outline-width: 0;
 
-  ${(p) => p.isFocused?.state && (p.onFocusStyle || NativeInputOnFocus)}
   ${(p) =>
-  p.suggestions?.show?.state && (p.onSuggestionsStyle || NativeOnSuggestions)}
+  p.focused?.isFocused?.state && (p.focused?.style || NativeInputOnFocus)}
+  ${(p) =>
+    p.suggestions?.show?.state && (p.suggestions?.style || NativeOnSuggestions)}
 ` as FC<TextInputProps>
 
 const SuggestionsContainer = styled(Base)`` as typeof Base
