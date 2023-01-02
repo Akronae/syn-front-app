@@ -51,10 +51,12 @@ export function Button(props: ButtonProps) {
       <Pressable
         {...baseProps.rest}
         onTouchStart={(e) => {
-          anim.start(() => btnProps.taken.onTouchStart?.(e))
+          // anim.start(() => btnProps.taken?.onTouchStart?.(e))
+          btnProps.taken?.onTouchStart?.(e)
         }}
         onTouchEnd={(e) => {
-          anim.revert(() => btnProps.taken.onTouchEnd?.(e))
+          // anim.revert(() => )
+          btnProps.taken?.onTouchEnd?.(e)
         }}
         style={pressableStyle}
       >
@@ -106,12 +108,12 @@ const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
   text-align: center;
-  color: inherit;
+  /* color: inherit; */
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
   margin-left: auto;
-  color: inherit;
+  /* color: inherit; */
   margin: auto;
 `
 

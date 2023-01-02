@@ -1,14 +1,18 @@
 import { Ionicons } from '@expo/vector-icons'
 import {
-  BaseProps,
   hexLerp,
   ReactiveState,
-  takeBaseOwnProps,
-  takeTextOwnProps,
   useChildrenByType,
   useExistingStateOr,
   useState,
-} from '@proto-native'
+} from '@proto-native/utils'
+import {
+  BaseProps,
+  takeBaseOwnProps,
+} from '@proto-native/components/base'
+import {
+  takeTextOwnProps,
+} from '@proto-native/components/text'
 import { Base } from '@proto-native/components/base'
 import { isEmpty } from 'lodash-es'
 import React, { useEffect } from 'react'
@@ -195,7 +199,7 @@ const InputContainer = styled(Base)<TextInputProps>`
   font-size: ${(p) => p.theme.typography.size.md};
   background-color: ${(p) => p.theme.colors.surface.sub};
   padding: 10px;
-  border-radius: inherit;
+  /* border-radius: inherit; */
   border: 2px solid transparent;
 
   ${(p) => p.isFocused?.state && p.focused?.style}
@@ -206,9 +210,9 @@ const InputContainer = styled(Base)<TextInputProps>`
 const NativeInput = styled(ReactNative.TextInput)`
   outline-width: 0;
   width: 100%;
-  color: inherit;
-  font-size: inherit;
-  font-family: inherit;
+  /* color: inherit; */
+  /* font-size: inherit; */
+  /* font-family: inherit; */
 ` as any as typeof ReactNative.TextInput
 
 const SuggestionsContainer = styled(Base)<{
@@ -220,6 +224,6 @@ const SuggestionsContainer = styled(Base)<{
 
 const Icon = styled(Ionicons)`
   margin-right: ${(p) => p.theme.spacing.two};
-  color: inherit;
-  font-size: inherit;
+  /* color: inherit; */
+  /* font-size: inherit; */
 ` as any as typeof Ionicons

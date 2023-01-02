@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
-import { hexLerp } from '@proto-native'
+import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import * as React from 'react-native'
@@ -51,7 +51,7 @@ const CircleOuter = styled.View<RadioOptionProps>`
   aspect-ratio: 1 / 1;
   margin-right: 15px;
   margin-top: 2px;
-  border-radius: 50%;
+  border-radius: ${borderRadiusPercentToNumber(50)}px;
   background-color: ${(p) =>
     p.isSelected
       ? p.theme.colors.surface.primary
@@ -66,7 +66,7 @@ const CircleOuter = styled.View<RadioOptionProps>`
 const CircleInner = styled.View<RadioOptionProps>`
   height: 50%;
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  border-radius: ${borderRadiusPercentToNumber(50)}px;
   background-color: ${(p) => p.theme.colors.surface.default};
   opacity: ${(props) => (props.isSelected ? 1 : 0)};
 `

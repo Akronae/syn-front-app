@@ -1,4 +1,5 @@
-import { ReactiveState, useState } from '@proto-native'
+import { useState } from '@proto-native/utils/use-state'
+import { ReactiveState } from '@proto-native/utils/reactive-state'
 
 /**
  * Returns a new `ReactiveState` based on `fallbackValue` if the passed `ReactiveState` is not defined.

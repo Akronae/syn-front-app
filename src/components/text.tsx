@@ -1,4 +1,4 @@
-import { Base, BaseProps } from '@proto-native/components'
+import { Base, BaseProps } from '@proto-native/components/base'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react-native'
 import styled, { DefaultTheme } from 'styled-components/native'
@@ -50,9 +50,9 @@ const TextWrapper = styled(Base)``
 
 const TextBase = styled.Text`
   color: ${(p) => p.theme.colors.text.primary};
-  color: inherit;
+  /* color: inherit; */
   font-size: ${(p) => p.theme.typography.size.md};
-  font-size: inherit;
+  /* font-size: inherit; */
   font-family: ${(p) => boldnessToFont(getStyleBoldness(p.style), p.theme)};
-  font-family: inherit;
+  /* font-family: inherit; */
 `

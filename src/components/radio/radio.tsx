@@ -3,17 +3,11 @@ import {
   useEnsureChildrenType,
   useExistingStateOr,
   useState,
-} from '@proto-native'
+} from '@proto-native/utils'
 import { View, ViewProps } from '@proto-native/components/view'
 import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components/native'
 import { RadioOption, RadioOptionProps } from './radio-option'
-
-// declare module '.' {
-// namespace Radio {
-// export let Option: typeof RadioOption
-// }
-// }
 
 export type RadioProps<T> = ViewProps & {
   children: React.ReactElement<RadioOptionProps>[]
