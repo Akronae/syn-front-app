@@ -1,16 +1,17 @@
+import { Ionicons } from '@expo/vector-icons'
 import {
   BaseProps,
   hexLerp,
   ReactiveState,
   takeBaseOwnProps,
   takeTextOwnProps,
-  useEnsureChildrenType,
+  useChildrenByType,
   useExistingStateOr,
   useState,
 } from '@proto-native'
 import { Base } from '@proto-native/components/base'
 import { isEmpty } from 'lodash-es'
-import React, { FC, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import * as ReactNative from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -24,42 +25,49 @@ import {
   TextInputSuggestionProps,
 } from './text-input-suggestion'
 
-declare module '.' {
-  export namespace TextInput {
-    export let Suggestion: typeof TextInputSuggestion
-  }
-}
-
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
 export type TextInputProps = BaseProps &
   ReactNative.TextInputProps & {
     model?: ReactiveState<string>
     focused?: {
-      isFocused?: ReactiveState<boolean>
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
+    isFocused?: ReactiveState<boolean>
     suggestions?: {
-      values?: TextInputSuggestion[]
       show?: ReactiveState<boolean>
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      container?: {
+        style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      }
       focused?: {
         style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
       }
     }
+    input?: {
+      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    }
+    icon?: keyof typeof Ionicons['glyphMap']
+    rightSlot?: React.ReactNode
   }
 
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
     children,
-    focused,
+    focused: focusedProps,
+    isFocused: isFocusedProps,
     suggestions,
     onChangeText,
+    onFocus,
+    onBlur,
     numberOfLines,
     multiline,
     onKeyPress,
     onSubmitEditing,
+    icon,
+    rightSlot,
+    input,
     ...passed
   } = props
   numberOfLines ??= 1
@@ -67,26 +75,28 @@ export function TextInput(props: TextInputProps) {
   const textProps = takeTextOwnProps(passed)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
-  useEnsureChildrenType(children, TextInputSuggestion)
   const model = useExistingStateOr(props.model, ``)
-  if (!focused) focused = {}
-  focused.isFocused = useExistingStateOr(focused?.isFocused, false)
+  const focused = focusedProps ?? {}
+  if (!focused.style) focused.style = NativeInputOnFocus
+  const isFocused = useExistingStateOr(isFocusedProps, false)
+
+  if (!suggestions) suggestions = {}
+  if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
   const showSuggestions = useState(suggestions?.show?.state ?? false)
+  const { taken: suggestionElems, left: childrenFiltered } = useChildrenByType(
+    children,
+    TextInputSuggestion,
+  )
 
   useEffect(() => {
     showSuggestions.state =
-      focused!.isFocused!.state && !isEmpty(suggestions?.values)
-  }, [suggestions?.values, focused!.isFocused!.state])
+      (isFocused?.state || false) && !isEmpty(suggestionElems)
+  }, [suggestionElems, isFocused.state])
 
-  const placeholder = React.Children.toArray(children).reduce(
-    (acc, child) => `${acc} ${child.toString()}`,
+  const placeholder = childrenFiltered.reduce(
+    (acc, child) => `${acc} ${child?.toString()}`,
     ``,
   ) as string
-
-  const onChangeTextBase = (val: string) => {
-    onChangeText?.(val)
-    model.state = val
-  }
 
   const onKeyPressBase = (
     e: ReactNative.NativeSyntheticEvent<ReactNative.TextInputKeyPressEventData>,
@@ -106,35 +116,48 @@ export function TextInput(props: TextInputProps) {
 
   return (
     <TextInputBase {...baseProps.taken} {...textProps.rest}>
-      <NativeInput
+      <InputContainer
         focused={focused}
-        model={model}
+        isFocused={isFocused}
         suggestions={suggestions}
-        placeholder={placeholder}
-        onChangeText={onChangeTextBase}
-        placeholderTextColor={theme.colors.text.primary}
-        value={model.state}
-        numberOfLines={numberOfLines}
-        multiline={multiline}
-        onKeyPress={onKeyPressBase}
-        onSubmitEditing={onSubmitEditing}
-        {...textProps.taken}
-        {...baseProps.rest}
-        onFocus={(e) => {
-          focused!.isFocused!.state = true
-          props.onFocus?.(e)
-        }}
-        onBlur={(e) => {
-          focused!.isFocused!.state = false
-          props.onBlur?.(e)
-        }}
-      />
-      <SuggestionsContainer showIf={showSuggestions.state}>
-        {suggestions?.values?.map((suggestion, i) => (
+        input={input}
+      >
+        {icon && <Icon name={icon} />}
+        <NativeInput
+          placeholder={placeholder}
+          placeholderTextColor={theme.colors.text.primary}
+          value={model.state}
+          numberOfLines={numberOfLines}
+          multiline={multiline}
+          onKeyPress={onKeyPressBase}
+          onSubmitEditing={onSubmitEditing}
+          {...textProps.taken}
+          {...baseProps.rest}
+          onChangeText={(val) => {
+            model.state = val
+            onChangeText?.(val)
+          }}
+          onFocus={(e) => {
+            if (isFocused) isFocused.state = true
+            onFocus?.(e)
+          }}
+          onBlur={(e) => {
+            if (isFocused) isFocused.state = false
+            onBlur?.(e)
+          }}
+        />
+        {rightSlot}
+      </InputContainer>
+      <SuggestionsContainer
+        showIf={showSuggestions.state}
+        suggestions={suggestions}
+      >
+        {suggestionElems.map((suggestion, i) => (
           <Base
             key={i}
             onTouchEnd={() => {
-              model.state = suggestion.props.children.toString()
+              if (suggestion.props.isDisabled) return
+              model.state = suggestion.props.value
               showSuggestions.state = false
             }}
           >
@@ -148,32 +171,55 @@ export function TextInput(props: TextInputProps) {
 
 TextInput.Suggestion = TextInputSuggestion
 
-const TextInputBase = styled(Base)`` as typeof Base
+const TextInputBase = styled(Base)`
+  border-radius: 8px;
+` as typeof Base
 
 const NativeInputOnFocus = css`
   border-color: ${(p) =>
     hexLerp(p.theme.colors.surface.sub, p.theme.colors.surface.contrast, 0.05)};
 `
 
-const NativeOnSuggestions = css`
+const NativeInputOnSuggestions = css`
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 `
 
-const NativeInput = styled(ReactNative.TextInput)<TextInputProps>`
+const InputContainer = styled(Base)<TextInputProps>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   font-family: ${(p) => p.theme.typography.font.regular};
   color: ${(p) => p.theme.colors.text.primary};
   font-size: ${(p) => p.theme.typography.size.md};
   background-color: ${(p) => p.theme.colors.surface.sub};
   padding: 10px;
-  border-radius: 8px;
+  border-radius: inherit;
   border: 2px solid transparent;
+
+  ${(p) => p.isFocused?.state && p.focused?.style}
+  ${(p) => p.suggestions?.show?.state && p.suggestions?.style}
+  ${(p) => p.input?.style}
+` as typeof Base
+
+const NativeInput = styled(ReactNative.TextInput)`
   outline-width: 0;
+  width: 100%;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+` as any as typeof ReactNative.TextInput
 
-  ${(p) =>
-  p.focused?.isFocused?.state && (p.focused?.style || NativeInputOnFocus)}
-  ${(p) =>
-    p.suggestions?.show?.state && (p.suggestions?.style || NativeOnSuggestions)}
-` as FC<TextInputProps>
+const SuggestionsContainer = styled(Base)<{
+  suggestions: TextInputProps['suggestions']
+}>`
+  background-color: ${(props) => props.theme.colors.surface.sub};
+  ${(p) => p.suggestions?.container?.style}
+`
 
-const SuggestionsContainer = styled(Base)`` as typeof Base
+const Icon = styled(Ionicons)`
+  margin-right: ${(p) => p.theme.spacing.two};
+  color: inherit;
+  font-size: inherit;
+` as any as typeof Ionicons

@@ -7,9 +7,9 @@ import styled from 'styled-components/native'
 import { RadioOptionDescription } from './radio-option-description'
 
 declare module '.' {
-  export namespace RadioOption {
-    export let Description: typeof RadioOptionDescription
-  }
+  // namespace RadioOption {
+  // let Description: typeof RadioOptionDescription
+  // }
 }
 
 export type RadioOptionProps<T = any> = BaseProps & {
@@ -19,7 +19,7 @@ export type RadioOptionProps<T = any> = BaseProps & {
 }
 
 export function RadioOption<T>(props: RadioOptionProps<T>) {
-  const { children, value: valueProps, icon, ...passed } = props
+  const { children, value: _, icon, ...passed } = props
 
   return (
     <RadioOptionBase {...passed}>

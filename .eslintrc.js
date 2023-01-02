@@ -18,9 +18,9 @@ module.exports = {
   plugins: [`react`, `@typescript-eslint`, `unused-imports`, `import-quotes`],
   rules: {
     indent: [`error`, 2],
+    'prefer-const': [`error`, { destructuring: `all` }],
     'linebreak-style': [`error`, `unix`],
     'jsx-quotes': [`error`, `prefer-single`],
-    quotes: [`error`, `backtick`],
     '@typescript-eslint/quotes': [`error`, `backtick`],
     semi: [`error`, `never`],
     'unused-imports/no-unused-imports': `error`,
@@ -32,7 +32,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': `off`,
     '@typescript-eslint/no-unused-vars': [
       `error`,
-      { vars: `all`, args: `none` },
+      { vars: `all`, args: `none`, varsIgnorePattern: `_` },
     ],
     '@typescript-eslint/no-explicit-any': `off`,
     'import-quotes/import-quotes': [1, `single`],

@@ -11,6 +11,7 @@ export interface Theme {
       primary: string
       sub: string
       contrast: string
+      heavy: string
       light: string
     }
   }

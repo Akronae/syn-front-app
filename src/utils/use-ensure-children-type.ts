@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react'
 
-export function useEnsureChildrenType(children: React.ReactNode, type: React.ElementType) {
+export function useEnsureChildrenType(
+  children: React.ReactNode,
+  type: React.ElementType,
+) {
   useMemo(() => {
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child) || child.type !== type) {

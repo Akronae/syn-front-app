@@ -9,11 +9,11 @@ import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components/native'
 import { RadioOption, RadioOptionProps } from './radio-option'
 
-declare module '.' {
-  export namespace Radio {
-    export let Option: typeof RadioOption
-  }
-}
+// declare module '.' {
+// namespace Radio {
+// export let Option: typeof RadioOption
+// }
+// }
 
 export type RadioProps<T> = ViewProps & {
   children: React.ReactElement<RadioOptionProps>[]

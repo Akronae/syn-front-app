@@ -1,24 +1,30 @@
-import { BaseProps, Text } from '@proto-native'
+import { BaseProps } from '@proto-native'
 import { Base } from '@proto-native/components/base'
-import * as React from 'react-native'
 import styled from 'styled-components/native'
 
 export type TextInputSuggestionProps = BaseProps & {
-  children: string
+  value: string
+  isDisabled?: boolean
 }
 
 export function TextInputSuggestion(props: TextInputSuggestionProps) {
   const { children, ...passed } = props
 
   return (
-    <TextInputSuggestionBase {...passed}>
-      <Text>{children}</Text>
-    </TextInputSuggestionBase>
+    <TextInputSuggestionBase {...passed}>{children}</TextInputSuggestionBase>
   )
-} 
+}
+TextInputSuggestion.TypeName = `TextInputSuggestion`
 
-const TextInputSuggestionBase = styled(Base)`
-  background-color: ${(props) => props.theme.colors.surface.sub};
+const TextInputSuggestionBase = styled(Base)<TextInputSuggestionProps>`
   padding: 10px;
   cursor: pointer;
-`
+  border-top-left-radius: ${(props) =>
+  props.selectors?.firstChild ? 10 : 0}px;
+  border-top-right-radius: ${(props) =>
+    props.selectors?.firstChild ? 10 : 0}px;
+  border-bottom-right-radius: ${(props) =>
+      props.selectors?.lastChild ? 10 : 0}px;
+  border-bottom-left-radius: ${(props) =>
+        props.selectors?.lastChild ? 10 : 0}px;
+` as typeof Base

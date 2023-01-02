@@ -84,13 +84,16 @@ const Disabled = css`
 
 const ButtonText = css`
   background-color: transparent;
+  text-align: center;
 `
 
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: ${(p) => p.theme.colors.surface.primary};
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
   border-radius: 8px;
   font-weight: bold;
   color: ${(p) => p.theme.colors.text.light};
@@ -102,12 +105,14 @@ const Pressable = styled.Pressable<ButtonProps>`
 const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
+  text-align: center;
   color: inherit;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
   margin-left: auto;
   color: inherit;
+  margin: auto;
 `
 
 const elevation = (theme: DefaultTheme) =>
