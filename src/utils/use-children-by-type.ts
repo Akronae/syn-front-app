@@ -14,7 +14,7 @@ export function useChildrenByType<T>(
           (typeof child.type != `string` && child.type.extends === type))
       )
         taken.push(child as React.ReactElement<T>)
-      else left.push(child)
+      else if (child) left.push(child)
     })
     return { taken, left }
   }, [children, type])

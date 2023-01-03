@@ -16,8 +16,7 @@ import {
 import { Base } from '@proto-native/components/base'
 import { isEmpty } from 'lodash-es'
 import React, { useEffect } from 'react'
-import * as ReactNative from 'react-native'
-import { FlattenInterpolation } from 'styled-components'
+import * as Native from 'react-native'
 import styled, {
   css,
   DefaultTheme,
@@ -28,11 +27,12 @@ import {
   TextInputSuggestion,
   TextInputSuggestionProps,
 } from './text-input-suggestion'
+import { FlattenInterpolation } from 'styled-components'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
 export type TextInputProps = BaseProps &
-  ReactNative.TextInputProps & {
+  Native.TextInputProps & {
     model?: ReactiveState<string>
     focused?: {
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
@@ -72,6 +72,7 @@ export function TextInput(props: TextInputProps) {
     icon,
     rightSlot,
     input,
+    style: styleProps,
     ...passed
   } = props
   numberOfLines ??= 1
@@ -103,11 +104,11 @@ export function TextInput(props: TextInputProps) {
   ) as string
 
   const onKeyPressBase = (
-    e: ReactNative.NativeSyntheticEvent<ReactNative.TextInputKeyPressEventData>,
+    e: Native.NativeSyntheticEvent<Native.TextInputKeyPressEventData>,
   ) => {
     onKeyPress?.(e)
 
-    if (ReactNative.Platform.OS === `web`) {
+    if (Native.Platform.OS === `web`) {
       const event = e.nativeEvent as KeyboardEvent
       if (event.key === `Enter` && event.ctrlKey) {
         onSubmitEditing?.({
@@ -118,6 +119,8 @@ export function TextInput(props: TextInputProps) {
     }
   }
 
+  const style = Native.StyleSheet.flatten(styleProps, textProps.taken.style) ?? {}
+
   return (
     <TextInputBase {...baseProps.taken} {...textProps.rest}>
       <InputContainer
@@ -126,7 +129,7 @@ export function TextInput(props: TextInputProps) {
         suggestions={suggestions}
         input={input}
       >
-        {icon && <Icon name={icon} />}
+        {icon && <Icon name={icon} style={[{color: style.color, fontSize: style.fontSize}]} />}
         <NativeInput
           placeholder={placeholder}
           placeholderTextColor={theme.colors.text.primary}
@@ -137,6 +140,7 @@ export function TextInput(props: TextInputProps) {
           onSubmitEditing={onSubmitEditing}
           {...textProps.taken}
           {...baseProps.rest}
+          style={style}
           onChangeText={(val) => {
             model.state = val
             onChangeText?.(val)
@@ -176,7 +180,6 @@ export function TextInput(props: TextInputProps) {
 TextInput.Suggestion = TextInputSuggestion
 
 const TextInputBase = styled(Base)`
-  border-radius: 8px;
 ` as typeof Base
 
 const NativeInputOnFocus = css`
@@ -193,13 +196,9 @@ const InputContainer = styled(Base)<TextInputProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  font-family: ${(p) => p.theme.typography.font.regular};
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
   background-color: ${(p) => p.theme.colors.surface.sub};
   padding: 10px;
-  /* border-radius: inherit; */
+  border-radius: 8px;
   border: 2px solid transparent;
 
   ${(p) => p.isFocused?.state && p.focused?.style}
@@ -207,13 +206,13 @@ const InputContainer = styled(Base)<TextInputProps>`
   ${(p) => p.input?.style}
 ` as typeof Base
 
-const NativeInput = styled(ReactNative.TextInput)`
+const NativeInput = styled(Native.TextInput)`
   outline-width: 0;
   width: 100%;
-  /* color: inherit; */
-  /* font-size: inherit; */
-  /* font-family: inherit; */
-` as any as typeof ReactNative.TextInput
+  font-family: ${(p) => p.theme.typography.font.regular};
+  color: ${(p) => p.theme.colors.text.primary};
+  font-size: ${(p) => p.theme.typography.size.md};
+` as any as typeof Native.TextInput
 
 const SuggestionsContainer = styled(Base)<{
   suggestions: TextInputProps['suggestions']
@@ -224,6 +223,7 @@ const SuggestionsContainer = styled(Base)<{
 
 const Icon = styled(Ionicons)`
   margin-right: ${(p) => p.theme.spacing.two};
-  /* color: inherit; */
-  /* font-size: inherit; */
+  font-family: ${(p) => p.theme.typography.font.regular};
+  color: ${(p) => p.theme.colors.text.primary};
+  font-size: ${(p) => p.theme.typography.size.md};
 ` as any as typeof Ionicons
