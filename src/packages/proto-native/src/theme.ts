@@ -4,11 +4,15 @@ export interface Theme {
       default: string
       primary: string
       contrast: string
+      sub: string
+      disabled: string
     }
     text: {
       primary: string
       sub: string
       contrast: string
+      heavy: string
+      light: string
     }
   }
   typography: {
@@ -22,6 +26,17 @@ export interface Theme {
       xl: number
       lg: number
       md: number
+      sm: number
+      xs: number
     }
+  }
+  spacing: {
+    one: number
+    two: number
+    three: number
+    four: number
+    five: number
+    six: number
+    seven: number
   }
 }

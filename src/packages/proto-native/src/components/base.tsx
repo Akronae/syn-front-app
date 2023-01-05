@@ -1,16 +1,26 @@
+import { CSSSelectors } from '@proto-native/utils'
 import { PropsWithChildren } from 'react'
-import * as React from 'react-native'
+import * as Native from 'react-native'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 
-export interface BaseProps<TStyle extends Record<string, any> = React.ViewStyle>
-  extends PropsWithChildren<any>,
-    React.ViewProps {
-  style?: React.StyleProp<TStyle>
-  showIf?: boolean
-}
+export type BaseProps<
+  TStyle extends Record<string, any> = Native.ViewStyle,
+  TProps = unknown,
+> = PropsWithChildren<TProps> &
+  Native.ViewProps &
+  Animated.AnimateProps<Native.ViewProps> & {
+    style?: Native.StyleProp<TStyle>
+    showIf?: boolean
+    transparent?: boolean
+    selectors?: CSSSelectors
+    parent?: { props?: BaseProps }
+  }
 
-export const Base = (props: BaseProps) => {
+export function Base<
+  TStyle extends Record<string, any> = Native.ViewStyle,
+  TProps = unknown,
+>(props: BaseProps<TStyle, TProps>) {
   const { children, showIf, ...passed } = props
 
   if (!showIf && showIf !== null && showIf !== undefined) return null
@@ -19,8 +29,10 @@ export const Base = (props: BaseProps) => {
 }
 
 export function takeBaseOwnProps<T extends BaseProps>(props: T) {
-  const { children, style, showIf, entering, ...rest } = props
-  return { taken: { children, style, showIf, entering }, rest }
+  const { children, style, showIf, transparent, entering, ...rest } = props
+  return { taken: { children, style, showIf, transparent, entering }, rest }
 }
 
-const BaseWrapper = styled(Animated.View)``
+const BaseWrapper = styled(Animated.View)<BaseProps>`
+  opacity: ${(props) => (props.transparent ? 0 : 1)};
+`

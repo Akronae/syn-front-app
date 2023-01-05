@@ -15,15 +15,25 @@ export class ReactiveState<T> extends Array<T | Dispatch<SetStateAction<T>>> {
     this.initial = this[0]
   }
 
-  get state(): T {
+  get getter() {
     return this[0]
+  }
+  get setter() {
+    return this[1]
+  }
+
+  get state(): T {
+    return this.getter
   }
   set state(state: T) {
     if (JSON.stringify(this.state) === JSON.stringify(state)) return
-    this[1](state)
+    this.setter(state)
   }
 
   reset() {
     this.state = this.initial
+  }
+  reactivate() {
+    this.setter({ ...this.getter })
   }
 }

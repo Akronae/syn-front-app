@@ -1,4 +1,4 @@
-import { Base, BaseProps } from '@proto-native/components'
+import { Base, BaseProps } from '@proto-native/components/base'
 import { useInterval, useState } from '@proto-native/utils'
 import { castArray } from 'lodash-es'
 import * as React from 'react-native'
