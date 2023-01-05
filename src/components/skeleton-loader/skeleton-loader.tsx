@@ -1,13 +1,5 @@
-import {
-  DEFAULT_BONE_COLOR,
-  DEFAULT_DURATION,
-  DEFAULT_HIGHLIGHT_COLOR,
-  LoaderContainerProps,
-  LoaderItemProps,
-  LoaderProps,
-  LoaderViewProps,
-} from './skeleton-loader-constants'
-import { Base, View } from '@proto-native'
+import { Base } from '@proto-native/components/base'
+import { View } from '@proto-native/components/view'
 import * as React from 'react'
 import { StyleSheet } from 'react-native'
 import Animated, {
@@ -18,6 +10,15 @@ import Animated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated'
+import {
+  DEFAULT_BONE_COLOR,
+  DEFAULT_DURATION,
+  DEFAULT_HIGHLIGHT_COLOR,
+  LoaderContainerProps,
+  LoaderItemProps,
+  LoaderProps,
+  LoaderViewProps,
+} from './skeleton-loader-constants'
 
 export function SkeletonLoader(props: LoaderProps) {
   const {

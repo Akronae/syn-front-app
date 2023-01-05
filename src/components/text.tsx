@@ -1,19 +1,9 @@
-import { Base, BaseProps } from '@proto-native/components'
+import { Base, BaseProps } from '@proto-native/components/base'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react-native'
 import styled, { DefaultTheme } from 'styled-components/native'
 
 export type TextProps = BaseProps<React.TextStyle> & React.TextProps
-
-export function Text(props: TextProps) {
-  const textOwnProps = takeTextOwnProps(props)
-
-  return (
-    <TextWrapper {...textOwnProps.rest}>
-      <TextBase {...textOwnProps.taken} />
-    </TextWrapper>
-  )
-}
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
   const { children, style, ...rest } = props
@@ -48,8 +38,22 @@ function boldnessToFont(boldness: number, theme: DefaultTheme): string {
 
 const TextWrapper = styled(Base)``
 
-const TextBase = styled.Text`
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
+const TextBase = styled.Text<TextProps>`
   font-family: ${(p) => boldnessToFont(getStyleBoldness(p.style), p.theme)};
 `
+
+const TextDefault = styled(TextBase)`
+  color: ${(p) => p.theme.colors.text.primary};
+  font-size: ${(p) => p.theme.typography.size.md};
+`
+
+export function Text(props: TextProps) {
+  const textOwnProps = takeTextOwnProps(props)
+
+  return (
+    <TextWrapper {...textOwnProps.rest}>
+      <TextBase {...textOwnProps.taken} />
+    </TextWrapper>
+  )
+}
+Text.Default = TextDefault
