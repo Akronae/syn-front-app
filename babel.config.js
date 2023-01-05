@@ -3,14 +3,15 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      '@babel/plugin-proposal-logical-assignment-operators',
       'react-native-reanimated/plugin',
       [
         'module-resolver',
         {
-          "root": ["./"],
+          root: ['./'],
           alias: {
-            "src": "./src",
-            "@proto-native": "./src/packages/proto-native/src",
+            src: './src',
+            '@proto-native': './src/packages/proto-native/src',
           },
         },
       ],

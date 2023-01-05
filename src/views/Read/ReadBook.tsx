@@ -24,11 +24,7 @@ export function ReadBook(props: ReadBookProps) {
       <BookContext.Provider value={book}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {Object.entries(book).map(([chapter, bookChapter], i) => (
-            <Stack.Screen
-              name={chapter}
-              component={ReadChapter}
-              key={i}
-            />
+            <Stack.Screen name={chapter} component={ReadChapter} key={i} />
           ))}
         </Stack.Navigator>
       </BookContext.Provider>

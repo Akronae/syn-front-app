@@ -16,7 +16,9 @@ export function getHeaderScreenOptions(
   }
 }
 
-export function getScreenOptions(theme: DefaultTheme): BottomTabNavigationOptions {
+export function getScreenOptions(
+  theme: DefaultTheme,
+): BottomTabNavigationOptions {
   return {
     ...getHeaderScreenOptions(theme),
     tabBarStyle: {

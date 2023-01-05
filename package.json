@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --clear",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "pretty": "prettier --write App.tsx \"./src/**/*.{js,jsx,ts,tsx,json}\"",
+    "pretty": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,yml,yaml,md}\" \"./*.{js,jsx,ts,tsx,json,yml,yaml,md}\"",
     "lint": "eslint App.tsx src --fix",
     "format": "yarn pretty && yarn lint"
   },
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
     "@trivago/prettier-plugin-sort-imports": "^3.4.0",
     "@types/jsdom": "^20.0.0",
     "@types/lodash-es": "^4.17.6",

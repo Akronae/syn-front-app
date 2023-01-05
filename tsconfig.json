@@ -6,7 +6,7 @@
     "paths": {
       "src/*": ["./src/*"],
       "@proto-native": ["./src/packages/proto-native/src/index"],
-      "@proto-native/*": ["./src/packages/proto-native/src/*"],
+      "@proto-native/*": ["./src/packages/proto-native/src/*"]
     }
-  },
+  }
 }

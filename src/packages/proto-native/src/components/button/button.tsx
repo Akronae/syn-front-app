@@ -13,7 +13,6 @@ import {
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export enum ButtonType {
   Primary,
@@ -91,17 +90,12 @@ const Disabled = css`
 
 const ButtonText = css`
   background-color: transparent;
-  text-align: center;
-`
-
-const ButtonText = css`
-  background-color: transparent;
   color: ${(p) => p.theme.colors.text.primary};
 `
 
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: ${(p) => p.theme.colors.surface.primary};
@@ -118,13 +112,14 @@ const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
   text-align: center;
+  margin: 0 10px;
   font-size: ${(p) =>
   React.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.typography.size.md}px;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
-  margin: auto;
+  /* margin: auto; */
 `
 
 const elevation = (theme: DefaultTheme) =>

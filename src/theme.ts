@@ -8,11 +8,15 @@ export interface Theme extends ProtoNative.Theme {
       primary: string
       default: string
       contrast: string
+      sub: string
+      disabled: string
     }
     text: {
       primary: string
       sub: string
       contrast: string
+      heavy: string
+      light: string
     }
     border: string
     notification: string
@@ -36,11 +40,15 @@ export const DarkTheme: Theme = {
       primary: `#564f95`,
       default: `#000000`,
       contrast: `#ffffff`,
+      disabled: `#32373e`,
+      sub: `#64656d`,
     },
     text: {
       primary: `#acaeb4`,
       sub: `#64656d`,
       contrast: `#fff`,
+      heavy: `#000`,
+      light: `#acaeb4`,
     },
     border: `#32373e`,
     notification: `#abc`,
@@ -65,6 +73,8 @@ export const DarkTheme: Theme = {
       xl: 32,
       lg: 24,
       md: 18,
+      sm: 16,
+      xs: 14,
     },
   },
 }
