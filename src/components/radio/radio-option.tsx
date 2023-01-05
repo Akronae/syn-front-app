@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
-import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
+import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 import { RadioOptionDescription } from './radio-option-description'

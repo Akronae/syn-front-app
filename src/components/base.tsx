@@ -1,23 +1,24 @@
 import { CSSSelectors } from '@proto-native/utils'
 import { PropsWithChildren } from 'react'
-import * as React from 'react-native'
+import * as Native from 'react-native'
 import Animated from 'react-native-reanimated'
 import styled from 'styled-components/native'
 
 export type BaseProps<
-  TStyle extends Record<string, any> = React.ViewStyle,
+  TStyle extends Record<string, any> = Native.ViewStyle,
   TProps = unknown,
 > = PropsWithChildren<TProps> &
-  React.ViewProps &
-  Animated.AnimateProps<React.ViewProps> & {
-    style?: React.StyleProp<TStyle>
+  Native.ViewProps &
+  Animated.AnimateProps<Native.ViewProps> & {
+    style?: Native.StyleProp<TStyle>
     showIf?: boolean
     transparent?: boolean
     selectors?: CSSSelectors
+    parent?: { props?: BaseProps }
   }
 
 export function Base<
-  TStyle extends Record<string, any> = React.ViewStyle,
+  TStyle extends Record<string, any> = Native.ViewStyle,
   TProps = unknown,
 >(props: BaseProps<TStyle, TProps>) {
   const { children, showIf, ...passed } = props

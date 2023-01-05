@@ -60,8 +60,12 @@ export function Button(props: ButtonProps) {
         }}
         style={pressableStyle}
       >
-        <CardBtnText {...textProps.taken} />
-        <Icon name={btnProps.taken.icon} size={fontSize} />
+        {textProps.taken.children && (
+          <CardBtnText {...textProps.taken} parent={{ props }} />
+        )}
+        {btnProps.taken.icon && (
+          <Icon name={btnProps.taken.icon} size={fontSize} />
+        )}
       </Pressable>
     </ButtonBase>
   )
@@ -95,7 +99,7 @@ const Pressable = styled.Pressable<ButtonProps>`
   justify-content: center;
   align-items: center;
   background-color: ${(p) => p.theme.colors.surface.primary};
-  /* padding: 10px 15px; */
+  padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
   color: ${(p) => p.theme.colors.text.light};
@@ -108,12 +112,12 @@ const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
   text-align: center;
-  /* color: inherit; */
+  font-size: ${(p) =>
+  React.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
+    p.theme.typography.size.md}px;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
-  margin-left: auto;
-  /* color: inherit; */
   margin: auto;
 `
 

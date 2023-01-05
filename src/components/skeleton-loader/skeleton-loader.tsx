@@ -1,5 +1,5 @@
-import { View } from '@proto-native/components/view'
 import { Base } from '@proto-native/components/base'
+import { View } from '@proto-native/components/view'
 import * as React from 'react'
 import { StyleSheet } from 'react-native'
 import Animated, {

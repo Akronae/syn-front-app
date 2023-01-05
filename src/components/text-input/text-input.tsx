@@ -1,22 +1,21 @@
 import { Ionicons } from '@expo/vector-icons'
 import {
+  Base,
+  BaseProps,
+  takeBaseOwnProps,
+} from '@proto-native/components/base'
+import { takeTextOwnProps } from '@proto-native/components/text'
+import {
   hexLerp,
   ReactiveState,
   useChildrenByType,
   useExistingStateOr,
   useState,
 } from '@proto-native/utils'
-import {
-  BaseProps,
-  takeBaseOwnProps,
-} from '@proto-native/components/base'
-import {
-  takeTextOwnProps,
-} from '@proto-native/components/text'
-import { Base } from '@proto-native/components/base'
-import { isEmpty } from 'lodash-es'
+import { isEmpty, isUndefined, omitBy } from 'lodash-es'
 import React, { useEffect } from 'react'
 import * as Native from 'react-native'
+import { FlattenInterpolation } from 'styled-components'
 import styled, {
   css,
   DefaultTheme,
@@ -27,7 +26,6 @@ import {
   TextInputSuggestion,
   TextInputSuggestionProps,
 } from './text-input-suggestion'
-import { FlattenInterpolation } from 'styled-components'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
@@ -119,7 +117,8 @@ export function TextInput(props: TextInputProps) {
     }
   }
 
-  const style = Native.StyleSheet.flatten(styleProps, textProps.taken.style) ?? {}
+  const style =
+    Native.StyleSheet.flatten(styleProps, textProps.taken.style) ?? {}
 
   return (
     <TextInputBase {...baseProps.taken} {...textProps.rest}>
@@ -129,10 +128,18 @@ export function TextInput(props: TextInputProps) {
         suggestions={suggestions}
         input={input}
       >
-        {icon && <Icon name={icon} style={[{color: style.color, fontSize: style.fontSize}]} />}
+        {icon && (
+          <Icon
+            name={icon}
+            style={omitBy(
+              { color: style.color, fontSize: style.fontSize },
+              isUndefined,
+            )}
+          />
+        )}
         <NativeInput
           placeholder={placeholder}
-          placeholderTextColor={theme.colors.text.primary}
+          placeholderTextColor={theme.colors.text.sub}
           value={model.state}
           numberOfLines={numberOfLines}
           multiline={multiline}
@@ -179,8 +186,7 @@ export function TextInput(props: TextInputProps) {
 
 TextInput.Suggestion = TextInputSuggestion
 
-const TextInputBase = styled(Base)`
-` as typeof Base
+const TextInputBase = styled(Base)`` as typeof Base
 
 const NativeInputOnFocus = css`
   border-color: ${(p) =>
@@ -208,7 +214,7 @@ const InputContainer = styled(Base)<TextInputProps>`
 
 const NativeInput = styled(Native.TextInput)`
   outline-width: 0;
-  width: 100%;
+  flex: 1;
   font-family: ${(p) => p.theme.typography.font.regular};
   color: ${(p) => p.theme.colors.text.primary};
   font-size: ${(p) => p.theme.typography.size.md};

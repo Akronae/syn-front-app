@@ -7,7 +7,10 @@ export type TextInputSuggestionProps = BaseProps & {
   isDisabled?: boolean
 }
 
-export function TextInputSuggestion(props: TextInputSuggestionProps) {
+export function TextInputSuggestion(
+  this: any,
+  props: TextInputSuggestionProps,
+) {
   const { children, ...passed } = props
 
   return (

@@ -1,10 +1,10 @@
+import { View, ViewProps } from '@proto-native/components/view'
 import {
   ReactiveState,
   useEnsureChildrenType,
   useExistingStateOr,
   useState,
 } from '@proto-native/utils'
-import { View, ViewProps } from '@proto-native/components/view'
 import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components/native'
 import { RadioOption, RadioOptionProps } from './radio-option'
