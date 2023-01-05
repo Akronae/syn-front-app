@@ -15,7 +15,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
   )
 
   return {
-    taken: { children, style: takenStyle },
+    taken: { children, style: takenStyle as React.TextStyle },
     rest: { ...rest, style: styleRest },
   }
 }

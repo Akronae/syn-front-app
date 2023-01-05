@@ -1,3 +1,7 @@
+import {
+  TextInputSuggestion,
+  TextInputSuggestionProps,
+} from './text-input-suggestion'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -22,10 +26,6 @@ import styled, {
   ThemeProps,
   useTheme,
 } from 'styled-components/native'
-import {
-  TextInputSuggestion,
-  TextInputSuggestionProps,
-} from './text-input-suggestion'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
@@ -49,7 +49,7 @@ export type TextInputProps = BaseProps &
     input?: {
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
-    icon?: keyof typeof Ionicons['glyphMap']
+    icon?: keyof typeof Ionicons[`glyphMap`]
     rightSlot?: React.ReactNode
   }
 
@@ -118,7 +118,7 @@ export function TextInput(props: TextInputProps) {
   }
 
   const style =
-    Native.StyleSheet.flatten(styleProps, textProps.taken.style) ?? {}
+    Native.StyleSheet.flatten([styleProps, textProps.taken.style]) ?? {}
 
   return (
     <TextInputBase {...baseProps.taken} {...textProps.rest}>
@@ -221,7 +221,7 @@ const NativeInput = styled(Native.TextInput)`
 ` as any as typeof Native.TextInput
 
 const SuggestionsContainer = styled(Base)<{
-  suggestions: TextInputProps['suggestions']
+  suggestions: TextInputProps[`suggestions`]
 }>`
   background-color: ${(props) => props.theme.colors.surface.sub};
   ${(p) => p.suggestions?.container?.style}
