@@ -1,6 +1,6 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-import { Theme } from 'src/theme'
+import { DefaultTheme } from 'styled-components/native'
 
 export type RootStackParamList = {
   Home: undefined
@@ -8,7 +8,7 @@ export type RootStackParamList = {
 }
 
 export function getHeaderScreenOptions(
-  theme: Theme,
+  theme: DefaultTheme,
 ): NativeStackNavigationOptions {
   return {
     headerTintColor: theme.colors.text.contrast,
@@ -16,7 +16,7 @@ export function getHeaderScreenOptions(
   }
 }
 
-export function getScreenOptions(theme: Theme): BottomTabNavigationOptions {
+export function getScreenOptions(theme: DefaultTheme): BottomTabNavigationOptions {
   return {
     ...getHeaderScreenOptions(theme),
     tabBarStyle: {

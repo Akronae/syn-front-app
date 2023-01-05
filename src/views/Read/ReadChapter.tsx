@@ -37,8 +37,8 @@ export function ReadChapter(props: ReadChapterProps) {
   const i = useInterval(() => {
     if (!lastContentChange.state || Date.now() - lastContentChange.state < 300)
       return
-    if (route.params.verse) {
-      isReady.state = true
+    isReady.state = true
+    if (route.params?.verse) {
       const c = Array.from(childrenLayouts.state).at(route.params.verse - 1)
       scrollView.current?.scrollTo({ y: c?.[1].y, animated: false })
     }
@@ -56,7 +56,8 @@ export function ReadChapter(props: ReadChapterProps) {
         focusedChildren.push(child)
       }
     }
-    const f = focusedChildren[0].props.verse
+    const f = focusedChildren[0]?.props?.verse
+    if (!f) return
     ReadStorage.set({ book: f.book, chapter: f.chapter, verse: f.verseNumber })
   }
 

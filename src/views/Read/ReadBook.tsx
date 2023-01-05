@@ -8,12 +8,11 @@ import text from 'src/assets/text'
 import { BookContext } from 'src/contexts/BookContext'
 import styled from 'styled-components/native'
 
-export type StackType = Record<string, any>
-const Stack = createNativeStackNavigator<StackType>()
-
 export type ReadBookDrawerParamList = {
   [key: string]: { verse: number }
 }
+const Stack = createNativeStackNavigator<ReadBookDrawerParamList>()
+
 export type ReadBookProps = DrawerScreenProps<ReadDrawerParamList>
 
 export function ReadBook(props: ReadBookProps) {
@@ -26,7 +25,7 @@ export function ReadBook(props: ReadBookProps) {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {Object.entries(book).map(([chapter, bookChapter], i) => (
             <Stack.Screen
-              name={chapter as never}
+              name={chapter}
               component={ReadChapter}
               key={i}
             />
