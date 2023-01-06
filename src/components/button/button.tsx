@@ -95,7 +95,7 @@ const ButtonText = css`
 
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: ${(p) => p.theme.colors.surface.primary};
@@ -112,13 +112,14 @@ const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
   text-align: center;
+  margin: 0 10px;
   font-size: ${(p) =>
   React.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.typography.size.md}px;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`
-  margin: auto;
+  /* margin: auto; */
 `
 
 const elevation = (theme: DefaultTheme) =>

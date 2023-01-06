@@ -1,5 +1,5 @@
-import { lerp } from '@proto-native/utils/math'
 import { RgbaColor } from './rgba-color'
+import { lerp } from '@proto-native/utils/math'
 
 export function rgbaLerp(a: RgbaColor, b: RgbaColor, t: number): RgbaColor {
   return {
