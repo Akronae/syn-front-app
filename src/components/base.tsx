@@ -69,7 +69,9 @@ export function Base<
     })
   }
 
-  const Wrapper = BaseWrapper(props.onPress ? Native.Pressable : Animated.View)
+  const Wrapper = BaseWrapper(
+    props.onPress ? Native.TouchableOpacity : Animated.View,
+  )
 
   const isClickable = onPress || onTouchEndProps
 
@@ -106,6 +108,6 @@ export function takeBaseOwnProps(props: BaseProps) {
   }
 }
 
-const BaseWrapper = (t: React.ComponentType) => styled(t)<BaseProps>`
+const BaseWrapper = (t: React.ComponentType) => styled(t) <BaseProps>`
   opacity: ${(p) => (p.transparent ? 0 : 1)};
 `
