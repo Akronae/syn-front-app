@@ -1,13 +1,10 @@
-import {
-  TextInputSuggestion,
-  TextInputSuggestionProps,
-} from './text-input-suggestion'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
+import { FormFieldContext, FormFieldState } from '@proto-native/components/form'
 import { takeTextOwnProps } from '@proto-native/components/text'
 import {
   hexLerp,
@@ -17,7 +14,7 @@ import {
   useState,
 } from '@proto-native/utils'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -26,6 +23,10 @@ import styled, {
   ThemeProps,
   useTheme,
 } from 'styled-components/native'
+import {
+  TextInputSuggestion,
+  TextInputSuggestionProps,
+} from './text-input-suggestion'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
@@ -36,6 +37,10 @@ export type TextInputProps = BaseProps &
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     isFocused?: ReactiveState<boolean>
+    isInvalid?: ReactiveState<boolean>
+    invalid?: {
+      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    }
     suggestions?: {
       show?: ReactiveState<boolean>
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
@@ -59,6 +64,8 @@ export function TextInput(props: TextInputProps) {
     children,
     focused: focusedProps,
     isFocused: isFocusedProps,
+    isInvalid: isInvalidProps,
+    invalid,
     suggestions,
     onChangeText,
     onFocus,
@@ -82,6 +89,14 @@ export function TextInput(props: TextInputProps) {
   const focused = focusedProps ?? {}
   if (!focused.style) focused.style = NativeInputOnFocus
   const isFocused = useExistingStateOr(isFocusedProps, false)
+
+  const isInvalid = useExistingStateOr(isInvalidProps, false)
+  invalid ??= {}
+  invalid.style ??= NativeInputOnInvalid
+
+  const formFieldContext = useContext(FormFieldContext)
+  if (formFieldContext?.state.state === FormFieldState.Error)
+    isInvalid.state = true
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
@@ -125,6 +140,8 @@ export function TextInput(props: TextInputProps) {
       <InputContainer
         focused={focused}
         isFocused={isFocused}
+        invalid={invalid}
+        isInvalid={isInvalid}
         suggestions={suggestions}
         input={input}
       >
@@ -193,6 +210,10 @@ const NativeInputOnFocus = css`
     hexLerp(p.theme.colors.surface.sub, p.theme.colors.surface.contrast, 0.05)};
 `
 
+const NativeInputOnInvalid = css`
+  border-color: ${(p) => p.theme.colors.surface.error};
+`
+
 const NativeInputOnSuggestions = css`
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -208,6 +229,7 @@ const InputContainer = styled(Base)<TextInputProps>`
   border: 2px solid transparent;
 
   ${(p) => p.isFocused?.state && p.focused?.style}
+  ${(p) => p.isInvalid?.state && p.invalid?.style}
   ${(p) => p.suggestions?.show?.state && p.suggestions?.style}
   ${(p) => p.input?.style}
 ` as typeof Base

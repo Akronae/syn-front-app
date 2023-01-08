@@ -6,6 +6,7 @@ export interface Theme {
       contrast: string
       sub: string
       disabled: string
+      error: string
     }
     text: {
       primary: string
@@ -13,6 +14,7 @@ export interface Theme {
       contrast: string
       heavy: string
       light: string
+      error: string
     }
   }
   typography: {

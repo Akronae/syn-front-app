@@ -1,4 +1,3 @@
-import { RadioOption, RadioOptionProps } from './radio-option'
 import { View, ViewProps } from '@proto-native/components/view'
 import {
   ReactiveState,
@@ -8,6 +7,7 @@ import {
 } from '@proto-native/utils'
 import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components/native'
+import { RadioOption, RadioOptionProps } from './radio-option'
 
 export type RadioProps<T> = ViewProps & {
   children: React.ReactElement<RadioOptionProps>[]
