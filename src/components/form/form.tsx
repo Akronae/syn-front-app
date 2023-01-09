@@ -29,10 +29,10 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
       let isFormValid = true
       fields.forEach((field) => {
         if (field.props.validate) {
-          const valid = field.props.validate(field.props.input ?? ``)
+          const elemHandle = elems[field.props.label]
+          const valid = field.props.validate(elemHandle?.input?.state ?? ``)
           if (!valid) {
             isFormValid = false
-            const elemHandle = elems[field.props.label]
             if (elemHandle) elemHandle.state.state = FormFieldState.Error
           }
         }
@@ -42,9 +42,9 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   }))
 
   return (
-    <FormBase {...passed}>
-      <FormContext.Provider value={{ elems }}>{children}</FormContext.Provider>
-    </FormBase>
+    <FormContext.Provider value={{ elems }}>
+      <FormBase {...passed}>{children}</FormBase>
+    </FormContext.Provider>
   )
 }) as ForwardRefExoticComponent<FormProps & RefAttributes<FormRef>> & {
   Field: typeof FormField

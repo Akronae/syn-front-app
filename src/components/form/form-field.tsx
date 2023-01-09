@@ -15,8 +15,7 @@ export enum FormFieldState {
 
 export type FormFieldProps = ViewProps & {
   label: string
-  input?: string
-  validate?: (input: string) => boolean
+  validate?: (input: any) => boolean
   error?: { message?: string }
 }
 

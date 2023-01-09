@@ -4,7 +4,7 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
-import { FormFieldContext, FormFieldState } from '@proto-native/components/form'
+import { useFormField, FormFieldState } from '@proto-native/components/form'
 import { takeTextOwnProps } from '@proto-native/components/text'
 import {
   hexLerp,
@@ -14,7 +14,7 @@ import {
   useState,
 } from '@proto-native/utils'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -94,9 +94,13 @@ export function TextInput(props: TextInputProps) {
   invalid ??= {}
   invalid.style ??= NativeInputOnInvalid
 
-  const formFieldContext = useContext(FormFieldContext)
-  if (formFieldContext?.state.state === FormFieldState.Error)
-    isInvalid.state = true
+  const formField = useFormField()
+  if (formField && !formField.input)
+    formField.input = model
+  useMemo(() => {
+    if (formField?.state.state === FormFieldState.Error)
+      isInvalid.state = true
+  }, [formField?.state.state, isInvalid.state])
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
