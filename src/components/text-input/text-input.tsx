@@ -4,7 +4,7 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
-import { useFormField, FormFieldState } from '@proto-native/components/form'
+import { FormFieldState, useFormField } from '@proto-native/components/form'
 import { takeTextOwnProps } from '@proto-native/components/text'
 import {
   hexLerp,
@@ -14,7 +14,7 @@ import {
   useState,
 } from '@proto-native/utils'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -54,7 +54,7 @@ export type TextInputProps = BaseProps &
     input?: {
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
-    icon?: keyof typeof Ionicons[`glyphMap`]
+    icon?: keyof (typeof Ionicons)[`glyphMap`]
     rightSlot?: React.ReactNode
   }
 
@@ -95,12 +95,10 @@ export function TextInput(props: TextInputProps) {
   invalid.style ??= NativeInputOnInvalid
 
   const formField = useFormField()
-  if (formField && !formField.input)
-    formField.input = model
+  if (formField && !formField.input) formField.input = model
   useMemo(() => {
-    if (formField?.state.state === FormFieldState.Error)
-      isInvalid.state = true
-  }, [formField?.state.state, isInvalid.state])
+    if (formField?.state.state === FormFieldState.Error) isInvalid.state = true
+  }, [isInvalid, formField])
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
@@ -152,6 +150,8 @@ export function TextInput(props: TextInputProps) {
         {icon && (
           <Icon
             name={icon}
+            isInvalid={isInvalid}
+            invalid={invalid}
             style={omitBy(
               { color: style.color, fontSize: style.fontSize },
               isUndefined,
@@ -166,6 +166,8 @@ export function TextInput(props: TextInputProps) {
           multiline={multiline}
           onKeyPress={onKeyPressBase}
           onSubmitEditing={onSubmitEditing}
+          isInvalid={isInvalid}
+          invalid={invalid}
           {...textProps.taken}
           {...baseProps.rest}
           style={style}
@@ -216,6 +218,7 @@ const NativeInputOnFocus = css`
 
 const NativeInputOnInvalid = css`
   border-color: ${(p) => p.theme.colors.surface.error};
+  color: ${(p) => p.theme.colors.surface.error};
 `
 
 const NativeInputOnSuggestions = css`
@@ -238,12 +241,13 @@ const InputContainer = styled(Base)<TextInputProps>`
   ${(p) => p.input?.style}
 ` as typeof Base
 
-const NativeInput = styled(Native.TextInput)`
+const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
   outline-width: 0;
   flex: 1;
   font-family: ${(p) => p.theme.typography.font.regular};
   color: ${(p) => p.theme.colors.text.primary};
   font-size: ${(p) => p.theme.typography.size.md};
+  ${(p) => p.isInvalid?.state && p.invalid?.style}
 ` as any as typeof Native.TextInput
 
 const SuggestionsContainer = styled(Base)<{
@@ -253,9 +257,11 @@ const SuggestionsContainer = styled(Base)<{
   ${(p) => p.suggestions?.container?.style}
 `
 
-const Icon = styled(Ionicons)`
+const Icon = styled(Ionicons)<Partial<TextInputProps>>`
   margin-right: ${(p) => p.theme.spacing.two};
   font-family: ${(p) => p.theme.typography.font.regular};
   color: ${(p) => p.theme.colors.text.primary};
   font-size: ${(p) => p.theme.typography.size.md};
+
+  ${(p) => p.isInvalid?.state && p.invalid?.style}
 ` as any as typeof Ionicons
