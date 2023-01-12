@@ -3,7 +3,7 @@ import {
   FormFieldState,
 } from '@proto-native/components/form/form-field'
 import { View, ViewProps } from '@proto-native/components/view'
-import { useChildrenByType } from '@proto-native/utils'
+import { useGroupChildrenByType } from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -20,7 +20,10 @@ export type FormRef = { validate: () => boolean }
 export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   const { children, ...passed } = props
 
-  const { taken: fields } = useChildrenByType(children, FormField)
+  const childrenByType = useGroupChildrenByType(children, {
+    FormField: FormField,
+  })
+  const fields = childrenByType.FormField
 
   const elems: FormHandle['elems'] = {}
 
@@ -33,7 +36,9 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
           const valid = field.props.validate(elemHandle?.input?.state ?? ``)
           if (!valid) {
             isFormValid = false
-            if (elemHandle) elemHandle.state.state = FormFieldState.Error
+            if (elemHandle) {
+              elemHandle.state.state = FormFieldState.Error
+            }
           }
         }
       })

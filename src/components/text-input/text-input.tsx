@@ -14,7 +14,7 @@ import {
   useState,
 } from '@proto-native/utils'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React, { useEffect, useMemo } from 'react'
+import React from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -98,10 +98,10 @@ export function TextInput(props: TextInputProps) {
   invalid.style ??= NativeInputOnInvalid
 
   const formField = useFormField()
-  if (formField && !formField.input) formField.input = model
-  useMemo(() => {
-    if (formField?.state.state === FormFieldState.Error) isInvalid.state = true
-  }, [isInvalid, formField])
+  if (formField) {
+    formField.input = model
+  }
+  if (formField?.state.state === FormFieldState.Error) isInvalid.state = true
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
@@ -111,10 +111,8 @@ export function TextInput(props: TextInputProps) {
     TextInputSuggestion,
   )
 
-  useEffect(() => {
-    showSuggestions.state =
-      (isFocused?.state || false) && !isEmpty(suggestionElems)
-  }, [suggestionElems, isFocused.state])
+  showSuggestions.state =
+    (isFocused?.state || false) && !isEmpty(suggestionElems)
 
   const placeholder = childrenFiltered.reduce(
     (acc, child) => `${acc} ${child?.toString()}`,
