@@ -6,8 +6,8 @@ import styled from 'styled-components/native'
 export type BaseProps<
   TStyle extends Native.TextStyle = Native.TextStyle,
   TProps extends Native.ViewProps = Native.ViewProps,
-> = React.PropsWithChildren<TProps> &
-  Omit<Animated.AnimateProps<TProps>, 'animatedProps'> & {
+> = Omit<React.PropsWithChildren<TProps>, 'style'> &
+  Omit<Animated.AnimateProps<TProps>, 'style' | 'animatedProps'> & {
     style?: TStyle
     showIf?: boolean
     transparent?: boolean

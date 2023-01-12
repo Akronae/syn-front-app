@@ -4,9 +4,9 @@ import { useChildrenByType } from './use-children-by-type'
 export function useGroupChildrenByType<TKeys>(
   children: React.ReactNode,
   types: Record<keyof TKeys, React.ElementType>,
-): Record<keyof TKeys | 'others', React.ReactNode[]> {
-  const groupped = { others: [] } as Record<any, React.ReactNode[]>
-  const grouppedChildren: React.ReactNode[] = []
+): Record<keyof TKeys | 'others', React.ReactElement[]> {
+  const groupped = { others: [] } as Record<any, React.ReactElement[]>
+  const grouppedChildren: React.ReactElement[] = []
   Object.entries(types).forEach(([typeName, type]) => {
     groupped[typeName] = []
     const { taken } = useChildrenByType(children, type as React.ElementType)
@@ -15,7 +15,7 @@ export function useGroupChildrenByType<TKeys>(
   })
 
   React.Children.forEach(children, (child) => {
-    if (!grouppedChildren.includes(child)) {
+    if (React.isValidElement(child) && !grouppedChildren.includes(child)) {
       groupped.others.push(child)
     }
   })
