@@ -54,7 +54,10 @@ export type TextInputProps = BaseProps &
     input?: {
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
-    icon?: keyof (typeof Ionicons)[`glyphMap`]
+    icon?: {
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      custom?: React.ComponentType<Partial<TextInputProps>>
+    }
     rightSlot?: React.ReactNode
   }
 
@@ -147,11 +150,20 @@ export function TextInput(props: TextInputProps) {
         suggestions={suggestions}
         input={input}
       >
-        {icon && (
+        {icon?.ionicons && (
           <Icon
-            name={icon}
+            name={icon.ionicons}
             isInvalid={isInvalid}
             invalid={invalid}
+            style={omitBy(
+              { color: style.color, fontSize: style.fontSize },
+              isUndefined,
+            )}
+          />
+        )}
+        {icon?.custom && (
+          <icon.custom
+            isInvalid={isInvalid}
             style={omitBy(
               { color: style.color, fontSize: style.fontSize },
               isUndefined,
@@ -248,7 +260,7 @@ const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
   color: ${(p) => p.theme.colors.text.primary};
   font-size: ${(p) => p.theme.typography.size.md};
   ${(p) => p.isInvalid?.state && p.invalid?.style}
-` as any as typeof Native.TextInput
+`
 
 const SuggestionsContainer = styled(Base)<{
   suggestions: TextInputProps[`suggestions`]
@@ -264,4 +276,4 @@ const Icon = styled(Ionicons)<Partial<TextInputProps>>`
   font-size: ${(p) => p.theme.typography.size.md};
 
   ${(p) => p.isInvalid?.state && p.invalid?.style}
-` as any as typeof Ionicons
+`

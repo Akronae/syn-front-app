@@ -13,12 +13,14 @@ export function View(props: ViewProps) {
   const { children, gap, childRendering, ...passed } = props
   const renderedChildren = useState(childRendering?.instant?.first ?? 0)
 
-  const flatChildren = castArray(children).flatMap((e, i, arr) => {
-    if (i >= renderedChildren.state) return []
+  const flatChildren = castArray(children)
+    .filter((c) => !!c)
+    .flatMap((e, i, arr) => {
+      if (i >= renderedChildren.state) return []
 
-    const hasDivider = gap && i != arr.length - 1
-    return [e, hasDivider && <Divider key={i + 100000} gap={gap} />]
-  })
+      const hasDivider = gap && i != arr.length - 1
+      return [e, hasDivider && <Divider key={i + 100000} gap={gap} />]
+    })
 
   if (!childRendering) {
     renderedChildren.state = flatChildren.length

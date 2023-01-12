@@ -1,10 +1,17 @@
 import { Text } from '@proto-native/components/text'
 import { View, ViewProps } from '@proto-native/components/view'
-import { useExistingStateOr } from '@proto-native/utils'
-import { forwardRef, useImperativeHandle } from 'react'
+import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
+import {
+  forwardRef,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  useImperativeHandle,
+} from 'react'
 import * as React from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
 import { FormFieldContext } from './form-field-context'
+import { FormFieldHandle } from './form-field-handle'
+import { FormFieldOnInvalid } from './form-field-on-invalid'
 import useForm from './use-form'
 
 export enum FormFieldState {
@@ -19,35 +26,50 @@ export type FormFieldProps = ViewProps & {
   error?: { message?: string }
 }
 
-export const FormField = forwardRef((props: FormFieldProps, ref) => {
-  const { children, label, ...passed } = props
+export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
+  (props: FormFieldProps, ref) => {
+    const { children, label, ...passed } = props
 
-  const theme = useTheme()
-  const form = useForm()
-  const state = useExistingStateOr(
-    form.elems[label]?.state,
-    FormFieldState.Normal,
-  )
+    const theme = useTheme()
+    const form = useForm()
+    const state = useExistingStateOr(
+      form.elems[label]?.state,
+      FormFieldState.Normal,
+    )
 
-  const refHandle = {
-    state,
-  }
-  useImperativeHandle(ref, () => refHandle)
-  form.elems[label] = refHandle
+    const refHandle = {
+      state,
+    }
+    useImperativeHandle(ref, () => refHandle)
+    form.elems[label] = refHandle
 
-  return (
-    <FormFieldBase gap={theme.spacing.two} {...passed}>
-      {label && <Label>{label}</Label>}
-      <FormFieldContext.Provider value={refHandle}>
-        {children}
-      </FormFieldContext.Provider>
-      {state.state === FormFieldState.Error && (
-        <MessageError>{props.error?.message ?? `Invalid content`}</MessageError>
-      )}
-    </FormFieldBase>
-  )
-})
+    const childrenGroupped = useGroupChildrenByType(children, {
+      FormFieldOnInvalid: FormFieldOnInvalid,
+    })
+
+    return (
+      <FormFieldBase gap={theme.spacing.two} {...passed}>
+        {label && <Label>{label}</Label>}
+        <FormFieldContext.Provider value={refHandle}>
+          {childrenGroupped.others}
+        </FormFieldContext.Provider>
+        {state.state === FormFieldState.Error && (
+          <MessageError>
+            {props.error?.message ?? `Invalid content`}
+          </MessageError>
+        )}
+        {state.state === FormFieldState.Error &&
+          childrenGroupped.FormFieldOnInvalid}
+      </FormFieldBase>
+    )
+  },
+) as ForwardRefExoticComponent<
+  FormFieldProps & RefAttributes<FormFieldHandle>
+> & {
+  On: { Invalid: typeof FormFieldOnInvalid }
+}
 FormField.displayName = `FormField`
+FormField.On = { Invalid: FormFieldOnInvalid }
 
 const FormFieldBase = styled(View)`` as typeof View
 
