@@ -1,10 +1,10 @@
-import React from 'react'
 import { useChildrenByType } from './use-children-by-type'
+import React from 'react'
 
 export function useGroupChildrenByType<TKeys>(
   children: React.ReactNode,
   types: Record<keyof TKeys, React.ElementType>,
-): Record<keyof TKeys | 'others', React.ReactElement[]> {
+): Record<keyof TKeys | `others`, React.ReactElement[]> {
   const groupped = { others: [] } as Record<any, React.ReactElement[]>
   const grouppedChildren: React.ReactElement[] = []
   Object.entries(types).forEach(([typeName, type]) => {

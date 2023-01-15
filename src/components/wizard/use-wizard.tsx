@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
+import { useContext } from 'react'
 
 export function useWizard<T>(key: keyof T, data: T[keyof T]): WizardHandle<T> {
   let context: WizardHandle<T> | null = null
