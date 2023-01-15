@@ -1,10 +1,10 @@
-import { RadioOptionDescription } from './radio-option-description'
 import { Ionicons } from '@expo/vector-icons'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
+import { RadioOptionDescription } from './radio-option-description'
 
 export type RadioOptionProps<T = any> = BaseProps & {
   isSelected?: boolean
@@ -37,7 +37,7 @@ const RadioOptionBase = styled(Base)<RadioOptionProps>`
   border-radius: 8px;
 ` as typeof Base
 
-const CircleOuter = styled.View<RadioOptionProps>`
+const CircleOuter = styled.View<Partial<RadioOptionProps>>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +57,7 @@ const CircleOuter = styled.View<RadioOptionProps>`
   border: 1px solid gray;
 `
 
-const CircleInner = styled.View<RadioOptionProps>`
+const CircleInner = styled.View<Partial<RadioOptionProps>>`
   height: 50%;
   aspect-ratio: 1 / 1;
   border-radius: ${borderRadiusPercentToNumber(50)}px;
