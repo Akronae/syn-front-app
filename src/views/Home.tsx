@@ -21,7 +21,7 @@ export function Home(props: HomeProps) {
 
   return (
     <HomeBase>
-      <Card showIf={read.value}>
+      <Card showIf={read.value?.verse != null}>
         <Text>Get back where you left</Text>
         <Btn
           onTouchEnd={() =>
@@ -52,7 +52,7 @@ const Card = styled(View)`
   border: 1px solid #1e4894;
   border-radius: 16px;
   padding: 20px;
-`
+` as typeof View
 
 const Btn = styled(Button)`
   background-color: #1e4894;

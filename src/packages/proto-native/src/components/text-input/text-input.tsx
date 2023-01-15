@@ -55,7 +55,7 @@ export type TextInputProps = BaseProps &
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     icon?: {
-      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      ionicons?: keyof typeof Ionicons[`glyphMap`]
       custom?: React.ComponentType<Partial<TextInputProps>>
     }
     rightSlot?: React.ReactNode
@@ -236,7 +236,7 @@ const NativeInputOnSuggestions = css`
   border-bottom-right-radius: 0;
 `
 
-const InputContainer = styled(Base)<TextInputProps>`
+const InputContainer = styled(Base)<Partial<TextInputProps>>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -249,7 +249,7 @@ const InputContainer = styled(Base)<TextInputProps>`
   ${(p) => p.isInvalid?.state && p.invalid?.style}
   ${(p) => p.suggestions?.show?.state && p.suggestions?.style}
   ${(p) => p.input?.style}
-` as typeof Base
+`
 
 const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
   outline-width: 0;
