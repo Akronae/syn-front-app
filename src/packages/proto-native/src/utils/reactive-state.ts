@@ -1,3 +1,4 @@
+import { isObjectLike } from 'lodash-es'
 import { Dispatch, SetStateAction } from 'react'
 
 /**
@@ -34,6 +35,7 @@ export class ReactiveState<T> extends Array<T | Dispatch<SetStateAction<T>>> {
     this.state = this.initial
   }
   reactivate() {
-    this.setter({ ...this.getter })
+    if (isObjectLike(this.getter)) this.setter({ ...this.getter })
+    else this.setter(this.getter)
   }
 }
