@@ -1,3 +1,4 @@
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -12,7 +13,6 @@ import {
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export enum ButtonType {
   Primary,
@@ -90,7 +90,7 @@ const Disabled = css`
 
 const ButtonText = css`
   background-color: transparent;
-  text-align: center;
+  color: ${(p) => p.theme.colors.text.primary};
 `
 
 const Pressable = styled.Pressable<ButtonProps>`

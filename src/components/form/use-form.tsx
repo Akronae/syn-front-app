@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import { FormContext } from './form-context'
 import { FormHandle } from './form-handle'
+import { useContext } from 'react'
 
 export function useForm(): FormHandle {
   let context: FormHandle | null = null

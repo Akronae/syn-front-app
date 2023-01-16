@@ -1,9 +1,9 @@
+import { WizardContext } from './wizard-context'
+import { WizardHandle } from './wizard-handle'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import React, { useMemo } from 'react'
 import styled from 'styled-components/native'
-import { WizardContext } from './wizard-context'
-import { WizardHandle } from './wizard-handle'
 
 export type WizardBodyProps<T> = BaseProps & {
   data: ReactiveState<T>
