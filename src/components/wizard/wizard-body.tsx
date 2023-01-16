@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-import { WizardContext } from './wizard-context'
-import { WizardHandle } from './wizard-handle'
->>>>>>> 65960ff759141147c2595afe24d748594e81fc86
 import { Base, BaseProps } from '@proto-native/components/base'
 import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import React, { useMemo } from 'react'
