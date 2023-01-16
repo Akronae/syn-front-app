@@ -1,5 +1,3 @@
-import { FormContext } from './form-context'
-import { FormHandle } from './form-handle'
 import {
   FormField,
   FormFieldState,
@@ -13,6 +11,8 @@ import {
   useImperativeHandle,
 } from 'react'
 import styled from 'styled-components/native'
+import { FormContext } from './form-context'
+import { FormHandle } from './form-handle'
 
 export type FormProps = ViewProps
 export type FormRef = { validate: () => boolean }
@@ -25,7 +25,7 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   })
   const fields = childrenByType.FormField
 
-  const elems: FormHandle[`elems`] = {}
+  const elems: FormHandle['elems'] = {}
 
   useImperativeHandle(ref, () => ({
     validate: () => {

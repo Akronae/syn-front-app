@@ -1,7 +1,3 @@
-import { FormFieldContext } from './form-field-context'
-import { FormFieldHandle } from './form-field-handle'
-import { FormFieldOnInvalid } from './form-field-on-invalid'
-import useForm from './use-form'
 import { Text } from '@proto-native/components/text'
 import { View, ViewProps } from '@proto-native/components/view'
 import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
@@ -13,6 +9,10 @@ import {
 } from 'react'
 import * as React from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
+import { FormFieldContext } from './form-field-context'
+import { FormFieldHandle } from './form-field-handle'
+import { FormFieldOnInvalid } from './form-field-on-invalid'
+import useForm from './use-form'
 
 export enum FormFieldState {
   Normal = `normal`,
