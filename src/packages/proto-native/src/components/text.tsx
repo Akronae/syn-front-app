@@ -7,10 +7,30 @@ export type TextProps = BaseProps<React.TextStyle> & React.TextProps
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
   const { children, style, ...rest } = props
-  const { color, fontWeight, fontSize, fontFamily, textAlign, ...styleRest } =
-    React.StyleSheet.flatten(style || [])
+  const {
+    color,
+    fontWeight,
+    fontSize,
+    fontFamily,
+    lineHeight,
+    textTransform,
+    letterSpacing,
+    textDecorationColor,
+    textAlign,
+    ...styleRest
+  } = React.StyleSheet.flatten(style || [])
   const takenStyle = omitBy(
-    { color, fontWeight, fontSize, fontFamily, textAlign },
+    {
+      color,
+      fontWeight,
+      fontSize,
+      fontFamily,
+      lineHeight,
+      textTransform,
+      letterSpacing,
+      textDecorationColor,
+      textAlign,
+    },
     isUndefined,
   )
 
