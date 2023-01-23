@@ -62,12 +62,7 @@ const TextBase = styled.Text<TextProps>`
   font-family: ${(p) => boldnessToFont(getStyleBoldness(p.style), p.theme)};
 `
 
-const TextDefault = styled(TextBase)`
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
-`
-
-export function Text(props: TextProps) {
+function TextCompo(props: TextProps) {
   const textOwnProps = takeTextOwnProps(props)
 
   return (
@@ -76,4 +71,10 @@ export function Text(props: TextProps) {
     </TextWrapper>
   )
 }
-Text.Default = TextDefault
+
+export const Text = styled(TextCompo)`
+  color: ${(p) => p.theme.colors.text.primary};
+  font-size: ${(p) => p.theme.typography.size.md};
+`
+Text.Inherit = styled(TextCompo)`
+`

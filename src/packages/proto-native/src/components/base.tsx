@@ -8,7 +8,7 @@ export type BaseProps<
   TProps extends Native.ViewProps = Native.ViewProps,
 > = Omit<React.PropsWithChildren<TProps>, `style`> &
   Omit<Animated.AnimateProps<TProps>, `style` | `animatedProps`> & {
-    style?: TStyle
+    style?: Native.StyleProp<TStyle>
     showIf?: boolean
     transparent?: boolean
     selectors?: CSSSelectors
