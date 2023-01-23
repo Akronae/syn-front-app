@@ -36,8 +36,9 @@ export function Button(props: ButtonProps) {
   const baseProps = takeBaseOwnProps(textProps.rest)
   const btnProps = takeButtonOwnProps(baseProps.rest)
 
-  const flatStyle = React.StyleSheet.flatten(style) as Record<string, unknown>
+  const flatStyle = React.StyleSheet.flatten(style) as React.TextStyle
   const fontSize = flatStyle?.fontSize || theme.typography.size.md
+  const color = flatStyle?.color || theme.colors.text.primary
 
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
@@ -61,7 +62,7 @@ export function Button(props: ButtonProps) {
         style={pressableStyle}
       >
         {textProps.taken.children && (
-          <CardBtnText {...textProps.taken} parent={{ props }} />
+          <CardBtnText {...textProps.taken} style={[{color}, textProps.taken.style]} parent={{ props }} />
         )}
         {btnProps.taken.icon && (
           <Icon name={btnProps.taken.icon} size={fontSize} />
