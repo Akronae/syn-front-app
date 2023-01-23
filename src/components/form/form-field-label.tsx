@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
-import { Text, TextProps } from "../text";
+import { Text, TextProps } from 'src/components/text'
+import styled from 'styled-components/native'
 
-export type FormFieldLabelProps = TextProps;
+export type FormFieldLabelProps = TextProps
 
 export const FormFieldLabel = styled(Text)`
   font-size: ${(p) => p.theme.typography.size.xs}px;
