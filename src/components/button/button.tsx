@@ -1,4 +1,3 @@
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -13,6 +12,7 @@ import {
 import * as React from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export enum ButtonType {
   Primary,
@@ -39,6 +39,7 @@ export function Button(props: ButtonProps) {
   const flatStyle = React.StyleSheet.flatten(style) as React.TextStyle
   const fontSize = flatStyle?.fontSize || theme.typography.size.md
   const color = flatStyle?.color || theme.colors.text.primary
+  const fontWeight = flatStyle?.fontWeight
 
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
@@ -62,7 +63,11 @@ export function Button(props: ButtonProps) {
         style={pressableStyle}
       >
         {textProps.taken.children && (
-          <CardBtnText {...textProps.taken} style={[{color}, textProps.taken.style]} parent={{ props }} />
+          <CardBtnText
+            {...textProps.taken}
+            style={[{ color, fontWeight }, textProps.taken.style]}
+            parent={{ props }}
+          />
         )}
         {btnProps.taken.icon && (
           <Icon name={btnProps.taken.icon} size={fontSize} />

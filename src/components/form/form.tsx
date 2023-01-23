@@ -1,5 +1,3 @@
-import { FormContext } from './form-context'
-import { FormHandle } from './form-handle'
 import {
   FormField,
   FormFieldState,
@@ -13,6 +11,8 @@ import {
   useImperativeHandle,
 } from 'react'
 import styled from 'styled-components/native'
+import { FormContext } from './form-context'
+import { FormHandle } from './form-handle'
 
 export type FormProps = ViewProps
 export type FormRef = { validate: () => boolean }
@@ -32,7 +32,7 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
       let isFormValid = true
       fields.forEach((field) => {
         if (field.props.validate) {
-          const elemHandle = elems[field.props.label]
+          const elemHandle = elems[field.props.name]
           const valid = field.props.validate(elemHandle?.input?.state ?? ``)
           if (!valid) {
             isFormValid = false
