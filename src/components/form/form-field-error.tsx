@@ -1,5 +1,5 @@
-import styled from 'styled-components/native'
 import { Text, TextProps } from 'src/components/text'
+import styled from 'styled-components/native'
 
 export type FormFieldErrorProps = TextProps
 

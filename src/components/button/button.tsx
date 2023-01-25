@@ -35,8 +35,8 @@ export type ButtonProps = BaseProps &
   }
 
 export function Button(props: ButtonProps) {
-  const theme = useTheme()
   const { style, icon, ...rest } = props
+  const theme = useTheme()
   const textProps = takeTextOwnProps(rest)
   const baseProps = takeBaseOwnProps(textProps.rest)
   const btnProps = takeButtonOwnProps(baseProps.rest)
