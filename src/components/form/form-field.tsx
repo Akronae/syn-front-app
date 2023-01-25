@@ -1,4 +1,3 @@
-import { Text } from '@proto-native/components/text'
 import { View, ViewProps } from '@proto-native/components/view'
 import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
 import {
@@ -10,6 +9,7 @@ import {
 import * as React from 'react-native'
 import styled, { useTheme } from 'styled-components/native'
 import { FormFieldContext } from './form-field-context'
+import { FormFieldError } from './form-field-error'
 import { FormFieldHandle } from './form-field-handle'
 import { FormFieldLabel } from './form-field-label'
 import { FormFieldOnInvalid } from './form-field-on-invalid'
@@ -24,12 +24,12 @@ export enum FormFieldState {
 export type FormFieldProps = ViewProps & {
   name: string
   validate?: (input: any) => boolean
-  error?: { message?: string }
+  error?: { message?: string; style?: React.StyleProp<React.TextStyle> }
 }
 
 export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
   (props: FormFieldProps, ref) => {
-    const { children, name, ...passed } = props
+    const { children, name, error, ...passed } = props
 
     const theme = useTheme()
     const form = useForm()
@@ -47,6 +47,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
     const childrenGroupped = useGroupChildrenByType(children, {
       FormFieldOnInvalid: FormFieldOnInvalid,
       FormFieldLabel: FormFieldLabel,
+      FormFieldError: FormFieldError,
     })
 
     return (
@@ -55,10 +56,11 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
         <FormFieldContext.Provider value={refHandle}>
           {childrenGroupped.others}
         </FormFieldContext.Provider>
-        {state.state === FormFieldState.Error && (
-          <MessageError>
-            {props.error?.message ?? `Invalid content`}
-          </MessageError>
+
+        {state.state === FormFieldState.Error &&
+          childrenGroupped.FormFieldError}
+        {state.state === FormFieldState.Error && error && (
+          <FormField.Error style={error.style}>{error.message}</FormField.Error>
         )}
         {state.state === FormFieldState.Error &&
           childrenGroupped.FormFieldOnInvalid}
@@ -70,13 +72,11 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
 > & {
   On: { Invalid: typeof FormFieldOnInvalid }
   Label: typeof FormFieldLabel
+  Error: typeof FormFieldError
 }
 FormField.displayName = `FormField`
 FormField.On = { Invalid: FormFieldOnInvalid }
 FormField.Label = FormFieldLabel
+FormField.Error = FormFieldError
 
 const FormFieldBase = styled(View)`` as typeof View
-
-const MessageError = styled(Text)`
-  color: ${(p) => p.theme.colors.text.error};
-`

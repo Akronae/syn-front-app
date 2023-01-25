@@ -70,7 +70,7 @@ export function TextInput(props: TextInputProps) {
     isInvalid: isInvalidProps,
     invalid,
     suggestions,
-    onChangeText,
+    onChangeText: onChangeTextProps,
     onFocus,
     onBlur,
     numberOfLines,
@@ -101,7 +101,7 @@ export function TextInput(props: TextInputProps) {
   if (formField) {
     formField.input = model
   }
-  if (formField?.state.state === FormFieldState.Error) isInvalid.state = true
+  isInvalid.state = formField?.state.state === FormFieldState.Error
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
@@ -133,6 +133,12 @@ export function TextInput(props: TextInputProps) {
         })
       }
     }
+  }
+
+  const onChangeText = (text: string) => {
+    model.state = text
+    if (formField?.state) formField.state.state = FormFieldState.Normal
+    onChangeTextProps?.(text)
   }
 
   const style =
@@ -181,10 +187,7 @@ export function TextInput(props: TextInputProps) {
           {...textProps.taken}
           {...baseProps.rest}
           style={style}
-          onChangeText={(val) => {
-            model.state = val
-            onChangeText?.(val)
-          }}
+          onChangeText={onChangeText}
           onFocus={(e) => {
             if (isFocused) isFocused.state = true
             onFocus?.(e)
