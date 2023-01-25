@@ -10,7 +10,9 @@ import {
   Text,
   TextProps,
 } from '@proto-native/components/text'
-import * as React from 'react-native'
+import { isUndefined, omitBy } from 'lodash-es'
+import * as React from 'react'
+import * as Native from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
 
@@ -23,22 +25,28 @@ export type ButtonProps = BaseProps &
   TextProps &
   PressableProps &
   Omit<PressableProps, `style`> & {
-    icon?: keyof typeof Ionicons.glyphMap
+    icon?: {
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      custom?: React.ComponentType<Partial<ButtonProps>>
+    }
     pressAnimation?: ButtonPressAnimation
     type?: ButtonType
     disabled?: boolean
   }
 
 export function Button(props: ButtonProps) {
+  const { style, icon, ...rest } = props
   const theme = useTheme()
-  const { style, ...rest } = props
   const textProps = takeTextOwnProps(rest)
   const baseProps = takeBaseOwnProps(textProps.rest)
   const btnProps = takeButtonOwnProps(baseProps.rest)
 
-  const flatStyle = React.StyleSheet.flatten(style) as React.TextStyle
+  const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.typography.size.md
   const color = flatStyle?.color || theme.colors.text.primary
+  const fill = flatStyle?.fill || theme.colors.text.primary
+  const stroke = flatStyle?.stroke || theme.colors.text.primary
+  const fontWeight = flatStyle?.fontWeight
 
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
@@ -62,10 +70,22 @@ export function Button(props: ButtonProps) {
         style={pressableStyle}
       >
         {textProps.taken.children && (
-          <CardBtnText {...textProps.taken} style={[{color}, textProps.taken.style]} parent={{ props }} />
+          <CardBtnText
+            {...textProps.taken}
+            style={[{ color, fontWeight }, textProps.taken.style]}
+            parent={{ props }}
+          />
         )}
-        {btnProps.taken.icon && (
-          <Icon name={btnProps.taken.icon} size={fontSize} />
+        {icon?.ionicons && (
+          <Icon
+            name={icon.ionicons}
+            style={omitBy({ color, fontSize }, isUndefined)}
+          />
+        )}
+        {icon?.custom && (
+          <icon.custom
+            style={omitBy({ color, fontSize, fill, stroke }, isUndefined)}
+          />
         )}
       </Pressable>
     </ButtonBase>
@@ -107,7 +127,7 @@ const Pressable = styled.Pressable<ButtonProps>`
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === ButtonType.Text && ButtonText}
-` as typeof React.Pressable
+` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
   display: flex;
@@ -115,7 +135,7 @@ const CardBtnText = styled(Text)`
   text-align: center;
   margin: 0 10px;
   font-size: ${(p) =>
-  React.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
+  Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.typography.size.md}px;
 ` as typeof Text
 
@@ -124,7 +144,7 @@ const Icon = styled(Ionicons)`
 `
 
 const elevation = (theme: DefaultTheme) =>
-  React.StyleSheet.create({
+  Native.StyleSheet.create({
     elevation: {
       shadowColor: theme.colors.surface.contrast,
       shadowOffset: { width: 0, height: 1 },
