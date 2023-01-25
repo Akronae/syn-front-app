@@ -52,7 +52,6 @@ const Card = styled(View)`
   border: 1px solid #1e4894;
   border-radius: 16px;
   padding: 20px;
-  color: red;
 ` as typeof View
 
 const Btn = styled(Button)`
