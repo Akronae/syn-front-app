@@ -2,15 +2,17 @@ import { Base, BaseProps } from '@proto-native/components/base'
 import { useInterval, useState } from '@proto-native/utils'
 import { castArray } from 'lodash-es'
 import * as React from 'react-native'
-import styled from 'styled-components/native'
+import styled, { DefaultTheme, useTheme } from 'styled-components/native'
 
 export interface ViewProps extends BaseProps {
-  gap?: number
+  gap?: number | ((theme: DefaultTheme) => number)
   childRendering?: { instant?: { first?: number }; interval?: { ms: number } }
 }
 
 export function View(props: ViewProps) {
-  const { children, gap, childRendering, ...passed } = props
+  const { children, gap: gapProps, childRendering, ...passed } = props
+  const theme = useTheme()
+  const gap = typeof gapProps === `function` ? gapProps(theme) : gapProps
   const renderedChildren = useState(childRendering?.instant?.first ?? 0)
 
   const flatChildren = castArray(children)
