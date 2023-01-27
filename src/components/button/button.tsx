@@ -54,6 +54,9 @@ export function Button(props: ButtonProps) {
   const pressableStyle = [style]
   if (btnProps.taken.type !== ButtonType.Text)
     pressableStyle.push(elevation(theme))
+  const isIconButton = isUndefined(props.children) && !isUndefined(props.icon)
+  if (isIconButton)
+    pressableStyle.push({ borderRadius: 50, aspectRatio: 1, padding: 0 })
 
   return (
     <ButtonBase {...baseProps.taken} style={[anim.style]}>

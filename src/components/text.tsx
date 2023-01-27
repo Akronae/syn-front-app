@@ -19,6 +19,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     textAlign,
     ...styleRest
   } = React.StyleSheet.flatten(style || [])
+
   const takenStyle = omitBy(
     {
       color,
@@ -44,7 +45,7 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
   const fontWeight = React.StyleSheet.flatten(style)?.fontWeight
   if (!fontWeight) return 400
   if (typeof fontWeight === `string`) {
-    if (fontWeight === `bold`) return 700
+    if (fontWeight === `bold`) return 600
     if (fontWeight === `normal`) return 400
   }
   return parseInt(fontWeight.toString())
@@ -52,6 +53,14 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
 
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
   if (boldness < 400) return theme.typography.font.light
+  if (boldness >= 700) {
+    if (React.Platform.OS === `android`) {
+      // Android bug with font weight 700, see issue: https://github.com/akveo/react-native-ui-kitten/issues/1501
+      // change in accordance when resolved
+      return theme.typography.font.bold
+    }
+    return theme.typography.font.extraBold
+  }
   if (boldness >= 600) return theme.typography.font.bold
   return theme.typography.font.regular
 }

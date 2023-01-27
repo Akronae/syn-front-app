@@ -1,4 +1,5 @@
 export interface Theme {
+  dark: boolean
   colors: {
     surface: {
       default: string
@@ -22,6 +23,7 @@ export interface Theme {
       light: string
       regular: string
       bold: string
+      extraBold: string
     }
     size: {
       xxl: number
