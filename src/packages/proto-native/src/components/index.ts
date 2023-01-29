@@ -1,5 +1,6 @@
 export * from './base'
 export * from './button'
+export * from './divider'
 export * from './form'
 export * from './radio'
 export * from './skeleton-loader'

@@ -3,6 +3,7 @@ import { WizardPath } from './wizard-path'
 import { WizardStep } from './wizard-step'
 
 export * from './use-wizard'
+export * from './use-wizard-next-guard'
 export * from './wizard-context'
 export * from './wizard-handle'
 
