@@ -54,11 +54,6 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
   if (boldness < 400) return theme.typography.font.light
   if (boldness >= 700) {
-    if (React.Platform.OS === `android`) {
-      // Android bug with font weight 700, see issue: https://github.com/akveo/react-native-ui-kitten/issues/1501
-      // change in accordance when resolved
-      return theme.typography.font.bold
-    }
     return theme.typography.font.extraBold
   }
   if (boldness >= 600) return theme.typography.font.bold
@@ -74,9 +69,19 @@ const TextBase = styled.Text<TextProps>`
 function TextCompo(props: TextProps) {
   const textOwnProps = takeTextOwnProps(props)
 
+  const textBaseStyle = React.StyleSheet.flatten(textOwnProps.taken.style)
+  let fontWeight = textBaseStyle?.fontWeight || `normal`
+  if (parseInt(fontWeight) >= 700 && React.Platform.OS === `android`) {
+    // Android doesn't support 700+ font weight
+    fontWeight = `600`
+  }
+
   return (
     <TextWrapper {...textOwnProps.rest}>
-      <TextBase {...textOwnProps.taken} />
+      <TextBase
+        {...textOwnProps.taken}
+        style={[textBaseStyle, { fontWeight }]}
+      />
     </TextWrapper>
   )
 }
