@@ -20,7 +20,7 @@ export interface Theme {
   }
   typography: {
     font: {
-      light: string
+      medium: string
       regular: string
       bold: string
       extraBold: string

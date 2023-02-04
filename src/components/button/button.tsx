@@ -54,9 +54,6 @@ export function Button(props: ButtonProps) {
   const pressableStyle = [style]
   if (btnProps.taken.type !== ButtonType.Text)
     pressableStyle.push(elevation(theme))
-  const isIconButton = isUndefined(props.children) && !isUndefined(props.icon)
-  if (isIconButton)
-    pressableStyle.push({ borderRadius: 50, aspectRatio: 1, padding: 0 })
 
   return (
     <ButtonBase {...baseProps.taken} style={[anim.style]}>
@@ -87,7 +84,7 @@ export function Button(props: ButtonProps) {
         )}
         {icon?.custom && (
           <icon.custom
-            style={omitBy({ color, fontSize, fill, stroke }, isUndefined)}
+            style={[omitBy({ color, fontSize, fill, stroke }, isUndefined)]}
           />
         )}
       </Pressable>
@@ -136,7 +133,6 @@ const CardBtnText = styled(Text)`
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 0 10px;
   font-size: ${(p) =>
   Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.typography.size.md}px;

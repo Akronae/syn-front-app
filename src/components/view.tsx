@@ -2,7 +2,7 @@ import { Base, BaseProps } from '@proto-native/components/base'
 import { useInterval, useState } from '@proto-native/utils'
 import { castArray } from 'lodash-es'
 import * as React from 'react-native'
-import styled, { DefaultTheme, useTheme } from 'styled-components/native'
+import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
 
 export interface ViewProps extends BaseProps {
   gap?: number | ((theme: DefaultTheme) => number)
@@ -21,7 +21,18 @@ export function View(props: ViewProps) {
       if (i >= renderedChildren.state) return []
 
       const hasDivider = gap && i != arr.length - 1
-      return [e, hasDivider && <Divider key={i + 100000} gap={gap} />]
+      return [
+        e,
+        hasDivider && (
+          <Divider
+            key={i + 100000}
+            gap={gap}
+            vertical={
+              React.StyleSheet.flatten(props.style)?.flexDirection == `row`
+            }
+          />
+        ),
+      ]
     })
 
   if (!childRendering) {
@@ -48,6 +59,15 @@ const ViewBase = styled(Base)`
 }}
 ` as typeof Base
 
-const Divider = styled.View<{ gap?: number }>`
-  height: ${(p) => p.gap};
+const Divider = styled.View<{ gap?: number; vertical: boolean }>`
+  ${(p) =>
+    !p.vertical &&
+    css`
+      height: ${p.gap};
+    `}
+  ${(p) =>
+    p.vertical &&
+    css`
+      width: ${p.gap};
+    `}
 `
