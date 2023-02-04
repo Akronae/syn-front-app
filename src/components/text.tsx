@@ -52,12 +52,10 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
 }
 
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
-  if (boldness < 400) return theme.typography.font.light
-  if (boldness >= 700) {
-    return theme.typography.font.extraBold
-  }
-  if (boldness >= 600) return theme.typography.font.bold
-  return theme.typography.font.regular
+  if (boldness < 400) return theme.typography.font.regular
+  if (boldness < 600) return theme.typography.font.medium
+  if (boldness < 700) return theme.typography.font.bold
+  return theme.typography.font.extraBold
 }
 
 const TextWrapper = styled(Base)``

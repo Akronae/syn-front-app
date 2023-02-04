@@ -12,9 +12,12 @@ export function StatusBar(props: StatusBarProps) {
   const { ...passed } = props
   const aspectRatio = useScreenAspectRatio()
 
+  const isMobileWebViewDev =
+    isDev() && React.Platform.OS == `web` && aspectRatio < 1.1
+
   return (
     <StatusBarBase {...passed}>
-      {isDev() && React.Platform.OS == `web` && aspectRatio < 1.1 && <Mockup />}
+      {isMobileWebViewDev && <Mockup />}
     </StatusBarBase>
   )
 }
@@ -49,6 +52,7 @@ const Time = styled(Text)`
   flex: 1;
   justify-content: center;
   align-items: center;
+  font-weight: 400;
 `
 
 const Icons = styled(View)`
