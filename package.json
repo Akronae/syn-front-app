@@ -5,16 +5,17 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web",
+    "web": "expo start --web --clear",
     "pretty": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,yml,yaml,md}\" \"./*.{js,jsx,ts,tsx,json,yml,yaml,md}\"",
     "lint": "eslint App.tsx src --fix",
     "format": "yarn pretty && yarn lint",
-    "build:android:apk": "eas build -p android --profile preview --local"
+    "build:android:apk": "rm *.apk; eas build -p android --profile preview --local",
+    "log:android": "npx react-native log-android",
+    "log:ios": "npx react-native log-ios"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^0.17.0",
-    "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/drawer": "^6.5.0",
@@ -41,7 +42,6 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
-    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
     "@types/jsdom": "^20.0.0",
     "@types/lodash-es": "^4.17.6",
     "@types/react": "~18.0.14",

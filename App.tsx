@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font'
 import * as NavigationBar from 'expo-navigation-bar'
 import { StatusBar } from 'expo-status-bar'
 import { LogBox, Platform, useColorScheme } from 'react-native'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Router } from 'src/router'
 import { DarkTheme } from 'src/theme'
 import styled, { ThemeProvider, useTheme } from 'styled-components/native'
@@ -33,10 +34,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={DarkTheme}>
-      <Page>
-        <StatusBar style='light' />
-        <Router />
-      </Page>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Page>
+          <StatusBar style='light' />
+          <Router />
+        </Page>
+      </GestureHandlerRootView>
     </ThemeProvider>
   )
 }

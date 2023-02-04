@@ -1,17 +1,19 @@
-import { Text } from '@proto-native'
+import { ReactiveState, Text, useExistingStateOr } from '@proto-native'
 import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
-import { Word } from 'src/components/Word'
+import { Word } from 'src/components/word'
 import { column } from 'src/styles/column'
 import * as Types from 'src/types'
 import styled from 'styled-components/native'
 
 export interface VerseProps extends ViewProps {
   verse: Types.Verse
+  focusedWord?: ReactiveState<Types.Word | undefined>
 }
 
 export function Verse(props: VerseProps) {
-  const { children, verse, ...passed } = props
+  const { children, verse, focusedWord: focusedWordProps, ...passed } = props
+  const focusedWord = useExistingStateOr(focusedWordProps, undefined)
 
   return (
     <View style={[column]} {...passed}>
@@ -21,7 +23,11 @@ export function Verse(props: VerseProps) {
       <VerseTranslated>{verse.verseTranslated}</VerseTranslated>
       <VerseWrapper gap={50}>
         {verse.wordsParsed.map((word, i) => (
-          <Word key={i} word={word} />
+          <Word
+            key={i}
+            word={word}
+            onTouchEnd={() => (focusedWord.state = word)}
+          />
         ))}
       </VerseWrapper>
       {children}

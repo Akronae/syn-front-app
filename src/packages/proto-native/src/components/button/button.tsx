@@ -26,7 +26,7 @@ export type ButtonProps = BaseProps &
   PressableProps &
   Omit<PressableProps, `style`> & {
     icon?: {
-      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      ionicons?: keyof typeof Ionicons[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
     pressAnimation?: ButtonPressAnimation

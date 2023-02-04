@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { RootStackParamList, getScreenOptions } from 'src/router/router-config'
-import { Home } from 'src/views/Home'
-import { Read } from 'src/views/Read/index'
+import { Home } from 'src/views/home'
+import { Read } from 'src/views/read/index'
 import { useTheme } from 'styled-components/native'
 
 export const Tab = createBottomTabNavigator<RootStackParamList>()
@@ -20,8 +20,8 @@ export function Router() {
       background: theme.colors.surface.default,
       card: theme.colors.surface.default,
       text: theme.colors.text.primary,
-      border: theme.colors.border,
-      notification: theme.colors.notification,
+      border: theme.colors.surface.disabled,
+      notification: theme.colors.surface.sub,
     },
   }
 

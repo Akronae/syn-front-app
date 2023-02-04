@@ -1,4 +1,4 @@
-import { ReadBook } from './ReadBook'
+import { ReadBook } from './read-book'
 import { Base, Button, ButtonType } from '@proto-native'
 import { useState } from '@proto-native'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'

@@ -10,4 +10,4 @@ export function _Template(props: _TemplateProps) {
   return <_TemplateBase {...passed}></_TemplateBase>
 }
 
-export const _TemplateBase = styled(Base)``
+const _TemplateBase = styled(Base)``
