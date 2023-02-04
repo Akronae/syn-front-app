@@ -1,4 +1,3 @@
-import { Text } from '@proto-native/components/text'
 import { View, ViewProps } from '@proto-native/components/view'
 import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
 import {
