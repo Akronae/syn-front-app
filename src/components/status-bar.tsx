@@ -1,6 +1,6 @@
 import { Base, BaseProps } from '@proto-native/components/base'
-import { View } from '@proto-native/components/view'
 import { Text } from '@proto-native/components/text'
+import { View } from '@proto-native/components/view'
 import { isDev } from '@proto-native/utils/env/is-dev'
 import { useScreenAspectRatio } from '@proto-native/utils/use-screen-aspect-ratio'
 import * as React from 'react-native'
@@ -45,9 +45,9 @@ const StatusBarBase = styled(Base)`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  color: ${(p) => p.theme.colors.text.primary};
-  fill: ${(p) => p.theme.colors.text.primary};
-  stroke: ${(p) => p.theme.colors.text.primary};
+  color: ${(p) => p.theme.colors.text.contrast};
+  fill: ${(p) => p.theme.colors.text.contrast};
+  stroke: ${(p) => p.theme.colors.text.contrast};
 ` as typeof Base
 
 const Time = styled(Text)`
@@ -56,6 +56,7 @@ const Time = styled(Text)`
   justify-content: center;
   align-items: center;
   font-weight: 400;
+  color: ${(p) => p.theme.colors.text.contrast};
 `
 
 const Icons = styled(View)`
@@ -69,7 +70,7 @@ const Icons = styled(View)`
 const Notch = styled(Base)`
   height: 37px;
   width: 125px;
-  background-color: ${(p) => p.theme.colors.text.primary};
+  background-color: ${(p) => p.theme.colors.text.contrast};
   border-radius: 40px;
   margin: 11px 0 5px 0;
   flex: 1;

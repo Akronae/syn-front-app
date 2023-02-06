@@ -1,7 +1,3 @@
-import {
-  TextInputSuggestion,
-  TextInputSuggestionProps,
-} from './text-input-suggestion'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -27,6 +23,10 @@ import styled, {
   ThemeProps,
   useTheme,
 } from 'styled-components/native'
+import {
+  TextInputSuggestion,
+  TextInputSuggestionProps,
+} from './text-input-suggestion'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
@@ -55,7 +55,7 @@ export type TextInputProps = BaseProps &
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     icon?: {
-      ionicons?: keyof typeof Ionicons[`glyphMap`]
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<TextInputProps>>
     }
     rightSlot?: React.ReactNode

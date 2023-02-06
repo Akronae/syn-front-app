@@ -54,7 +54,9 @@ const ViewBase = styled(Base)`
 }}
 ` as typeof Base
 
-const Divider = styled.View<{ gap?: { horizontal: number; vertical: number } }>`
+const Divider = styled.View<{
+  gap?: { horizontal?: number; vertical?: number }
+}>`
   ${(p) =>
     p.gap?.vertical &&
     css`

@@ -1,4 +1,3 @@
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -14,7 +13,8 @@ import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
 import * as Native from 'react-native'
 import { PressableProps } from 'react-native'
-import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
+import styled, { css, useTheme } from 'styled-components/native'
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export enum ButtonType {
   Primary,
@@ -26,7 +26,7 @@ export type ButtonProps = BaseProps &
   PressableProps &
   Omit<PressableProps, `style`> & {
     icon?: {
-      ionicons?: keyof typeof Ionicons[`glyphMap`]
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
     pressAnimation?: ButtonPressAnimation
@@ -35,7 +35,8 @@ export type ButtonProps = BaseProps &
   }
 
 export function Button(props: ButtonProps) {
-  const { style, icon, ...rest } = props
+  const { icon, ...rest } = props
+  const style = props.style
   const theme = useTheme()
   const textProps = takeTextOwnProps(rest)
   const baseProps = takeBaseOwnProps(textProps.rest)
@@ -51,12 +52,12 @@ export function Button(props: ButtonProps) {
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
   const anim = usePressAnimation(pressAnimation)
-  const pressableStyle = [style]
-  if (btnProps.taken.type !== ButtonType.Text)
-    pressableStyle.push(elevation(theme))
 
   return (
-    <ButtonBase {...baseProps.taken} style={[anim.style]}>
+    <ButtonBase
+      {...baseProps.taken}
+      style={[anim.style, baseProps.taken.style]}
+    >
       <Pressable
         {...baseProps.rest}
         onTouchStart={(e) => {
@@ -67,7 +68,6 @@ export function Button(props: ButtonProps) {
           // anim.revert(() => )
           btnProps.taken?.onTouchEnd?.(e)
         }}
-        style={pressableStyle}
       >
         {textProps.taken.children && (
           <CardBtnText
@@ -102,19 +102,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   }
 }
 
-const ButtonBase = styled(Base)``
-
-const Disabled = css`
-  background-color: ${(p) => p.theme.colors.surface.disabled};
-  color: ${(p) => p.theme.colors.text.primary};
-`
-
-const ButtonText = css`
-  background-color: transparent;
-  color: ${(p) => p.theme.colors.text.primary};
-`
-
-const Pressable = styled.Pressable<ButtonProps>`
+const ButtonBase = styled(Base)<ButtonProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -127,7 +115,19 @@ const Pressable = styled.Pressable<ButtonProps>`
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === ButtonType.Text && ButtonText}
-` as typeof Native.Pressable
+`
+
+const Disabled = css`
+  background-color: ${(p) => p.theme.colors.surface.disabled};
+  color: ${(p) => p.theme.colors.text.primary};
+`
+
+const ButtonText = css`
+  background-color: transparent;
+  color: ${(p) => p.theme.colors.text.primary};
+`
+
+const Pressable = styled.Pressable<ButtonProps>`` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
   display: flex;
@@ -141,14 +141,3 @@ const CardBtnText = styled(Text)`
 const Icon = styled(Ionicons)`
   /* margin: auto; */
 `
-
-const elevation = (theme: DefaultTheme) =>
-  Native.StyleSheet.create({
-    elevation: {
-      shadowColor: theme.colors.surface.contrast,
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.2,
-      shadowRadius: 2,
-      elevation: 5,
-    },
-  }).elevation

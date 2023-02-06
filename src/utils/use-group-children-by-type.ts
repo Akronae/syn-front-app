@@ -1,5 +1,5 @@
-import { useChildrenByType } from './use-children-by-type'
 import React from 'react'
+import { useChildrenByType } from './use-children-by-type'
 
 export function useGroupChildrenByType<TKeys>(
   children: React.ReactNode,
