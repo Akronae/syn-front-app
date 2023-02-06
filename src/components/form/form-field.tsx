@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
 } from 'react'
 import * as React from 'react-native'
-import styled, { useTheme } from 'styled-components/native'
+import styled from 'styled-components/native'
 import { FormFieldContext } from './form-field-context'
 import { FormFieldError } from './form-field-error'
 import { FormFieldHandle } from './form-field-handle'
@@ -31,7 +31,6 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
   (props: FormFieldProps, ref) => {
     const { children, name, error, ...passed } = props
 
-    const theme = useTheme()
     const form = useForm()
     const state = useExistingStateOr(
       form.elems[name]?.state,
@@ -51,7 +50,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
     })
 
     return (
-      <FormFieldBase gap={theme.spacing.two} {...passed}>
+      <FormFieldBase gap={{ vertical: (t) => t.spacing.two }} {...passed}>
         {childrenGroupped.FormFieldLabel}
         <FormFieldContext.Provider value={refHandle}>
           {childrenGroupped.others}

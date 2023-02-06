@@ -9,6 +9,9 @@ export interface Theme {
       disabled: string
       error: string
     }
+    border: {
+      default: string
+    }
     text: {
       primary: string
       sub: string
@@ -34,13 +37,6 @@ export interface Theme {
       xs: number
     }
   }
-  spacing: {
-    one: number
-    two: number
-    three: number
-    four: number
-    five: number
-    six: number
-    seven: number
-  }
+  spacing: (index: number) => number
+  borderRadius: (index: number) => number
 }
