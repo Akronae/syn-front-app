@@ -1,18 +1,23 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { useInterval, useState } from '@proto-native/utils'
+import { computeThemeValue } from '@proto-native/utils/theme/compute-theme-value'
+import { ThemeValue } from '@proto-native/utils/theme/theme-value'
 import { castArray } from 'lodash-es'
 import * as React from 'react-native'
-import styled, { css, DefaultTheme, useTheme } from 'styled-components/native'
+import styled, { css, useTheme } from 'styled-components/native'
 
 export interface ViewProps extends BaseProps {
-  gap?: number | ((theme: DefaultTheme) => number)
+  gap?: { vertical?: ThemeValue<number>; horizontal?: ThemeValue<number> }
   childRendering?: { instant?: { first?: number }; interval?: { ms: number } }
 }
 
 export function View(props: ViewProps) {
   const { children, gap: gapProps, childRendering, ...passed } = props
   const theme = useTheme()
-  const gap = typeof gapProps === `function` ? gapProps(theme) : gapProps
+  const gap = {
+    vertical: computeThemeValue(gapProps?.vertical, theme),
+    horizontal: computeThemeValue(gapProps?.horizontal, theme),
+  }
   const renderedChildren = useState(childRendering?.instant?.first ?? 0)
 
   const flatChildren = castArray(children)
@@ -20,19 +25,9 @@ export function View(props: ViewProps) {
     .flatMap((e, i, arr) => {
       if (i >= renderedChildren.state) return []
 
-      const hasDivider = gap && i != arr.length - 1
-      return [
-        e,
-        hasDivider && (
-          <Divider
-            key={i + 100000}
-            gap={gap}
-            vertical={
-              React.StyleSheet.flatten(props.style)?.flexDirection == `row`
-            }
-          />
-        ),
-      ]
+      const hasDivider =
+        (gap?.horizontal || gap.vertical) && i != arr.length - 1
+      return [e, hasDivider ? <Divider key={i + 100000} gap={gap} /> : null]
     })
 
   if (!childRendering) {
@@ -59,15 +54,15 @@ const ViewBase = styled(Base)`
 }}
 ` as typeof Base
 
-const Divider = styled.View<{ gap?: number; vertical: boolean }>`
+const Divider = styled.View<{ gap?: { horizontal: number; vertical: number } }>`
   ${(p) =>
-    !p.vertical &&
+    p.gap?.vertical &&
     css`
-      height: ${p.gap};
+      height: ${p.gap.vertical}px;
     `}
   ${(p) =>
-    p.vertical &&
+    p.gap?.horizontal &&
     css`
-      width: ${p.gap};
+      width: ${p.gap.horizontal}px;
     `}
 `
