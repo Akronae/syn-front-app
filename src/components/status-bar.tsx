@@ -4,10 +4,10 @@ import { View } from '@proto-native/components/view'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { isDev } from '@proto-native/utils/env/is-dev'
 import { useScreenAspectRatio } from '@proto-native/utils/use-screen-aspect-ratio'
+import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
 import styled from 'styled-components/native'
-import Constants from 'expo-constants';
 
 export type StatusBarProps = BaseProps
 
@@ -15,8 +15,7 @@ export function StatusBarMockup(props: StatusBarProps) {
   const { ...passed } = props
   const aspectRatio = useScreenAspectRatio()
 
-  const isMobileWebViewDev =
-    isDev() && isWeb() && aspectRatio < 1.1
+  const isMobileWebViewDev = isDev() && isWeb() && aspectRatio < 1.1
 
   return (
     <StatusBarBase {...passed}>
