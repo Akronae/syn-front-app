@@ -43,10 +43,10 @@ export function Button(props: ButtonProps) {
   const btnProps = takeButtonOwnProps(baseProps.rest)
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
-  const fontSize = flatStyle?.fontSize || theme.typography.size.md
-  const color = flatStyle?.color || theme.colors.text.primary
-  const fill = flatStyle?.fill || theme.colors.text.primary
-  const stroke = flatStyle?.stroke || theme.colors.text.primary
+  const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
+  const color = flatStyle?.color || theme.protonative.colors.text.primary
+  const fill = flatStyle?.fill || theme.protonative.colors.text.primary
+  const stroke = flatStyle?.stroke || theme.protonative.colors.text.primary
   const fontWeight = flatStyle?.fontWeight
 
   const pressAnimation =
@@ -107,24 +107,24 @@ const ButtonBase = styled(Base)<ButtonProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: ${(p) => p.theme.colors.surface.primary};
+  background-color: ${(p) => p.theme.protonative.colors.surface.primary};
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
-  color: ${(p) => p.theme.colors.text.light};
+  color: ${(p) => p.theme.protonative.colors.text.light};
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === ButtonType.Text && ButtonText}
 `
 
 const Disabled = css`
-  background-color: ${(p) => p.theme.colors.surface.disabled};
-  color: ${(p) => p.theme.colors.text.primary};
+  background-color: ${(p) => p.theme.protonative.colors.surface.disabled};
+  color: ${(p) => p.theme.protonative.colors.text.primary};
 `
 
 const ButtonText = css`
   background-color: transparent;
-  color: ${(p) => p.theme.colors.text.primary};
+  color: ${(p) => p.theme.protonative.colors.text.primary};
 `
 
 const Pressable = styled.Pressable<ButtonProps>`` as typeof Native.Pressable
@@ -135,7 +135,7 @@ const CardBtnText = styled(Text)`
   text-align: center;
   font-size: ${(p) =>
   Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
-    p.theme.typography.size.md}px;
+    p.theme.protonative.typography.size.md}px;
 ` as typeof Text
 
 const Icon = styled(Ionicons)`

@@ -52,10 +52,10 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
 }
 
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
-  if (boldness < 400) return theme.typography.font.regular
-  if (boldness < 600) return theme.typography.font.medium
-  if (boldness < 700) return theme.typography.font.bold
-  return theme.typography.font.extraBold
+  if (boldness < 400) return theme.protonative.typography.font.regular
+  if (boldness < 600) return theme.protonative.typography.font.medium
+  if (boldness < 700) return theme.protonative.typography.font.bold
+  return theme.protonative.typography.font.extraBold
 }
 
 const TextWrapper = styled(Base)``
@@ -85,7 +85,7 @@ function TextCompo(props: TextProps) {
 }
 
 export const Text = styled(TextCompo)`
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
+  color: ${(p) => p.theme.protonative.colors.text.primary};
+  font-size: ${(p) => p.theme.protonative.typography.size.md};
 ` as unknown as typeof TextCompo & { Inherit: typeof TextCompo }
 Text.Inherit = styled(TextCompo)``

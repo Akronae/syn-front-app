@@ -3,6 +3,7 @@ import { useInterval, useState } from '@proto-native/utils'
 import { computeThemeValue } from '@proto-native/utils/theme/compute-theme-value'
 import { ThemeValue } from '@proto-native/utils/theme/theme-value'
 import { castArray } from 'lodash-es'
+import { Children, useMemo } from 'react'
 import * as React from 'react-native'
 import styled, { css, useTheme } from 'styled-components/native'
 
@@ -18,27 +19,37 @@ export function View(props: ViewProps) {
     vertical: computeThemeValue(gapProps?.vertical, theme),
     horizontal: computeThemeValue(gapProps?.horizontal, theme),
   }
-  const renderedChildren = useState(childRendering?.instant?.first ?? 0)
+  const childrenToRenderCount = useState(
+    (() => {
+      if (!childRendering) return Children.count(children)
+      if (childRendering?.instant?.first) {
+        return childRendering.instant.first
+      }
+      return 0
+    })(),
+  )
 
-  const flatChildren = castArray(children)
-    .filter((c) => !!c)
-    .flatMap((e, i, arr) => {
-      if (i >= renderedChildren.state) return []
+  const flatChildren = useMemo(() => {
+    return castArray(children)
+      .filter((c) => !!c)
+      .flatMap((e, i, arr) => {
+        if (i >= childrenToRenderCount.state) return []
 
-      const hasDivider =
-        (gap?.horizontal || gap.vertical) && i != arr.length - 1
-      return [e, hasDivider ? <Divider key={i + 100000} gap={gap} /> : null]
-    })
+        const hasDivider =
+          (gap?.horizontal || gap.vertical) && i != arr.length - 1
+        return [e, hasDivider ? <Divider key={i + 100000} gap={gap} /> : null]
+      })
+  }, [children, gap, childrenToRenderCount, childRendering])
 
   if (!childRendering) {
-    renderedChildren.state = flatChildren.length
+    childrenToRenderCount.state = flatChildren.length
   }
 
   useInterval((id) => {
-    renderedChildren.state += 1
-    if (renderedChildren.state >= flatChildren.length) {
+    if (childrenToRenderCount.state >= flatChildren.length) {
       clearInterval(id)
     }
+    childrenToRenderCount.state += 1
   }, childRendering?.interval?.ms)
 
   return <ViewBase {...passed}>{flatChildren}</ViewBase>
@@ -46,12 +57,12 @@ export function View(props: ViewProps) {
 
 const ViewBase = styled(Base)`
   ${(p) => {
-  if (React.Platform.OS === `web`)
-    return `
+    if (React.Platform.OS === `web`)
+      return `
         min-height: revert;
         min-width: revert;
       `
-}}
+  }}
 ` as typeof Base
 
 const Divider = styled.View<{

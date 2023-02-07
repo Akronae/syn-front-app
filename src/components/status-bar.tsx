@@ -1,20 +1,22 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { View } from '@proto-native/components/view'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import { isDev } from '@proto-native/utils/env/is-dev'
 import { useScreenAspectRatio } from '@proto-native/utils/use-screen-aspect-ratio'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
 import styled from 'styled-components/native'
+import Constants from 'expo-constants';
 
 export type StatusBarProps = BaseProps
 
-export function StatusBar(props: StatusBarProps) {
+export function StatusBarMockup(props: StatusBarProps) {
   const { ...passed } = props
   const aspectRatio = useScreenAspectRatio()
 
   const isMobileWebViewDev =
-    isDev() && React.Platform.OS == `web` && aspectRatio < 1.1
+    isDev() && isWeb() && aspectRatio < 1.1
 
   return (
     <StatusBarBase {...passed}>
@@ -40,14 +42,14 @@ function Mockup() {
 }
 
 const StatusBarBase = styled(Base)`
-  height: 53px;
+  height: ${React.StatusBar.currentHeight || Constants.statusBarHeight || 53};
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  color: ${(p) => p.theme.colors.text.contrast};
-  fill: ${(p) => p.theme.colors.text.contrast};
-  stroke: ${(p) => p.theme.colors.text.contrast};
+  color: ${(p) => p.theme.protonative.colors.text.contrast};
+  fill: ${(p) => p.theme.protonative.colors.text.contrast};
+  stroke: ${(p) => p.theme.protonative.colors.text.contrast};
 ` as typeof Base
 
 const Time = styled(Text)`
@@ -56,7 +58,7 @@ const Time = styled(Text)`
   justify-content: center;
   align-items: center;
   font-weight: 400;
-  color: ${(p) => p.theme.colors.text.contrast};
+  color: ${(p) => p.theme.protonative.colors.text.contrast};
 `
 
 const Icons = styled(View)`
@@ -70,7 +72,7 @@ const Icons = styled(View)`
 const Notch = styled(Base)`
   height: 37px;
   width: 125px;
-  background-color: ${(p) => p.theme.colors.text.contrast};
+  background-color: ${(p) => p.theme.protonative.colors.text.contrast};
   border-radius: 40px;
   margin: 11px 0 5px 0;
   flex: 1;
