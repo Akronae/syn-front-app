@@ -57,12 +57,12 @@ export function View(props: ViewProps) {
 
 const ViewBase = styled(Base)`
   ${(p) => {
-    if (React.Platform.OS === `web`)
-      return `
+  if (React.Platform.OS === `web`)
+    return `
         min-height: revert;
         min-width: revert;
       `
-  }}
+}}
 ` as typeof Base
 
 const Divider = styled.View<{
