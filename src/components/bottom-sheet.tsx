@@ -34,7 +34,7 @@ const Sheet = styled(Base)`
   width: 100%;
   border: 2px solid
     ${(p) =>
-  hexLerp(p.theme.protonative.colors.border.default, `#00000000`, 0.5)};
+  hexLerp(p.theme.protonative.colors.border.disabled, `#00000000`, 0.5)};
   border-radius: ${(p) => p.theme.protonative.borderRadius(10)}px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

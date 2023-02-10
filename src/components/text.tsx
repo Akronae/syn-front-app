@@ -41,7 +41,9 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
   }
 }
 
-function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
+export function getStyleBoldness(
+  style: React.StyleProp<React.TextStyle>,
+): number {
   const fontWeight = React.StyleSheet.flatten(style)?.fontWeight
   if (!fontWeight) return 400
   if (typeof fontWeight === `string`) {
@@ -52,10 +54,15 @@ function getStyleBoldness(style: React.StyleProp<React.TextStyle>): number {
 }
 
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
-  if (boldness < 400) return theme.protonative.typography.font.regular
-  if (boldness < 600) return theme.protonative.typography.font.medium
-  if (boldness < 700) return theme.protonative.typography.font.bold
-  return theme.protonative.typography.font.extraBold
+  if (boldness <= 100) return theme.protonative.typography.font.thin
+  if (boldness <= 200) return theme.protonative.typography.font.extraLight
+  if (boldness <= 300) return theme.protonative.typography.font.light
+  if (boldness <= 400) return theme.protonative.typography.font.regular
+  if (boldness <= 500) return theme.protonative.typography.font.medium
+  if (boldness <= 600) return theme.protonative.typography.font.semiBold
+  if (boldness <= 700) return theme.protonative.typography.font.bold
+  if (boldness <= 800) return theme.protonative.typography.font.extraBold
+  return theme.protonative.typography.font.black
 }
 
 const TextWrapper = styled(Base)``

@@ -26,5 +26,7 @@ export function Divider(props: DividerProps) {
 
 const DividerBase = styled(Base)`
   width: 100%;
-  border: 1px solid ${(p) => p.theme.protonative.colors.surface.disabled};
+  border-top-width: 1px;
+  border-top-color: ${(p) => p.theme.protonative.colors.border.disabled};
+  border-top-style: solid;
 ` as typeof Base

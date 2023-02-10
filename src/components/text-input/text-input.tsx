@@ -5,7 +5,11 @@ import {
   takeBaseOwnProps,
 } from '@proto-native/components/base'
 import { FormFieldState, useFormField } from '@proto-native/components/form'
-import { takeTextOwnProps } from '@proto-native/components/text'
+import {
+  boldnessToFont,
+  getStyleBoldness,
+  takeTextOwnProps,
+} from '@proto-native/components/text'
 import {
   hexLerp,
   ReactiveState,
@@ -270,7 +274,11 @@ const InputContainer = styled(Base)<Partial<TextInputProps>>`
 const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
   outline-width: 0;
   flex: 1;
-  font-family: ${(p) => p.theme.protonative.typography.font.regular};
+  font-family: ${(p) =>
+    boldnessToFont(
+      getStyleBoldness(Native.StyleSheet.flatten(p.style)),
+      p.theme,
+    )};
   color: ${(p) => p.theme.protonative.colors.text.primary};
   font-size: ${(p) => p.theme.protonative.typography.size.md};
   ${(p) => p.isInvalid?.state && p.invalid?.style}
