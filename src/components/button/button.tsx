@@ -93,11 +93,18 @@ export function Button(props: ButtonProps) {
 }
 
 export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
-  const { icon, type, onTouchStart, onTouchEnd, pressAnimation, ...rest } =
-    props
+  const {
+    icon,
+    type,
+    onTouchStart,
+    onTouchEnd,
+    onPress,
+    pressAnimation,
+    ...rest
+  } = props
 
   return {
-    taken: { icon, type, onTouchStart, onTouchEnd, pressAnimation },
+    taken: { icon, type, onTouchStart, onTouchEnd, onPress, pressAnimation },
     rest,
   }
 }
