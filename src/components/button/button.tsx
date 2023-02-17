@@ -26,6 +26,7 @@ export type ButtonProps = BaseProps &
   PressableProps &
   Omit<PressableProps, `style`> & {
     icon?: {
+      style?: Native.StyleProp<Native.ViewStyle>
       ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
@@ -45,13 +46,19 @@ export function Button(props: ButtonProps) {
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
   const color = flatStyle?.color || theme.protonative.colors.text.primary
-  const fill = flatStyle?.fill || theme.protonative.colors.text.primary
-  const stroke = flatStyle?.stroke || theme.protonative.colors.text.primary
+  const fill = flatStyle?.fill || color
+  const stroke = flatStyle?.stroke || color
   const fontWeight = flatStyle?.fontWeight
 
   const pressAnimation =
     btnProps.taken.pressAnimation || ButtonPressAnimation.None
   const anim = usePressAnimation(pressAnimation)
+
+  const pressableWebPolyfill = {
+    onClick: props.onPress,
+    onMouseDown: props.onTouchStart,
+    onMouseUp: props.onTouchEnd,
+  }
 
   return (
     <ButtonBase
@@ -59,6 +66,7 @@ export function Button(props: ButtonProps) {
       style={[anim.style, baseProps.taken.style]}
     >
       <Pressable
+        {...pressableWebPolyfill}
         {...baseProps.rest}
         onTouchStart={(e) => {
           // anim.start(() => btnProps.taken?.onTouchStart?.(e))
@@ -79,12 +87,15 @@ export function Button(props: ButtonProps) {
         {icon?.ionicons && (
           <Icon
             name={icon.ionicons}
-            style={omitBy({ color, fontSize }, isUndefined)}
+            style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
           />
         )}
         {icon?.custom && (
           <icon.custom
-            style={[omitBy({ color, fontSize, fill, stroke }, isUndefined)]}
+            style={[
+              icon.style,
+              omitBy({ color, fontSize, fill, stroke }, isUndefined),
+            ]}
           />
         )}
       </Pressable>

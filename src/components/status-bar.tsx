@@ -15,13 +15,11 @@ export function StatusBarMockup(props: StatusBarProps) {
   const { ...passed } = props
   const desktopOrMore = isDesktopOrMore.use()
 
-  const isMobileWebViewDev = isDev() && isWeb() && !desktopOrMore
-
-  if (!isMobileWebViewDev) return null
+  if (desktopOrMore) return null
 
   return (
     <StatusBarBase {...passed}>
-      <Mockup />
+      {isWeb() && isDev() && <Mockup />}
     </StatusBarBase>
   )
 }
