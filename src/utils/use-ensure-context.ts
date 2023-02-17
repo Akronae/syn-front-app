@@ -4,7 +4,7 @@ export function useEnsureContext<T>(
   context: Context<T>,
   providerName: string,
   consumerName: string,
-): T {
+): NonNullable<T> {
   let res = null
   const errorMsg = `\`${consumerName}\` must be used within \`<${providerName}>\`\n`
   try {

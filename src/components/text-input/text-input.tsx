@@ -17,6 +17,7 @@ import {
   useExistingStateOr,
   useState,
 } from '@proto-native/utils'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
 import React, { useMemo } from 'react'
 import * as Native from 'react-native'
@@ -129,7 +130,7 @@ export function TextInput(props: TextInputProps) {
   ) => {
     onKeyPress?.(e)
 
-    if (Native.Platform.OS === `web`) {
+    if (isWeb()) {
       const event = e.nativeEvent as KeyboardEvent
       if (event.key === `Enter` && event.ctrlKey) {
         onSubmitEditing?.({
@@ -219,9 +220,10 @@ export function TextInput(props: TextInputProps) {
         {suggestionElems.map((suggestion, i) => (
           <Base
             key={i}
-            onTouchEnd={() => {
+            onTouchStart={() => {
               if (suggestion.props.isDisabled) return
               model.state = suggestion.props.value
+
               Native.Keyboard.dismiss()
             }}
           >

@@ -1,4 +1,5 @@
 import { computeCSSSelectors, CSSSelectors } from '@proto-native/utils'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import {
   MediaQueries,
   useMediaQueries,
@@ -22,6 +23,8 @@ export type BaseProps<
       media?: MediaQueries
     }
     parent?: { props?: BaseProps }
+    onMouseDown?: Native.Touchable['onTouchStart']
+    onMouseUp?: Native.Touchable['onTouchEnd']
   }
 
 export function Base<
@@ -43,6 +46,11 @@ export function Base<
     if (!css.media) css.media = mediaQueries
     return { ...child, props: { ...child.props, css } }
   })
+
+  if (isWeb()) {
+    if (props.onTouchStart) passed.onMouseDown = props.onTouchStart as any
+    if (props.onTouchEnd) passed.onMouseUp = props.onTouchEnd as any
+  }
 
   return (
     <BaseWrapper style={[style, themedStyle?.(theme)]} {...passed}>
