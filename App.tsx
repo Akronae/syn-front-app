@@ -4,8 +4,11 @@ import { StatusBar } from 'expo-status-bar'
 import { LogBox, Platform, useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Router } from 'src/router'
-import { DarkTheme } from 'src/theme'
+import { DarkTheme } from 'src/theme/theme'
 import styled, { ThemeProvider, useTheme } from 'styled-components/native'
+import * as Proto from '@proto-native'
+import { PortalHost, PortalProvider } from '@gorhom/portal'
+import { Base } from '@proto-native'
 
 export default function App() {
   // see: https://stackoverflow.com/questions/58923065/why-does-styled-components-5-x-warn-about-expected-style-to-contain-units/74667224#74667224
@@ -35,10 +38,24 @@ export default function App() {
   return (
     <ThemeProvider theme={DarkTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Page>
-          <StatusBar style='light' />
-          <Router />
-        </Page>
+        <PortalProvider>
+          <Page>
+            <Proto.StatusBar />
+            <StatusBar style='light' />
+            <Router />
+          </Page>
+          <Base
+            style={{
+              position: `absolute`,
+              bottom: 0,
+              left: 0,
+              width: `100%`,
+              height: `100%`,
+            }}
+          >
+            <PortalHost name='bottom-sheet' />
+          </Base>
+        </PortalProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
   )
@@ -46,7 +63,7 @@ export default function App() {
 
 const Page = styled.SafeAreaView`
   flex: 1;
-  background-color: ${(props) => props.theme.colors.surface.primary};
+  background-color: ${(props) => props.theme.colors.surface.default};
   color: ${(props) => props.theme.colors.text.primary};
   font-size: 18px;
 `

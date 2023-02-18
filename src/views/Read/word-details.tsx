@@ -8,10 +8,9 @@ import {
 } from '@proto-native'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
-import { Word } from 'src/types'
 
 export type WordDetailsProps = BaseProps & {
-  word?: Word
+  word?: string
   open: BottomSheetProps['open']
 }
 
@@ -24,7 +23,7 @@ export function WordDetails(props: WordDetailsProps) {
   return (
     <WordDetailsBase {...passed}>
       <BottomSheet open={open}>
-        <Text>My awesome content here {word.greek}.</Text>
+        <Text>My awesome content here {word}.</Text>
       </BottomSheet>
     </WordDetailsBase>
   )

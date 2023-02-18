@@ -8,7 +8,7 @@ import styled from 'styled-components/native'
 
 export interface VerseProps extends ViewProps {
   verse: Types.Verse
-  focusedWord?: ReactiveState<Types.Word | undefined>
+  focusedWord?: ReactiveState<string | undefined>
 }
 
 export function Verse(props: VerseProps) {
@@ -21,12 +21,12 @@ export function Verse(props: VerseProps) {
         {verse.book} {verse.chapter}:{verse.verseNumber}
       </Text>
       <VerseTranslated>{verse.verseTranslated}</VerseTranslated>
-      <VerseWrapper gap={50}>
+      <VerseWrapper gap={{ vertical: 0 }}>
         {verse.wordsParsed.map((word, i) => (
           <Word
             key={i}
             word={word}
-            onTouchEnd={() => (focusedWord.state = word)}
+            onTouchEnd={() => (focusedWord.state = word.greek)}
           />
         ))}
       </VerseWrapper>

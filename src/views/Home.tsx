@@ -33,7 +33,7 @@ export function Home(props: HomeProps) {
               },
             })
           }
-          icon={{ionicons: 'chevron-forward'}}
+          icon={{ ionicons: `chevron-forward` }}
           pressAnimation={ButtonPressAnimation.ScaleDown}
         >
           {read.value?.book} {read.value?.chapter}:{read.value?.verse}

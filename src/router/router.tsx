@@ -28,9 +28,13 @@ export function Router() {
   return (
     <NavigationContainer
       theme={navigationContainerTheme}
-      linking={{ prefixes: [``], config: { screens: { Home: { path: `/` } } } }}
+      linking={{ prefixes: [``] }}
     >
-      <Tab.Navigator screenOptions={{ ...bottomTabNavigationOptions }}>
+      <Tab.Navigator
+        screenOptions={{
+          ...bottomTabNavigationOptions,
+        }}
+      >
         <Tab.Screen
           name='Home'
           component={Home}

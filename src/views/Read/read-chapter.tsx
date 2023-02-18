@@ -16,21 +16,24 @@ import { Verse, VerseProps } from 'src/components/verse'
 import { BookContext } from 'src/contexts/BookContext'
 import { ChapterContext } from 'src/contexts/ChapterContext'
 import ReadStorage from 'src/storage/ReadStorage'
-import { Book, Word } from 'src/types'
+import { Book } from 'src/types'
 import styled from 'styled-components/native'
 import { WordDetails } from './word-details'
 
 export type ReadChapterProps = DrawerScreenProps<ReadBookDrawerParamList>
 
 export function ReadChapter(props: ReadChapterProps) {
-  const { route } = props
+  const { route, navigation } = props
   const book = useContext(BookContext)
   const chapterCtx = useContext(ChapterContext)
-  const focusedWord = useState<Word | undefined>(undefined)
+  const focusedWord = useState<string | undefined>(undefined)
   const openWordDetails = useState(false)
   useEffect(() => {
     openWordDetails.state = focusedWord.state != null
-  }, [focusedWord.state])
+    if (focusedWord.state)
+      return navigation.setParams({ word: focusedWord.state })
+    if (route.params?.word) focusedWord.state = route.params.word
+  }, [focusedWord.state, route.params?.word])
   const childrenLayouts = useState(
     new Map<React.ReactElement<VerseProps>, LayoutRectangle>(),
   )
@@ -113,7 +116,7 @@ export function ReadChapter(props: ReadChapterProps) {
           {SkeletonCard()}
         </SkeletonLoader>
         <View
-          gap={40}
+          gap={{ vertical: 40 }}
           childRendering={{
             interval: { ms: 500000000000000 },
             instant: { first: 5 },
@@ -122,10 +125,7 @@ export function ReadChapter(props: ReadChapterProps) {
           {verseElems.state}
         </View>
       </ScrollView>
-        <WordDetails
-          word={focusedWord.state}
-          open={openWordDetails}
-        />
+      <WordDetails word={focusedWord.state} open={openWordDetails} />
     </ReadChapterBase>
   )
 }

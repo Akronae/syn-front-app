@@ -9,7 +9,7 @@ import { BookContext } from 'src/contexts/BookContext'
 import styled from 'styled-components/native'
 
 export type ReadBookDrawerParamList = {
-  [key: string]: { verse: number }
+  [index: string]: { verse: number; word: string }
 }
 const Stack = createNativeStackNavigator<ReadBookDrawerParamList>()
 

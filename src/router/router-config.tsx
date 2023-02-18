@@ -22,7 +22,17 @@ export function getScreenOptions(
   return {
     ...getHeaderScreenOptions(theme),
     tabBarStyle: {
+      position: `absolute`,
+      left: 10,
+      bottom: 10,
+      right: 10,
       height: 80,
+      borderWidth: 2,
+      borderTopWidth: 2,
+      borderColor: theme.colors.border.default,
+      borderTopColor: theme.colors.border.default,
+      borderRadius: 20,
+      borderStyle: `solid`,
     },
     tabBarItemStyle: { padding: 10 },
     tabBarLabelStyle: { fontFamily: theme.typography.font.regular },
