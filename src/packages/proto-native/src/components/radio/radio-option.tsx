@@ -32,7 +32,7 @@ RadioOption.Description = RadioOptionDescription
 const RadioOptionBase = styled(Base)<RadioOptionProps>`
   display: flex;
   flex-direction: row;
-  background-color: ${(p) => p.theme.colors.surface.sub};
+  background-color: ${(p) => p.theme.protonative.colors.surface.sub};
   padding: 12px;
   border-radius: 8px;
 ` as typeof Base
@@ -41,17 +41,17 @@ const CircleOuter = styled.View<Partial<RadioOptionProps>>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${(p) => p.theme.typography.size.sm};
+  height: ${(p) => p.theme.protonative.typography.size.sm};
   aspect-ratio: 1 / 1;
   margin-right: 15px;
   margin-top: 2px;
   border-radius: ${borderRadiusPercentToNumber(50)}px;
   background-color: ${(p) =>
     p.isSelected
-      ? p.theme.colors.surface.primary
+      ? p.theme.protonative.colors.surface.primary
       : hexLerp(
-        p.theme.colors.surface.sub,
-        p.theme.colors.surface.contrast,
+        p.theme.protonative.colors.surface.sub,
+        p.theme.protonative.colors.surface.contrast,
         0.1,
       )};
   border: 1px solid gray;
@@ -61,16 +61,16 @@ const CircleInner = styled.View<Partial<RadioOptionProps>>`
   height: 50%;
   aspect-ratio: 1 / 1;
   border-radius: ${borderRadiusPercentToNumber(50)}px;
-  background-color: ${(p) => p.theme.colors.surface.default};
+  background-color: ${(p) => p.theme.protonative.colors.surface.default};
   opacity: ${(props) => (props.isSelected ? 1 : 0)};
 `
 
 const Icon = styled(Ionicons)`
   margin-right: 6px;
-  font-size: ${(p) => p.theme.typography.size.sm};
+  font-size: ${(p) => p.theme.protonative.typography.size.sm};
 `
 
 const RadioOptionText = styled(Text)`
   flex-shrink: 1;
-  font-size: ${(p) => p.theme.typography.size.sm};
+  font-size: ${(p) => p.theme.protonative.typography.size.sm};
 `

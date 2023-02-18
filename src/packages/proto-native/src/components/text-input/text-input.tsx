@@ -9,7 +9,11 @@ import {
   takeBaseOwnProps,
 } from '@proto-native/components/base'
 import { FormFieldState, useFormField } from '@proto-native/components/form'
-import { takeTextOwnProps } from '@proto-native/components/text'
+import {
+  boldnessToFont,
+  getStyleBoldness,
+  takeTextOwnProps,
+} from '@proto-native/components/text'
 import {
   hexLerp,
   ReactiveState,
@@ -17,8 +21,9 @@ import {
   useExistingStateOr,
   useState,
 } from '@proto-native/utils'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React from 'react'
+import React, { useMemo } from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -111,8 +116,9 @@ export function TextInput(props: TextInputProps) {
     TextInputSuggestion,
   )
 
-  showSuggestions.state =
-    (isFocused?.state || false) && !isEmpty(suggestionElems)
+  showSuggestions.state = useMemo(() => {
+    return (isFocused?.state || false) && !isEmpty(suggestionElems)
+  }, [isFocused?.state, suggestionElems])
 
   const placeholder = childrenFiltered.reduce(
     (acc, child) => `${acc} ${child?.toString()}`,
@@ -124,7 +130,7 @@ export function TextInput(props: TextInputProps) {
   ) => {
     onKeyPress?.(e)
 
-    if (Native.Platform.OS === `web`) {
+    if (isWeb()) {
       const event = e.nativeEvent as KeyboardEvent
       if (event.key === `Enter` && event.ctrlKey) {
         onSubmitEditing?.({
@@ -143,6 +149,14 @@ export function TextInput(props: TextInputProps) {
 
   const style =
     Native.StyleSheet.flatten([styleProps, textProps.taken.style]) ?? {}
+
+  // https://github.com/facebook/react-native/issues/28012
+  const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
+  const iosLineHeightFix = {
+    paddingTop: lineHeightOverflow / 2,
+    paddingBottom: lineHeightOverflow / 2,
+    lineHeight: undefined,
+  }
 
   return (
     <TextInputBase {...baseProps.taken} {...textProps.rest}>
@@ -176,7 +190,7 @@ export function TextInput(props: TextInputProps) {
         )}
         <NativeInput
           placeholder={placeholder}
-          placeholderTextColor={theme.colors.text.sub}
+          placeholderTextColor={theme.protonative.colors.text.sub}
           value={model.state}
           numberOfLines={numberOfLines}
           multiline={multiline}
@@ -186,7 +200,7 @@ export function TextInput(props: TextInputProps) {
           invalid={invalid}
           {...textProps.taken}
           {...baseProps.rest}
-          style={style}
+          style={[style, iosLineHeightFix]}
           onChangeText={onChangeText}
           onFocus={(e) => {
             if (isFocused) isFocused.state = true
@@ -206,10 +220,11 @@ export function TextInput(props: TextInputProps) {
         {suggestionElems.map((suggestion, i) => (
           <Base
             key={i}
-            onTouchEnd={() => {
+            onTouchStart={() => {
               if (suggestion.props.isDisabled) return
               model.state = suggestion.props.value
-              showSuggestions.state = false
+
+              Native.Keyboard.dismiss()
             }}
           >
             {suggestion}
@@ -226,12 +241,16 @@ const TextInputBase = styled(Base)`` as typeof Base
 
 const NativeInputOnFocus = css`
   border-color: ${(p) =>
-    hexLerp(p.theme.colors.surface.sub, p.theme.colors.surface.contrast, 0.05)};
+    hexLerp(
+      p.theme.protonative.colors.surface.sub,
+      p.theme.protonative.colors.surface.contrast,
+      0.05,
+    )};
 `
 
 const NativeInputOnInvalid = css`
-  border-color: ${(p) => p.theme.colors.surface.error};
-  color: ${(p) => p.theme.colors.surface.error};
+  border-color: ${(p) => p.theme.protonative.colors.surface.error};
+  color: ${(p) => p.theme.protonative.colors.surface.error};
 `
 
 const NativeInputOnSuggestions = css`
@@ -243,7 +262,7 @@ const InputContainer = styled(Base)<Partial<TextInputProps>>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${(p) => p.theme.colors.surface.sub};
+  background-color: ${(p) => p.theme.protonative.colors.surface.sub};
   padding: 10px;
   border-radius: 8px;
   border: 2px solid transparent;
@@ -257,24 +276,28 @@ const InputContainer = styled(Base)<Partial<TextInputProps>>`
 const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
   outline-width: 0;
   flex: 1;
-  font-family: ${(p) => p.theme.typography.font.regular};
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
+  font-family: ${(p) =>
+    boldnessToFont(
+      getStyleBoldness(Native.StyleSheet.flatten(p.style)),
+      p.theme,
+    )};
+  color: ${(p) => p.theme.protonative.colors.text.primary};
+  font-size: ${(p) => p.theme.protonative.typography.size.md};
   ${(p) => p.isInvalid?.state && p.invalid?.style}
 `
 
 const SuggestionsContainer = styled(Base)<{
   suggestions: TextInputProps[`suggestions`]
 }>`
-  background-color: ${(props) => props.theme.colors.surface.sub};
+  background-color: ${(props) => props.theme.protonative.colors.surface.sub};
   ${(p) => p.suggestions?.container?.style}
 `
 
 const Icon = styled(Ionicons)<Partial<TextInputProps>>`
-  margin-right: ${(p) => p.theme.spacing.two};
-  font-family: ${(p) => p.theme.typography.font.regular};
-  color: ${(p) => p.theme.colors.text.primary};
-  font-size: ${(p) => p.theme.typography.size.md};
+  margin-right: ${(p) => p.theme.protonative.spacing(2)};
+  font-family: ${(p) => p.theme.protonative.typography.font.regular};
+  color: ${(p) => p.theme.protonative.colors.text.primary};
+  font-size: ${(p) => p.theme.protonative.typography.size.md};
 
   ${(p) => p.isInvalid?.state && p.invalid?.style}
 `

@@ -27,14 +27,15 @@ export function BottomSheet(props: BottomSheetProps) {
 const BottomSheetBase = styled(Base)`` as typeof Base
 
 const Sheet = styled(Base)`
-  background-color: ${(p) => p.theme.colors.surface.default};
+  background-color: ${(p) => p.theme.protonative.colors.surface.default};
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   border: 2px solid
-    ${(p) => hexLerp(p.theme.colors.border.default, `#00000000`, 0.5)};
-  border-radius: ${(p) => p.theme.borderRadius(10)}px;
+    ${(p) =>
+  hexLerp(p.theme.protonative.colors.border.disabled, `#00000000`, 0.5)};
+  border-radius: ${(p) => p.theme.protonative.borderRadius(10)}px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   min-height: 200px;
@@ -45,10 +46,10 @@ const TopNotch = styled(Base)`
   width: 50px;
   height: 5px;
   border-radius: 99px;
-  background-color: ${(p) => p.theme.colors.surface.disabled};
-  margin: ${(p) => p.theme.spacing(2)}px auto 0 auto;
+  background-color: ${(p) => p.theme.protonative.colors.surface.disabled};
+  margin: ${(p) => p.theme.protonative.spacing(2)}px auto 0 auto;
 `
 
 const Content = styled(Base)`
-  padding: ${(p) => p.theme.spacing(6)}px;
+  padding: ${(p) => p.theme.protonative.spacing(6)}px;
 `
