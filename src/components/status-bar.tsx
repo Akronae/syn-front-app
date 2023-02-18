@@ -1,24 +1,25 @@
 import { Base, BaseProps } from '@proto-native/components/base'
-import { View } from '@proto-native/components/view'
 import { Text } from '@proto-native/components/text'
+import { View } from '@proto-native/components/view'
+import { isWeb } from '@proto-native/utils/device/is-web'
+import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
 import { isDev } from '@proto-native/utils/env/is-dev'
-import { useScreenAspectRatio } from '@proto-native/utils/use-screen-aspect-ratio'
+import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
 import styled from 'styled-components/native'
 
 export type StatusBarProps = BaseProps
 
-export function StatusBar(props: StatusBarProps) {
+export function StatusBarMockup(props: StatusBarProps) {
   const { ...passed } = props
-  const aspectRatio = useScreenAspectRatio()
+  const desktopOrMore = isDesktopOrMore.use()
 
-  const isMobileWebViewDev =
-    isDev() && React.Platform.OS == `web` && aspectRatio < 1.1
+  if (desktopOrMore) return null
 
   return (
     <StatusBarBase {...passed}>
-      {isMobileWebViewDev && <Mockup />}
+      {isWeb() && isDev() && <Mockup />}
     </StatusBarBase>
   )
 }
@@ -40,14 +41,14 @@ function Mockup() {
 }
 
 const StatusBarBase = styled(Base)`
-  height: 53px;
+  height: ${React.StatusBar.currentHeight || Constants.statusBarHeight || 53};
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  color: ${(p) => p.theme.colors.text.primary};
-  fill: ${(p) => p.theme.colors.text.primary};
-  stroke: ${(p) => p.theme.colors.text.primary};
+  color: ${(p) => p.theme.protonative.colors.text.contrast};
+  fill: ${(p) => p.theme.protonative.colors.text.contrast};
+  stroke: ${(p) => p.theme.protonative.colors.text.contrast};
 ` as typeof Base
 
 const Time = styled(Text)`
@@ -56,6 +57,7 @@ const Time = styled(Text)`
   justify-content: center;
   align-items: center;
   font-weight: 400;
+  color: ${(p) => p.theme.protonative.colors.text.contrast};
 `
 
 const Icons = styled(View)`
@@ -69,7 +71,7 @@ const Icons = styled(View)`
 const Notch = styled(Base)`
   height: 37px;
   width: 125px;
-  background-color: ${(p) => p.theme.colors.text.primary};
+  background-color: ${(p) => p.theme.protonative.colors.text.contrast};
   border-radius: 40px;
   margin: 11px 0 5px 0;
   flex: 1;

@@ -23,11 +23,11 @@ const TextInputSuggestionBase = styled(Base)<TextInputSuggestionProps>`
   padding: 10px;
   cursor: pointer;
   border-top-left-radius: ${(props) =>
-  props.selectors?.firstChild ? 10 : 0}px;
+  props.css?.selectors?.firstChild ? 10 : 0}px;
   border-top-right-radius: ${(props) =>
-    props.selectors?.firstChild ? 10 : 0}px;
+    props.css?.selectors?.firstChild ? 10 : 0}px;
   border-bottom-right-radius: ${(props) =>
-      props.selectors?.lastChild ? 10 : 0}px;
+      props.css?.selectors?.lastChild ? 10 : 0}px;
   border-bottom-left-radius: ${(props) =>
-        props.selectors?.lastChild ? 10 : 0}px;
+        props.css?.selectors?.lastChild ? 10 : 0}px;
 ` as typeof Base

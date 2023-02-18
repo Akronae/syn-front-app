@@ -10,7 +10,7 @@ export interface Theme {
       error: string
     }
     border: {
-      default: string
+      disabled: string
     }
     text: {
       primary: string
@@ -23,10 +23,15 @@ export interface Theme {
   }
   typography: {
     font: {
+      black: string
+      extraBold: string
+      bold: string
+      semiBold: string
       medium: string
       regular: string
-      bold: string
-      extraBold: string
+      light: string
+      extraLight: string
+      thin: string
     }
     size: {
       xxl: number

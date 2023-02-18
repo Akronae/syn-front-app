@@ -1,4 +1,9 @@
 import { computeCSSSelectors, CSSSelectors } from '@proto-native/utils'
+import { isWeb } from '@proto-native/utils/device/is-web'
+import {
+  MediaQueries,
+  useMediaQueries,
+} from '@proto-native/utils/device/use-media-queries'
 import { Children, isValidElement } from 'react'
 import * as Native from 'react-native'
 import Animated, { BaseAnimationBuilder } from 'react-native-reanimated'
@@ -13,8 +18,13 @@ export type BaseProps<
     tStyle?: (theme: DefaultTheme) => Native.StyleProp<TStyle>
     showIf?: boolean
     transparent?: boolean
-    selectors?: CSSSelectors
+    css?: {
+      selectors?: CSSSelectors
+      media?: MediaQueries
+    }
     parent?: { props?: BaseProps }
+    onMouseDown?: Native.Touchable['onTouchStart']
+    onMouseUp?: Native.Touchable['onTouchEnd']
   }
 
 export function Base<
@@ -24,16 +34,23 @@ export function Base<
   let { children, showIf, style, tStyle: themedStyle, ...passed } = props
 
   const theme = useTheme()
+  const mediaQueries = useMediaQueries()
 
   if (!showIf && showIf !== null && showIf !== undefined) return null
 
   children = Children.toArray(children).map((child, index, arr) => {
     if (!isValidElement(child)) return child
 
-    const selectors =
-      child.props.selectors ?? computeCSSSelectors(child, index, arr)
-    return { ...child, props: { ...child.props, selectors } }
+    const css = child.props.css ?? {}
+    if (!css.selectors) css.selectors = computeCSSSelectors(child, index, arr)
+    if (!css.media) css.media = mediaQueries
+    return { ...child, props: { ...child.props, css } }
   })
+
+  if (isWeb()) {
+    if (props.onTouchStart) passed.onMouseDown = props.onTouchStart as any
+    if (props.onTouchEnd) passed.onMouseUp = props.onTouchEnd as any
+  }
 
   return (
     <BaseWrapper style={[style, themedStyle?.(theme)]} {...passed}>

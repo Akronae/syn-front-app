@@ -12,7 +12,7 @@ export function RadioOptionDescription(props: RadioOptionDescriptionProps) {
 }
 
 const RadioOptionDescriptionBase = styled(Text)<RadioOptionDescriptionProps>`
-  font-size: ${(p) => p.theme.typography.size.xs};
-  color: ${(p) => p.theme.colors.text.sub};
+  font-size: ${(p) => p.theme.protonative.typography.size.xs};
+  color: ${(p) => p.theme.protonative.colors.text.sub};
   margin-top: 6px;
 ` as typeof Text

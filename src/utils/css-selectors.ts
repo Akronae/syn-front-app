@@ -1,4 +1,4 @@
-export type CSSSelectors = { firstChild?: boolean; lastChild?: boolean }
+export type CSSSelectors = { firstChild: boolean; lastChild: boolean }
 
 export function computeCSSSelectors<T>(
   node: T,
