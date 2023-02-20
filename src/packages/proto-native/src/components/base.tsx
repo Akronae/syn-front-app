@@ -25,13 +25,21 @@ export type BaseProps<
     parent?: { props?: BaseProps }
     onMouseDown?: Native.Touchable['onTouchStart']
     onMouseUp?: Native.Touchable['onTouchEnd']
+    onTouchEnd?: Native.ViewProps['onTouchEnd']
   }
 
 export function Base<
   TStyle extends Native.TextStyle = Native.TextStyle,
   TProps extends Native.ViewProps = Native.ViewProps,
 >(props: BaseProps<TStyle, TProps>) {
-  let { children, showIf, style, tStyle: themedStyle, ...passed } = props
+  let {
+    children,
+    showIf,
+    style,
+    tStyle: themedStyle,
+    onTouchEnd: onTouchEndProps,
+    ...passed
+  } = props
 
   const theme = useTheme()
   const mediaQueries = useMediaQueries()
@@ -52,8 +60,18 @@ export function Base<
     if (props.onTouchEnd) passed.onMouseUp = props.onTouchEnd as any
   }
 
+  const onTouchEnd = (e: Native.GestureResponderEvent) => {
+    setImmediate(() => {
+      onTouchEndProps?.(e)
+    })
+  }
+
   return (
-    <BaseWrapper style={[style, themedStyle?.(theme)]} {...passed}>
+    <BaseWrapper
+      onTouchEnd={onTouchEnd}
+      style={[style, themedStyle?.(theme)]}
+      {...passed}
+    >
       {children}
     </BaseWrapper>
   )
