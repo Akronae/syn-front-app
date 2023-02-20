@@ -4,11 +4,10 @@ import { StatusBar } from 'expo-status-bar'
 import { LogBox, Platform, useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Router } from 'src/router'
-import { DarkTheme } from 'src/theme/theme'
+import { Theme } from 'src/theme/theme'
 import styled, { ThemeProvider, useTheme } from 'styled-components/native'
 import * as Proto from '@proto-native'
 import { PortalHost, PortalProvider } from '@gorhom/portal'
-import { Base } from '@proto-native'
 
 export default function App() {
   // see: https://stackoverflow.com/questions/58923065/why-does-styled-components-5-x-warn-about-expected-style-to-contain-units/74667224#74667224
@@ -22,7 +21,7 @@ export default function App() {
 
   const theme = useTheme()
   NavigationBar.setBackgroundColorAsync(
-    theme?.colors?.surface?.primary || `#000`,
+    theme?.syn.colors?.surface?.primary || `#000`,
   )
   NavigationBar.setVisibilityAsync(`hidden`)
 
@@ -36,15 +35,15 @@ export default function App() {
   if (!loaded) return null
 
   return (
-    <ThemeProvider theme={DarkTheme}>
+    <ThemeProvider theme={Theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <PortalProvider>
           <Page>
-            <Proto.StatusBar />
+            <Proto.StatusBarMockup />
             <StatusBar style='light' />
             <Router />
           </Page>
-          <Base
+          {/* <Base
             style={{
               position: `absolute`,
               bottom: 0,
@@ -52,9 +51,9 @@ export default function App() {
               width: `100%`,
               height: `100%`,
             }}
-          >
-            <PortalHost name='bottom-sheet' />
-          </Base>
+          > */}
+          <PortalHost name='bottom-sheet' />
+          {/* </Base> */}
         </PortalProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
@@ -63,7 +62,7 @@ export default function App() {
 
 const Page = styled.SafeAreaView`
   flex: 1;
-  background-color: ${(props) => props.theme.colors.surface.default};
-  color: ${(props) => props.theme.colors.text.primary};
+  background-color: ${(props) => props.theme.syn.colors.surface.default};
+  color: ${(props) => props.theme.syn.colors.text.primary};
   font-size: 18px;
 `

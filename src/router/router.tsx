@@ -14,14 +14,14 @@ export function Router() {
   const bottomTabNavigationOptions = getScreenOptions(theme)
 
   const navigationContainerTheme = {
-    dark: theme.dark,
+    dark: theme.syn.dark,
     colors: {
-      primary: theme.colors.surface.primary,
-      background: theme.colors.surface.default,
-      card: theme.colors.surface.default,
-      text: theme.colors.text.primary,
-      border: theme.colors.surface.disabled,
-      notification: theme.colors.surface.sub,
+      primary: theme.syn.colors.surface.primary,
+      background: theme.syn.colors.surface.default,
+      card: theme.syn.colors.surface.default,
+      text: theme.syn.colors.text.primary,
+      border: theme.syn.colors.surface.disabled,
+      notification: theme.syn.colors.surface.sub,
     },
   }
 

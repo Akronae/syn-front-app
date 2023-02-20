@@ -11,8 +11,8 @@ export function getHeaderScreenOptions(
   theme: DefaultTheme,
 ): NativeStackNavigationOptions {
   return {
-    headerTintColor: theme.colors.text.contrast,
-    headerTitleStyle: { fontFamily: theme.typography.font.regular },
+    headerTintColor: theme.syn.colors.text.contrast,
+    headerTitleStyle: { fontFamily: theme.syn.typography.font.regular },
   }
 }
 
@@ -29,12 +29,12 @@ export function getScreenOptions(
       height: 80,
       borderWidth: 2,
       borderTopWidth: 2,
-      borderColor: theme.colors.border.default,
-      borderTopColor: theme.colors.border.default,
+      borderColor: theme.syn.colors.border.disabled,
+      borderTopColor: theme.syn.colors.border.disabled,
       borderRadius: 20,
       borderStyle: `solid`,
     },
     tabBarItemStyle: { padding: 10 },
-    tabBarLabelStyle: { fontFamily: theme.typography.font.regular },
+    tabBarLabelStyle: { fontFamily: theme.syn.typography.font.regular },
   } as BottomTabNavigationOptions
 }

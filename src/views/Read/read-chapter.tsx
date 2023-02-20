@@ -28,12 +28,17 @@ export function ReadChapter(props: ReadChapterProps) {
   const chapterCtx = useContext(ChapterContext)
   const focusedWord = useState<string | undefined>(undefined)
   const openWordDetails = useState(false)
+
   useEffect(() => {
-    openWordDetails.state = focusedWord.state != null
-    if (focusedWord.state)
-      return navigation.setParams({ word: focusedWord.state })
-    if (route.params?.word) focusedWord.state = route.params.word
-  }, [focusedWord.state, route.params?.word])
+    // if (route.params?.word) focusedWord.state = route.params.word
+    // if (focusedWord.state)
+    // navigation.setParams({ word: focusedWord.state })
+    // if (!openWordDetails.state) {
+    // focusedWord.state = undefined
+    // navigation.setParams({ word: undefined })
+    // }
+  }, [openWordDetails.state, focusedWord.state])
+
   const childrenLayouts = useState(
     new Map<React.ReactElement<VerseProps>, LayoutRectangle>(),
   )
@@ -125,7 +130,7 @@ export function ReadChapter(props: ReadChapterProps) {
           {verseElems.state}
         </View>
       </ScrollView>
-      <WordDetails word={focusedWord.state} open={openWordDetails} />
+      <WordDetails word={focusedWord} />
     </ReadChapterBase>
   )
 }

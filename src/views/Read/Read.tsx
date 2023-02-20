@@ -1,5 +1,5 @@
 import { ReadBook } from './read-book'
-import { Base, Button, ButtonType } from '@proto-native'
+import { Base, Button } from '@proto-native'
 import { useState } from '@proto-native'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -43,7 +43,7 @@ export function Read(props: ReadIndexProps) {
             headerRight: () => (
               <Button
                 onPress={() => navigate(route.name, (chapter.state += 1))}
-                type={ButtonType.Text}
+                type='text'
               >
                 Next
               </Button>

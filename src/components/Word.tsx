@@ -44,12 +44,12 @@ export function Word(props: WordProps) {
 
 const Greek = styled(Text)`
   font-size: 20px;
-  color: ${(p) => p.theme.colors.text.sub};
+  color: ${(p) => p.theme.syn.colors.text.sub};
 `
 
 const English = styled(Text)`
   font-size: 12px;
-  color: ${(p) => p.theme.colors.text.sub};
+  color: ${(p) => p.theme.syn.colors.text.sub};
   text-align: center;
 `
 

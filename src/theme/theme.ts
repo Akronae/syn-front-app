@@ -1,8 +1,13 @@
 import * as ProtoNative from '@proto-native'
 
-export type Theme = ProtoNative.Theme
+export type SynTheme = ProtoNative.Theme
 
-export const DarkTheme: Theme = {
+export type AppTheme = {
+  protonative: ProtoNative.Theme
+  syn: SynTheme
+}
+
+const ProtoNativeDarkTheme: ProtoNative.Theme = {
   dark: true,
   colors: {
     surface: {
@@ -22,17 +27,22 @@ export const DarkTheme: Theme = {
       error: `#ff0000`,
     },
     border: {
-      default: `#32373e`,
+      disabled: `#32373e`,
     },
   },
   spacing: (index: number) => index * 4,
   borderRadius: (index: number) => index * 2,
   typography: {
     font: {
+      thin: `MazzardH-Thin`,
+      extraLight: `MazzardH-ExtraLight`,
+      light: `MazzardH-Light`,
       regular: `MazzardH-Regular`,
       medium: `MazzardH-Medium`,
+      semiBold: `MazzardH-SemiBold`,
       bold: `MazzardH-Bold`,
       extraBold: `MazzardH-Bold`,
+      black: `MazzardH-Black`,
     },
     size: {
       xxl: 48,
@@ -45,4 +55,7 @@ export const DarkTheme: Theme = {
   },
 }
 
-export const LightTheme: Theme = DarkTheme
+export const Theme: AppTheme = {
+  protonative: ProtoNativeDarkTheme,
+  syn: ProtoNativeDarkTheme,
+}

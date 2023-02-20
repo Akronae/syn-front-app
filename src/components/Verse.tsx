@@ -49,5 +49,5 @@ const VerseTranslated = styled(Text)`
   padding-top: 10px;
   padding-bottom: 20px;
   font-size: 14px;
-  color: ${(p) => p.theme.colors.text.sub};
+  color: ${(p) => p.theme.syn.colors.text.sub};
 `
