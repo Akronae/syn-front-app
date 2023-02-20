@@ -6,6 +6,6 @@ export function rgbaLerp(a: RgbaColor, b: RgbaColor, t: number): RgbaColor {
     r: Math.round(lerp(a.r, b.r, t)),
     g: Math.round(lerp(a.g, b.g, t)),
     b: Math.round(lerp(a.b, b.b, t)),
-    a: Math.round(lerp(a.a, b.a, t)),
+    a: lerp(a.a, b.a, t),
   }
 }

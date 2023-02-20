@@ -16,10 +16,7 @@ import * as Native from 'react-native'
 import { PressableProps } from 'react-native'
 import styled, { css, useTheme } from 'styled-components/native'
 
-export enum ButtonType {
-  Primary,
-  Text,
-}
+export type ButtonType = `primary` | `secondary` | `text`
 
 export type ButtonProps = BaseProps &
   TextProps &
@@ -27,7 +24,7 @@ export type ButtonProps = BaseProps &
   Omit<PressableProps, `style`> & {
     icon?: {
       style?: Native.StyleProp<Native.ViewStyle>
-      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      ionicons?: keyof typeof Ionicons[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
     pressAnimation?: ButtonPressAnimation
@@ -63,6 +60,7 @@ export function Button(props: ButtonProps) {
   return (
     <ButtonBase
       {...baseProps.taken}
+      {...btnProps.taken}
       style={[anim.style, baseProps.taken.style]}
     >
       <Pressable
@@ -132,7 +130,7 @@ const ButtonBase = styled(Base)<ButtonProps>`
   color: ${(p) => p.theme.protonative.colors.text.light};
 
   ${(p) => p.disabled && Disabled}
-  ${(p) => p.type === ButtonType.Text && ButtonText}
+  ${(p) => p.type === `text` && ButtonText}
 `
 
 const Disabled = css`
@@ -145,7 +143,10 @@ const ButtonText = css`
   color: ${(p) => p.theme.protonative.colors.text.primary};
 `
 
-const Pressable = styled.Pressable<ButtonProps>`` as typeof Native.Pressable
+const Pressable = styled.Pressable<ButtonProps>`
+  display: flex;
+  flex-direction: row;
+` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
   display: flex;
