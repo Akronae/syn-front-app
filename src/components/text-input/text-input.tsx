@@ -17,6 +17,7 @@ import {
   useExistingStateOr,
   useState,
 } from '@proto-native/utils'
+import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
 import React, { useMemo } from 'react'
@@ -85,7 +86,6 @@ export function TextInput(props: TextInputProps) {
     icon,
     rightSlot,
     input,
-    style: styleProps,
     ...passed
   } = props
   numberOfLines ??= 1
@@ -148,7 +148,7 @@ export function TextInput(props: TextInputProps) {
   }
 
   const style =
-    Native.StyleSheet.flatten([styleProps, textProps.taken.style]) ?? {}
+    Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {}
 
   // https://github.com/facebook/react-native/issues/28012
   const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
@@ -200,7 +200,7 @@ export function TextInput(props: TextInputProps) {
           invalid={invalid}
           {...textProps.taken}
           {...baseProps.rest}
-          style={[style, iosLineHeightFix]}
+          style={[style, isIos() && iosLineHeightFix]}
           onChangeText={onChangeText}
           onFocus={(e) => {
             if (isFocused) isFocused.state = true
