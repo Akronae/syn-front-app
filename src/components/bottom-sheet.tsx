@@ -1,8 +1,12 @@
-import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
-import { hexLerp, ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import {
+  hexOpacity,
+  ReactiveState,
+  useExistingStateOr,
+} from '@proto-native/utils'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
+import { Portal } from '@gorhom/portal'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>
@@ -10,11 +14,19 @@ export type BottomSheetProps = BaseProps & {
 
 export function BottomSheet(props: BottomSheetProps) {
   const { children, open: openProps, ...passed } = props
-  const _open = useExistingStateOr(openProps, false)
+  const open = useExistingStateOr(openProps, false)
+
+  const close = () => {
+    setImmediate(() => {
+      open.state = false
+    })
+  }
 
   return (
-    <BottomSheetBase {...passed}>
+    <BottomSheetBase showIf={open.state} {...passed}>
       <Portal hostName='bottom-sheet'>
+        <Background onTouchEnd={close} />
+
         <Sheet>
           <TopNotch />
           <Content>{children}</Content>
@@ -26,16 +38,26 @@ export function BottomSheet(props: BottomSheetProps) {
 
 const BottomSheetBase = styled(Base)`` as typeof Base
 
-const Sheet = styled(Base)`
-  background-color: ${(p) => p.theme.protonative.colors.surface.default};
+const Background = styled(Base)`
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  cursor: pointer;
+`
+
+const Sheet = styled(Base)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: ${(p) => p.theme.protonative.colors.surface.default};
+  width: 100%;
   border: 2px solid
-    ${(p) =>
-  hexLerp(p.theme.protonative.colors.border.disabled, `#00000000`, 0.5)};
-  border-radius: ${(p) => p.theme.protonative.borderRadius(10)}px;
+    ${(p) => hexOpacity(p.theme.protonative.colors.border.disabled, 0.8)};
+  border-bottom-color: transparent;
+  border-radius: ${(p) => p.theme.protonative.borderRadius(12)}px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   min-height: 200px;
@@ -44,10 +66,10 @@ const Sheet = styled(Base)`
 
 const TopNotch = styled(Base)`
   width: 50px;
-  height: 5px;
+  height: 6px;
   border-radius: 99px;
   background-color: ${(p) => p.theme.protonative.colors.surface.disabled};
-  margin: ${(p) => p.theme.protonative.spacing(2)}px auto 0 auto;
+  margin: ${(p) => p.theme.protonative.spacing(3)}px auto 0 auto;
 `
 
 const Content = styled(Base)`
