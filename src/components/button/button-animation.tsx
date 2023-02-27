@@ -1,14 +1,12 @@
 import {
   AnimatedStyleProp,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
 
-export enum ButtonPressAnimation {
-  None,
-  ScaleDown,
-}
+export type ButtonPressAnimation = 'none' | 'scale-down'
 
 export type AnimationHandle = {
   style: AnimatedStyleProp<unknown>
@@ -25,6 +23,7 @@ function useScaleDownPressAnimation(): AnimationHandle {
       transform: [{ scale: scale.value }],
     }
   })
+
   const isBeingPressed = useSharedValue(false)
   const start = (callback?: () => void) => {
     isBeingPressed.value = true
@@ -32,13 +31,16 @@ function useScaleDownPressAnimation(): AnimationHandle {
       if (!isBeingPressed.value) {
         scale.value = scaleFrom
       }
-      callback?.()
+      if (callback) runOnJS(callback)()
     })
   }
+
   const revert = (callback?: () => void) => {
     isBeingPressed.value = false
     if (scale.value != scaleTo) return
-    scale.value = withSpring((scale.value = scaleFrom), undefined, callback)
+    scale.value = withSpring((scale.value = scaleFrom), undefined, () => {
+      if (callback) runOnJS(callback)()
+    })
   }
 
   return { style, start, revert }
@@ -47,9 +49,9 @@ function useScaleDownPressAnimation(): AnimationHandle {
 export function usePressAnimation(
   animation: ButtonPressAnimation,
 ): AnimationHandle {
-  const anims = {
-    [ButtonPressAnimation.ScaleDown]: useScaleDownPressAnimation(),
-    [ButtonPressAnimation.None]: {
+  const anims: Record<ButtonPressAnimation, AnimationHandle> = {
+    'scale-down': useScaleDownPressAnimation(),
+    none: {
       style: {},
       start: () => {},
       revert: () => {},
