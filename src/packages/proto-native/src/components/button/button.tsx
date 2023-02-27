@@ -47,8 +47,7 @@ export function Button(props: ButtonProps) {
   const stroke = flatStyle?.stroke || color
   const fontWeight = flatStyle?.fontWeight
 
-  const pressAnimation =
-    btnProps.taken.pressAnimation || ButtonPressAnimation.None
+  const pressAnimation = btnProps.taken.pressAnimation || `none`
   const anim = usePressAnimation(pressAnimation)
 
   const pressableWebPolyfill = {
@@ -67,12 +66,10 @@ export function Button(props: ButtonProps) {
         {...pressableWebPolyfill}
         {...baseProps.rest}
         onTouchStart={(e) => {
-          // anim.start(() => btnProps.taken?.onTouchStart?.(e))
-          btnProps.taken?.onTouchStart?.(e)
+          anim.start(() => btnProps.taken?.onTouchStart?.(e))
         }}
         onTouchEnd={(e) => {
-          // anim.revert(() => )
-          btnProps.taken?.onTouchEnd?.(e)
+          anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
         }}
       >
         {textProps.taken.children && (
@@ -146,12 +143,14 @@ const ButtonText = css`
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
   flex-direction: row;
-` as typeof Native.Pressable
-
-const CardBtnText = styled(Text)`
+  width: 100%;
+  text-align: center;
   display: flex;
   justify-content: center;
   text-align: center;
+` as typeof Native.Pressable
+
+const CardBtnText = styled(Text)`
   font-size: ${(p) =>
   Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.protonative.typography.size.md}px;
