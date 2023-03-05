@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 const fs = require(`fs`)
+const { exec } = require('child_process')
 
 function getEnvFilePaths(envName) {
   return [`.env`, `.env.local`, `.env.${envName}`, `.env.${envName}.local`]
@@ -9,6 +10,8 @@ function getEnvFilePaths(envName) {
 function plugin(api, options) {
   const envs = {}
   Object.assign(envs, process.env)
+
+  const envsFromFiles = {}
   for (const path of getEnvFilePaths(api.env())) {
     if (!fs.existsSync(path)) continue
     console.log(`Loading env file:`, path)
@@ -17,8 +20,9 @@ function plugin(api, options) {
     const toObj = Object.fromEntries(
       data.split(`\n`).map((line) => line.split(`=`)),
     )
-    Object.assign(envs, toObj)
+    Object.assign(envsFromFiles, toObj)
   }
+  Object.assign(envs, envsFromFiles)
 
   return {
     visitor: {

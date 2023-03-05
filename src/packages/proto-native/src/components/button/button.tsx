@@ -1,4 +1,3 @@
-import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -13,18 +12,17 @@ import {
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
 import * as Native from 'react-native'
-import { PressableProps } from 'react-native'
 import styled, { css, useTheme } from 'styled-components/native'
+import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export type ButtonType = `primary` | `secondary` | `text`
 
-export type ButtonProps = BaseProps &
-  TextProps &
-  PressableProps &
-  Omit<PressableProps, `style`> & {
+export type ButtonProps = BaseProps<Native.ViewStyle, Native.TextStyle> &
+  Omit<TextProps, 'style'> &
+  Omit<Native.ViewProps, 'style'> & {
     icon?: {
       style?: Native.StyleProp<Native.ViewStyle>
-      ionicons?: keyof typeof Ionicons[`glyphMap`]
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
     pressAnimation?: ButtonPressAnimation
@@ -36,9 +34,9 @@ export function Button(props: ButtonProps) {
   const { icon, ...rest } = props
   const style = props.style
   const theme = useTheme()
-  const textProps = takeTextOwnProps(rest)
+  const btnProps = takeButtonOwnProps(rest)
+  const textProps = takeTextOwnProps(btnProps.rest)
   const baseProps = takeBaseOwnProps(textProps.rest)
-  const btnProps = takeButtonOwnProps(baseProps.rest)
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
@@ -57,14 +55,12 @@ export function Button(props: ButtonProps) {
   }
 
   return (
-    <ButtonBase
-      {...baseProps.taken}
-      {...btnProps.taken}
-      style={[anim.style, baseProps.taken.style]}
-    >
+    <ButtonBase {...baseProps.taken}>
       <Pressable
         {...pressableWebPolyfill}
         {...baseProps.rest}
+        {...btnProps.taken}
+        style={[anim.style, btnProps.taken.style]}
         onTouchStart={(e) => {
           anim.start(() => btnProps.taken?.onTouchStart?.(e))
         }}
@@ -106,22 +102,43 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
     onTouchEnd,
     onPress,
     pressAnimation,
+    style,
     ...rest
   } = props
 
+  const flattenStyle = Native.StyleSheet.flatten(style)
+  const {
+    padding,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    ...styleRest
+  } = flattenStyle
+  const styleTaken = omitBy(
+    { padding, paddingTop, paddingRight, paddingBottom, paddingLeft },
+    isUndefined,
+  )
+
   return {
-    taken: { icon, type, onTouchStart, onTouchEnd, onPress, pressAnimation },
-    rest,
+    taken: {
+      icon,
+      type,
+      onTouchStart,
+      onTouchEnd,
+      onPress,
+      pressAnimation,
+      style: styleTaken,
+    },
+    rest: { ...rest, style: styleRest },
   }
 }
 
 const ButtonBase = styled(Base)<ButtonProps>`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  align-content: stretch;
   background-color: ${(p) => p.theme.protonative.colors.surface.primary};
-  padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
   color: ${(p) => p.theme.protonative.colors.text.light};
@@ -142,12 +159,11 @@ const ButtonText = css`
 
 const Pressable = styled.Pressable<ButtonProps>`
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  text-align: center;
-  display: flex;
+  flex-grow: 1;
   justify-content: center;
+  flex-direction: row;
   text-align: center;
+  padding: 10px 15px;
 ` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
