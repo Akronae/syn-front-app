@@ -1,7 +1,3 @@
-import {
-  TextInputSuggestion,
-  TextInputSuggestionProps,
-} from './text-input-suggestion'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Base,
@@ -24,7 +20,7 @@ import {
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { FlattenInterpolation } from 'styled-components'
 import styled, {
@@ -33,10 +29,14 @@ import styled, {
   ThemeProps,
   useTheme,
 } from 'styled-components/native'
+import {
+  TextInputSuggestion,
+  TextInputSuggestionProps,
+} from './text-input-suggestion'
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
-export type TextInputProps = BaseProps &
+export type TextInputProps<TSlotProps = any> = BaseProps &
   Native.TextInputProps & {
     model?: ReactiveState<string>
     focused?: {
@@ -61,10 +61,10 @@ export type TextInputProps = BaseProps &
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
     icon?: {
-      ionicons?: keyof typeof Ionicons[`glyphMap`]
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<TextInputProps>>
     }
-    rightSlot?: React.ReactNode
+    rightSlot?: <TProps extends TSlotProps>(props: TProps) => React.ReactNode
   }
 
 export function TextInput(props: TextInputProps) {
@@ -106,7 +106,9 @@ export function TextInput(props: TextInputProps) {
   if (formField) {
     formField.input = model
   }
-  isInvalid.state = formField?.state.state === FormFieldState.Error
+  useEffect(() => {
+    isInvalid.state = formField?.state.state === FormFieldState.Error
+  })
 
   if (!suggestions) suggestions = {}
   if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
@@ -211,7 +213,7 @@ export function TextInput(props: TextInputProps) {
             onBlur?.(e)
           }}
         />
-        {rightSlot}
+        {rightSlot?.(props)}
       </InputContainer>
       <SuggestionsContainer
         showIf={showSuggestions.state}

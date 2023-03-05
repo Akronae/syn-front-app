@@ -1,3 +1,4 @@
+import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
 import {
   hexOpacity,
@@ -6,7 +7,6 @@ import {
 } from '@proto-native/utils'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
-import { Portal } from '@gorhom/portal'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>

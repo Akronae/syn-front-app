@@ -1,5 +1,9 @@
 import React, { useMemo } from 'react'
 
+type ExtendedElementType<T, T2> = React.ElementType<T> & {
+  extends?: React.ElementType<T2>
+}
+
 export function useChildrenByType<T>(
   children: React.ReactNode,
   type: React.ElementType<T>,
@@ -11,7 +15,9 @@ export function useChildrenByType<T>(
       if (
         React.isValidElement(child) &&
         (child.type === type ||
-          (typeof child.type != `string` && child.type.extends === type))
+          (typeof child.type != `string` &&
+            (child.type as ExtendedElementType<unknown, unknown>).extends ===
+              type))
       )
         taken.push(child as React.ReactElement<T>)
       else if (child) left.push(child)
