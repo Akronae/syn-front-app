@@ -1,4 +1,6 @@
-import { Button, ButtonPressAnimation } from '@proto-native'
+import {
+  Button,
+} from '@proto-native'
 import { Base } from '@proto-native'
 import { Text } from '@proto-native'
 import { useAsync } from '@proto-native'
@@ -34,7 +36,7 @@ export function Home(props: HomeProps) {
             })
           }
           icon={{ ionicons: `chevron-forward` }}
-          pressAnimation={ButtonPressAnimation.ScaleDown}
+          pressAnimation='scale-down'
         >
           {read.value?.book} {read.value?.chapter}:{read.value?.verse}
         </Btn>

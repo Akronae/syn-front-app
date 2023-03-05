@@ -42,19 +42,21 @@ export function ReadChapter(props: ReadChapterProps) {
   const childrenLayouts = useState(
     new Map<React.ReactElement<VerseProps>, LayoutRectangle>(),
   )
-  const lastContentChange = useState<number | null>(null)
   const isReady = useState(false)
 
   const i = useInterval(() => {
-    if (!lastContentChange.state || Date.now() - lastContentChange.state < 300)
-      return
-    isReady.state = true
+    if (childrenLayouts.state.size <= 0) return
+
     if (route.params?.verse) {
       const c = Array.from(childrenLayouts.state)?.[route.params.verse - 1]
-      scrollView.current?.scrollTo({ y: c?.[1].y, animated: false })
+      if (!c) return
+
+      isReady.state = true
+      scrollView.current?.scrollTo({ y: c[1].y, animated: false })
     }
     i.clear()
-  }, 100)
+    isReady.state = true
+  }, 500)
 
   const verseElems = useState<React.ReactElement<VerseProps>[]>([])
   const chapter = book?.[route.name as never] as Book
@@ -71,10 +73,6 @@ export function ReadChapter(props: ReadChapterProps) {
     verseElems.state = v
   }, [])
   const scrollView = React.useRef<Native.ScrollView>(null)
-
-  useInterval(() => {
-    scrollView.current
-  }, 1000)
 
   if (!chapter) return null
 
@@ -106,13 +104,16 @@ export function ReadChapter(props: ReadChapterProps) {
     </SkeletonLoader.Container>
   )
 
+  const d = React.useMemo(() => {
+    return <WordDetails word={focusedWord} />
+  }, [focusedWord.state])
+
   return (
     <ReadChapterBase>
       <ScrollView
         onScroll={onScroll}
         scrollEventThrottle={1000}
         ref={scrollView}
-        onContentSizeChange={() => (lastContentChange.state = Date.now())}
       >
         <SkeletonLoader showIf={!isReady.state}>
           {SkeletonCard()}
@@ -123,14 +124,14 @@ export function ReadChapter(props: ReadChapterProps) {
         <View
           gap={{ vertical: 40 }}
           childRendering={{
-            interval: { ms: 500000000000000 },
+            interval: { ms: 500 },
             instant: { first: 5 },
           }}
         >
           {verseElems.state}
         </View>
       </ScrollView>
-      <WordDetails word={focusedWord} />
+      {d}
     </ReadChapterBase>
   )
 }
