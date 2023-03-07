@@ -20,6 +20,10 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     return c[step.state]
   }, [children, step.state])
 
+  const go = (to: number) => {
+    console.log(`Going from wizard step`, step.state, `to`, to)
+    step.state = to
+  }
   const back = () => {
     if (wizardValue.guards.back) {
       if (!wizardValue.guards.back()) {
@@ -27,8 +31,7 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
         return
       }
     }
-    console.info(`Going from wizard step`, step.state, `to`, step.state - 1)
-    step.state = step.state - 1
+    go(step.state - 1)
   }
   const next = () => {
     if (wizardValue.guards.next) {
@@ -37,13 +40,13 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
         return
       }
     }
-    console.log(`Going from wizard step`, step.state, `to`, step.state + 1)
-    step.state = step.state + 1
+    go(step.state + 1)
   }
   const wizardValue: WizardHandle = {
     step,
     back,
     next,
+    go,
     data,
     guards: {},
   }

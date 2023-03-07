@@ -31,7 +31,7 @@ function Mockup() {
         {new Date().getHours()}:{new Date().getMinutes()}
       </Time>
       <Notch />
-      <Icons gap={{ horizontal: 10 }}>
+      <Icons gap={10}>
         <Battery />
         <Wifi />
         <Network />

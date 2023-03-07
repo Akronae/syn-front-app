@@ -276,8 +276,12 @@ const InputContainer = styled(Base)<Partial<TextInputProps>>`
 `
 
 const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
-  outline-width: 0;
   flex: 1;
+  ${(p) =>
+    isWeb() &&
+    css`
+      outline-width: 0;
+    `}
   font-family: ${(p) =>
     boldnessToFont(
       getStyleBoldness(Native.StyleSheet.flatten(p.style)),
