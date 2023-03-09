@@ -9,10 +9,11 @@ import styled from 'styled-components/native'
 export interface VerseProps extends ViewProps {
   verse: Types.Verse
   focusedWord?: ReactiveState<string | undefined>
+  onWordClick?: (word: Types.Word) => void
 }
 
 export function Verse(props: VerseProps) {
-  const { children, verse, focusedWord: focusedWordProps, ...passed } = props
+  const { children, verse, focusedWord: focusedWordProps, onWordClick, ...passed } = props
   const focusedWord = useExistingStateOr(focusedWordProps, undefined)
 
   return (
@@ -26,7 +27,8 @@ export function Verse(props: VerseProps) {
           <Word
             key={i}
             word={word}
-            onTouchEnd={() => (focusedWord.state = word.greek)}
+            // onTouchEnd={() => (focusedWord.state = word.greek)}
+            onClick={() => onWordClick?.(word)}
           />
         ))}
       </VerseWrapper>

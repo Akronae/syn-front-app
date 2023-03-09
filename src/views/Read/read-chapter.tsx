@@ -27,17 +27,6 @@ export function ReadChapter(props: ReadChapterProps) {
   const book = useContext(BookContext)
   const chapterCtx = useContext(ChapterContext)
   const focusedWord = useState<string | undefined>(undefined)
-  const openWordDetails = useState(false)
-
-  useEffect(() => {
-    // if (route.params?.word) focusedWord.state = route.params.word
-    // if (focusedWord.state)
-    // navigation.setParams({ word: focusedWord.state })
-    // if (!openWordDetails.state) {
-    // focusedWord.state = undefined
-    // navigation.setParams({ word: undefined })
-    // }
-  }, [openWordDetails.state, focusedWord.state])
 
   const childrenLayouts = useState(
     new Map<React.ReactElement<VerseProps>, LayoutRectangle>(),
@@ -61,13 +50,15 @@ export function ReadChapter(props: ReadChapterProps) {
   const verseElems = useState<React.ReactElement<VerseProps>[]>([])
   const chapter = book?.[route.name as never] as Book
   useEffect(() => {
+    console.log('rendering!!!!!!!!!!!!!!!!!!!!!!!!!')
     if (chapterCtx) chapterCtx.chapter.state = parseInt(route.name)
-    const v = chapter.versesParsed.map((verse, i) => (
+    const v = chapter.versesParsed.map((verse, i) => i == 0 && (
       <Verse
         onLayout={(e) => childrenLayouts.state.set(v[i], e.nativeEvent.layout)}
         key={i}
         verse={verse}
-        focusedWord={focusedWord}
+        // focusedWord={focusedWord}
+        onWordClick={(word) => {focusedWord.state = word.greek; console.log(word)}}
       />
     ))
     verseElems.state = v

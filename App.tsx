@@ -8,6 +8,7 @@ import { Theme } from 'src/theme/theme'
 import styled, { ThemeProvider, useTheme } from 'styled-components/native'
 import * as Proto from '@proto-native'
 import { PortalHost, PortalProvider } from '@gorhom/portal'
+import { isAndroid } from 'src/packages/proto-native/src/utils/device/is-android'
 
 export default function App() {
   // see: https://stackoverflow.com/questions/58923065/why-does-styled-components-5-x-warn-about-expected-style-to-contain-units/74667224#74667224
@@ -23,7 +24,7 @@ export default function App() {
   NavigationBar.setBackgroundColorAsync(
     theme?.syn.colors?.surface?.primary || `#000`,
   )
-  NavigationBar.setVisibilityAsync(`hidden`)
+  if (isAndroid()) NavigationBar.setVisibilityAsync(`hidden`)
 
   const isDark = useColorScheme() == `dark`
   if (Platform.OS == `web`)

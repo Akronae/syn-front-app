@@ -1,0 +1,6 @@
+{
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "remote.SSH.defaultForwardedPorts": [
+    {"name": "expo-web", "localPort": 19006, "remotePort": 19006}
+  ]
+}
