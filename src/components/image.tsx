@@ -3,11 +3,12 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
+import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
 import * as React from 'react-native'
 import styled from 'styled-components/native'
 
-export type ImageProps = BaseProps<React.ImageStyle, React.ImageProps>
+export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps>
 
 export function Image(props: ImageProps) {
   const { ...passed } = props
@@ -35,7 +36,7 @@ export function takeImageOwnProps(props: ImageProps) {
 
 const ImageBase = styled(Base)`` as typeof Base
 
-const Img = styled(React.Image)`
+const Img = styled(ExpoImage.Image)`
   width: 100%;
   height: 100%;
 `
