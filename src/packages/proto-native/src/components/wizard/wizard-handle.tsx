@@ -5,5 +5,6 @@ export type WizardHandle<T = any> = {
   data?: ReactiveState<T>
   back: () => void
   next: () => void
+  go: (to: number) => void
   guards: { back?: () => boolean; next?: () => boolean }
 }

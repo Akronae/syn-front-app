@@ -60,7 +60,7 @@ export function Button(props: ButtonProps) {
         {...pressableWebPolyfill}
         {...baseProps.rest}
         {...btnProps.taken}
-        style={[anim.style, btnProps.taken.style]}
+        // style={[anim.style, btnProps.taken.style]}
         onTouchStart={(e) => {
           anim.start(() => btnProps.taken?.onTouchStart?.(e))
         }}

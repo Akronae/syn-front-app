@@ -50,13 +50,10 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
     })
 
     return (
-      <FormFieldBase
-        gap={{ vertical: (t) => t.protonative.spacing(2) }}
-        {...passed}
-      >
+      <FormFieldBase gap={(t) => t.protonative.spacing(2)} {...passed}>
         {childrenGroupped.FormFieldLabel}
         <FormFieldContext.Provider value={refHandle}>
-          {childrenGroupped.others}
+          <View gap={props.gap}>{childrenGroupped.others}</View>
         </FormFieldContext.Provider>
 
         {state.state === FormFieldState.Error &&
