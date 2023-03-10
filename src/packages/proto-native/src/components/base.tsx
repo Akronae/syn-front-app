@@ -6,6 +6,7 @@ import {
 } from '@proto-native/utils/device/use-media-queries'
 import { Children, isValidElement } from 'react'
 import * as Native from 'react-native'
+import * as React from 'react'
 import Animated, { BaseAnimationBuilder } from 'react-native-reanimated'
 import styled, { DefaultTheme, useTheme } from 'styled-components/native'
 
@@ -26,6 +27,7 @@ export type BaseProps<
     onMouseDown?: Native.Touchable['onTouchStart']
     onMouseUp?: Native.Touchable['onTouchEnd']
     onTouchEnd?: Native.ViewProps['onTouchEnd']
+    onPress?: Native.PressableProps['onPress']
   }
 
 export function Base<
@@ -38,6 +40,7 @@ export function Base<
     style,
     tStyle: themedStyle,
     onTouchEnd: onTouchEndProps,
+    onPress,
     ...passed
   } = props
 
@@ -66,19 +69,27 @@ export function Base<
     })
   }
 
+  const Content = (props: Partial<BaseProps>) =>
+    onPress ? (
+      <Native.Pressable {...props}></Native.Pressable>
+    ) : (
+      <React.Fragment>{props.children}</React.Fragment>
+    )
+
   return (
     <BaseWrapper
       onTouchEnd={onTouchEnd}
       style={[style, themedStyle?.(theme)]}
       {...passed}
     >
-      {children}
+      <Content onPress={onPress}>{children}</Content>
     </BaseWrapper>
   )
 }
 
 export function takeBaseOwnProps<T extends BaseProps>(props: T) {
-  const { children, style, showIf, transparent, entering, ...rest } = props
+  const { children, style, showIf, transparent, entering, onPress, ...rest } =
+    props
   return {
     taken: {
       children,
@@ -86,6 +97,7 @@ export function takeBaseOwnProps<T extends BaseProps>(props: T) {
       showIf,
       transparent,
       entering: entering as BaseAnimationBuilder,
+      onPress,
     },
     rest,
   }

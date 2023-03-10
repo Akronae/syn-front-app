@@ -22,7 +22,7 @@ export type ButtonProps = BaseProps<Native.ViewStyle, Native.TextStyle> &
   Omit<Native.ViewProps, 'style'> & {
     icon?: {
       style?: Native.StyleProp<Native.ViewStyle>
-      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+      ionicons?: keyof typeof Ionicons[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
     }
     pressAnimation?: ButtonPressAnimation
@@ -55,41 +55,40 @@ export function Button(props: ButtonProps) {
   }
 
   return (
-    <ButtonBase {...baseProps.taken}>
-      <Pressable
-        {...pressableWebPolyfill}
-        {...baseProps.rest}
-        {...btnProps.taken}
-        // style={[anim.style, btnProps.taken.style]}
-        onTouchStart={(e) => {
-          anim.start(() => btnProps.taken?.onTouchStart?.(e))
-        }}
-        onTouchEnd={(e) => {
-          anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
-        }}
-      >
-        {textProps.taken.children && (
-          <CardBtnText
-            {...textProps.taken}
-            style={[{ color, fontWeight }, textProps.taken.style]}
-            parent={{ props }}
-          />
-        )}
-        {icon?.ionicons && (
-          <Icon
-            name={icon.ionicons}
-            style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
-          />
-        )}
-        {icon?.custom && (
-          <icon.custom
-            style={[
-              icon.style,
-              omitBy({ color, fontSize, fill, stroke }, isUndefined),
-            ]}
-          />
-        )}
-      </Pressable>
+    <ButtonBase
+      {...baseProps.taken}
+      {...pressableWebPolyfill}
+      {...baseProps.rest}
+      {...btnProps.taken}
+      // style={[anim.style, btnProps.taken.style]}
+      onTouchStart={(e) => {
+        anim.start(() => btnProps.taken?.onTouchStart?.(e))
+      }}
+      onTouchEnd={(e) => {
+        anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
+      }}
+    >
+      {textProps.taken.children && (
+        <CardBtnText
+          {...textProps.taken}
+          style={[{ color, fontWeight }, textProps.taken.style]}
+          parent={{ props }}
+        />
+      )}
+      {icon?.ionicons && (
+        <Icon
+          name={icon.ionicons}
+          style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
+        />
+      )}
+      {icon?.custom && (
+        <icon.custom
+          style={[
+            icon.style,
+            omitBy({ color, fontSize, fill, stroke }, isUndefined),
+          ]}
+        />
+      )}
     </ButtonBase>
   )
 }
@@ -98,6 +97,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   const {
     icon,
     type,
+    disabled,
     onTouchStart,
     onTouchEnd,
     onPress,
@@ -124,6 +124,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
     taken: {
       icon,
       type,
+      disabled,
       onTouchStart,
       onTouchEnd,
       onPress,
@@ -137,11 +138,13 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
 const ButtonBase = styled(Base)<ButtonProps>`
   display: flex;
   flex-direction: row;
-  align-content: stretch;
+  justify-content: center;
+  text-align: center;
   background-color: ${(p) => p.theme.protonative.colors.surface.primary};
   border-radius: 8px;
   font-weight: bold;
   color: ${(p) => p.theme.protonative.colors.text.light};
+  padding: 10px 15px;
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === `text` && ButtonText}
@@ -156,15 +159,6 @@ const ButtonText = css`
   background-color: transparent;
   color: ${(p) => p.theme.protonative.colors.text.primary};
 `
-
-const Pressable = styled.Pressable<ButtonProps>`
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  flex-direction: row;
-  text-align: center;
-  padding: 10px 15px;
-` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
   font-size: ${(p) =>

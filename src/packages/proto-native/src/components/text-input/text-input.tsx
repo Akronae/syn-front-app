@@ -36,36 +36,38 @@ import {
 
 type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
 
-export type TextInputProps<TSlotProps = any> = BaseProps &
-  Native.TextInputProps & {
-    model?: ReactiveState<string>
+export type TextInputProps<TSlotProps = any> = BaseProps<
+  Native.TextStyle,
+  Native.TextInputProps
+> & {
+  model?: ReactiveState<string>
+  focused?: {
+    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+  }
+  isFocused?: ReactiveState<boolean>
+  isInvalid?: ReactiveState<boolean>
+  invalid?: {
+    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+  }
+  suggestions?: {
+    show?: ReactiveState<boolean>
+    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    container?: {
+      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    }
     focused?: {
       style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
     }
-    isFocused?: ReactiveState<boolean>
-    isInvalid?: ReactiveState<boolean>
-    invalid?: {
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
-    }
-    suggestions?: {
-      show?: ReactiveState<boolean>
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
-      container?: {
-        style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
-      }
-      focused?: {
-        style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
-      }
-    }
-    input?: {
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
-    }
-    icon?: {
-      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
-      custom?: React.ComponentType<Partial<TextInputProps>>
-    }
-    rightSlot?: <TProps extends TSlotProps>(props: TProps) => React.ReactNode
   }
+  input?: {
+    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+  }
+  icon?: {
+    ionicons?: keyof typeof Ionicons[`glyphMap`]
+    custom?: React.ComponentType<Partial<TextInputProps>>
+  }
+  rightSlot?: <TProps extends TSlotProps>(props: TProps) => React.ReactNode
+}
 
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()

@@ -28,7 +28,8 @@ function Mockup() {
   return (
     <>
       <Time>
-        {new Date().getHours()}:{new Date().getMinutes()}
+        {new Date().getHours().toString().padStart(2, `0`)}:
+        {new Date().getMinutes().toString().padStart(2, `0`)}
       </Time>
       <Notch />
       <Icons gap={10}>
