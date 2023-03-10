@@ -17,9 +17,9 @@ export function BottomSheet(props: BottomSheetProps) {
   const open = useExistingStateOr(openProps, false)
 
   const close = () => {
-    setImmediate(() => {
+    setTimeout(() => {
       open.state = false
-    })
+    }, 1)
   }
 
   return (

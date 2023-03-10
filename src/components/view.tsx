@@ -54,7 +54,7 @@ export function View(props: ViewProps) {
     childrenToRenderCount.state += 1
   }, childRendering?.interval?.ms)
 
-  const style = Native.StyleSheet.flatten([styleProps, { gap }])
+  const style = Native.StyleSheet.flatten([styleProps, {gap}])
 
   return (
     <ViewBase {...passed} style={style}>
