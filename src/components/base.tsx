@@ -4,6 +4,7 @@ import {
   MediaQueries,
   useMediaQueries,
 } from '@proto-native/utils/device/use-media-queries'
+import * as React from 'react'
 import { Children, isValidElement } from 'react'
 import * as Native from 'react-native'
 import Animated, { BaseAnimationBuilder } from 'react-native-reanimated'
@@ -26,6 +27,7 @@ export type BaseProps<
     onMouseDown?: Native.Touchable['onTouchStart']
     onMouseUp?: Native.Touchable['onTouchEnd']
     onTouchEnd?: Native.ViewProps['onTouchEnd']
+    onPress?: Native.PressableProps['onPress']
   }
 
 export function Base<
@@ -38,6 +40,7 @@ export function Base<
     style,
     tStyle: themedStyle,
     onTouchEnd: onTouchEndProps,
+    onPress,
     ...passed
   } = props
 
@@ -66,19 +69,34 @@ export function Base<
     })
   }
 
+  const Content = (props: Partial<BaseProps>) =>
+    onPress ? (
+      <Native.Pressable {...props}></Native.Pressable>
+    ) : (
+      <React.Fragment>{props.children}</React.Fragment>
+    )
+
+  const isClickable = onPress || onTouchEndProps
+
   return (
     <BaseWrapper
       onTouchEnd={onTouchEnd}
-      style={[style, themedStyle?.(theme)]}
+      style={[
+        style,
+        themedStyle?.(theme),
+        isClickable && ({ cursor: `pointer` } as any),
+      ]}
+      isClickable={isClickable}
       {...passed}
     >
-      {children}
+      <Content onPress={onPress}>{children}</Content>
     </BaseWrapper>
   )
 }
 
-export function takeBaseOwnProps<T extends BaseProps>(props: T) {
-  const { children, style, showIf, transparent, entering, ...rest } = props
+export function takeBaseOwnProps(props: BaseProps) {
+  const { children, style, showIf, transparent, entering, onPress, ...rest } =
+    props
   return {
     taken: {
       children,
@@ -86,11 +104,12 @@ export function takeBaseOwnProps<T extends BaseProps>(props: T) {
       showIf,
       transparent,
       entering: entering as BaseAnimationBuilder,
+      onPress,
     },
-    rest,
+    rest: rest as any,
   }
 }
 
 const BaseWrapper = styled(Animated.View)<BaseProps>`
-  opacity: ${(props) => (props.transparent ? 0 : 1)};
+  opacity: ${(p) => (p.transparent ? 0 : 1)};
 `

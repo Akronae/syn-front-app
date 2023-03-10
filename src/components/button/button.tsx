@@ -1,9 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
-import {
-  Base,
-  BaseProps,
-  takeBaseOwnProps,
-} from '@proto-native/components/base'
+import { Base, BaseProps } from '@proto-native/components/base'
 import {
   takeTextOwnProps,
   Text,
@@ -36,7 +32,6 @@ export function Button(props: ButtonProps) {
   const theme = useTheme()
   const btnProps = takeButtonOwnProps(rest)
   const textProps = takeTextOwnProps(btnProps.rest)
-  const baseProps = takeBaseOwnProps(textProps.rest)
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
@@ -48,48 +43,39 @@ export function Button(props: ButtonProps) {
   const pressAnimation = btnProps.taken.pressAnimation || `none`
   const anim = usePressAnimation(pressAnimation)
 
-  const pressableWebPolyfill = {
-    onClick: props.onPress,
-    onMouseDown: props.onTouchStart,
-    onMouseUp: props.onTouchEnd,
-  }
-
   return (
-    <ButtonBase {...baseProps.taken}>
-      <Pressable
-        {...pressableWebPolyfill}
-        {...baseProps.rest}
-        {...btnProps.taken}
-        // style={[anim.style, btnProps.taken.style]}
-        onTouchStart={(e) => {
-          anim.start(() => btnProps.taken?.onTouchStart?.(e))
-        }}
-        onTouchEnd={(e) => {
-          anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
-        }}
-      >
-        {textProps.taken.children && (
-          <CardBtnText
-            {...textProps.taken}
-            style={[{ color, fontWeight }, textProps.taken.style]}
-            parent={{ props }}
-          />
-        )}
-        {icon?.ionicons && (
-          <Icon
-            name={icon.ionicons}
-            style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
-          />
-        )}
-        {icon?.custom && (
-          <icon.custom
-            style={[
-              icon.style,
-              omitBy({ color, fontSize, fill, stroke }, isUndefined),
-            ]}
-          />
-        )}
-      </Pressable>
+    <ButtonBase
+      {...textProps.rest}
+      {...btnProps.taken}
+      style={[anim.style, btnProps.taken.style, textProps.rest.style]}
+      onTouchStart={(e) => {
+        anim.start(() => btnProps.taken?.onTouchStart?.(e))
+      }}
+      onTouchEnd={(e) => {
+        anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
+      }}
+    >
+      {textProps.taken.children && (
+        <CardBtnText
+          {...textProps.taken}
+          style={[{ color, fontWeight }, textProps.taken.style]}
+          parent={{ props }}
+        />
+      )}
+      {icon?.ionicons && (
+        <Icon
+          name={icon.ionicons}
+          style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
+        />
+      )}
+      {icon?.custom && (
+        <icon.custom
+          style={[
+            icon.style,
+            omitBy({ color, fontSize, fill, stroke }, isUndefined),
+          ]}
+        />
+      )}
     </ButtonBase>
   )
 }
@@ -98,6 +84,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   const {
     icon,
     type,
+    disabled,
     onTouchStart,
     onTouchEnd,
     onPress,
@@ -124,6 +111,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
     taken: {
       icon,
       type,
+      disabled,
       onTouchStart,
       onTouchEnd,
       onPress,
@@ -137,11 +125,13 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
 const ButtonBase = styled(Base)<ButtonProps>`
   display: flex;
   flex-direction: row;
-  align-content: stretch;
+  justify-content: center;
+  text-align: center;
   background-color: ${(p) => p.theme.protonative.colors.surface.primary};
   border-radius: 8px;
   font-weight: bold;
   color: ${(p) => p.theme.protonative.colors.text.light};
+  padding: 10px 15px;
 
   ${(p) => p.disabled && Disabled}
   ${(p) => p.type === `text` && ButtonText}
@@ -156,15 +146,6 @@ const ButtonText = css`
   background-color: transparent;
   color: ${(p) => p.theme.protonative.colors.text.primary};
 `
-
-const Pressable = styled.Pressable<ButtonProps>`
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  flex-direction: row;
-  text-align: center;
-  padding: 10px 15px;
-` as typeof Native.Pressable
 
 const CardBtnText = styled(Text)`
   font-size: ${(p) =>

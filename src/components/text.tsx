@@ -3,7 +3,10 @@ import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react-native'
 import styled, { DefaultTheme } from 'styled-components/native'
 
-export type TextProps = BaseProps<React.TextStyle> & React.TextProps
+export type TextProps = BaseProps<
+  React.TextStyle,
+  Omit<React.TextProps, 'onPress'>
+>
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
   const { children, style, ...rest } = props
@@ -37,7 +40,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
 
   return {
     taken: { children, style: takenStyle as React.TextStyle },
-    rest: { ...rest, style: styleRest },
+    rest: { ...rest, style: styleRest } as any,
   }
 }
 
