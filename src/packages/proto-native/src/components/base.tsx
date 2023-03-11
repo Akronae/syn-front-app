@@ -76,10 +76,17 @@ export function Base<
       <React.Fragment>{props.children}</React.Fragment>
     )
 
+  const isClickable = onPress || onTouchEndProps
+
   return (
     <BaseWrapper
       onTouchEnd={onTouchEnd}
-      style={[style, themedStyle?.(theme)]}
+      style={[
+        style,
+        themedStyle?.(theme),
+        isClickable && ({ cursor: `pointer` } as any),
+      ]}
+      isClickable={isClickable}
       {...passed}
     >
       <Content onPress={onPress}>{children}</Content>
@@ -87,7 +94,7 @@ export function Base<
   )
 }
 
-export function takeBaseOwnProps<T extends BaseProps>(props: T) {
+export function takeBaseOwnProps(props: BaseProps) {
   const { children, style, showIf, transparent, entering, onPress, ...rest } =
     props
   return {
@@ -99,10 +106,10 @@ export function takeBaseOwnProps<T extends BaseProps>(props: T) {
       entering: entering as BaseAnimationBuilder,
       onPress,
     },
-    rest,
+    rest: rest as any,
   }
 }
 
 const BaseWrapper = styled(Animated.View)<BaseProps>`
-  opacity: ${(props) => (props.transparent ? 0 : 1)};
+  opacity: ${(p) => (p.transparent ? 0 : 1)};
 `

@@ -63,7 +63,7 @@ export type TextInputProps<TSlotProps = any> = BaseProps<
     style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
   }
   icon?: {
-    ionicons?: keyof typeof Ionicons[`glyphMap`]
+    ionicons?: keyof (typeof Ionicons)[`glyphMap`]
     custom?: React.ComponentType<Partial<TextInputProps>>
   }
   rightSlot?: <TProps extends TSlotProps>(props: TProps) => React.ReactNode

@@ -1,9 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
-import {
-  Base,
-  BaseProps,
-  takeBaseOwnProps,
-} from '@proto-native/components/base'
+import { Base, BaseProps } from '@proto-native/components/base'
 import {
   takeTextOwnProps,
   Text,
@@ -36,7 +32,6 @@ export function Button(props: ButtonProps) {
   const theme = useTheme()
   const btnProps = takeButtonOwnProps(rest)
   const textProps = takeTextOwnProps(btnProps.rest)
-  const baseProps = takeBaseOwnProps(textProps.rest)
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
@@ -48,19 +43,11 @@ export function Button(props: ButtonProps) {
   const pressAnimation = btnProps.taken.pressAnimation || `none`
   const anim = usePressAnimation(pressAnimation)
 
-  const pressableWebPolyfill = {
-    onClick: props.onPress,
-    onMouseDown: props.onTouchStart,
-    onMouseUp: props.onTouchEnd,
-  }
-
   return (
     <ButtonBase
-      {...baseProps.taken}
-      {...pressableWebPolyfill}
-      {...baseProps.rest}
+      {...textProps.rest}
       {...btnProps.taken}
-      // style={[anim.style, btnProps.taken.style]}
+      style={[anim.style, btnProps.taken.style, textProps.rest.style]}
       onTouchStart={(e) => {
         anim.start(() => btnProps.taken?.onTouchStart?.(e))
       }}
