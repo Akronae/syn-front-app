@@ -24,6 +24,7 @@
     "@react-navigation/native-stack": "^6.9.1",
     "expo": "~46.0.19",
     "expo-font": "~10.2.0",
+    "expo-image": "^1.0.0",
     "expo-navigation-bar": "^1.3.0",
     "expo-skeleton-loader": "^1.1.3",
     "expo-splash-screen": "~0.16.2",

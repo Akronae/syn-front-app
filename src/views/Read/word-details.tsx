@@ -22,16 +22,22 @@ export function WordDetails(props: WordDetailsProps) {
   useEffect(() => {
     open.state = !!word.state
   }, [word.state])
+  useEffect(() => {
+    if (!open.state) word.state = undefined
+  }, [open.state])
 
   if (!word) return null
 
   return (
     <WordDetailsBase {...passed}>
       <BottomSheet open={open}>
-        <Text>My awesome content here {word.state}.</Text>
+        <Title>{word.state}.</Title>
       </BottomSheet>
     </WordDetailsBase>
   )
 }
 
 const WordDetailsBase = styled(Base)``
+const Title = styled(Text)`
+  font-size: ${(p) => p.theme.syn.typography.size.xl};
+`

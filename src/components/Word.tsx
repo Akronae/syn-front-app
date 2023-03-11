@@ -6,7 +6,7 @@ import { GrammaticalCase, PartOfSpeech } from 'src/types'
 import * as Types from 'src/types'
 import styled from 'styled-components/native'
 
-export interface WordProps extends ViewProps {
+export type WordProps = ViewProps & {
   word: Types.Word
 }
 
@@ -25,16 +25,17 @@ export function Word(props: WordProps) {
 
   return (
     <WordWrapper
-      gap={{ vertical: 5 }}
+      gap={5}
+      {...passed}
       style={[
         pos && styles[pos],
         gramcase && styles[gramcase],
         isMissing && styles.missing,
+        passed.style,
       ]}
-      {...passed}
     >
       <Greek>{word.greek}</Greek>
-      <View gap={{ vertical: 1 }}>
+      <View gap={1}>
         <English>{word.english}</English>
         <English>{word.parsing}</English>
       </View>
@@ -42,18 +43,8 @@ export function Word(props: WordProps) {
   )
 }
 
-const Greek = styled(Text)`
-  font-size: 20px;
-  color: ${(p) => p.theme.syn.colors.text.sub};
-`
-
-const English = styled(Text)`
-  font-size: 12px;
-  color: ${(p) => p.theme.syn.colors.text.sub};
-  text-align: center;
-`
-
 const WordWrapper = styled(View)`
+  gap: 5px;
   padding: 15px;
   border-radius: 20px;
   margin: 5px;
@@ -61,6 +52,19 @@ const WordWrapper = styled(View)`
   border-width: 1px;
   border-color: #ffffff18;
   background-color: #1c2434;
+  flex-grow: 1;
+`
+
+const Greek = styled(Text)`
+  font-size: 20px;
+  color: ${(p) => p.theme.syn.colors.text.sub};
+  text-align: center;
+`
+
+const English = styled(Text)`
+  font-size: 12px;
+  color: ${(p) => p.theme.syn.colors.text.sub};
+  text-align: center;
 `
 
 export const styles = StyleSheet.create({

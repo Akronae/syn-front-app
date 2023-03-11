@@ -50,15 +50,13 @@ export function ReadChapter(props: ReadChapterProps) {
   const verseElems = useState<React.ReactElement<VerseProps>[]>([])
   const chapter = book?.[route.name as never] as Book
   useEffect(() => {
-    console.log('rendering!!!!!!!!!!!!!!!!!!!!!!!!!')
     if (chapterCtx) chapterCtx.chapter.state = parseInt(route.name)
-    const v = chapter.versesParsed.map((verse, i) => i == 0 && (
+    const v = chapter.versesParsed.map((verse, i) => (
       <Verse
         onLayout={(e) => childrenLayouts.state.set(v[i], e.nativeEvent.layout)}
         key={i}
         verse={verse}
-        // focusedWord={focusedWord}
-        onWordClick={(word) => {focusedWord.state = word.greek; console.log(word)}}
+        focusedWord={focusedWord}
       />
     ))
     verseElems.state = v
@@ -113,13 +111,13 @@ export function ReadChapter(props: ReadChapterProps) {
           {SkeletonCard()}
         </SkeletonLoader>
         <View
-          gap={{ vertical: 40 }}
+          gap={40}
           childRendering={{
             interval: { ms: 500 },
             instant: { first: 5 },
           }}
         >
-          {verseElems.state}
+          {verseElems.state[0]}
         </View>
       </ScrollView>
       {d}

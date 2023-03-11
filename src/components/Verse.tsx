@@ -13,7 +13,13 @@ export interface VerseProps extends ViewProps {
 }
 
 export function Verse(props: VerseProps) {
-  const { children, verse, focusedWord: focusedWordProps, onWordClick, ...passed } = props
+  const {
+    children,
+    verse,
+    focusedWord: focusedWordProps,
+    onWordClick,
+    ...passed
+  } = props
   const focusedWord = useExistingStateOr(focusedWordProps, undefined)
 
   return (
@@ -22,13 +28,12 @@ export function Verse(props: VerseProps) {
         {verse.book} {verse.chapter}:{verse.verseNumber}
       </Text>
       <VerseTranslated>{verse.verseTranslated}</VerseTranslated>
-      <VerseWrapper gap={{ vertical: 0 }}>
+      <VerseWrapper gap={0}>
         {verse.wordsParsed.map((word, i) => (
           <Word
             key={i}
             word={word}
-            // onTouchEnd={() => (focusedWord.state = word.greek)}
-            onClick={() => onWordClick?.(word)}
+            onPress={() => (focusedWord.state = word.greek)}
           />
         ))}
       </VerseWrapper>
@@ -44,7 +49,6 @@ const VerseWrapper = styled(View)`
   align-content: flex-start;
   align-items: stretch;
   gap: 4px 2px;
-  margin: -4px -2px;
 `
 
 const VerseTranslated = styled(Text)`

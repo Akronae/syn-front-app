@@ -44,17 +44,7 @@ export default function App() {
             <StatusBar style='light' />
             <Router />
           </Page>
-          {/* <Base
-            style={{
-              position: `absolute`,
-              bottom: 0,
-              left: 0,
-              width: `100%`,
-              height: `100%`,
-            }}
-          > */}
           <PortalHost name='bottom-sheet' />
-          {/* </Base> */}
         </PortalProvider>
       </GestureHandlerRootView>
     </ThemeProvider>

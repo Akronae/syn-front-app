@@ -1,6 +1,4 @@
-import {
-  Button,
-} from '@proto-native'
+import { Button } from '@proto-native'
 import { Base } from '@proto-native'
 import { Text } from '@proto-native'
 import { useAsync } from '@proto-native'
