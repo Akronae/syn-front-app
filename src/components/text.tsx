@@ -19,6 +19,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     textTransform,
     letterSpacing,
     textDecorationColor,
+    textDecorationLine,
     textAlign,
     ...styleRest
   } = React.StyleSheet.flatten(style || [])
@@ -33,6 +34,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
       textTransform,
       letterSpacing,
       textDecorationColor,
+      textDecorationLine,
       textAlign,
     },
     isUndefined,

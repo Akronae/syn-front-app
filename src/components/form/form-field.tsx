@@ -1,5 +1,9 @@
 import { View, ViewProps } from '@proto-native/components/view'
-import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
+import {
+  useExistingStateOr,
+  useGroupChildrenByType,
+  useState,
+} from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -36,9 +40,11 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
       form.elems[name]?.state,
       FormFieldState.Normal,
     )
+    const defaultInput = useState<any>(null)
 
     const refHandle = {
       state,
+      input: defaultInput,
     }
     useImperativeHandle(ref, () => refHandle)
     form.elems[name] = refHandle

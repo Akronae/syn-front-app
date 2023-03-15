@@ -69,17 +69,12 @@ export function Base<
     })
   }
 
-  const Content = (props: Partial<BaseProps>) =>
-    onPress ? (
-      <Native.Pressable {...props}></Native.Pressable>
-    ) : (
-      <React.Fragment>{props.children}</React.Fragment>
-    )
+  const Wrapper = BaseWrapper(props.onPress ? Native.Pressable : Animated.View)
 
   const isClickable = onPress || onTouchEndProps
 
   return (
-    <BaseWrapper
+    <Wrapper
       onTouchEnd={onTouchEnd}
       style={[
         style,
@@ -87,10 +82,11 @@ export function Base<
         isClickable && ({ cursor: `pointer` } as any),
       ]}
       isClickable={isClickable}
+      onPress={onPress}
       {...passed}
     >
-      <Content onPress={onPress}>{children}</Content>
-    </BaseWrapper>
+      {children}
+    </Wrapper>
   )
 }
 
@@ -110,6 +106,6 @@ export function takeBaseOwnProps(props: BaseProps) {
   }
 }
 
-const BaseWrapper = styled(Animated.View)<BaseProps>`
+const BaseWrapper = (t: React.ComponentType) => styled(t)<BaseProps>`
   opacity: ${(p) => (p.transparent ? 0 : 1)};
 `
