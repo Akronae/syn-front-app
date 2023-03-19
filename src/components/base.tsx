@@ -7,8 +7,9 @@ import {
 import * as React from 'react'
 import { Children, isValidElement } from 'react'
 import * as Native from 'react-native'
+import { ViewStyle } from 'react-native'
 import Animated, { BaseAnimationBuilder } from 'react-native-reanimated'
-import styled, { DefaultTheme, useTheme } from 'styled-components/native'
+import { DefaultTheme, useTheme } from 'styled-components/native'
 
 export type BaseProps<
   TStyle extends Native.TextStyle = Native.TextStyle,
@@ -69,9 +70,9 @@ export function Base<
     })
   }
 
-  const Wrapper = BaseWrapper(
-    props.onPress ? Native.TouchableOpacity : Animated.View,
-  )
+  const Wrapper: React.ElementType = onPress
+    ? Native.TouchableOpacity
+    : Animated.View
 
   const isClickable = onPress || onTouchEndProps
 
@@ -79,6 +80,7 @@ export function Base<
     <Wrapper
       onTouchEnd={onTouchEnd}
       style={[
+        BaseWrapperStyle(props),
         style,
         themedStyle?.(theme),
         isClickable && ({ cursor: `pointer` } as any),
@@ -108,6 +110,6 @@ export function takeBaseOwnProps(props: BaseProps) {
   }
 }
 
-const BaseWrapper = (t: React.ComponentType) => styled(t) <BaseProps>`
-  opacity: ${(p) => (p.transparent ? 0 : 1)};
-`
+const BaseWrapperStyle = (props: BaseProps): ViewStyle => ({
+  opacity: props.transparent ? 0 : undefined,
+})

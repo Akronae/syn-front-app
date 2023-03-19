@@ -6,7 +6,9 @@ import { ThemeValue } from '@proto-native/utils/theme/theme-value'
 import { castArray } from 'lodash-es'
 import { Children, useMemo } from 'react'
 import * as Native from 'react-native'
-import styled, { useTheme } from 'styled-components/native'
+import * as React from 'react'
+import { useTheme } from 'styled-components/native'
+import { ViewStyle } from 'react-native'
 
 export interface ViewProps extends BaseProps {
   gap?: ThemeValue<number>
@@ -57,18 +59,12 @@ export function View(props: ViewProps) {
   const style = Native.StyleSheet.flatten([styleProps, { gap }])
 
   return (
-    <ViewBase {...passed} style={style}>
+    <Base {...passed} style={[BaseStyle, style]}>
       {flatChildren}
-    </ViewBase>
+    </Base>
   )
 }
 
-const ViewBase = styled(Base)`
-  ${(p) => {
-  if (isWeb())
-    return `
-        min-height: revert;
-        min-width: revert;
-      `
-}}
-` as typeof Base
+const BaseStyle: ViewStyle = {
+  ...(isWeb() && { minHeight: `revert`, minWidth: `revert` }),
+}

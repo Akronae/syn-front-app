@@ -11,7 +11,6 @@ import {
   useImperativeHandle,
 } from 'react'
 import * as React from 'react-native'
-import styled from 'styled-components/native'
 import { FormFieldContext } from './form-field-context'
 import { FormFieldError } from './form-field-error'
 import { FormFieldHandle } from './form-field-handle'
@@ -62,13 +61,17 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
           <View gap={props.gap}>{childrenGroupped.others}</View>
         </FormFieldContext.Provider>
 
-        {state.state === FormFieldState.Error &&
-          childrenGroupped.FormFieldError}
-        {state.state === FormFieldState.Error && error && (
-          <FormField.Error style={error.style}>{error.message}</FormField.Error>
-        )}
-        {state.state === FormFieldState.Error &&
-          childrenGroupped.FormFieldOnInvalid}
+        <>
+          {state.state === FormFieldState.Error &&
+            childrenGroupped.FormFieldError}
+          {state.state === FormFieldState.Error && error && (
+            <FormField.Error style={error.style}>
+              {error.message}
+            </FormField.Error>
+          )}
+          {state.state === FormFieldState.Error &&
+            childrenGroupped.FormFieldOnInvalid}
+        </>
       </FormFieldBase>
     )
   },
@@ -84,4 +87,4 @@ FormField.On = { Invalid: FormFieldOnInvalid }
 FormField.Label = FormFieldLabel
 FormField.Error = FormFieldError
 
-const FormFieldBase = styled(View)`` as typeof View
+const FormFieldBase = View

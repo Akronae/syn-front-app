@@ -7,7 +7,6 @@ import {
   RefAttributes,
   useImperativeHandle,
 } from 'react'
-import styled from 'styled-components/native'
 import { FormContext } from './form-context'
 import { FormHandle } from './form-handle'
 import { useFormValidate } from './form-use-form-validate'
@@ -41,4 +40,4 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
 Form.displayName = `Form`
 Form.Field = FormField
 
-const FormBase = styled(View)`` as typeof View
+const FormBase = View

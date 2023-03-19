@@ -3,9 +3,10 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
-import * as React from 'react-native'
+import * as Native from 'react-native'
 import styled from 'styled-components/native'
 
 export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps>
@@ -25,7 +26,7 @@ export function Image(props: ImageProps) {
 export function takeImageOwnProps(props: ImageProps) {
   const { style, ...rest } = props
 
-  const flattenStyle = React.StyleSheet.flatten(style)
+  const flattenStyle = Native.StyleSheet.flatten(style)
   const { resizeMode, ...styleRest } = flattenStyle
   const styleTaken = pickBy({ resizeMode }, (e) => !isUndefined(e))
   if (!styleTaken.resizeMode && (flattenStyle as any).objectFit)
@@ -36,7 +37,7 @@ export function takeImageOwnProps(props: ImageProps) {
 
 const ImageBase = styled(Base)`` as typeof Base
 
-const Img = styled(ExpoImage.Image)`
+const Img = styled(isWeb() ? Native.Image : ExpoImage.Image)`
   width: 100%;
   height: 100%;
 `
