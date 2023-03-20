@@ -6,7 +6,6 @@ import {
   useState,
 } from '@proto-native/utils'
 import React, { useEffect, useMemo } from 'react'
-import styled from 'styled-components/native'
 import { RadioOption, RadioOptionProps } from './radio-option'
 
 export type RadioProps<T> = ViewProps & {
@@ -44,4 +43,4 @@ export function Radio<T>(props: RadioProps<T>) {
 }
 Radio.Option = RadioOption
 
-const RadioBase = styled(View)`` as typeof View
+const RadioBase = View

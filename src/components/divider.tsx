@@ -1,6 +1,7 @@
 import { Base, BaseProps } from '@proto-native/components/base'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import * as React from 'react-native'
-import styled, { DefaultTheme, useTheme } from 'styled-components/native'
+import { DefaultTheme, useTheme } from 'styled-components/native'
 
 export type DividerProps = BaseProps & {
   margin?: {
@@ -24,9 +25,9 @@ export function Divider(props: DividerProps) {
   )
 }
 
-const DividerBase = styled(Base)`
-  width: 100%;
-  border-top-width: 1px;
-  border-top-color: ${(p) => p.theme.protonative.colors.border.disabled};
-  border-top-style: solid;
-` as typeof Base
+const DividerBase = createThemedComponent(Base, (p) => ({
+  width: `100%`,
+  borderTopWidth: 1,
+  borderTopColor: p.theme.protonative.colors.border.disabled,
+  borderTopStyle: `solid`,
+}))

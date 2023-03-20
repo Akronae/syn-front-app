@@ -1,9 +1,9 @@
 import { Text, TextProps } from '@proto-native/components/text'
-import styled from 'styled-components/native'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 
 export type FormFieldLabelProps = TextProps
 
-export const FormFieldLabel = styled(Text)`
-  font-size: ${(p) => p.theme.protonative.typography.size.xs}px;
-  color: ${(p) => p.theme.protonative.colors.text.heavy};
-` as typeof Text
+export const FormFieldLabel = createThemedComponent(Text, (p) => ({
+  fontSize: p.theme.protonative.typography.size.xs,
+  color: p.theme.protonative.colors.text.heavy,
+}))

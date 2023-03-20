@@ -4,7 +4,6 @@ import {
   takeBaseOwnProps,
 } from '@proto-native/components/base'
 import * as Native from 'react-native'
-import styled from 'styled-components/native'
 
 export type ScrollViewProps = BaseProps<Native.ScrollViewProps>
 
@@ -19,4 +18,4 @@ export function ScrollView(props: ScrollViewProps) {
   )
 }
 
-const ScrollViewBase = styled(Base)`` as typeof Base
+const ScrollViewBase = Base

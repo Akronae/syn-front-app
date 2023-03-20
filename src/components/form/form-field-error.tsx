@@ -1,8 +1,8 @@
 import { Text, TextProps } from '@proto-native/components/text'
-import styled from 'styled-components/native'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 
 export type FormFieldErrorProps = TextProps
 
-export const FormFieldError = styled(Text)`
-  color: ${(p) => p.theme.protonative.colors.text.error};
-`
+export const FormFieldError = createThemedComponent(Text, (p) => ({
+  color: p.theme.protonative.colors.text.error,
+}))

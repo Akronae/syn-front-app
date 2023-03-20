@@ -4,10 +4,10 @@ import {
   takeBaseOwnProps,
 } from '@proto-native/components/base'
 import { isWeb } from '@proto-native/utils/device/is-web'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
 import * as Native from 'react-native'
-import styled from 'styled-components/native'
 
 export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps>
 
@@ -35,9 +35,12 @@ export function takeImageOwnProps(props: ImageProps) {
   return { taken: { style: styleTaken }, rest: { ...rest, style: styleRest } }
 }
 
-const ImageBase = styled(Base)`` as typeof Base
+const ImageBase = Base
 
-const Img = styled(isWeb() ? Native.Image : ExpoImage.Image)`
-  width: 100%;
-  height: 100%;
-`
+const Img = createThemedComponent(
+  isWeb() ? Native.Image : ExpoImage.Image,
+  (p) => ({
+    width: `100%`,
+    height: `100%`,
+  }),
+)

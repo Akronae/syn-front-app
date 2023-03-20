@@ -5,8 +5,8 @@ import {
   ReactiveState,
   useExistingStateOr,
 } from '@proto-native/utils'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import * as React from 'react-native'
-import styled from 'styled-components/native'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>
@@ -36,42 +36,44 @@ export function BottomSheet(props: BottomSheetProps) {
   )
 }
 
-const BottomSheetBase = styled(Base)`` as typeof Base
+const BottomSheetBase = Base
 
-const Background = styled(Base)`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #00000080;
-  cursor: pointer;
-`
+const Background = createThemedComponent(Base, (p) => ({
+  position: `absolute`,
+  left: 0,
+  bottom: 0,
+  width: `100%`,
+  height: `100%`,
+  backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.8),
+}))
 
-const Sheet = styled(Base)`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: ${(p) => p.theme.protonative.colors.surface.default};
-  width: 100%;
-  border: 2px solid
-    ${(p) => hexOpacity(p.theme.protonative.colors.border.disabled, 0.8)};
-  border-bottom-color: transparent;
-  border-radius: ${(p) => p.theme.protonative.borderRadius(12)}px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  min-height: 200px;
-  z-index: 10;
-` as typeof Base
+const Sheet = createThemedComponent(Base, (p) => ({
+  position: `absolute`,
+  left: 0,
+  bottom: 0,
+  backgroundColor: p.theme.protonative.colors.surface.default,
+  width: `100%`,
+  borderWidth: 2,
+  borderColor: hexOpacity(p.theme.protonative.colors.border.disabled, 0.8),
+  borderBottomColor: `transparent`,
+  borderRadius: p.theme.protonative.borderRadius(12),
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
+  minHeight: 200,
+  zIndex: 10,
+}))
 
-const TopNotch = styled(Base)`
-  width: 50px;
-  height: 6px;
-  border-radius: 99px;
-  background-color: ${(p) => p.theme.protonative.colors.surface.disabled};
-  margin: ${(p) => p.theme.protonative.spacing(3)}px auto 0 auto;
-`
+const TopNotch = createThemedComponent(Base, (p) => ({
+  width: 50,
+  height: 6,
+  borderRadius: 99,
+  backgroundColor: p.theme.protonative.colors.surface.disabled,
+  marginTop: p.theme.protonative.spacing(3),
+  marginLeft: `auto`,
+  marginRight: `auto`,
+  marginBottom: 0,
+}))
 
-const Content = styled(Base)`
-  padding: ${(p) => p.theme.protonative.spacing(6)}px;
-`
+const Content = createThemedComponent(Base, (p) => ({
+  padding: p.theme.protonative.spacing(6),
+}))

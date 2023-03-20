@@ -5,10 +5,12 @@ import {
   Text,
   TextProps,
 } from '@proto-native/components/text'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
 import * as Native from 'react-native'
-import styled, { css, useTheme } from 'styled-components/native'
+import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export type ButtonType = `primary` | `secondary` | `text`
@@ -122,37 +124,35 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   }
 }
 
-const ButtonBase = styled(Base)<ButtonProps>`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  background-color: ${(p) => p.theme.protonative.colors.surface.primary};
-  border-radius: 8px;
-  font-weight: bold;
-  color: ${(p) => p.theme.protonative.colors.text.light};
-  padding: 10px 15px;
+const ButtonBase = createThemedComponent<ButtonProps>(Base, (p) => ({
+  display: `flex`,
+  flexDirection: `row`,
+  justifyContent: `center`,
+  textAlign: `center`,
+  backgroundColor: p.theme.protonative.colors.surface.primary,
+  borderRadius: 8,
+  fontWeight: `bold`,
+  color: p.theme.protonative.colors.text.light,
+  paddingVertical: 10,
+  paddingHorizontal: 15,
+  ...(p.disabled && Disabled),
+  ...(p.type === `text` && ButtonText),
+}))
 
-  ${(p) => p.disabled && Disabled}
-  ${(p) => p.type === `text` && ButtonText}
-`
+const Disabled: ThemedStyle = (p) => ({
+  backgroundColor: p.theme.protonative.colors.surface.disabled,
+  color: p.theme.protonative.colors.text.primary,
+})
 
-const Disabled = css`
-  background-color: ${(p) => p.theme.protonative.colors.surface.disabled};
-  color: ${(p) => p.theme.protonative.colors.text.primary};
-`
+const ButtonText: ThemedStyle = (p) => ({
+  backgroundColor: `transparent`,
+  color: p.theme.protonative.colors.text.primary,
+})
 
-const ButtonText = css`
-  background-color: transparent;
-  color: ${(p) => p.theme.protonative.colors.text.primary};
-`
+const CardBtnText = createThemedComponent<TextProps>(Text, (p) => ({
+  fontSize:
+    Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
+    p.theme.protonative.typography.size.md,
+}))
 
-const CardBtnText = styled(Text)`
-  font-size: ${(p) =>
-  Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
-    p.theme.protonative.typography.size.md}px;
-` as typeof Text
-
-const Icon = styled(Ionicons)`
-  /* margin: auto; */
-`
+const Icon = Ionicons

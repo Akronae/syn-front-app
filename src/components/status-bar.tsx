@@ -4,10 +4,10 @@ import { View } from '@proto-native/components/view'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
 import { isDev } from '@proto-native/utils/env/is-dev'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
-import styled from 'styled-components/native'
 
 export type StatusBarProps = BaseProps
 
@@ -41,44 +41,53 @@ function Mockup() {
   )
 }
 
-const StatusBarBase = styled(Base)`
-  height: ${React.StatusBar.currentHeight || Constants.statusBarHeight || 53};
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  color: ${(p) => p.theme.protonative.colors.text.contrast};
-  fill: ${(p) => p.theme.protonative.colors.text.contrast};
-  stroke: ${(p) => p.theme.protonative.colors.text.contrast};
-` as typeof Base
+const StatusBarBase = createThemedComponent(Base, (p) => ({
+  height: React.StatusBar.currentHeight || Constants.statusBarHeight || 53,
+  width: `100%`,
+  display: `flex`,
+  flexDirection: `row`,
+  justifyContent: `space-around`,
+  color: p.theme.protonative.colors.text.contrast,
+  fill: p.theme.protonative.colors.text.contrast,
+  stroke: p.theme.protonative.colors.text.contrast,
+}))
 
-const Time = styled(Text)`
-  margin: 18px 0 13px 0;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
-  color: ${(p) => p.theme.protonative.colors.text.contrast};
-`
+const Time = createThemedComponent(Text, (p) => ({
+  marginTop: 18,
+  marginBottom: 13,
+  marginLeft: 0,
+  marginRight: 0,
+  flex: 1,
+  justifyContent: `center`,
+  alignItems: `center`,
+  fontWeight: 400,
+  color: p.theme.protonative.colors.text.contrast,
+}))
 
-const Icons = styled(View)`
-  flex-direction: row;
-  margin: 23px 0 18px 0;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+const Icons = createThemedComponent(View, (p) => ({
+  flex: 1,
+  flexDirection: `row`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  marginTop: 23,
+  marginBottom: 18,
+  marginLeft: 0,
+  marginRight: 0,
+}))
 
-const Notch = styled(Base)`
-  height: 37px;
-  width: 125px;
-  background-color: ${(p) => p.theme.protonative.colors.text.contrast};
-  border-radius: 40px;
-  margin: 11px 0 5px 0;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`
+const Notch = createThemedComponent(Base, (p) => ({
+  height: 37,
+  width: 125,
+  backgroundColor: p.theme.protonative.colors.text.contrast,
+  borderRadius: 40,
+  marginTop: 11,
+  marginBottom: 5,
+  left: 0,
+  right: 0,
+  flex: 1,
+  justifyContent: `center`,
+  alignItems: `center`,
+}))
 
 function Battery() {
   return (

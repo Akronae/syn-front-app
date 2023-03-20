@@ -1,7 +1,6 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import React, { forwardRef, useImperativeHandle, useMemo } from 'react'
-import styled from 'styled-components/native'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
 
@@ -63,4 +62,4 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
 })
 WizardBody.displayName = `Wizard.Body`
 
-const WizardBodyBase = styled(Base)`` as typeof Base
+const WizardBodyBase = Base

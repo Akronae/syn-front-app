@@ -1,16 +1,13 @@
 import { BaseProps } from '@proto-native'
 import { Base } from '@proto-native/components/base'
-import styled from 'styled-components/native'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 
 export type TextInputSuggestionProps = BaseProps & {
   value: string
   isDisabled?: boolean
 }
 
-export function TextInputSuggestion(
-  this: any,
-  props: TextInputSuggestionProps,
-) {
+export function TextInputSuggestion(props: TextInputSuggestionProps) {
   const { children, ...passed } = props
 
   return (
@@ -19,15 +16,14 @@ export function TextInputSuggestion(
 }
 TextInputSuggestion.TypeName = `TextInputSuggestion`
 
-const TextInputSuggestionBase = styled(Base)<TextInputSuggestionProps>`
-  padding: 10px;
-  cursor: pointer;
-  border-top-left-radius: ${(props) =>
-  props.css?.selectors?.firstChild ? 10 : 0}px;
-  border-top-right-radius: ${(props) =>
-    props.css?.selectors?.firstChild ? 10 : 0}px;
-  border-bottom-right-radius: ${(props) =>
-      props.css?.selectors?.lastChild ? 10 : 0}px;
-  border-bottom-left-radius: ${(props) =>
-        props.css?.selectors?.lastChild ? 10 : 0}px;
-` as typeof Base
+const TextInputSuggestionBase = createThemedComponent<TextInputSuggestionProps>(
+  Base,
+  (p) => ({
+    padding: 10,
+    cursor: `pointer`,
+    borderTopLeftRadius: p.css?.selectors?.firstChild ? 10 : 0,
+    borderTopRightRadius: p.css?.selectors?.firstChild ? 10 : 0,
+    borderBottomRightRadius: p.css?.selectors?.lastChild ? 10 : 0,
+    borderBottomLeftRadius: p.css?.selectors?.lastChild ? 10 : 0,
+  }),
+)

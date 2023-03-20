@@ -19,16 +19,12 @@ import {
 } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { isEmpty, isUndefined, omitBy } from 'lodash-es'
 import React, { useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
-import { FlattenInterpolation } from 'styled-components'
-import styled, {
-  css,
-  DefaultTheme,
-  ThemeProps,
-  useTheme,
-} from 'styled-components/native'
+import { useTheme } from 'styled-components/native'
 import {
   TextInputSuggestion,
   TextInputSuggestionProps,
@@ -42,25 +38,25 @@ export type TextInputProps<TSlotProps = any> = BaseProps<
 > & {
   model?: ReactiveState<string>
   focused?: {
-    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    style?: ReturnType<ThemedStyle>
   }
   isFocused?: ReactiveState<boolean>
   isInvalid?: ReactiveState<boolean>
   invalid?: {
-    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    style?: ReturnType<ThemedStyle>
   }
   suggestions?: {
     show?: ReactiveState<boolean>
-    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    style?: ReturnType<ThemedStyle>
     container?: {
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      style?: ReturnType<ThemedStyle>
     }
     focused?: {
-      style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+      style?: ReturnType<ThemedStyle>
     }
   }
   input?: {
-    style?: FlattenInterpolation<ThemeProps<DefaultTheme>>
+    style?: ReturnType<ThemedStyle>
   }
   icon?: {
     ionicons?: keyof (typeof Ionicons)[`glyphMap`]
@@ -97,12 +93,12 @@ export function TextInput(props: TextInputProps) {
 
   const model = useExistingStateOr(props.model, ``)
   const focused = focusedProps ?? {}
-  if (!focused.style) focused.style = NativeInputOnFocus
+  if (!focused.style) focused.style = NativeInputOnFocus({ theme })
   const isFocused = useExistingStateOr(isFocusedProps, false)
 
   const isInvalid = useExistingStateOr(isInvalidProps, false)
   invalid ??= {}
-  invalid.style ??= NativeInputOnInvalid
+  invalid.style ??= NativeInputOnInvalid({ theme })
 
   const formField = useFormField()
   if (formField) {
@@ -113,7 +109,8 @@ export function TextInput(props: TextInputProps) {
   })
 
   if (!suggestions) suggestions = {}
-  if (!suggestions.style) suggestions.style = NativeInputOnSuggestions
+  if (!suggestions.style)
+    suggestions.style = NativeInputOnSuggestions({ theme })
   const showSuggestions = useState(suggestions?.show?.state ?? false)
   const { taken: suggestionElems, left: childrenFiltered } = useChildrenByType(
     children,
@@ -241,71 +238,78 @@ export function TextInput(props: TextInputProps) {
 
 TextInput.Suggestion = TextInputSuggestion
 
-const TextInputBase = styled(Base)`` as typeof Base
+const TextInputBase = Base
 
-const NativeInputOnFocus = css`
-  border-color: ${(p) =>
-    hexLerp(
-      p.theme.protonative.colors.surface.sub,
-      p.theme.protonative.colors.surface.contrast,
-      0.05,
-    )};
-`
+const NativeInputOnFocus: ThemedStyle = (p) => ({
+  borderColor: hexLerp(
+    p.theme.protonative.colors.surface.sub,
+    p.theme.protonative.colors.surface.contrast,
+    0.05,
+  ),
+})
 
-const NativeInputOnInvalid = css`
-  border-color: ${(p) => p.theme.protonative.colors.surface.error};
-  color: ${(p) => p.theme.protonative.colors.surface.error};
-`
+const NativeInputOnInvalid: ThemedStyle = (p) => ({
+  borderColor: p.theme.protonative.colors.surface.error,
+  color: p.theme.protonative.colors.surface.error,
+})
 
-const NativeInputOnSuggestions = css`
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-`
+const NativeInputOnSuggestions: ThemedStyle = (p) => ({
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
+})
 
-const InputContainer = styled(Base)<Partial<TextInputProps>>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${(p) => p.theme.protonative.colors.surface.sub};
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid transparent;
+const InputContainer = createThemedComponent<Partial<TextInputProps>>(
+  Base,
+  (p) => ({
+    display: `flex`,
+    flexDirection: `row`,
+    alignItems: `center`,
+    backgroundColor: p.theme.protonative.colors.surface.sub,
+    padding: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderStyle: `solid`,
+    borderColor: `transparent`,
+    ...(p.isFocused?.state && p.focused?.style),
+    ...(p.isInvalid?.state && p.invalid?.style),
+    ...(p.suggestions?.show?.state && p.suggestions?.style),
+    ...p.input?.style,
+  }),
+)
 
-  ${(p) => p.isFocused?.state && p.focused?.style}
-  ${(p) => p.isInvalid?.state && p.invalid?.style}
-  ${(p) => p.suggestions?.show?.state && p.suggestions?.style}
-  ${(p) => p.input?.style}
-`
-
-const NativeInput = styled(Native.TextInput)<Partial<TextInputProps>>`
-  flex: 1;
-  ${(p) =>
-    isWeb() &&
-    css`
-      outline-width: 0;
-    `}
-  font-family: ${(p) =>
-    boldnessToFont(
+const NativeInput = createThemedComponent<Partial<TextInputProps>>(
+  Native.TextInput,
+  (p) => ({
+    flex: 1,
+    ...(isWeb() && {
+      outlineWidth: 0,
+    }),
+    fontFamily: boldnessToFont(
       getStyleBoldness(Native.StyleSheet.flatten(p.style)),
       p.theme,
-    )};
-  color: ${(p) => p.theme.protonative.colors.text.primary};
-  font-size: ${(p) => p.theme.protonative.typography.size.md};
-  ${(p) => p.isInvalid?.state && p.invalid?.style}
-`
+    ),
+    color: p.theme.protonative.colors.text.primary,
+    fontSize: p.theme.protonative.typography.size.md,
+    ...(p.isInvalid?.state && p.invalid?.style),
+  }),
+)
 
-const SuggestionsContainer = styled(Base)<{
-  suggestions: TextInputProps[`suggestions`]
-}>`
-  background-color: ${(props) => props.theme.protonative.colors.surface.sub};
-  ${(p) => p.suggestions?.container?.style}
-`
+const SuggestionsContainer = createThemedComponent<
+  {
+    suggestions: TextInputProps[`suggestions`]
+  } & BaseProps
+>(Base, (p) => ({
+  backgroundColor: p.theme.protonative.colors.surface.sub,
+  ...p.suggestions?.container?.style,
+}))
 
-const Icon = styled(Ionicons)<Partial<TextInputProps>>`
-  margin-right: ${(p) => p.theme.protonative.spacing(2)};
-  font-family: ${(p) => p.theme.protonative.typography.font.regular};
-  color: ${(p) => p.theme.protonative.colors.text.primary};
-  font-size: ${(p) => p.theme.protonative.typography.size.md};
-
-  ${(p) => p.isInvalid?.state && p.invalid?.style}
-`
+const Icon = createThemedComponent<Partial<TextInputProps> & { name: string }>(
+  Ionicons,
+  (p) => ({
+    marginRight: p.theme.protonative.spacing(2),
+    fontFamily: p.theme.protonative.typography.font.regular,
+    color: p.theme.protonative.colors.text.primary,
+    fontSize: p.theme.protonative.typography.size.md,
+    ...(p.isInvalid?.state && p.invalid?.style),
+  }),
+)

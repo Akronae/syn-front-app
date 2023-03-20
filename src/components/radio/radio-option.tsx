@@ -2,8 +2,8 @@ import { Ionicons } from '@expo/vector-icons'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import * as Native from 'react-native'
-import styled from 'styled-components/native'
 import { RadioOptionDescription } from './radio-option-description'
 
 export type RadioOptionProps<T = any> = BaseProps & {
@@ -16,7 +16,7 @@ export function RadioOption<T>(props: RadioOptionProps<T>) {
   const { children, value: _, icon, ...passed } = props
 
   return (
-    <RadioOptionBase {...passed}>
+    <RadioOptionBase {...passed} value={_}>
       <CircleOuter {...passed}>
         <CircleInner {...passed} />
       </CircleOuter>
@@ -29,48 +29,54 @@ export function RadioOption<T>(props: RadioOptionProps<T>) {
 }
 RadioOption.Description = RadioOptionDescription
 
-const RadioOptionBase = styled(Base)<RadioOptionProps>`
-  display: flex;
-  flex-direction: row;
-  background-color: ${(p) => p.theme.protonative.colors.surface.sub};
-  padding: 12px;
-  border-radius: 8px;
-` as typeof Base
+const RadioOptionBase = createThemedComponent<RadioOptionProps>(Base, (p) => ({
+  display: `flex`,
+  flexDirection: `row`,
+  backgroundColor: p.theme.protonative.colors.surface.sub,
+  padding: 12,
+  borderRadius: 8,
+}))
 
-const CircleOuter = styled(Native.View)<{ isSelected?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: ${(p) => p.theme.protonative.typography.size.sm};
-  aspect-ratio: 1 / 1;
-  margin-right: 15px;
-  margin-top: 2px;
-  border-radius: ${borderRadiusPercentToNumber(50)}px;
-  background-color: ${(p) =>
-    p.isSelected
+const CircleOuter = createThemedComponent<{ isSelected?: boolean }>(
+  Native.View,
+  (p) => ({
+    display: `flex`,
+    justifyContent: `center`,
+    alignItems: `center`,
+    height: p.theme.protonative.typography.size.sm,
+    aspectRatio: `1 / 1`,
+    marginRight: 15,
+    marginTop: 2,
+    borderRadius: borderRadiusPercentToNumber(50),
+    backgroundColor: p.isSelected
       ? p.theme.protonative.colors.surface.primary
       : hexLerp(
         p.theme.protonative.colors.surface.sub,
         p.theme.protonative.colors.surface.contrast,
         0.1,
-      )};
-  border: 1px solid gray;
-`
+      ),
+    borderWidth: 1,
+    borderColor: `gray`,
+  }),
+)
 
-const CircleInner = styled(Native.View)<{ isSelected?: boolean }>`
-  height: 50%;
-  aspect-ratio: 1 / 1;
-  border-radius: ${borderRadiusPercentToNumber(50)}px;
-  background-color: ${(p) => p.theme.protonative.colors.surface.default};
-  opacity: ${(props) => (props.isSelected ? 1 : 0)};
-`
+const CircleInner = createThemedComponent<{ isSelected?: boolean }>(
+  Native.View,
+  (p) => ({
+    height: `50%`,
+    aspectRatio: `1 / 1`,
+    borderRadius: borderRadiusPercentToNumber(50),
+    backgroundColor: p.theme.protonative.colors.surface.default,
+    opacity: p.isSelected ? 1 : 0,
+  }),
+)
 
-const Icon = styled(Ionicons)`
-  margin-right: 6px;
-  font-size: ${(p) => p.theme.protonative.typography.size.sm};
-`
+const Icon = createThemedComponent(Ionicons, (p) => ({
+  marginRight: 6,
+  fontSize: p.theme.protonative.typography.size.sm,
+}))
 
-const RadioOptionText = styled(Text)`
-  flex-shrink: 1;
-  font-size: ${(p) => p.theme.protonative.typography.size.sm};
-`
+const RadioOptionText = createThemedComponent(Text, (p) => ({
+  flexShrink: 1,
+  fontSize: p.theme.protonative.typography.size.sm,
+}))

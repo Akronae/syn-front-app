@@ -1,11 +1,12 @@
 import { Base, BaseProps } from '@proto-native/components/base'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import { isUndefined, omitBy } from 'lodash-es'
-import * as React from 'react-native'
-import styled, { DefaultTheme } from 'styled-components/native'
+import * as Native from 'react-native'
+import { DefaultTheme } from 'styled-components/native'
 
 export type TextProps = BaseProps<
-  React.TextStyle,
-  Omit<React.TextProps, 'onPress'>
+  Native.TextStyle,
+  Omit<Native.TextProps, 'onPress'>
 >
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
@@ -22,7 +23,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     textDecorationLine,
     textAlign,
     ...styleRest
-  } = React.StyleSheet.flatten(style || [])
+  } = Native.StyleSheet.flatten(style || [])
 
   const takenStyle = omitBy(
     {
@@ -41,15 +42,15 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
   )
 
   return {
-    taken: { children, style: takenStyle as React.TextStyle },
+    taken: { children, style: takenStyle as Native.TextStyle },
     rest: { ...rest, style: styleRest } as any,
   }
 }
 
 export function getStyleBoldness(
-  style: React.StyleProp<React.TextStyle>,
+  style: Native.StyleProp<Native.TextStyle>,
 ): number {
-  const fontWeight = React.StyleSheet.flatten(style)?.fontWeight
+  const fontWeight = Native.StyleSheet.flatten(style)?.fontWeight
   if (!fontWeight) return 400
   if (typeof fontWeight === `string`) {
     if (fontWeight === `bold`) return 600
@@ -70,18 +71,18 @@ export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
   return theme.protonative.typography.font.black
 }
 
-const TextWrapper = styled(Base)``
+const TextWrapper = Base
 
-const TextBase = styled.Text<TextProps>`
-  font-family: ${(p) => boldnessToFont(getStyleBoldness(p.style), p.theme)};
-`
+const TextBase = createThemedComponent<TextProps>(Native.Text, (p) => ({
+  fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
+}))
 
 function TextCompo(props: TextProps) {
   const textOwnProps = takeTextOwnProps(props)
 
-  const textBaseStyle = React.StyleSheet.flatten(textOwnProps.taken.style)
+  const textBaseStyle = Native.StyleSheet.flatten(textOwnProps.taken.style)
   let fontWeight = textBaseStyle?.fontWeight || `normal`
-  if (parseInt(fontWeight) >= 700 && React.Platform.OS === `android`) {
+  if (parseInt(fontWeight) >= 700 && Native.Platform.OS === `android`) {
     // Android doesn't support 700+ font weight
     fontWeight = `600`
   }
@@ -96,8 +97,9 @@ function TextCompo(props: TextProps) {
   )
 }
 
-export const Text = styled(TextCompo)`
-  color: ${(p) => p.theme.protonative.colors.text.primary};
-  font-size: ${(p) => p.theme.protonative.typography.size.md};
-` as unknown as typeof TextCompo & { Inherit: typeof TextCompo }
-Text.Inherit = styled(TextCompo)``
+export const Text = createThemedComponent(TextCompo, (p) => ({
+  color: p.theme.protonative.colors.text.primary,
+  fontSize: p.theme.protonative.typography.size.md,
+})) as unknown as typeof TextCompo & { Inherit: typeof TextCompo }
+
+Text.Inherit = TextCompo

@@ -1,7 +1,7 @@
 import { BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
+import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
 import * as React from 'react-native'
-import styled from 'styled-components/native'
 
 export type RadioOptionDescriptionProps = BaseProps
 
@@ -11,8 +11,9 @@ export function RadioOptionDescription(props: RadioOptionDescriptionProps) {
   return <RadioOptionDescriptionBase {...passed}></RadioOptionDescriptionBase>
 }
 
-const RadioOptionDescriptionBase = styled(Text)<RadioOptionDescriptionProps>`
-  font-size: ${(p) => p.theme.protonative.typography.size.xs};
-  color: ${(p) => p.theme.protonative.colors.text.sub};
-  margin-top: 6px;
-` as typeof Text
+const RadioOptionDescriptionBase =
+  createThemedComponent<RadioOptionDescriptionProps>(Text, (p) => ({
+    fontSize: p.theme.protonative.typography.size.xs,
+    color: p.theme.protonative.colors.text.sub,
+    marginTop: 6,
+  }))
