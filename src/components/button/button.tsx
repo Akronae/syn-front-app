@@ -5,7 +5,7 @@ import {
   Text,
   TextProps,
 } from '@proto-native/components/text'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
@@ -124,7 +124,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   }
 }
 
-const ButtonBase = createThemedComponent<ButtonProps>(Base, (p) => ({
+const ButtonBase = themed<ButtonProps>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `center`,
@@ -149,7 +149,7 @@ const ButtonText: ThemedStyle = (p) => ({
   color: p.theme.protonative.colors.text.primary,
 })
 
-const CardBtnText = createThemedComponent<TextProps>(Text, (p) => ({
+const CardBtnText = themed<TextProps>(Text, (p) => ({
   fontSize:
     Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
     p.theme.protonative.typography.size.md,

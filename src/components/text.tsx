@@ -1,5 +1,5 @@
 import { Base, BaseProps } from '@proto-native/components/base'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as Native from 'react-native'
 import { DefaultTheme } from 'styled-components/native'
@@ -73,7 +73,7 @@ export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
 
 const TextWrapper = Base
 
-const TextBase = createThemedComponent<TextProps>(Native.Text, (p) => ({
+const TextBase = themed<TextProps>(Native.Text, (p) => ({
   fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
 }))
 
@@ -97,7 +97,7 @@ function TextCompo(props: TextProps) {
   )
 }
 
-export const Text = createThemedComponent(TextCompo, (p) => ({
+export const Text = themed(TextCompo, (p) => ({
   color: p.theme.protonative.colors.text.primary,
   fontSize: p.theme.protonative.typography.size.md,
 })) as unknown as typeof TextCompo & { Inherit: typeof TextCompo }

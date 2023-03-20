@@ -19,9 +19,9 @@ import {
 } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { isEmpty, isUndefined, omitBy } from 'lodash-es'
+import { isEmpty, isUndefined, omit, omitBy } from 'lodash-es'
 import React, { useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
@@ -148,8 +148,10 @@ export function TextInput(props: TextInputProps) {
     onChangeTextProps?.(text)
   }
 
-  const style =
-    Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {}
+  const style = omit(
+    Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {},
+    `textDecoration`,
+  )
 
   // https://github.com/facebook/react-native/issues/28012
   const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
@@ -258,43 +260,37 @@ const NativeInputOnSuggestions: ThemedStyle = (p) => ({
   borderBottomRightRadius: 0,
 })
 
-const InputContainer = createThemedComponent<Partial<TextInputProps>>(
-  Base,
-  (p) => ({
-    display: `flex`,
-    flexDirection: `row`,
-    alignItems: `center`,
-    backgroundColor: p.theme.protonative.colors.surface.sub,
-    padding: 10,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderStyle: `solid`,
-    borderColor: `transparent`,
-    ...(p.isFocused?.state && p.focused?.style),
-    ...(p.isInvalid?.state && p.invalid?.style),
-    ...(p.suggestions?.show?.state && p.suggestions?.style),
-    ...p.input?.style,
-  }),
-)
+const InputContainer = themed<Partial<TextInputProps>>(Base, (p) => ({
+  display: `flex`,
+  flexDirection: `row`,
+  alignItems: `center`,
+  backgroundColor: p.theme.protonative.colors.surface.sub,
+  padding: 10,
+  borderRadius: 8,
+  borderWidth: 2,
+  borderStyle: `solid`,
+  borderColor: `transparent`,
+  ...(p.isFocused?.state && p.focused?.style),
+  ...(p.isInvalid?.state && p.invalid?.style),
+  ...(p.suggestions?.show?.state && p.suggestions?.style),
+  ...p.input?.style,
+}))
 
-const NativeInput = createThemedComponent<Partial<TextInputProps>>(
-  Native.TextInput,
-  (p) => ({
-    flex: 1,
-    ...(isWeb() && {
-      outlineWidth: 0,
-    }),
-    fontFamily: boldnessToFont(
-      getStyleBoldness(Native.StyleSheet.flatten(p.style)),
-      p.theme,
-    ),
-    color: p.theme.protonative.colors.text.primary,
-    fontSize: p.theme.protonative.typography.size.md,
-    ...(p.isInvalid?.state && p.invalid?.style),
+const NativeInput = themed<Partial<TextInputProps>>(Native.TextInput, (p) => ({
+  flex: 1,
+  ...(isWeb() && {
+    outlineWidth: 0,
   }),
-)
+  fontFamily: boldnessToFont(
+    getStyleBoldness(Native.StyleSheet.flatten(p.style)),
+    p.theme,
+  ),
+  color: p.theme.protonative.colors.text.primary,
+  fontSize: p.theme.protonative.typography.size.md,
+  ...(p.isInvalid?.state && p.invalid?.style),
+}))
 
-const SuggestionsContainer = createThemedComponent<
+const SuggestionsContainer = themed<
   {
     suggestions: TextInputProps[`suggestions`]
   } & BaseProps
@@ -303,7 +299,7 @@ const SuggestionsContainer = createThemedComponent<
   ...p.suggestions?.container?.style,
 }))
 
-const Icon = createThemedComponent<Partial<TextInputProps> & { name: string }>(
+const Icon = themed<Partial<TextInputProps> & { name: string }>(
   Ionicons,
   (p) => ({
     marginRight: p.theme.protonative.spacing(2),

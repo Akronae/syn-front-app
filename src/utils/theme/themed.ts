@@ -3,7 +3,7 @@ import { ThemedStyle } from './themed-style'
 import * as Native from 'react-native'
 import * as React from 'react'
 
-export function createThemedComponent<T extends Record<string, any>>(
+export function themed<T extends Record<string, any>>(
   comp: React.ComponentType<any>,
   p: ThemedStyle<T>,
 ): React.ComponentType<T> {

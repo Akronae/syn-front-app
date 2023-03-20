@@ -4,7 +4,7 @@ import { View } from '@proto-native/components/view'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
 import { isDev } from '@proto-native/utils/env/is-dev'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
@@ -41,7 +41,7 @@ function Mockup() {
   )
 }
 
-const StatusBarBase = createThemedComponent(Base, (p) => ({
+const StatusBarBase = themed(Base, (p) => ({
   height: React.StatusBar.currentHeight || Constants.statusBarHeight || 53,
   width: `100%`,
   display: `flex`,
@@ -52,7 +52,7 @@ const StatusBarBase = createThemedComponent(Base, (p) => ({
   stroke: p.theme.protonative.colors.text.contrast,
 }))
 
-const Time = createThemedComponent(Text, (p) => ({
+const Time = themed(Text, (p) => ({
   marginTop: 18,
   marginBottom: 13,
   marginLeft: 0,
@@ -64,7 +64,7 @@ const Time = createThemedComponent(Text, (p) => ({
   color: p.theme.protonative.colors.text.contrast,
 }))
 
-const Icons = createThemedComponent(View, (p) => ({
+const Icons = themed(View, (p) => ({
   flex: 1,
   flexDirection: `row`,
   justifyContent: `center`,
@@ -75,7 +75,7 @@ const Icons = createThemedComponent(View, (p) => ({
   marginRight: 0,
 }))
 
-const Notch = createThemedComponent(Base, (p) => ({
+const Notch = themed(Base, (p) => ({
   height: 37,
   width: 125,
   backgroundColor: p.theme.protonative.colors.text.contrast,

@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { borderRadiusPercentToNumber, hexLerp } from '@proto-native/utils'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import * as Native from 'react-native'
 import { RadioOptionDescription } from './radio-option-description'
 
@@ -29,7 +29,7 @@ export function RadioOption<T>(props: RadioOptionProps<T>) {
 }
 RadioOption.Description = RadioOptionDescription
 
-const RadioOptionBase = createThemedComponent<RadioOptionProps>(Base, (p) => ({
+const RadioOptionBase = themed<RadioOptionProps>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   backgroundColor: p.theme.protonative.colors.surface.sub,
@@ -37,46 +37,40 @@ const RadioOptionBase = createThemedComponent<RadioOptionProps>(Base, (p) => ({
   borderRadius: 8,
 }))
 
-const CircleOuter = createThemedComponent<{ isSelected?: boolean }>(
-  Native.View,
-  (p) => ({
-    display: `flex`,
-    justifyContent: `center`,
-    alignItems: `center`,
-    height: p.theme.protonative.typography.size.sm,
-    aspectRatio: `1 / 1`,
-    marginRight: 15,
-    marginTop: 2,
-    borderRadius: borderRadiusPercentToNumber(50),
-    backgroundColor: p.isSelected
-      ? p.theme.protonative.colors.surface.primary
-      : hexLerp(
-        p.theme.protonative.colors.surface.sub,
-        p.theme.protonative.colors.surface.contrast,
-        0.1,
-      ),
-    borderWidth: 1,
-    borderColor: `gray`,
-  }),
-)
+const CircleOuter = themed<{ isSelected?: boolean }>(Native.View, (p) => ({
+  display: `flex`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  height: p.theme.protonative.typography.size.sm,
+  aspectRatio: `1 / 1`,
+  marginRight: 15,
+  marginTop: 2,
+  borderRadius: borderRadiusPercentToNumber(50),
+  backgroundColor: p.isSelected
+    ? p.theme.protonative.colors.surface.primary
+    : hexLerp(
+      p.theme.protonative.colors.surface.sub,
+      p.theme.protonative.colors.surface.contrast,
+      0.1,
+    ),
+  borderWidth: 1,
+  borderColor: `gray`,
+}))
 
-const CircleInner = createThemedComponent<{ isSelected?: boolean }>(
-  Native.View,
-  (p) => ({
-    height: `50%`,
-    aspectRatio: `1 / 1`,
-    borderRadius: borderRadiusPercentToNumber(50),
-    backgroundColor: p.theme.protonative.colors.surface.default,
-    opacity: p.isSelected ? 1 : 0,
-  }),
-)
+const CircleInner = themed<{ isSelected?: boolean }>(Native.View, (p) => ({
+  height: `50%`,
+  aspectRatio: `1 / 1`,
+  borderRadius: borderRadiusPercentToNumber(50),
+  backgroundColor: p.theme.protonative.colors.surface.default,
+  opacity: p.isSelected ? 1 : 0,
+}))
 
-const Icon = createThemedComponent(Ionicons, (p) => ({
+const Icon = themed(Ionicons, (p) => ({
   marginRight: 6,
   fontSize: p.theme.protonative.typography.size.sm,
 }))
 
-const RadioOptionText = createThemedComponent(Text, (p) => ({
+const RadioOptionText = themed(Text, (p) => ({
   flexShrink: 1,
   fontSize: p.theme.protonative.typography.size.sm,
 }))

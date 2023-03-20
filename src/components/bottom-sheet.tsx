@@ -5,7 +5,7 @@ import {
   ReactiveState,
   useExistingStateOr,
 } from '@proto-native/utils'
-import { createThemedComponent } from '@proto-native/utils/theme/create-themed-component'
+import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react-native'
 
 export type BottomSheetProps = BaseProps & {
@@ -38,7 +38,7 @@ export function BottomSheet(props: BottomSheetProps) {
 
 const BottomSheetBase = Base
 
-const Background = createThemedComponent(Base, (p) => ({
+const Background = themed(Base, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,
@@ -47,7 +47,7 @@ const Background = createThemedComponent(Base, (p) => ({
   backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.8),
 }))
 
-const Sheet = createThemedComponent(Base, (p) => ({
+const Sheet = themed(Base, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,
@@ -63,7 +63,7 @@ const Sheet = createThemedComponent(Base, (p) => ({
   zIndex: 10,
 }))
 
-const TopNotch = createThemedComponent(Base, (p) => ({
+const TopNotch = themed(Base, (p) => ({
   width: 50,
   height: 6,
   borderRadius: 99,
@@ -74,6 +74,6 @@ const TopNotch = createThemedComponent(Base, (p) => ({
   marginBottom: 0,
 }))
 
-const Content = createThemedComponent(Base, (p) => ({
+const Content = themed(Base, (p) => ({
   padding: p.theme.protonative.spacing(6),
 }))
