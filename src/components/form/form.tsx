@@ -1,6 +1,6 @@
 import { FormField } from '@proto-native/components/form/form-field'
 import { View, ViewProps } from '@proto-native/components/view'
-import { useGroupChildrenByType } from '@proto-native/utils'
+import { useForceUpdate, useGroupChildrenByType } from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -12,7 +12,7 @@ import { FormHandle } from './form-handle'
 import { useFormValidate } from './form-use-form-validate'
 
 export type FormProps = ViewProps
-export type FormRef = { validate: () => boolean }
+export type FormRef = { validate: () => boolean; fields: FormHandle[`fields`] }
 
 export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   const { children, ...passed } = props
@@ -21,16 +21,24 @@ export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   const childrenByType = useGroupChildrenByType(children, {
     FormField: FormField,
   })
+  const forceUpdate = useForceUpdate()
+  const rerender = () => {
+    forceUpdate()
+    setImmediate(forceUpdate)
+  }
 
-  const fields = childrenByType.FormField
-  const elems: FormHandle[`elems`] = {}
+  const fieldElems = childrenByType.FormField
+  const fields: FormHandle[`fields`] = {}
+
+  const formHandle: FormHandle = { fields, rerender }
 
   useImperativeHandle(ref, () => ({
-    validate: () => validate(fields, elems),
+    validate: () => validate(fieldElems, formHandle),
+    fields,
   }))
 
   return (
-    <FormContext.Provider value={{ elems }}>
+    <FormContext.Provider value={formHandle}>
       <FormBase {...passed}>{children}</FormBase>
     </FormContext.Provider>
   )

@@ -1,16 +1,13 @@
-import { useForceUpdate } from '@proto-native/utils'
 import { FormFieldState } from './form-field'
 import { FormHandle } from './form-handle'
 
 export function useFormValidate() {
-  const reRender = useForceUpdate()
-
-  return (fields: React.ReactElement[], elems: FormHandle[`elems`]) => {
+  return (fieldElems: React.ReactElement[], handle: FormHandle) => {
     let isFormValid = true
 
-    fields.forEach((field) => {
+    fieldElems.forEach((field) => {
       if (field.props.validate) {
-        const fieldElemHandle = elems[field.props.name]
+        const fieldElemHandle = handle.fields[field.props.name]
 
         const valid = field.props.validate(fieldElemHandle?.input?.state ?? ``)
         if (!valid) {
@@ -21,7 +18,7 @@ export function useFormValidate() {
             // I'm not particularly proud of that.
             // turns out it's the only way to update `fieldElemHandle`
             // as the state update comes from outside the component
-            reRender()
+            handle.rerender()
           }
         }
       }

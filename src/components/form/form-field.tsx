@@ -36,7 +36,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
 
     const form = useForm()
     const state = useExistingStateOr(
-      form.elems[name]?.state,
+      form.fields[name]?.state,
       FormFieldState.Normal,
     )
     const defaultInput = useState<any>(null)
@@ -46,7 +46,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
       input: defaultInput,
     }
     useImperativeHandle(ref, () => refHandle)
-    form.elems[name] = refHandle
+    form.fields[name] = refHandle
 
     const childrenGroupped = useGroupChildrenByType(children, {
       FormFieldOnInvalid: FormFieldOnInvalid,
