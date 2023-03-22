@@ -5,31 +5,23 @@ import {
   takeBaseOwnProps,
 } from '@proto-native/components/base'
 import { FormFieldState, useFormField } from '@proto-native/components/form'
-import {
-  boldnessToFont,
-  getStyleBoldness,
-  takeTextOwnProps,
-} from '@proto-native/components/text'
+import { takeTextOwnProps } from '@proto-native/components/text'
 import {
   hexLerp,
   ReactiveState,
-  useChildrenByType,
   useExistingStateOr,
   useGroupChildrenByType,
-  useState,
 } from '@proto-native/utils'
-import { isIos } from '@proto-native/utils/device/is-ios'
-import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { drop, isEmpty, isUndefined, omit, omitBy } from 'lodash-es'
-import React, { useEffect, useMemo } from 'react'
+import { isUndefined, omit, omitBy } from 'lodash-es'
+import React, { ReactElement, useEffect } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
-import { Dropdown } from './dropdown/dropdown'
+import { Dropdown, DropdownProps } from './dropdown/dropdown'
 import { DropdownItemProps } from './dropdown/dropdown-item'
 
-export type InputBaseProps<TSlotProps = any, TModel = any> = BaseProps<
+export type InputBaseProps<TModel = any> = BaseProps<
   Native.TextStyle,
   Native.TextInputProps
 > & {
@@ -42,16 +34,6 @@ export type InputBaseProps<TSlotProps = any, TModel = any> = BaseProps<
   invalid?: {
     style?: ReturnType<ThemedStyle>
   }
-  dropdown?: {
-    show?: ReactiveState<boolean>
-    style?: ReturnType<ThemedStyle>
-    container?: {
-      style?: ReturnType<ThemedStyle>
-    }
-    focused?: {
-      style?: ReturnType<ThemedStyle>
-    }
-  }
   input?: {
     style?: ReturnType<ThemedStyle>
   }
@@ -62,7 +44,7 @@ export type InputBaseProps<TSlotProps = any, TModel = any> = BaseProps<
   rightSlot?: (props: InputBaseProps) => React.ReactNode
 }
 
-export function InputBase<TSlotProps = any, TModel = any>(props: InputBaseProps<TSlotProps, TModel>) {
+export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   const theme = useTheme()
   let {
     children,
@@ -70,22 +52,12 @@ export function InputBase<TSlotProps = any, TModel = any>(props: InputBaseProps<
     isFocused: isFocusedProps,
     isInvalid: isInvalidProps,
     invalid,
-    dropdown,
     model,
-    onChangeText: onChangeTextProps,
-    onFocus,
-    onBlur,
-    numberOfLines,
-    multiline,
-    onKeyPress,
-    onSubmitEditing,
     icon,
     rightSlot,
     input,
     ...passed
   } = props
-  numberOfLines ??= 1
-  multiline ??= numberOfLines > 1
   const textProps = takeTextOwnProps(passed)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
@@ -102,10 +74,9 @@ export function InputBase<TSlotProps = any, TModel = any>(props: InputBaseProps<
     isInvalid.state = formField?.state.state === FormFieldState.Error
   })
 
-  if (!dropdown) dropdown = {}
-  if (!dropdown.style) dropdown.style = NativeInputOnDropdown({ theme })
-  const showDropdown = useState(dropdown?.show?.state ?? false)
-  const childrenBy = useGroupChildrenByType(children, { Dropdown: InputBase.Dropdown })
+  const childrenBy = useGroupChildrenByType(children, {
+    Dropdown: InputBase.Dropdown,
+  })
 
   const style = omit(
     Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {},
@@ -144,15 +115,15 @@ export function InputBase<TSlotProps = any, TModel = any>(props: InputBaseProps<
         {childrenBy.others}
         {rightSlot?.(props)}
       </InputContainer>
-      <DropdownContainer
-        showIf={showDropdown.state}
-        dropdown={dropdown}
-      >
-        {childrenBy.Dropdown.map((dropdown, i) => React.cloneElement(dropdown, { key: i, onItemClick: (item: React.ReactElement<DropdownItemProps>) => {
-          model.state = item.props.value
-          Native.Keyboard.dismiss()
-        }}))}
-      </DropdownContainer>
+      {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) =>
+        React.cloneElement(child, {
+          key: i,
+          onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
+            model.state = item.props.value
+            Native.Keyboard.dismiss()
+          },
+        }),
+      )}
     </InputBaseBase>
   )
 }
@@ -174,11 +145,6 @@ const NativeInputOnInvalid: ThemedStyle = (p) => ({
   color: p.theme.protonative.colors.surface.error,
 })
 
-const NativeInputOnDropdown: ThemedStyle = (p) => ({
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-})
-
 const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
@@ -192,15 +158,6 @@ const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   ...(p.isFocused?.state && p.focused?.style),
   ...(p.isInvalid?.state && p.invalid?.style),
   ...p.input?.style,
-}))
-
-const DropdownContainer = themed<
-  {
-    dropdown: InputBaseProps[`dropdown`]
-  } & BaseProps
->(Base, (p) => ({
-  backgroundColor: p.theme.protonative.colors.surface.sub,
-  ...p.dropdown?.container?.style,
 }))
 
 const Icon = themed<Partial<InputBaseProps> & { name: string }>(

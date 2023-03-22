@@ -1,9 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
-import {
-  Base,
-  BaseProps,
-  takeBaseOwnProps,
-} from '@proto-native/components/base'
+import { BaseProps, takeBaseOwnProps } from '@proto-native/components/base'
 import { FormFieldState, useFormField } from '@proto-native/components/form'
 import {
   boldnessToFont,
@@ -11,26 +7,20 @@ import {
   takeTextOwnProps,
 } from '@proto-native/components/text'
 import {
-  hexLerp,
   ReactiveState,
-  useChildrenByType,
   useExistingStateOr,
+  useGroupChildrenByType,
   useState,
 } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { isEmpty, isUndefined, omit, omitBy } from 'lodash-es'
-import React, { useEffect, useMemo } from 'react'
+import React, { ReactElement, useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
-import {
-  TextInputSuggestion,
-  TextInputSuggestionProps,
-} from './text-input-suggestion'
-
-type TextInputSuggestion = React.ReactElement<TextInputSuggestionProps>
+import { Dropdown, DropdownProps } from 'src/components/dropdown'
+import { InputBase, InputBaseProps } from 'src/components/input-base'
 
 export type TextInputProps<TSlotProps = any> = BaseProps<
   Native.TextStyle,
@@ -45,7 +35,7 @@ export type TextInputProps<TSlotProps = any> = BaseProps<
   invalid?: {
     style?: ReturnType<ThemedStyle>
   }
-  suggestions?: {
+  dropdown?: {
     show?: ReactiveState<boolean>
     style?: ReturnType<ThemedStyle>
     container?: {
@@ -69,11 +59,10 @@ export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
     children,
-    focused: focusedProps,
     isFocused: isFocusedProps,
     isInvalid: isInvalidProps,
     invalid,
-    suggestions,
+    dropdown,
     onChangeText: onChangeTextProps,
     onFocus,
     onBlur,
@@ -81,7 +70,6 @@ export function TextInput(props: TextInputProps) {
     multiline,
     onKeyPress,
     onSubmitEditing,
-    icon,
     rightSlot,
     input,
     ...passed
@@ -92,13 +80,10 @@ export function TextInput(props: TextInputProps) {
   const baseProps = takeBaseOwnProps(textProps.rest)
 
   const model = useExistingStateOr(props.model, ``)
-  const focused = focusedProps ?? {}
-  if (!focused.style) focused.style = NativeInputOnFocus({ theme })
   const isFocused = useExistingStateOr(isFocusedProps, false)
 
   const isInvalid = useExistingStateOr(isInvalidProps, false)
   invalid ??= {}
-  invalid.style ??= NativeInputOnInvalid({ theme })
 
   const formField = useFormField()
   if (formField) {
@@ -108,20 +93,16 @@ export function TextInput(props: TextInputProps) {
     isInvalid.state = formField?.state.state === FormFieldState.Error
   })
 
-  if (!suggestions) suggestions = {}
-  if (!suggestions.style)
-    suggestions.style = NativeInputOnSuggestions({ theme })
-  const showSuggestions = useState(suggestions?.show?.state ?? false)
-  const { taken: suggestionElems, left: childrenFiltered } = useChildrenByType(
-    children,
-    TextInputSuggestion,
-  )
+  const childrenBy = useGroupChildrenByType(children, { Dropdown: Dropdown })
 
-  showSuggestions.state = useMemo(() => {
-    return (isFocused?.state || false) && !isEmpty(suggestionElems)
-  }, [isFocused?.state, suggestionElems])
+  if (!dropdown) dropdown = {}
+  const showDropdown = useState(dropdown?.show?.state ?? false)
 
-  const placeholder = childrenFiltered.reduce(
+  showDropdown.state = useMemo(() => {
+    return isFocused?.state || false
+  }, [isFocused?.state])
+
+  const placeholder = React.Children.toArray(children).reduce(
     (acc, child) => `${acc} ${child?.toString()}`,
     ``,
   ) as string
@@ -148,11 +129,7 @@ export function TextInput(props: TextInputProps) {
     onChangeTextProps?.(text)
   }
 
-  const style = omit(
-    Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {},
-    `textDecoration`,
-  )
-
+  const style = Native.StyleSheet.flatten(props.style)
   // https://github.com/facebook/react-native/issues/28012
   const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
   const iosLineHeightFix = {
@@ -162,119 +139,53 @@ export function TextInput(props: TextInputProps) {
   }
 
   return (
-    <TextInputBase {...baseProps.taken} {...textProps.rest}>
-      <InputContainer
-        focused={focused}
-        isFocused={isFocused}
-        invalid={invalid}
+    <InputContainer
+      {...baseProps.taken}
+      {...textProps.rest}
+      style={[baseProps.taken.style, textProps.rest.style]}
+      model={model}
+      dropdown={{ ...dropdown, show: showDropdown }}
+      input={input}
+    >
+      <NativeInput
+        placeholder={placeholder}
+        placeholderTextColor={theme.protonative.colors.text.sub}
+        value={model.state}
+        numberOfLines={numberOfLines}
+        multiline={multiline}
+        onKeyPress={onKeyPressBase}
+        onSubmitEditing={onSubmitEditing}
         isInvalid={isInvalid}
-        suggestions={suggestions}
-        input={input}
-      >
-        {icon?.ionicons && (
-          <Icon
-            name={icon.ionicons}
-            isInvalid={isInvalid}
-            invalid={invalid}
-            style={omitBy(
-              { color: style.color, fontSize: style.fontSize },
-              isUndefined,
-            )}
-          />
-        )}
-        {icon?.custom && (
-          <icon.custom
-            isInvalid={isInvalid}
-            style={omitBy(
-              { color: style.color, fontSize: style.fontSize },
-              isUndefined,
-            )}
-          />
-        )}
-        <NativeInput
-          placeholder={placeholder}
-          placeholderTextColor={theme.protonative.colors.text.sub}
-          value={model.state}
-          numberOfLines={numberOfLines}
-          multiline={multiline}
-          onKeyPress={onKeyPressBase}
-          onSubmitEditing={onSubmitEditing}
-          isInvalid={isInvalid}
-          invalid={invalid}
-          {...textProps.taken}
-          {...baseProps.rest}
-          style={[style, isIos() && iosLineHeightFix]}
-          onChangeText={onChangeText}
-          onFocus={(e) => {
-            if (isFocused) isFocused.state = true
-            onFocus?.(e)
-          }}
-          onBlur={(e) => {
-            if (isFocused) isFocused.state = false
-            onBlur?.(e)
-          }}
-        />
-        {rightSlot?.(props)}
-      </InputContainer>
-      <SuggestionsContainer
-        showIf={showSuggestions.state}
-        suggestions={suggestions}
-      >
-        {suggestionElems.map((suggestion, i) => (
-          <Base
-            key={i}
-            onTouchStart={() => {
-              if (suggestion.props.isDisabled) return
-              model.state = suggestion.props.value
-
-              Native.Keyboard.dismiss()
-            }}
-          >
-            {suggestion}
-          </Base>
-        ))}
-      </SuggestionsContainer>
-    </TextInputBase>
+        invalid={invalid}
+        {...textProps.taken}
+        {...baseProps.rest}
+        style={[
+          textProps.taken.style,
+          baseProps.rest.style,
+          isIos() && iosLineHeightFix,
+        ]}
+        onChangeText={onChangeText}
+        onFocus={(e) => {
+          if (isFocused) isFocused.state = true
+          onFocus?.(e)
+        }}
+        onBlur={(e) => {
+          if (isFocused) isFocused.state = false
+          onBlur?.(e)
+        }}
+      />
+      {rightSlot?.(props)}
+      {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>) => {
+        if (child.props.children) return child
+      })}
+      {childrenBy.others}
+    </InputContainer>
   )
 }
 
-TextInput.Suggestion = TextInputSuggestion
+TextInput.Dropdown = InputBase.Dropdown
 
-const TextInputBase = Base
-
-const NativeInputOnFocus: ThemedStyle = (p) => ({
-  borderColor: hexLerp(
-    p.theme.protonative.colors.surface.sub,
-    p.theme.protonative.colors.surface.contrast,
-    0.05,
-  ),
-})
-
-const NativeInputOnInvalid: ThemedStyle = (p) => ({
-  borderColor: p.theme.protonative.colors.surface.error,
-  color: p.theme.protonative.colors.surface.error,
-})
-
-const NativeInputOnSuggestions: ThemedStyle = (p) => ({
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-})
-
-const InputContainer = themed<Partial<TextInputProps>>(Base, (p) => ({
-  display: `flex`,
-  flexDirection: `row`,
-  alignItems: `center`,
-  backgroundColor: p.theme.protonative.colors.surface.sub,
-  padding: 10,
-  borderRadius: 8,
-  borderWidth: 2,
-  borderStyle: `solid`,
-  borderColor: `transparent`,
-  ...(p.isFocused?.state && p.focused?.style),
-  ...(p.isInvalid?.state && p.invalid?.style),
-  ...(p.suggestions?.show?.state && p.suggestions?.style),
-  ...p.input?.style,
-}))
+const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({}))
 
 const NativeInput = themed<Partial<TextInputProps>>(Native.TextInput, (p) => ({
   flex: 1,
@@ -289,23 +200,3 @@ const NativeInput = themed<Partial<TextInputProps>>(Native.TextInput, (p) => ({
   fontSize: p.theme.protonative.typography.size.md,
   ...(p.isInvalid?.state && p.invalid?.style),
 }))
-
-const SuggestionsContainer = themed<
-  {
-    suggestions: TextInputProps[`suggestions`]
-  } & BaseProps
->(Base, (p) => ({
-  backgroundColor: p.theme.protonative.colors.surface.sub,
-  ...p.suggestions?.container?.style,
-}))
-
-const Icon = themed<Partial<TextInputProps> & { name: string }>(
-  Ionicons,
-  (p) => ({
-    marginRight: p.theme.protonative.spacing(2),
-    fontFamily: p.theme.protonative.typography.font.regular,
-    color: p.theme.protonative.colors.text.primary,
-    fontSize: p.theme.protonative.typography.size.md,
-    ...(p.isInvalid?.state && p.invalid?.style),
-  }),
-)
