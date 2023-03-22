@@ -19,8 +19,8 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import React, { ReactElement, useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
-import { Dropdown, DropdownProps } from 'src/components/dropdown'
-import { InputBase, InputBaseProps } from 'src/components/input-base'
+import { Dropdown, DropdownProps } from '@proto-native/components/dropdown'
+import { InputBase, InputBaseProps } from '@proto-native/components/input-base'
 
 export type TextInputProps<TSlotProps = any> = BaseProps<
   Native.TextStyle,
@@ -37,13 +37,6 @@ export type TextInputProps<TSlotProps = any> = BaseProps<
   }
   dropdown?: {
     show?: ReactiveState<boolean>
-    style?: ReturnType<ThemedStyle>
-    container?: {
-      style?: ReturnType<ThemedStyle>
-    }
-    focused?: {
-      style?: ReturnType<ThemedStyle>
-    }
   }
   input?: {
     style?: ReturnType<ThemedStyle>
@@ -97,7 +90,7 @@ export function TextInput(props: TextInputProps) {
 
   if (!dropdown) dropdown = {}
   const showDropdown = useState(dropdown?.show?.state ?? false)
-
+  dropdown.show = showDropdown
   showDropdown.state = useMemo(() => {
     return isFocused?.state || false
   }, [isFocused?.state])
@@ -144,7 +137,6 @@ export function TextInput(props: TextInputProps) {
       {...textProps.rest}
       style={[baseProps.taken.style, textProps.rest.style]}
       model={model}
-      dropdown={{ ...dropdown, show: showDropdown }}
       input={input}
     >
       <NativeInput
@@ -170,13 +162,18 @@ export function TextInput(props: TextInputProps) {
           onFocus?.(e)
         }}
         onBlur={(e) => {
-          if (isFocused) isFocused.state = false
+          // in case the input is unfocused by a click on the dropdown
+          // we need to wait for the click to be processed
+          if (isFocused)
+            setImmediate(() => {
+              isFocused.state = false
+            })
           onBlur?.(e)
         }}
       />
       {rightSlot?.(props)}
       {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>) => {
-        if (child.props.children) return child
+        if (child.props.children && dropdown?.show?.state) return child
       })}
       {childrenBy.others}
     </InputContainer>
