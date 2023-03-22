@@ -1,6 +1,7 @@
 import { Base, BaseProps } from '@proto-native/components/base'
-import * as React from 'react-native'
-import styled from 'styled-components/native'
+import { themed } from '@proto-native/utils/theme/themed'
+import * as Native from 'react-native'
+import * as React from 'react'
 
 export type _TemplateProps = BaseProps
 
@@ -18,4 +19,4 @@ export function _Template(props: _TemplateProps) {
 // )
 // _Template.displayName = `_Template`
 
-const _TemplateBase = styled(Base)`` as typeof Base
+const _TemplateBase = themed(Base, _p => ({}))
