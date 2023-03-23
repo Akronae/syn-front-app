@@ -20,7 +20,7 @@ import React, { ReactElement, useEffect, useMemo } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
 import { Dropdown, DropdownProps } from '@proto-native/components/dropdown'
-import { InputBase, InputBaseProps } from '@proto-native/components/input-base'
+import { InputBase, InputBaseProps } from '@proto-native/components/input/input-base'
 
 export type TextInputProps<TSlotProps = any> = BaseProps<
   Native.TextStyle,
