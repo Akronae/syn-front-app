@@ -18,7 +18,11 @@ import { isUndefined, omit, omitBy } from 'lodash-es'
 import React, { ReactElement, useEffect } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
-import { Dropdown, DropdownProps, DropdownItemProps } from '@proto-native/components/dropdown'
+import {
+  Dropdown,
+  DropdownProps,
+  DropdownItemProps,
+} from '@proto-native/components/dropdown'
 
 export type InputBaseProps<TModel = any> = BaseProps<
   Native.TextStyle,
