@@ -70,9 +70,7 @@ export function Base<
     })
   }
 
-  const Wrapper: React.ElementType = onPress
-    ? Native.TouchableOpacity
-    : Animated.View
+  const Wrapper: React.ElementType = onPress ? Native.Pressable : Animated.View
 
   const isClickable = onPress || onTouchEndProps
 

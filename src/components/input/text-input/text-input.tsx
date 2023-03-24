@@ -1,56 +1,25 @@
-import { Ionicons } from '@expo/vector-icons'
-import { BaseProps, takeBaseOwnProps } from '@proto-native/components/base'
-import { FormFieldState, useFormField } from '@proto-native/components/form'
+import { takeBaseOwnProps } from '@proto-native/components/base'
 import {
   boldnessToFont,
   getStyleBoldness,
   takeTextOwnProps,
 } from '@proto-native/components/text'
-import {
-  ReactiveState,
-  useExistingStateOr,
-  useGroupChildrenByType,
-  useState,
-} from '@proto-native/utils'
+import { useExistingStateOr, useState } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
-import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import React, { ReactElement, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
-import { Dropdown, DropdownProps } from '@proto-native/components/dropdown'
 import {
   InputBase,
   InputBaseProps,
 } from '@proto-native/components/input/input-base'
 
-export type TextInputProps<TSlotProps = any> = BaseProps<
-  Native.TextStyle,
-  Native.TextInputProps
-> & {
-  model?: ReactiveState<string>
-  focused?: {
-    style?: ReturnType<ThemedStyle>
-  }
-  isFocused?: ReactiveState<boolean>
-  isInvalid?: ReactiveState<boolean>
-  invalid?: {
-    style?: ReturnType<ThemedStyle>
-  }
-  dropdown?: {
-    show?: ReactiveState<boolean>
-  }
-  input?: {
-    style?: ReturnType<ThemedStyle>
-  }
-  icon?: {
-    ionicons?: keyof (typeof Ionicons)[`glyphMap`]
-    custom?: React.ComponentType<Partial<TextInputProps>>
-  }
-  rightSlot?: <TProps extends TSlotProps>(props: TProps) => React.ReactNode
-}
-
+export type TextInputProps<TSlotProps = any> = InputBaseProps<
+  string,
+  TSlotProps
+>
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
@@ -80,16 +49,6 @@ export function TextInput(props: TextInputProps) {
 
   const isInvalid = useExistingStateOr(isInvalidProps, false)
   invalid ??= {}
-
-  const formField = useFormField()
-  if (formField) {
-    formField.input = model
-  }
-  useEffect(() => {
-    isInvalid.state = formField?.state.state === FormFieldState.Error
-  })
-
-  const childrenBy = useGroupChildrenByType(children, { Dropdown: Dropdown })
 
   if (!dropdown) dropdown = {}
   const showDropdown = useState(dropdown?.show?.state ?? false)
@@ -121,7 +80,6 @@ export function TextInput(props: TextInputProps) {
 
   const onChangeText = (text: string) => {
     model.state = text
-    if (formField?.state) formField.state.state = FormFieldState.Normal
     onChangeTextProps?.(text)
   }
 
@@ -141,6 +99,9 @@ export function TextInput(props: TextInputProps) {
       style={[baseProps.taken.style, textProps.rest.style]}
       model={model}
       input={input}
+      dropdown={dropdown}
+      isFocused={isFocused}
+      isInvalid={isInvalid}
     >
       <NativeInput
         placeholder={placeholder}
@@ -175,10 +136,7 @@ export function TextInput(props: TextInputProps) {
         }}
       />
       {rightSlot?.(props)}
-      {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>) => {
-        if (child.props.children && dropdown?.show?.state) return child
-      })}
-      {childrenBy.others}
+      {children}
     </InputContainer>
   )
 }

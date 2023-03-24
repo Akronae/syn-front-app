@@ -71,12 +71,6 @@ export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
   return theme.protonative.typography.font.black
 }
 
-const TextWrapper = Base
-
-const TextBase = themed<TextProps>(Native.Text, (p) => ({
-  fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
-}))
-
 function TextCompo(props: TextProps) {
   const textOwnProps = takeTextOwnProps(props)
 
@@ -96,6 +90,12 @@ function TextCompo(props: TextProps) {
     </TextWrapper>
   )
 }
+
+const TextWrapper = Base
+
+const TextBase = themed<TextProps>(Native.Text, (p) => ({
+  fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
+}))
 
 export const Text = themed(TextCompo, (p) => ({
   color: p.theme.protonative.colors.text.primary,

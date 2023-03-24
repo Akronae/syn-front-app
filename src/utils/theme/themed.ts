@@ -20,5 +20,6 @@ export function themed<T extends Record<string, any>>(
   }
 
   c.displayName = `ThemedComponent(${comp.displayName || comp.name})`
+  c.extends = comp
   return c
 }

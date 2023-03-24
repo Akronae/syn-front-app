@@ -27,7 +27,13 @@ export class ReactiveState<T> extends Array<T | Dispatch<SetStateAction<T>>> {
     return this.getter
   }
   set state(state: T) {
-    if (JSON.stringify(this.state) === JSON.stringify(state)) return
+    let same = false
+    try {
+      same = JSON.stringify(this.state) === JSON.stringify(state)
+    } catch (e) {
+      // assume different
+    }
+    if (same) return
     this.setter(state)
   }
 

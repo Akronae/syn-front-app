@@ -4,7 +4,11 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
-import { FormFieldState, useFormField } from '@proto-native/components/form'
+import {
+  FormFieldState,
+  useForm,
+  useFormField,
+} from '@proto-native/components/form'
 import { takeTextOwnProps } from '@proto-native/components/text'
 import {
   hexLerp,
@@ -24,11 +28,11 @@ import {
   DropdownItemProps,
 } from '@proto-native/components/dropdown'
 
-export type InputBaseProps<TModel = any> = BaseProps<
+export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
   Native.TextStyle,
   Native.TextInputProps
 > & {
-  model: ReactiveState<TModel>
+  model?: ReactiveState<TModel>
   focused?: {
     style?: ReturnType<ThemedStyle>
   }
@@ -44,7 +48,10 @@ export type InputBaseProps<TModel = any> = BaseProps<
     ionicons?: keyof (typeof Ionicons)[`glyphMap`]
     custom?: React.ComponentType<Partial<InputBaseProps>>
   }
-  rightSlot?: (props: InputBaseProps) => React.ReactNode
+  dropdown?: {
+    show?: ReactiveState<boolean>
+  }
+  rightSlot?: (props: TSlotProps) => React.ReactNode
 }
 
 export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
@@ -59,6 +66,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     icon,
     rightSlot,
     input,
+    dropdown,
     ...passed
   } = props
   const textProps = takeTextOwnProps(passed)
@@ -73,9 +81,18 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   invalid.style ??= NativeInputOnInvalid({ theme })
 
   const formField = useFormField()
+  const form = useForm()
+  useEffect(() => {
+    if (formField?.state) formField.state.state = FormFieldState.Normal
+    form.rerender()
+  }, [model?.state])
   useEffect(() => {
     isInvalid.state = formField?.state.state === FormFieldState.Error
-  })
+  }, [formField?.state])
+
+  if (!dropdown) dropdown = {}
+  const showDropdown = useExistingStateOr(dropdown?.show, false)
+  dropdown.show = showDropdown
 
   const childrenBy = useGroupChildrenByType(children, {
     Dropdown: InputBase.Dropdown,
@@ -118,15 +135,17 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
         {childrenBy.others}
         {rightSlot?.(props)}
       </InputContainer>
-      {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) =>
-        React.cloneElement(child, {
-          key: i,
-          onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
-            model.state = item.props.value
-            Native.Keyboard.dismiss()
-          },
-        }),
-      )}
+      {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) => {
+        if (dropdown?.show?.state)
+          return React.cloneElement(child, {
+            key: i,
+            onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
+              if (model) model.state = item.props.value
+              Native.Keyboard.dismiss()
+              child.props.onItemPress?.(item)
+            },
+          })
+      })}
     </InputBaseBase>
   )
 }
