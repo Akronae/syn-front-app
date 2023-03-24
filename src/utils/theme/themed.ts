@@ -19,6 +19,9 @@ export function themed<T extends Record<string, any>>(
     return React.createElement(comp, { ...props, style: themedStyle })
   }
 
+  Object.keys(comp).forEach((key) => {
+    (c as any)[key] = (comp as any)[key]
+  })
   c.displayName = `ThemedComponent(${comp.displayName || comp.name})`
   c.extends = comp
   return c
