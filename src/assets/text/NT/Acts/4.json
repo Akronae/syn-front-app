@@ -1,0 +1,3666 @@
+{
+  "book": "Acts",
+  "versesParsed": [
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 1,
+      "wordsParsed": [
+        {
+          "greek": "λαλουντων",
+          "english": "of speaking",
+          "parsing": "participle\npres-act-par\ngen-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λαον",
+          "english": "people",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "επεστησαν",
+          "english": "they stood close",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "ιερεις",
+          "english": "priests",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "στρατηγος",
+          "english": "chief officer",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-neu"
+        },
+        {
+          "greek": "ιερου",
+          "english": "of temple complex",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "σαδδουκαιοι",
+          "english": "Sadducees",
+          "parsing": "noun (name)\nnom-pl-mas"
+        }
+      ],
+      "verseTranslated": "And as they spake unto the people, the priests, and the captain of the temple, and the Sadducees, came upon them,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 2,
+      "wordsParsed": [
+        {
+          "greek": "δια",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "διδασκειν",
+          "english": "to teach",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λαον",
+          "english": "people",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καταγγελλειν",
+          "english": "to expound",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-mas"
+        },
+        {
+          "greek": "ιησου",
+          "english": "to Jesus",
+          "parsing": "noun (name)\ndat-si-mas"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "αναστασιν",
+          "english": "Rise",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "νεκρων",
+          "english": "of [the] dead",
+          "parsing": "adjective\ngen-pl-mas"
+        }
+      ],
+      "verseTranslated": "Being grieved that they taught the people, and preached through Jesus the resurrection from the dead."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 3,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "επεβαλον",
+          "english": "they cast upon",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "τας",
+          "english": "the",
+          "parsing": "def art\nacc-pl-fem"
+        },
+        {
+          "greek": "χειρας",
+          "english": "hands",
+          "parsing": "noun\nacc-pl-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εθεντο",
+          "english": "they laid down",
+          "parsing": "verb\n2aor-mid-ind\n3rd-p pl"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τηρησιν",
+          "english": "keeping",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "αυριον",
+          "english": "tomorrow",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "ην",
+          "english": "it was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ηδη",
+          "english": "already",
+          "parsing": "adverb"
+        }
+      ],
+      "verseTranslated": "And they laid hands on them, and put [them] in hold unto the next day: for it was now eventide."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 4,
+      "wordsParsed": [
+        {
+          "greek": "πολλοι",
+          "english": "many",
+          "parsing": "adjective\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "ακουσαντων",
+          "english": "of hearing",
+          "parsing": "participle\naor-act-par\ngen-pl-mas"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λογον",
+          "english": "word",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "επιστευσαν",
+          "english": "they believed",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εγενηθη",
+          "english": "it has become",
+          "parsing": "verb\naor-pDe-ind\n3rd-p si"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "αριθμος",
+          "english": "number",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "ανδρων",
+          "english": "of men",
+          "parsing": "noun\ngen-pl-mas"
+        },
+        {
+          "greek": "ωσει",
+          "english": "as if",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "χιλιαδες",
+          "english": "thousand",
+          "parsing": "noun\nnom-pl-fem"
+        },
+        {
+          "greek": "πεντε",
+          "english": "five",
+          "parsing": "indeclinable\nnumeral"
+        }
+      ],
+      "verseTranslated": "Howbeit many of them which heard the word believed; and the number of the men was about five thousand."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 5,
+      "wordsParsed": [
+        {
+          "greek": "εγενετο",
+          "english": "it was/came to be",
+          "parsing": "verb\n2aor-mDe-ind\n3rd-p si"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "αυριον",
+          "english": "tomorrow",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "συναχθηναι",
+          "english": "to be gathered",
+          "parsing": "verb\naor-pas-inf"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "αρχοντας",
+          "english": "chiefs",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "πρεσβυτερους",
+          "english": "elders",
+          "parsing": "adjective\nacc-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "γραμματεις",
+          "english": "notaries",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ιερουσαλημ",
+          "english": "Jerusalem",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "And it came to pass on the morrow, that their rulers, and elders, and scribes,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 6,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ανναν",
+          "english": "Annas",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αρχιερεα",
+          "english": "high priest",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καιαφαν",
+          "english": "Caiaphas",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ιωαννην",
+          "english": "John",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αλεξανδρον",
+          "english": "Alexander",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "οσοι",
+          "english": "as many as",
+          "parsing": "corr pron\nnom-pl-mas"
+        },
+        {
+          "greek": "ησαν",
+          "english": "they were",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "γενους",
+          "english": "of stock",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "αρχιερατικου",
+          "english": "of high priestly",
+          "parsing": "adjective\ngen-si-neu"
+        }
+      ],
+      "verseTranslated": "And Annas the high priest, and Caiaphas, and John, and Alexander, and as many as were of the kindred of the high priest, were gathered together at Jerusalem."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 7,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "στησαντες",
+          "english": "setting",
+          "parsing": "participle\naor-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "μεσω",
+          "english": "to midst",
+          "parsing": "adjective\ndat-si-neu"
+        },
+        {
+          "greek": "επυνθανοντο",
+          "english": "they were inquiring",
+          "parsing": "verb\nimp-mi/pDe-ind\n3rd-p pl"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ποια",
+          "english": "to what?",
+          "parsing": "interr pron\ndat-si-fem"
+        },
+        {
+          "greek": "δυναμει",
+          "english": "to autonomy",
+          "parsing": "noun\ndat-si-fem"
+        },
+        {
+          "greek": "η",
+          "english": "or",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ποιω",
+          "english": "to what?",
+          "parsing": "interr pron\ndat-si-neu"
+        },
+        {
+          "greek": "ονοματι",
+          "english": "to name",
+          "parsing": "noun\ndat-si-neu"
+        },
+        {
+          "greek": "εποιησατε",
+          "english": "you did",
+          "parsing": "verb\naor-act-ind\n2nd-p pl"
+        },
+        {
+          "greek": "τουτο",
+          "english": "this",
+          "parsing": "dem pron\nacc-si-neu"
+        },
+        {
+          "greek": "υμεις",
+          "english": "you",
+          "parsing": "2nd pers pron\nnom-pl"
+        }
+      ],
+      "verseTranslated": "And when they had set them in the midst, they asked, By what power, or by what name, have ye done this?"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 8,
+      "wordsParsed": [
+        {
+          "greek": "τοτε",
+          "english": "then",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "πετρος",
+          "english": "Peter",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "πλησθεις",
+          "english": "being filled",
+          "parsing": "participle\naor-pas-par\nnom-si-mas"
+        },
+        {
+          "greek": "πνευματος",
+          "english": "of spirit",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "αγιου",
+          "english": "of holy",
+          "parsing": "adjective\ngen-si-neu"
+        },
+        {
+          "greek": "ειπεν",
+          "english": "he said",
+          "parsing": "verb\n2aor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "αρχοντες",
+          "english": "chiefs",
+          "parsing": "noun\nvoc-pl-mas"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "λαου",
+          "english": "of people",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "πρεσβυτεροι",
+          "english": "elders",
+          "parsing": "adjective\nvoc-pl-mas"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "ισραηλ",
+          "english": "Israel",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "Then Peter, filled with the Holy Ghost, said unto them, Ye rulers of the people, and elders of Israel,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 9,
+      "wordsParsed": [
+        {
+          "greek": "ει",
+          "english": "if",
+          "parsing": "conditional"
+        },
+        {
+          "greek": "ημεις",
+          "english": "we",
+          "parsing": "1st pers pron\nnom-pl"
+        },
+        {
+          "greek": "σημερον",
+          "english": "today",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "ανακρινομεθα",
+          "english": "we are thoroughly judged",
+          "parsing": "verb\npres-pas-ind\n1st-p pl"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ευεργεσια",
+          "english": "to benefaction",
+          "parsing": "noun\ndat-si-fem"
+        },
+        {
+          "greek": "ανθρωπου",
+          "english": "of man",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "ασθενους",
+          "english": "of strengthless",
+          "parsing": "adjective\ngen-si-mas"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τινι",
+          "english": "to which?",
+          "parsing": "interr pron\ndat-si-mas/neu"
+        },
+        {
+          "greek": "ουτος",
+          "english": "this",
+          "parsing": "dem pron\nnom-si-mas"
+        },
+        {
+          "greek": "σεσωσται",
+          "english": "he has been saved",
+          "parsing": "verb\nperf-pas-ind\n3rd-p si"
+        }
+      ],
+      "verseTranslated": "If we this day be examined of the good deed done to the impotent man, by what means he is made whole;"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 10,
+      "wordsParsed": [
+        {
+          "greek": "γνωστον",
+          "english": "known",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "εστω",
+          "english": "it be",
+          "parsing": "verb\npres-act-imp\n3rd-p si"
+        },
+        {
+          "greek": "πασιν",
+          "english": "to all",
+          "parsing": "adjective\ndat-pl-mas"
+        },
+        {
+          "greek": "υμιν",
+          "english": "to you",
+          "parsing": "2nd pers pron\ndat-pl"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "παντι",
+          "english": "to all",
+          "parsing": "adjective\ndat-si-mas"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-mas"
+        },
+        {
+          "greek": "λαω",
+          "english": "to people",
+          "parsing": "noun\ndat-si-mas"
+        },
+        {
+          "greek": "ισραηλ",
+          "english": "Israel",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "οτι",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "ονοματι",
+          "english": "to name",
+          "parsing": "noun\ndat-si-neu"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "χριστου",
+          "english": "of Christ",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "ναζωραιου",
+          "english": "of Nazarene",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "ον",
+          "english": "which",
+          "parsing": "rel pron\nacc-si-mas"
+        },
+        {
+          "greek": "υμεις",
+          "english": "you",
+          "parsing": "2nd pers pron\nnom-pl"
+        },
+        {
+          "greek": "εσταυρωσατε",
+          "english": "you put on public display",
+          "parsing": "verb\naor-act-ind\n2nd-p pl"
+        },
+        {
+          "greek": "ον",
+          "english": "which",
+          "parsing": "rel pron\nacc-si-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "θεος",
+          "english": "God",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "ηγειρεν",
+          "english": "he incited",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "εκ",
+          "english": "from",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "νεκρων",
+          "english": "of [the] dead",
+          "parsing": "adjective\ngen-pl-mas"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τουτω",
+          "english": "to this",
+          "parsing": "dem pron\ndat-si-neu"
+        },
+        {
+          "greek": "ουτος",
+          "english": "this",
+          "parsing": "dem pron\nnom-si-mas"
+        },
+        {
+          "greek": "παρεστηκεν",
+          "english": "he has stood by",
+          "parsing": "verb\nperf-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ενωπιον",
+          "english": "in the eye",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "υμων",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-pl"
+        },
+        {
+          "greek": "υγιης",
+          "english": "sound",
+          "parsing": "adjective\nnom-si-mas"
+        }
+      ],
+      "verseTranslated": "Be it known unto you all, and to all the people of Israel, that by the name of Jesus Christ of Nazareth, whom ye crucified, whom God raised from the dead, [even] by him doth this man stand here before you whole."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 11,
+      "wordsParsed": [
+        {
+          "greek": "ουτος",
+          "english": "this",
+          "parsing": "dem pron\nnom-si-mas"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "λιθος",
+          "english": "stone",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "εξουθενηθεις",
+          "english": "being nullified",
+          "parsing": "participle\naor-pas-par\nnom-si-mas"
+        },
+        {
+          "greek": "υφ",
+          "english": "by",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "υμων",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-pl"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "οικοδομουντων",
+          "english": "of building",
+          "parsing": "participle\npres-act-par\ngen-pl-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "γενομενος",
+          "english": "the becoming",
+          "parsing": "participle\n2aor-mDe-par\nnom-si-mas"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "κεφαλην",
+          "english": "head",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "γωνιας",
+          "english": "of corner",
+          "parsing": "noun\ngen-si-fem"
+        }
+      ],
+      "verseTranslated": "This is the stone which was set at nought of you builders, which is become the head of the corner."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 12,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ουκ",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αλλω",
+          "english": "to other",
+          "parsing": "adjective\ndat-si-mas"
+        },
+        {
+          "greek": "ουδενι",
+          "english": "to no one",
+          "parsing": "adjective\ndat-si-mas"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "σωτηρια",
+          "english": "safety",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "ουτε",
+          "english": "neither",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ονομα",
+          "english": "name",
+          "parsing": "noun\nnom-si-neu"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ετερον",
+          "english": "other",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "υπο",
+          "english": "under",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ουρανον",
+          "english": "heaven",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nnom-si-neu"
+        },
+        {
+          "greek": "δεδομενον",
+          "english": "having been given",
+          "parsing": "participle\nperf-pas-par\nnom-si-neu"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ανθρωποις",
+          "english": "to men",
+          "parsing": "noun\ndat-pl-mas"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ω",
+          "english": "to which",
+          "parsing": "rel pron\ndat-si-neu"
+        },
+        {
+          "greek": "δει",
+          "english": "it must be",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "σωθηναι",
+          "english": "to be saved",
+          "parsing": "verb\naor-pas-inf"
+        },
+        {
+          "greek": "ημας",
+          "english": "us",
+          "parsing": "1st pers pron\nacc-pl"
+        }
+      ],
+      "verseTranslated": "Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 13,
+      "wordsParsed": [
+        {
+          "greek": "θεωρουντες",
+          "english": "observing",
+          "parsing": "participle\npres-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "πετρου",
+          "english": "of Peter",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "παρρησιαν",
+          "english": "freedom of speech",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ιωαννου",
+          "english": "of John",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καταλαβομενοι",
+          "english": "deducing",
+          "parsing": "participle\n2aor-mid-par\nnom-pl-mas"
+        },
+        {
+          "greek": "οτι",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ανθρωποι",
+          "english": "men",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "αγραμματοι",
+          "english": "unlettered",
+          "parsing": "adjective\nnom-pl-mas"
+        },
+        {
+          "greek": "εισιν",
+          "english": "they are",
+          "parsing": "verb\npres-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ιδιωται",
+          "english": "idiots",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "εθαυμαζον",
+          "english": "they were marveling",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "επεγινωσκον",
+          "english": "they were recognizing",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "τε",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "οτι",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "συν",
+          "english": "with",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-mas"
+        },
+        {
+          "greek": "ιησου",
+          "english": "to Jesus",
+          "parsing": "noun (name)\ndat-si-mas"
+        },
+        {
+          "greek": "ησαν",
+          "english": "they were",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        }
+      ],
+      "verseTranslated": "Now when they saw the boldness of Peter and John, and perceived that they were unlearned and ignorant men, they marvelled; and they took knowledge of them, that they had been with Jesus."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 14,
+      "wordsParsed": [
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ανθρωπον",
+          "english": "man",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "βλεποντες",
+          "english": "seeing",
+          "parsing": "participle\npres-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "συν",
+          "english": "with",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "εστωτα",
+          "english": "having made to stand",
+          "parsing": "participle\nperf-act-par\nacc-si-mas"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "τεθεραπευμενον",
+          "english": "having been cured",
+          "parsing": "participle\nperf-pas-par\nacc-si-mas"
+        },
+        {
+          "greek": "ουδεν",
+          "english": "nothing",
+          "parsing": "adjective\nacc-si-neu"
+        },
+        {
+          "greek": "ειχον",
+          "english": "they have had",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αντειπειν",
+          "english": "to speak against",
+          "parsing": "verb\n2aor-act-inf"
+        }
+      ],
+      "verseTranslated": "And beholding the man which was healed standing with them, they could say nothing against it."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 15,
+      "wordsParsed": [
+        {
+          "greek": "κελευσαντες",
+          "english": "[those] calling out for",
+          "parsing": "participle\naor-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "εξω",
+          "english": "out",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-neu"
+        },
+        {
+          "greek": "συνεδριου",
+          "english": "of council",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "απελθειν",
+          "english": "to depart",
+          "parsing": "verb\n2aor-act-inf"
+        },
+        {
+          "greek": "συνεβαλλον",
+          "english": "they were conferring",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αλληλους",
+          "english": "one another",
+          "parsing": "recip pron\nacc-pl-mas"
+        }
+      ],
+      "verseTranslated": "But when they had commanded them to go aside out of the council, they conferred among themselves,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 16,
+      "wordsParsed": [
+        {
+          "greek": "λεγοντες",
+          "english": "saying",
+          "parsing": "participle\npres-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "τι",
+          "english": "what?",
+          "parsing": "interr pron\nacc-si-neu"
+        },
+        {
+          "greek": "ποιησομεν",
+          "english": "we will do",
+          "parsing": "verb\nfut-act-ind\n1st-p pl"
+        },
+        {
+          "greek": "τοις",
+          "english": "to the",
+          "parsing": "def art\ndat-pl-mas"
+        },
+        {
+          "greek": "ανθρωποις",
+          "english": "to men",
+          "parsing": "noun\ndat-pl-mas"
+        },
+        {
+          "greek": "τουτοις",
+          "english": "to these",
+          "parsing": "dem pron\ndat-pl-mas"
+        },
+        {
+          "greek": "οτι",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μεν",
+          "english": "indeed",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "γνωστον",
+          "english": "known",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "σημειον",
+          "english": "sign",
+          "parsing": "noun\nnom-si-neu"
+        },
+        {
+          "greek": "γεγονεν",
+          "english": "it has become",
+          "parsing": "verb\n2perf-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "δι",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        },
+        {
+          "greek": "πασιν",
+          "english": "to all",
+          "parsing": "adjective\ndat-pl-mas"
+        },
+        {
+          "greek": "τοις",
+          "english": "to the",
+          "parsing": "def art\ndat-pl-mas"
+        },
+        {
+          "greek": "κατοικουσιν",
+          "english": "to residing",
+          "parsing": "participle\npres-act-par\ndat-pl-mas"
+        },
+        {
+          "greek": "ιερουσαλημ",
+          "english": "Jerusalem",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "φανερον",
+          "english": "conspicuous",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ου",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "δυναμεθα",
+          "english": "we can",
+          "parsing": "verb\npres-mi/pDe-ind\n1st-p pl"
+        },
+        {
+          "greek": "αρνησασθαι",
+          "english": "to deny",
+          "parsing": "verb\naor-mDe-inf"
+        }
+      ],
+      "verseTranslated": "Saying, What shall we do to these men? for that indeed a notable miracle hath been done by them [is] manifest to all them that dwell in Jerusalem; and we cannot deny [it. ]"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 17,
+      "wordsParsed": [
+        {
+          "greek": "αλλ",
+          "english": "but",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ινα",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μη",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "πλειον",
+          "english": "more",
+          "parsing": "adjective\nacc-si-neu"
+        },
+        {
+          "greek": "διανεμηθη",
+          "english": "it might be spread throughout",
+          "parsing": "verb\naor-pas-sub\n3rd-p si"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λαον",
+          "english": "people",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "μηκετι",
+          "english": "no more",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "λαλειν",
+          "english": "to speak",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "ονοματι",
+          "english": "to name",
+          "parsing": "noun\ndat-si-neu"
+        },
+        {
+          "greek": "τουτω",
+          "english": "to this",
+          "parsing": "dem pron\ndat-si-neu"
+        },
+        {
+          "greek": "μηδενι",
+          "english": "to no one",
+          "parsing": "adjective\ndat-si-mas"
+        },
+        {
+          "greek": "ανθρωπων",
+          "english": "of men",
+          "parsing": "noun\ngen-pl-mas"
+        }
+      ],
+      "verseTranslated": "But that it spread no further among the people, let us straitly threaten them, that they speak henceforth to no man in this name."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 18,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "καλεσαντες",
+          "english": "calling",
+          "parsing": "participle\naor-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "παρηγγειλαν",
+          "english": "they relayed",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "καθολου",
+          "english": "in any way",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "μη",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μηδε",
+          "english": "neither",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "διδασκειν",
+          "english": "to teach",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "ονοματι",
+          "english": "to name",
+          "parsing": "noun\ndat-si-neu"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "And they called them, and commanded them not to speak at all nor teach in the name of Jesus."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 19,
+      "wordsParsed": [
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "πετρος",
+          "english": "Peter",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ιωαννης",
+          "english": "John",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "αποκριθεντες",
+          "english": "answering",
+          "parsing": "participle\naor-pDe-par\nnom-pl-mas"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "ειπον",
+          "english": "they said",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "ει",
+          "english": "if",
+          "parsing": "conditional"
+        },
+        {
+          "greek": "δικαιον",
+          "english": "just",
+          "parsing": "adjective\nnom-si-neu"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ενωπιον",
+          "english": "in the eye",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "θεου",
+          "english": "of God",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "υμων",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-pl"
+        },
+        {
+          "greek": "ακουειν",
+          "english": "to hear",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "μαλλον",
+          "english": "more",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "η",
+          "english": "than",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "θεου",
+          "english": "of God",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "κρινατε",
+          "english": "you judge",
+          "parsing": "verb\naor-act-imp\n2nd-p pl"
+        }
+      ],
+      "verseTranslated": "But Peter and John answered and said unto them, Whether it be right in the sight of God to hearken unto you more than unto God, judge ye."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 20,
+      "wordsParsed": [
+        {
+          "greek": "ου",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "δυναμεθα",
+          "english": "we can",
+          "parsing": "verb\npres-mi/pDe-ind\n1st-p pl"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ημεις",
+          "english": "we",
+          "parsing": "1st pers pron\nnom-pl"
+        },
+        {
+          "greek": "α",
+          "english": "which",
+          "parsing": "rel pron\nacc-pl-neu"
+        },
+        {
+          "greek": "ειδομεν",
+          "english": "we saw",
+          "parsing": "verb\n2aor-act-ind\n1st-p pl"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ηκουσαμεν",
+          "english": "we heard",
+          "parsing": "verb\naor-act-ind\n1st-p pl"
+        },
+        {
+          "greek": "μη",
+          "english": "not",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "λαλειν",
+          "english": "to speak",
+          "parsing": "verb\npres-act-inf"
+        }
+      ],
+      "verseTranslated": "For we cannot but speak the things which we have seen and heard."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 21,
+      "wordsParsed": [
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "απελυσαν",
+          "english": "they discharged",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "μηδεν",
+          "english": "not any",
+          "parsing": "adjective\nacc-si-neu"
+        },
+        {
+          "greek": "ευρισκοντες",
+          "english": "finding",
+          "parsing": "participle\npres-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "πως",
+          "english": "how?",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "κολασονται",
+          "english": "they will curb",
+          "parsing": "verb\nfut-mid-ind\n3rd-p pl"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "δια",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λαον",
+          "english": "people",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "οτι",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "παντες",
+          "english": "all",
+          "parsing": "adjective\nnom-pl-mas"
+        },
+        {
+          "greek": "εδοξαζον",
+          "english": "they were \"glorifying\"",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "θεον",
+          "english": "God",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "γεγονοτι",
+          "english": "to the having become",
+          "parsing": "participle\n2perf-act-par\ndat-si-neu"
+        }
+      ],
+      "verseTranslated": "So when they had further threatened them, they let them go, finding nothing how they might punish them, because of the people: for all [men] glorified God for that which was done."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 22,
+      "wordsParsed": [
+        {
+          "greek": "ετων",
+          "english": "of years",
+          "parsing": "noun\ngen-pl-neu"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ην",
+          "english": "he was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "πλειονων",
+          "english": "of more",
+          "parsing": "adjective\ngen-pl-neu"
+        },
+        {
+          "greek": "τεσσαρακοντα",
+          "english": "forty",
+          "parsing": "indeclinable\nnumeral"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "ανθρωπος",
+          "english": "man",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "εφ",
+          "english": "upon",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ον",
+          "english": "which",
+          "parsing": "rel pron\nacc-si-mas"
+        },
+        {
+          "greek": "εγεγονει",
+          "english": "he had become",
+          "parsing": "verb\n2plp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nnom-si-neu"
+        },
+        {
+          "greek": "σημειον",
+          "english": "sign",
+          "parsing": "noun\nnom-si-neu"
+        },
+        {
+          "greek": "τουτο",
+          "english": "this",
+          "parsing": "dem pron\nnom-si-neu"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "ιασεως",
+          "english": "of healing",
+          "parsing": "noun\ngen-si-fem"
+        }
+      ],
+      "verseTranslated": "For the man was above forty years old, on whom this miracle of healing was shewed."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 23,
+      "wordsParsed": [
+        {
+          "greek": "απολυθεντες",
+          "english": "being discharged",
+          "parsing": "participle\naor-pas-par\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ηλθον",
+          "english": "they went",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "ιδιους",
+          "english": "their own",
+          "parsing": "adjective\nacc-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "απηγγειλαν",
+          "english": "they messaged from",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "οσα",
+          "english": "whatsoever",
+          "parsing": "corr pron\nacc-pl-neu"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "αρχιερεις",
+          "english": "priestly division managers",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "πρεσβυτεροι",
+          "english": "elders",
+          "parsing": "adjective\nnom-pl-mas"
+        },
+        {
+          "greek": "ειπον",
+          "english": "they said",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        }
+      ],
+      "verseTranslated": "And being let go, they went to their own company, and reported all that the chief priests and elders had said unto them."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 24,
+      "wordsParsed": [
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ακουσαντες",
+          "english": "hearing",
+          "parsing": "participle\naor-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "ομοθυμαδον",
+          "english": "same-temperedly",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "ηραν",
+          "english": "they lifted up",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "φωνην",
+          "english": "voice",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "προς",
+          "english": "toward",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "θεον",
+          "english": "God",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ειπον",
+          "english": "they said",
+          "parsing": "verb\n2aor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "δεσποτα",
+          "english": "employer",
+          "parsing": "noun\nvoc-si-mas"
+        },
+        {
+          "greek": "συ",
+          "english": "you",
+          "parsing": "2nd pers pron\nnom-si"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "θεος",
+          "english": "God",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "ποιησας",
+          "english": "making",
+          "parsing": "participle\naor-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "ουρανον",
+          "english": "heaven",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "γην",
+          "english": "earth",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "θαλασσαν",
+          "english": "sea",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "παντα",
+          "english": "all",
+          "parsing": "adjective\nacc-pl-neu"
+        },
+        {
+          "greek": "τα",
+          "english": "the",
+          "parsing": "def art\nacc-pl-neu"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-neu"
+        }
+      ],
+      "verseTranslated": "And when they heard that, they lifted up their voice to God with one accord, and said, Lord, thou [art] God, which hast made heaven, and earth, and the sea, and all that in them is:"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 25,
+      "wordsParsed": [
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "δια",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "στοματος",
+          "english": "of mouth",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "δαυιδ",
+          "english": "David",
+          "parsing": "noun (name)\nindeclinable"
+        },
+        {
+          "greek": "παιδος",
+          "english": "of junior",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "ειπων",
+          "english": "saying",
+          "parsing": "participle\n2aor-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "ινα",
+          "english": "that",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τι",
+          "english": "what?",
+          "parsing": "interr pron\nnom-si-neu"
+        },
+        {
+          "greek": "εφρυαξαν",
+          "english": "they vocalized",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "εθνη",
+          "english": "nations",
+          "parsing": "noun\nnom-pl-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "λαοι",
+          "english": "peoples",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "κενα",
+          "english": "vain [things]",
+          "parsing": "adjective\nacc-pl-neu"
+        }
+      ],
+      "verseTranslated": "Who by the mouth of thy servant David hast said, Why did the heathen rage, and the people imagine vain things?"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 26,
+      "wordsParsed": [
+        {
+          "greek": "παρεστησαν",
+          "english": "they stood by",
+          "parsing": "verb\naor-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "βασιλεις",
+          "english": "kings",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "γης",
+          "english": "of earth",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "αρχοντες",
+          "english": "chiefs",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "συνηχθησαν",
+          "english": "they were gathered",
+          "parsing": "verb\naor-pas-ind\n3rd-p pl"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "αυτο",
+          "english": "it",
+          "parsing": "3rd-p pers pron\nacc-si-neu"
+        },
+        {
+          "greek": "κατα",
+          "english": "down (to/on)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "κυριου",
+          "english": "of lord",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "κατα",
+          "english": "down (to/on)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "χριστου",
+          "english": "of Christ",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "αυτου",
+          "english": "of him",
+          "parsing": "3rd-p pers pron\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "The kings of the earth stood up, and the rulers were gathered together against the Lord, and against his Christ."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 27,
+      "wordsParsed": [
+        {
+          "greek": "συνηχθησαν",
+          "english": "they were gathered",
+          "parsing": "verb\naor-pas-ind\n3rd-p pl"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "επ",
+          "english": "upon",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αληθειας",
+          "english": "of truth",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "αγιον",
+          "english": "holy",
+          "parsing": "adjective\nacc-si-mas"
+        },
+        {
+          "greek": "παιδα",
+          "english": "junior",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "ιησουν",
+          "english": "Jesus",
+          "parsing": "noun (name)\nacc-si-mas"
+        },
+        {
+          "greek": "ον",
+          "english": "which",
+          "parsing": "rel pron\nacc-si-mas"
+        },
+        {
+          "greek": "εχρισας",
+          "english": "you anointed",
+          "parsing": "verb\naor-act-ind\n2nd-p si"
+        },
+        {
+          "greek": "ηρωδης",
+          "english": "Herod",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "τε",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ποντιος",
+          "english": "Pontius",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "πιλατος",
+          "english": "Pilate",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "συν",
+          "english": "with",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "εθνεσιν",
+          "english": "to nations",
+          "parsing": "noun\ndat-pl-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "λαοις",
+          "english": "to peoples",
+          "parsing": "noun\ndat-pl-mas"
+        },
+        {
+          "greek": "ισραηλ",
+          "english": "Israel",
+          "parsing": "noun (name)\nindeclinable"
+        }
+      ],
+      "verseTranslated": "For of a truth against thy holy child Jesus, whom thou hast anointed, both Herod, and Pontius Pilate, with the Gentiles, and the people of Israel, were gathered together,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 28,
+      "wordsParsed": [
+        {
+          "greek": "ποιησαι",
+          "english": "to do",
+          "parsing": "verb\naor-act-inf"
+        },
+        {
+          "greek": "οσα",
+          "english": "whatsoever",
+          "parsing": "corr pron\nacc-pl-neu"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "χειρ",
+          "english": "hand",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "βουλη",
+          "english": "deliberation",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "προωρισεν",
+          "english": "it predetermined",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "γενεσθαι",
+          "english": "to be/become",
+          "parsing": "verb\n2aor-mDe-inf"
+        }
+      ],
+      "verseTranslated": "For to do whatsoever thy hand and thy counsel determined before to be done."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 29,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τα",
+          "english": "the",
+          "parsing": "def art\nacc-pl-neu"
+        },
+        {
+          "greek": "νυν",
+          "english": "now",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "κυριε",
+          "english": "sir",
+          "parsing": "noun\nvoc-si-mas"
+        },
+        {
+          "greek": "επιδε",
+          "english": "you look upon",
+          "parsing": "verb\n2aor-act-imp\n2nd-p si"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τας",
+          "english": "the",
+          "parsing": "def art\nacc-pl-fem"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "δος",
+          "english": "you give",
+          "parsing": "verb\n2aor-act-imp\n2nd-p si"
+        },
+        {
+          "greek": "τοις",
+          "english": "to the",
+          "parsing": "def art\ndat-pl-mas"
+        },
+        {
+          "greek": "δουλοις",
+          "english": "to workers",
+          "parsing": "noun\ndat-pl-mas"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "μετα",
+          "english": "with(in)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "παρρησιας",
+          "english": "of freedom of speech",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "πασης",
+          "english": "of all",
+          "parsing": "adjective\ngen-si-fem"
+        },
+        {
+          "greek": "λαλειν",
+          "english": "to speak",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λογον",
+          "english": "word",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        }
+      ],
+      "verseTranslated": "And now, Lord, behold their threatenings: and grant unto thy servants, that with all boldness they may speak thy word,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 30,
+      "wordsParsed": [
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "την",
+          "english": "the",
+          "parsing": "def art\nacc-si-fem"
+        },
+        {
+          "greek": "χειρα",
+          "english": "hand",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "εκτεινειν",
+          "english": "to stretch out",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "σε",
+          "english": "you",
+          "parsing": "2nd pers pron\nacc-si"
+        },
+        {
+          "greek": "εις",
+          "english": "in(to)/un(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ιασιν",
+          "english": "healing",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "σημεια",
+          "english": "signs",
+          "parsing": "noun\nacc-pl-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τερατα",
+          "english": "portents",
+          "parsing": "noun\nacc-pl-neu"
+        },
+        {
+          "greek": "γινεσθαι",
+          "english": "to be(come)",
+          "parsing": "verb\npres-mi/pDe-inf"
+        },
+        {
+          "greek": "δια",
+          "english": "through",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-neu"
+        },
+        {
+          "greek": "ονοματος",
+          "english": "of name",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "αγιου",
+          "english": "of holy",
+          "parsing": "adjective\ngen-si-mas"
+        },
+        {
+          "greek": "παιδος",
+          "english": "of junior",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "σου",
+          "english": "of you",
+          "parsing": "2nd pers pron\ngen-si"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        }
+      ],
+      "verseTranslated": "By stretching forth thine hand to heal; and that signs and wonders may be done by the name of thy holy child Jesus."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 31,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "δεηθεντων",
+          "english": "of beseeching",
+          "parsing": "participle\naor-pDe-par\ngen-pl-mas"
+        },
+        {
+          "greek": "αυτων",
+          "english": "of them",
+          "parsing": "3rd-p pers pron\ngen-pl-mas"
+        },
+        {
+          "greek": "εσαλευθη",
+          "english": "it was shaken",
+          "parsing": "verb\naor-pas-ind\n3rd-p si"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "τοπος",
+          "english": "place",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "ω",
+          "english": "to which",
+          "parsing": "rel pron\ndat-si-mas"
+        },
+        {
+          "greek": "ησαν",
+          "english": "they were",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "συνηγμενοι",
+          "english": "having been gathered",
+          "parsing": "participle\nperf-pas-par\nnom-pl-mas"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "επλησθησαν",
+          "english": "they were filled",
+          "parsing": "verb\naor-pas-ind\n3rd-p pl"
+        },
+        {
+          "greek": "απαντες",
+          "english": "all",
+          "parsing": "adjective\nnom-pl-mas"
+        },
+        {
+          "greek": "πνευματος",
+          "english": "of spirit",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "αγιου",
+          "english": "of holy",
+          "parsing": "adjective\ngen-si-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ελαλουν",
+          "english": "they were talking about",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "τον",
+          "english": "the",
+          "parsing": "def art\nacc-si-mas"
+        },
+        {
+          "greek": "λογον",
+          "english": "word",
+          "parsing": "noun\nacc-si-mas"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "θεου",
+          "english": "of God",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "μετα",
+          "english": "with(in)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "παρρησιας",
+          "english": "of freedom of speech",
+          "parsing": "noun\ngen-si-fem"
+        }
+      ],
+      "verseTranslated": "And when they had prayed, the place was shaken where they were assembled together; and they were all filled with the Holy Ghost, and they spake the word of God with boldness."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 32,
+      "wordsParsed": [
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-neu"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "πληθους",
+          "english": "of crowded mass",
+          "parsing": "noun\ngen-si-neu"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "πιστευσαντων",
+          "english": "of believing",
+          "parsing": "participle\naor-act-par\ngen-pl-mas"
+        },
+        {
+          "greek": "ην",
+          "english": "it was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "καρδια",
+          "english": "heart",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "η",
+          "english": "the",
+          "parsing": "def art\nnom-si-fem"
+        },
+        {
+          "greek": "ψυχη",
+          "english": "soul",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "μια",
+          "english": "one",
+          "parsing": "adjective\nnom-si-fem"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ουδε",
+          "english": "neither",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εις",
+          "english": "one",
+          "parsing": "adjective\nnom-si-mas"
+        },
+        {
+          "greek": "τι",
+          "english": "some",
+          "parsing": "indef pron\nacc-si-neu"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-neu"
+        },
+        {
+          "greek": "υπαρχοντων",
+          "english": "of possessions",
+          "parsing": "participle\npres-act-par\ngen-pl-neu"
+        },
+        {
+          "greek": "αυτω",
+          "english": "to him",
+          "parsing": "3rd-p pers pron\ndat-si-mas"
+        },
+        {
+          "greek": "ελεγεν",
+          "english": "he was saying",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "ιδιον",
+          "english": "his own",
+          "parsing": "adjective\nacc-si-mas"
+        },
+        {
+          "greek": "ειναι",
+          "english": "to be",
+          "parsing": "verb\npres-act-inf"
+        },
+        {
+          "greek": "αλλ",
+          "english": "but",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ην",
+          "english": "it was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "απαντα",
+          "english": "all",
+          "parsing": "adjective\nnom-pl-neu"
+        },
+        {
+          "greek": "κοινα",
+          "english": "common",
+          "parsing": "adjective\nnom-pl-neu"
+        }
+      ],
+      "verseTranslated": "And the multitude of them that believed were of one heart and of one soul: neither said any [of them] that ought of the things which he possessed was his own; but they had all things common."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 33,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μεγαλη",
+          "english": "to great",
+          "parsing": "adjective\ndat-si-fem"
+        },
+        {
+          "greek": "δυναμει",
+          "english": "to ability",
+          "parsing": "noun\ndat-si-fem"
+        },
+        {
+          "greek": "απεδιδουν",
+          "english": "they were duly giving",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "μαρτυριον",
+          "english": "testimony",
+          "parsing": "noun\nacc-si-neu"
+        },
+        {
+          "greek": "οι",
+          "english": "the",
+          "parsing": "def art\nnom-pl-mas"
+        },
+        {
+          "greek": "αποστολοι",
+          "english": "apostles",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "της",
+          "english": "of the",
+          "parsing": "def art\ngen-si-fem"
+        },
+        {
+          "greek": "αναστασεως",
+          "english": "of Rise",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "του",
+          "english": "of the",
+          "parsing": "def art\ngen-si-mas"
+        },
+        {
+          "greek": "κυριου",
+          "english": "of lord",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "ιησου",
+          "english": "of Jesus",
+          "parsing": "noun (name)\ngen-si-mas"
+        },
+        {
+          "greek": "χαρις",
+          "english": "joy",
+          "parsing": "noun\nnom-si-fem"
+        },
+        {
+          "greek": "τε",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "μεγαλη",
+          "english": "great",
+          "parsing": "adjective\nnom-si-fem"
+        },
+        {
+          "greek": "ην",
+          "english": "it was",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "επι",
+          "english": "unto",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "παντας",
+          "english": "all",
+          "parsing": "adjective\nacc-pl-mas"
+        },
+        {
+          "greek": "αυτους",
+          "english": "them",
+          "parsing": "3rd-p pers pron\nacc-pl-mas"
+        }
+      ],
+      "verseTranslated": "And with great power gave the apostles witness of the resurrection of the Lord Jesus: and great grace was upon them all."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 34,
+      "wordsParsed": [
+        {
+          "greek": "ουδε",
+          "english": "neither",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τις",
+          "english": "some",
+          "parsing": "indef pron\nnom-si-mas"
+        },
+        {
+          "greek": "υπηρχεν",
+          "english": "he was being",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "εν",
+          "english": "in(to)",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "αυτοις",
+          "english": "to them",
+          "parsing": "3rd-p pers pron\ndat-pl-mas"
+        },
+        {
+          "greek": "οσοι",
+          "english": "as many as",
+          "parsing": "corr pron\nnom-pl-mas"
+        },
+        {
+          "greek": "γαρ",
+          "english": "for",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "κτητορες",
+          "english": "owners",
+          "parsing": "noun\nnom-pl-mas"
+        },
+        {
+          "greek": "χωριων",
+          "english": "of areas",
+          "parsing": "noun\ngen-pl-neu"
+        },
+        {
+          "greek": "η",
+          "english": "or",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "οικιων",
+          "english": "of houses",
+          "parsing": "noun\ngen-pl-fem"
+        },
+        {
+          "greek": "υπηρχον",
+          "english": "they were being",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "πωλουντες",
+          "english": "selling",
+          "parsing": "participle\npres-act-par\nnom-pl-mas"
+        },
+        {
+          "greek": "εφερον",
+          "english": "they were bringing",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "τας",
+          "english": "the",
+          "parsing": "def art\nacc-pl-fem"
+        },
+        {
+          "greek": "τιμας",
+          "english": "values",
+          "parsing": "noun\nacc-pl-fem"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-neu"
+        },
+        {
+          "greek": "πιπρασκομενων",
+          "english": "of being sold",
+          "parsing": "participle\npres-pas-par\ngen-pl-neu"
+        }
+      ],
+      "verseTranslated": "Neither was there any among them that lacked: for as many as were possessors of lands or houses sold them, and brought the prices of the things that were sold,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 35,
+      "wordsParsed": [
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ετιθουν",
+          "english": "they were laying down",
+          "parsing": "verb\nimp-act-ind\n3rd-p pl"
+        },
+        {
+          "greek": "παρα",
+          "english": "at",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "ποδας",
+          "english": "feet",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "αποστολων",
+          "english": "of apostles",
+          "parsing": "noun\ngen-pl-mas"
+        },
+        {
+          "greek": "διεδιδοτο",
+          "english": "it was being distributed",
+          "parsing": "verb\nimp-pas-ind\n3rd-p si"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εκαστω",
+          "english": "to each",
+          "parsing": "adjective\ndat-si-mas"
+        },
+        {
+          "greek": "καθοτι",
+          "english": "accordingly",
+          "parsing": "adverb"
+        },
+        {
+          "greek": "αν",
+          "english": "-",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "τις",
+          "english": "some",
+          "parsing": "indef pron\nnom-si-mas"
+        },
+        {
+          "greek": "χρειαν",
+          "english": "necessity",
+          "parsing": "noun\nacc-si-fem"
+        },
+        {
+          "greek": "ειχεν",
+          "english": "he had",
+          "parsing": "verb\nimp-act-ind\n3rd-p si"
+        }
+      ],
+      "verseTranslated": "And laid [them] down at the apostles' feet: and distribution was made unto every man according as he had need."
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 36,
+      "wordsParsed": [
+        {
+          "greek": "ιωσης",
+          "english": "Joses",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "δε",
+          "english": " - ",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "ο",
+          "english": "the",
+          "parsing": "def art\nnom-si-mas"
+        },
+        {
+          "greek": "επικληθεις",
+          "english": "being name-claimed",
+          "parsing": "participle\naor-pas-par\nnom-si-mas"
+        },
+        {
+          "greek": "βαρναβας",
+          "english": "Barnabas",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "απο",
+          "english": "out of",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "αποστολων",
+          "english": "of apostles",
+          "parsing": "noun\ngen-pl-mas"
+        },
+        {
+          "greek": "ο",
+          "english": "which",
+          "parsing": "rel pron\nnom-si-neu"
+        },
+        {
+          "greek": "εστιν",
+          "english": "it is",
+          "parsing": "verb\npres-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "μεθερμηνευομενον",
+          "english": "with interpretation being",
+          "parsing": "participle\npres-pas-par\nnom-si-neu"
+        },
+        {
+          "greek": "υιος",
+          "english": "son",
+          "parsing": "noun\nnom-si-mas"
+        },
+        {
+          "greek": "παρακλησεως",
+          "english": "of near-calling",
+          "parsing": "noun\ngen-si-fem"
+        },
+        {
+          "greek": "λευιτης",
+          "english": "Levite",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "κυπριος",
+          "english": "Cypriot",
+          "parsing": "noun (name)\nnom-si-mas"
+        },
+        {
+          "greek": "τω",
+          "english": "to the",
+          "parsing": "def art\ndat-si-neu"
+        },
+        {
+          "greek": "γενει",
+          "english": "to kind",
+          "parsing": "noun\ndat-si-neu"
+        }
+      ],
+      "verseTranslated": "And Joses, who by the apostles was surnamed Barnabas, (which is, being interpreted, The son of consolation,) a Levite, [and] of the country of Cyprus,"
+    },
+    {
+      "book": "Acts",
+      "chapter": 4,
+      "verseNumber": 37,
+      "wordsParsed": [
+        {
+          "greek": "υπαρχοντος",
+          "english": "of possession",
+          "parsing": "participle\npres-act-par\ngen-si-mas"
+        },
+        {
+          "greek": "αυτω",
+          "english": "to him",
+          "parsing": "3rd-p pers pron\ndat-si-mas"
+        },
+        {
+          "greek": "αγρου",
+          "english": "of field",
+          "parsing": "noun\ngen-si-mas"
+        },
+        {
+          "greek": "πωλησας",
+          "english": "selling",
+          "parsing": "participle\naor-act-par\nnom-si-mas"
+        },
+        {
+          "greek": "ηνεγκεν",
+          "english": "he brought",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "το",
+          "english": "the",
+          "parsing": "def art\nacc-si-neu"
+        },
+        {
+          "greek": "χρημα",
+          "english": "riches",
+          "parsing": "noun\nacc-si-neu"
+        },
+        {
+          "greek": "και",
+          "english": "and",
+          "parsing": "conjunction"
+        },
+        {
+          "greek": "εθηκεν",
+          "english": "he deposited",
+          "parsing": "verb\naor-act-ind\n3rd-p si"
+        },
+        {
+          "greek": "παρα",
+          "english": "at",
+          "parsing": "preposition"
+        },
+        {
+          "greek": "τους",
+          "english": "the",
+          "parsing": "def art\nacc-pl-mas"
+        },
+        {
+          "greek": "ποδας",
+          "english": "feet",
+          "parsing": "noun\nacc-pl-mas"
+        },
+        {
+          "greek": "των",
+          "english": "of the",
+          "parsing": "def art\ngen-pl-mas"
+        },
+        {
+          "greek": "αποστολων",
+          "english": "of apostles",
+          "parsing": "noun\ngen-pl-mas"
+        }
+      ],
+      "verseTranslated": "Having land, sold [it,] and brought the money, and laid [it] at the apostles' feet."
+    }
+  ]
+}

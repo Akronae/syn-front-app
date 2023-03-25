@@ -1,17 +1,29 @@
 {
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web --clear",
+    "pretty": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,yml,yaml,md}\" \"./*.{js,jsx,ts,tsx,json,yml,yaml,md}\"",
+    "lint": "eslint src --fix",
+    "format": "yarn pretty && yarn lint",
+    "build:android:apk": "rm *.apk; eas build -p android --profile preview --local",
+    "log:android": "npx react-native log-android",
+    "log:ios": "npx react-native log-ios"
   },
   "dependencies": {
+    "@gorhom/portal": "^1.0.14",
+    "@react-native-async-storage/async-storage": "^1.17.11",
+    "core-js": "^3.29.0",
     "expo": "^48.0.4",
     "expo-constants": "~14.2.1",
+    "expo-image": "^1.0.0",
     "expo-linking": "~4.0.1",
+    "expo-navigation-bar": "^2.1.1",
     "expo-router": "^1.2.0",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.2",
+    "lodash-es": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.3",
@@ -19,11 +31,28 @@
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
-    "react-native-web": "~0.18.7"
+    "react-native-svg": "13.4.0",
+    "react-native-web": "~0.18.7",
+    "styled-components": "^5.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@babel/plugin-proposal-export-namespace-from": "^7.18.9"
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.20.7",
+    "@types/lodash-es": "^4.17.6",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-native": "^0.71.3",
+    "@types/styled-components-react-native": "^5.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.36.0",
+    "eslint-plugin-import-quotes": "^0.0.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
   },
   "resolutions": {
     "metro": "^0.73.7",
