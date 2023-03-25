@@ -1,15 +1,11 @@
-# Expo Router Example
+# Syneidesis
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+> ### A tool to read and translate Ancient Greek
+>
+> <img src="https://github.com/Akronae/syneidesis/blob/v1/res/marketing/iphone_x-min.png?raw=true" width="1000">
 
-## 🚀 How to use
+Syneidesis is a proof of concept that uses various Ancient Greek grammatical rules and syntactic deductions to guess a word declension, based on a limited dictionnary and tries to give an accurate translation.  
+This tool is meant to read & learn Greek by reading.
+It is currently developped based on Koine Greek but is meant to support any dialect later on.
 
-```sh
-npx create-react-native-app -t with-router
-```
-
-## 📝 Notes
-
-- [Expo Router: Docs](https://expo.github.io/router)
-- [Expo Router: Repo](https://github.com/expo/router)
-- [Request for Comments](https://github.com/expo/router/discussions/1)
+## This work is heavily in progress
