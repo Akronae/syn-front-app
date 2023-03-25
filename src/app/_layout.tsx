@@ -13,16 +13,23 @@ import { getHeaderScreenOptions } from 'src/routing/get-header-screen-options'
 import * as ReactNavigation from '@react-navigation/native'
 import { getNavigationTheme } from 'src/routing/get-navigation-theme'
 
-export default function App() {
+export default function AppLayout() {
   const [loaded] = useFonts({
     'MazzardH-Bold': require(`src/assets/fonts/Mazzard/MazzardH-Bold.ttf`),
     'MazzardH-Regular': require(`src/assets/fonts/Mazzard/MazzardH-Regular.ttf`),
     'MazzardH-Medium': require(`src/assets/fonts/Mazzard/MazzardH-Medium.ttf`),
+    'Inter-Bold': require(`src/assets/fonts/Inter/Inter-Bold.ttf`),
+    'Inter-SemiBold': require(`src/assets/fonts/Inter/Inter-SemiBold.ttf`),
+    'Inter-Regular': require(`src/assets/fonts/Inter/Inter-Regular.ttf`),
+    'Inter-Medium': require(`src/assets/fonts/Inter/Inter-Medium.ttf`),
+    'Inter-Light': require(`src/assets/fonts/Inter/Inter-Light.ttf`),
+    'Inter-Thin': require(`src/assets/fonts/Inter/Inter-Thin.ttf`),
   })
 
-  NavigationBar.setBackgroundColorAsync(
-    Theme.syn.colors.surface.primary || `#000`,
-  )
+  if (isAndroid())
+    NavigationBar.setBackgroundColorAsync(
+      Theme.syn.colors.surface.primary || `#000`,
+    )
   if (isAndroid()) NavigationBar.setVisibilityAsync(`hidden`)
 
   const isDark = useColorScheme() == `dark`

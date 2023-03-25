@@ -1,6 +1,5 @@
-import { DefaultTheme } from "styled-components/native";
+import { DefaultTheme } from 'styled-components/native'
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-
 
 export function getHeaderScreenOptions(
   theme: DefaultTheme,

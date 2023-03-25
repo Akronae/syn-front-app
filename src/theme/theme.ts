@@ -11,11 +11,11 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
   dark: true,
   colors: {
     surface: {
-      primary: `#564f95`,
+      primary: `#800080`,
       default: `#000000`,
       contrast: `#ffffff`,
       disabled: `#32373e`,
-      sub: `#64656d`,
+      sub: `#222`,
       error: `#ff0000`,
     },
     text: {
@@ -34,12 +34,12 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
   borderRadius: (index: number) => index * 2,
   typography: {
     font: {
-      thin: `MazzardH-Thin`,
-      extraLight: `MazzardH-ExtraLight`,
-      light: `MazzardH-Light`,
-      regular: `MazzardH-Regular`,
-      medium: `MazzardH-Medium`,
-      semiBold: `MazzardH-SemiBold`,
+      thin: `Inter-Thin`,
+      extraLight: `Inter-Thin`,
+      light: `Inter-Light`,
+      regular: `Inter-Regular`,
+      medium: `Inter-Medium`,
+      semiBold: `Inter-SemiBold`,
       bold: `MazzardH-Bold`,
       extraBold: `MazzardH-Bold`,
       black: `MazzardH-Black`,
@@ -48,7 +48,7 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
       xxl: 48,
       xl: 32,
       lg: 24,
-      md: 18,
+      md: 20,
       sm: 16,
       xs: 14,
     },

@@ -12,7 +12,10 @@ import { Stack, useSearchParams } from 'expo-router'
 import text from 'src/assets/text'
 import * as Types from 'src/types'
 
-function find<T = any>(obj: Record<string, any> | undefined, key: string): T | undefined {
+function find<T = any>(
+  obj: Record<string, any> | undefined,
+  key: string,
+): T | undefined {
   if (!obj) return undefined
   const foundKey = Object.keys(obj).find(
     (k) => k.toLowerCase() === key.toLowerCase(),
@@ -34,7 +37,10 @@ export default function ReadVerse() {
   const collection = find(text, params.collection)
   const book = find(collection, params.book as string)
   const chapter = find<Types.Chapter>(book, params.chapter as string)
-  const verse = find<Types.Verse>(chapter?.versesParsed, (parseInt(params.verse) - 1).toString())
+  const verse = find<Types.Verse>(
+    chapter?.versesParsed,
+    (parseInt(params.verse) - 1).toString(),
+  )
 
   const isReady = useState(true)
 
@@ -67,7 +73,11 @@ export default function ReadVerse() {
 
   return (
     <ReadChapterBase>
-      <Stack.Screen options={{ title: `${verse.book} ${verse.chapter}:${verse.verseNumber}` }} />
+      <Stack.Screen
+        options={{
+          title: `${verse.book} ${verse.chapter}:${verse.verseNumber}`,
+        }}
+      />
       <ScrollView scrollEventThrottle={1000} ref={scrollView}>
         <SkeletonLoader showIf={!isReady.state}>
           {SkeletonCard()}

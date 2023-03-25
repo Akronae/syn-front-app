@@ -1,5 +1,4 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { DefaultTheme } from 'styled-components/native'
 import { getHeaderScreenOptions } from './get-header-screen-options'
 
