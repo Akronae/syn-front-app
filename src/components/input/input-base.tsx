@@ -83,10 +83,13 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   invalid.style ??= NativeInputOnInvalid({ theme })
 
   const formField = useFormField()
+  if (formField) formField.input = model
   const form = useForm()
   useEffect(() => {
-    if (formField?.state) formField.state.state = FormFieldState.Normal
-    form.rerender()
+    if (formField?.state.state == FormFieldState.Error) {
+      formField.state.state = FormFieldState.Normal
+      form.rerender()
+    }
   }, [model?.state])
   useEffect(() => {
     isInvalid.state = formField?.state.state === FormFieldState.Error
