@@ -134,7 +134,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
             )}
           />
         )}
-        {childrenBy.others.filter(c => React.isValidElement(c))}
+        {childrenBy.others.filter((c) => React.isValidElement(c))}
         {rightSlot?.(rightSlotProps)}
       </InputContainer>
       {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) => {
