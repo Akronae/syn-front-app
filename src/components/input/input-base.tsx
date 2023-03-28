@@ -52,6 +52,7 @@ export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
     show?: ReactiveState<boolean>
   }
   rightSlot?: (props: TSlotProps) => React.ReactNode
+  rightSlotProps?: TSlotProps
 }
 
 export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
@@ -65,6 +66,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     model,
     icon,
     rightSlot,
+    rightSlotProps,
     input,
     dropdown,
     ...passed
@@ -132,8 +134,8 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
             )}
           />
         )}
-        {childrenBy.others}
-        {rightSlot?.(props)}
+        {childrenBy.others.filter(c => React.isValidElement(c))}
+        {rightSlot?.(rightSlotProps)}
       </InputContainer>
       {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) => {
         if (dropdown?.show?.state)

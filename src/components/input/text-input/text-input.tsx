@@ -35,7 +35,6 @@ export function TextInput(props: TextInputProps) {
     multiline,
     onKeyPress,
     onSubmitEditing,
-    rightSlot,
     input,
     ...passed
   } = props
@@ -135,7 +134,6 @@ export function TextInput(props: TextInputProps) {
           onBlur?.(e)
         }}
       />
-      {rightSlot?.(props)}
       {children}
     </InputContainer>
   )
