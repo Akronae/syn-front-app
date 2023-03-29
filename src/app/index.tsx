@@ -1,15 +1,23 @@
+import { useRouter } from 'expo-router'
 import text from 'src/assets/text'
 import { Title, TitleProps } from 'src/components/title'
 import { View, Text } from 'src/packages/proto-native/src'
 import { themed } from 'src/packages/proto-native/src/utils/theme/themed'
 
-export default function AppIndex() {
-  const BooksThumbs = (
+function BookThumbs() {
+  const router = useRouter()
+
+  return (
     <View gap={(t) => t.syn.spacing(4)}>
       {Object.keys(text.NT).map((bookName) => {
         const book = text.NT[bookName as keyof typeof text.NT]
         return (
-          <BookThumb key={bookName}>
+          <BookThumb
+            key={bookName}
+            onPress={() => {
+              router.push(`/read/nt/${bookName}/1/1`)
+            }}
+          >
             <Title size='h5'>{bookName}</Title>
             <BookThumbDesc>
               Read 0 out of {Object.keys(book).length} chapters
@@ -19,7 +27,9 @@ export default function AppIndex() {
       })}
     </View>
   )
+}
 
+export default function AppIndex() {
   return (
     <Page gap={(t) => t.syn.spacing(10)}>
       <PageTitle>
@@ -32,7 +42,7 @@ export default function AppIndex() {
         <GetStartedTitle size='h4'>
           Get started by picking a book
         </GetStartedTitle>
-        {BooksThumbs}
+        <BookThumbs />
       </View>
     </Page>
   )

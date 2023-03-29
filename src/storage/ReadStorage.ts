@@ -1,9 +1,11 @@
 import { LocalStored } from './LocalStored'
 
 export interface ReadPayload {
-  book: string
-  chapter: number
-  verse: number
+  [key: string]: {
+    book: string
+    chapter: number
+    verse: number
+  }
 }
 
 class ReadStorage extends LocalStored<ReadPayload | null> {

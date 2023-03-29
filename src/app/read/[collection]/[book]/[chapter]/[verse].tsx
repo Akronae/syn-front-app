@@ -46,13 +46,14 @@ export default function ReadVerse() {
 
   if (!verse) return null
 
-  const v = <Verse verse={verse} focusedWord={focusedWord} />
   const scrollView = React.useRef<Native.ScrollView>(null)
 
-  ReadStorage.set({
-    book: verse.book,
-    chapter: verse.chapter,
-    verse: verse.verseNumber,
+  ReadStorage.merge({
+    [`${params.collection}/${params.book}`.toLowerCase()]: {
+      book: verse.book,
+      chapter: verse.chapter,
+      verse: verse.verseNumber,
+    },
   })
 
   const SkeletonCard = () => (
@@ -92,7 +93,7 @@ export default function ReadVerse() {
             instant: { first: 5 },
           }}
         >
-          {v}
+          <Verse verse={verse} focusedWord={focusedWord} />
         </View>
       </ScrollView>
       {d}
