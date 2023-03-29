@@ -1,9 +1,5 @@
 import { View, ViewProps } from '@proto-native/components/view'
-import {
-  useExistingStateOr,
-  useGroupChildrenByType,
-  useState,
-} from '@proto-native/utils'
+import { useExistingStateOr, useState } from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -41,37 +37,23 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
     )
     const defaultInput = useState<any>(null)
 
-    const refHandle = {
+    const refHandle: FormFieldHandle = {
       state,
       input: defaultInput,
+      props,
     }
     useImperativeHandle(ref, () => refHandle)
     form.fields[name] = refHandle
 
-    const childrenGroupped = useGroupChildrenByType(children, {
-      FormFieldOnInvalid: FormFieldOnInvalid,
-      FormFieldLabel: FormFieldLabel,
-      FormFieldError: FormFieldError,
-    })
-
     return (
       <FormFieldBase gap={(t) => t.protonative.spacing(2)} {...passed}>
-        {childrenGroupped.FormFieldLabel}
         <FormFieldContext.Provider value={refHandle}>
-          <View gap={props.gap}>{childrenGroupped.others}</View>
+          <View gap={props.gap}>{children}</View>
         </FormFieldContext.Provider>
 
-        <>
-          {state.state === FormFieldState.Error &&
-            childrenGroupped.FormFieldError}
-          {state.state === FormFieldState.Error && error && (
-            <FormField.Error style={error.style}>
-              {error.message}
-            </FormField.Error>
-          )}
-          {state.state === FormFieldState.Error &&
-            childrenGroupped.FormFieldOnInvalid}
-        </>
+        {state.state === FormFieldState.Error && error && (
+          <FormField.Error style={error.style}>{error.message}</FormField.Error>
+        )}
       </FormFieldBase>
     )
   },

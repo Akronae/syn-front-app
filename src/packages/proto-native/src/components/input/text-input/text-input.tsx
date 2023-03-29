@@ -35,7 +35,6 @@ export function TextInput(props: TextInputProps) {
     multiline,
     onKeyPress,
     onSubmitEditing,
-    rightSlot,
     input,
     ...passed
   } = props
@@ -129,13 +128,12 @@ export function TextInput(props: TextInputProps) {
           // in case the input is unfocused by a click on the dropdown
           // we need to wait for the click to be processed
           if (isFocused)
-            setImmediate(() => {
+            setTimeout(() => {
               isFocused.state = false
-            })
+            }, 1000)
           onBlur?.(e)
         }}
       />
-      {rightSlot?.(props)}
       {children}
     </InputContainer>
   )

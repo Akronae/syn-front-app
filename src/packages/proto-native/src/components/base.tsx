@@ -70,21 +70,25 @@ export function Base<
     })
   }
 
-  const Wrapper: React.ElementType = onPress ? Native.Pressable : Animated.View
+  const Wrapper: React.ElementType = onPress
+    ? Native.TouchableOpacity
+    : Animated.View
 
-  const isClickable = onPress || onTouchEndProps
+  const isClickable = Boolean(onPress || onTouchEndProps)
 
   return (
     <Wrapper
       onTouchEnd={onTouchEnd}
       style={[
-        BaseWrapperStyle(props),
+        BaseWrapperStyle({ ...props, isClickable }),
         style,
         themedStyle?.(theme),
-        isClickable && ({ cursor: `pointer` } as any),
       ]}
       isClickable={isClickable}
       onPress={onPress}
+      // we do not want opacity animation however TouchableOpacity has all
+      // the features we need and Pressable is not yet available for Expo Go
+      activeOpacity={1}
       {...passed}
     >
       {children}
@@ -108,6 +112,9 @@ export function takeBaseOwnProps(props: BaseProps) {
   }
 }
 
-const BaseWrapperStyle = (props: BaseProps): ViewStyle => ({
+const BaseWrapperStyle = (
+  props: BaseProps & { isClickable: boolean },
+): ViewStyle => ({
   opacity: props.transparent ? 0 : undefined,
+  ...(props.isClickable && { cursor: `pointer` }),
 })

@@ -2,11 +2,11 @@ import { FormFieldState } from './form-field'
 import { FormHandle } from './form-handle'
 
 export function useFormValidate() {
-  return (fieldElems: React.ReactElement[], handle: FormHandle) => {
+  return (handle: FormHandle) => {
     let isFormValid = true
 
-    fieldElems.forEach((field) => {
-      if (field.props.validate) {
+    Object.entries(handle.fields).forEach(([fieldName, field]) => {
+      if (field.props?.validate) {
         const fieldElemHandle = handle.fields[field.props.name]
 
         const valid = field.props.validate(fieldElemHandle?.input?.state ?? ``)

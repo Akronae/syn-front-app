@@ -53,10 +53,12 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     Placeholder: InputSelect.Placeholder,
     Selected: InputSelect.Selected,
   })
+
   const selectedItem = useState<ReactElement<DropdownItemProps> | null>(null)
   useEffect(() => {
     model.state = selectedItem.state?.props.value
   }, [selectedItem.state])
+
   useEffect(() => {
     if (model.state) {
       const found = childrenBy.Dropdown.map((child) => {
