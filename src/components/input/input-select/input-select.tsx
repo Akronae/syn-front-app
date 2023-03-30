@@ -18,7 +18,6 @@ import {
   DropdownItemProps,
   DropdownProps,
 } from '@proto-native/components/dropdown'
-import { useOnGlobalTouch } from '@proto-native/components/global-events-listener'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 
 export type InputSelectProps<
@@ -70,9 +69,6 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
       selectedItem.state = found[0] as ReactElement<DropdownItemProps>
     }
   }, [model.state])
-  useOnGlobalTouch(() => {
-    isFocused.state = false
-  })
 
   if (!dropdown) dropdown = {}
   const showDropdown = useState(dropdown?.show?.state ?? false)

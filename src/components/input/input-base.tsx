@@ -149,6 +149,10 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
               Native.Keyboard.dismiss()
               child.props.onItemPress?.(item)
             },
+            onDismiss: () => {
+              isFocused.state = false
+              child.props.onDismiss?.()
+            },
           })
       })}
     </InputBaseBase>
