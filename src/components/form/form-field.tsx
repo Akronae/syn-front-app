@@ -12,13 +12,8 @@ import { FormFieldError } from './form-field-error'
 import { FormFieldHandle } from './form-field-handle'
 import { FormFieldLabel } from './form-field-label'
 import { FormFieldOnInvalid } from './form-field-on-invalid'
+import { FormFieldState } from './form-field-state'
 import useForm from './use-form'
-
-export enum FormFieldState {
-  Normal = `normal`,
-  Error = `error`,
-  Success = `success`,
-}
 
 export type FormFieldProps = ViewProps & {
   name: string

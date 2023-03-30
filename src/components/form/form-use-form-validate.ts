@@ -1,4 +1,4 @@
-import { FormFieldState } from './form-field'
+import { FormFieldState } from './form-field-state'
 import { FormHandle } from './form-handle'
 
 export function useFormValidate() {

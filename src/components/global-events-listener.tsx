@@ -31,6 +31,7 @@ export function GlobalEventsListener(props: GlobalEventsListenerProps) {
   return (
     <GlobalEventsListenerBase
       {...passed}
+      onStartShouldSetResponder={() => true}
       onPress={onPress}
     ></GlobalEventsListenerBase>
   )

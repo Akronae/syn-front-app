@@ -1,6 +1,6 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import * as React from 'react-native'
-import { FormFieldState } from './form-field'
+import { FormFieldState } from './form-field-state'
 import useFormField from './use-form-field'
 
 export type FormFieldOnInvalidProps = BaseProps

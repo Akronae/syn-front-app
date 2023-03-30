@@ -1,6 +1,6 @@
 import { Text, TextProps } from '@proto-native/components/text'
 import { themed } from '@proto-native/utils/theme/themed'
-import { FormFieldState } from './form-field'
+import { FormFieldState } from './form-field-state'
 import useFormField from './use-form-field'
 
 export type FormFieldErrorProps = TextProps
