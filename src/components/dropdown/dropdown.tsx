@@ -6,8 +6,6 @@ import { useGroupChildrenByType, useState } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { useWindowDimensions } from 'react-native'
-import { View } from '../view'
-import { Text } from '../text'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -20,7 +18,6 @@ export type DropdownProps = BaseProps & {
 }
 
 export function Dropdown(props: DropdownProps) {
-
   // return <Native.Modal transparent={true}>
   //   <Text>torlloloo!</Text>
   // </Native.Modal>
@@ -29,8 +26,6 @@ export function Dropdown(props: DropdownProps) {
   const childrenBy = useGroupChildrenByType(children, {
     DropdownItem: Dropdown.Item,
   })
-
-  if (!childrenBy.DropdownItem.length) return null
 
   const anchor = React.useRef<Native.View>(null)
   const anchorLayout = useState({ top: 0, left: 0, width: 0, height: 0 })
@@ -41,25 +36,32 @@ export function Dropdown(props: DropdownProps) {
       anchorLayoutLoaded.state = true
     })
   }, [])
-  const onChildrenWrapperLayout = React.useCallback((e: Native.LayoutChangeEvent) => {
-    childrenWrapperLayout.state =  e.nativeEvent.layout
-    childrenWrapperLayoutLoaded.state = true
-  }, [])
+  const onChildrenWrapperLayout = React.useCallback(
+    (e: Native.LayoutChangeEvent) => {
+      childrenWrapperLayout.state = e.nativeEvent.layout
+      childrenWrapperLayoutLoaded.state = true
+    },
+    [],
+  )
   const childrenWrapperLayoutLoaded = useState(false)
   const childrenWrapperLayout = useState({ width: 0, height: 0, x: 0, y: 0 })
-  const layoutsLoaded = anchorLayoutLoaded.state && childrenWrapperLayoutLoaded.state
+  const layoutsLoaded =
+    anchorLayoutLoaded.state && childrenWrapperLayoutLoaded.state
 
   const viewport = useWindowDimensions()
 
   const childrenWrapperStyle = {
-    top: Math.min(viewport.height - childrenWrapperLayout.state.height, anchorLayout.state.top),
+    top: Math.min(
+      viewport.height - childrenWrapperLayout.state.height,
+      anchorLayout.state.top,
+    ),
     left: anchorLayout.state.left,
     width: anchorLayout.state.width,
     ...Native.StyleSheet.flatten(style),
     opacity: layoutsLoaded ? 1 : 0,
   }
 
-  console.log('rerender!')
+  if (!childrenBy.DropdownItem.length) return null
 
   return (
     <DropdownBase {...passed}>

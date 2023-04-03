@@ -56,7 +56,6 @@ export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
 }
 
 export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
-  console.log('input-base: rerender!')
   const theme = useTheme()
   let {
     children,
