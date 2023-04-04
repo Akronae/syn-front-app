@@ -6,6 +6,7 @@ import { useGroupChildrenByType, useState } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { useWindowDimensions } from 'react-native'
+import { Modal } from 'src/components/modal'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -18,10 +19,6 @@ export type DropdownProps = BaseProps & {
 }
 
 export function Dropdown(props: DropdownProps) {
-  // return <Native.Modal transparent={true}>
-  //   <Text>torlloloo!</Text>
-  // </Native.Modal>
-
   const { children, style, modal, onDismiss, ...passed } = props
   const childrenBy = useGroupChildrenByType(children, {
     DropdownItem: Dropdown.Item,
@@ -68,36 +65,29 @@ export function Dropdown(props: DropdownProps) {
       {/* Empty view that gives us the position of the parent element */}
       <Native.View ref={anchor} onLayout={onAnchorViewLayout} />
 
-      <Native.Modal transparent={true}>
-        {/* Modal overlay used to apply styling (i.e: background) & receive dismiss touch */}
-        <Native.TouchableWithoutFeedback onPress={() => onDismiss?.()}>
-          <Native.View
-            style={{
-              position: `absolute`,
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              ...modal?.overlay?.style,
-            }}
-          />
-        </Native.TouchableWithoutFeedback>
-
+      <Modal
+        overlay={{
+          ...modal?.overlay,
+          onPress: () => {
+            onDismiss?.()
+          },
+        }}
+      >
         <Native.View
           style={childrenWrapperStyle}
           onLayout={onChildrenWrapperLayout}
         >
           {childrenBy.DropdownItem.map((child, index) => {
-            return React.cloneElement(child, {
+            return React.cloneElement<DropdownItemProps>(child, {
               key: index,
-              onPress: () => {
+              onTouchStart: () => {
                 child.props.onPress?.()
                 props.onItemPress?.(child)
               },
             })
           })}
         </Native.View>
-      </Native.Modal>
+      </Modal>
     </DropdownBase>
   )
 }

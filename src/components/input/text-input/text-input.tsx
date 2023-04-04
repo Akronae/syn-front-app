@@ -20,6 +20,7 @@ import {
   InputBaseProps,
 } from '@proto-native/components/input/input-base'
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
+import { DropdownProps } from '@proto-native/components/dropdown'
 
 export type TextInputProps<TSlotProps = any> = InputBaseProps<
   string,
@@ -101,7 +102,9 @@ export function TextInput(props: TextInputProps) {
 
   const nativeInputRef = useRef<Native.TextInput>(null)
   useEffect(() => {
-    if (!isFocused?.state) {
+    if (isFocused?.state) {
+      nativeInputRef.current?.focus()
+    } else {
       nativeInputRef.current?.blur()
     }
   }, [isFocused?.state])
@@ -138,23 +141,16 @@ export function TextInput(props: TextInputProps) {
         ]}
         onChangeText={onChangeText}
         onFocus={(e) => {
-          if (isFocused) isFocused.state = true
+          isFocused.state = true
           onFocus?.(e)
         }}
         onBlur={(e) => {
-          if (dropdown?.show?.state) {
-            // modals blur inputs when they are shown
-            nativeInputRef.current?.focus()
-          } else {
-            if (isFocused) {
-              isFocused.state = false
-            }
-          }
+          isFocused.state = false
           onBlur?.(e)
         }}
       />
       {childrenBy.Dropdown.map((child, i) => {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement<DropdownProps>, {
           key: i,
           onItemPress: (item: any) => {
             isFocused.state = false
