@@ -4,17 +4,23 @@ import {
   getStyleBoldness,
   takeTextOwnProps,
 } from '@proto-native/components/text'
-import { useExistingStateOr, useState } from '@proto-native/utils'
+import {
+  useExistingStateOr,
+  useGroupChildrenByType,
+  useState,
+} from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
 import {
   InputBase,
   InputBaseProps,
 } from '@proto-native/components/input/input-base'
+import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
+import { DropdownProps } from '@proto-native/components/dropdown'
 
 export type TextInputProps<TSlotProps = any> = InputBaseProps<
   string,
@@ -40,6 +46,9 @@ export function TextInput(props: TextInputProps) {
   } = props
   numberOfLines ??= 1
   multiline ??= numberOfLines > 1
+  const childrenBy = useGroupChildrenByType(children, {
+    Dropdown: TextInput.Dropdown,
+  })
   const textProps = takeTextOwnProps(passed)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
@@ -91,6 +100,15 @@ export function TextInput(props: TextInputProps) {
     lineHeight: undefined,
   }
 
+  const nativeInputRef = useRef<Native.TextInput>(null)
+  useEffect(() => {
+    if (isFocused?.state) {
+      nativeInputRef.current?.focus()
+    } else {
+      nativeInputRef.current?.blur()
+    }
+  }, [isFocused?.state])
+
   return (
     <InputContainer
       {...baseProps.taken}
@@ -102,7 +120,8 @@ export function TextInput(props: TextInputProps) {
       isFocused={isFocused}
       isInvalid={isInvalid}
     >
-      <NativeInput
+      <Native.TextInput
+        ref={nativeInputRef}
         placeholder={placeholder}
         placeholderTextColor={theme.protonative.colors.text.sub}
         value={model.state}
@@ -115,26 +134,31 @@ export function TextInput(props: TextInputProps) {
         {...textProps.taken}
         {...baseProps.rest}
         style={[
+          NativeInputStyle(theme, { isInvalid, invalid }),
           textProps.taken.style,
           baseProps.rest.style,
           isIos() && iosLineHeightFix,
         ]}
         onChangeText={onChangeText}
         onFocus={(e) => {
-          if (isFocused) isFocused.state = true
+          isFocused.state = true
           onFocus?.(e)
         }}
         onBlur={(e) => {
-          // in case the input is unfocused by a click on the dropdown
-          // we need to wait for the click to be processed
-          if (isFocused)
-            setTimeout(() => {
-              isFocused.state = false
-            }, 1000)
+          isFocused.state = false
           onBlur?.(e)
         }}
       />
-      {children}
+      {childrenBy.Dropdown.map((child, i) => {
+        return React.cloneElement(child as React.ReactElement<DropdownProps>, {
+          key: i,
+          onItemPress: (item: any) => {
+            isFocused.state = false
+            child.props.onItemPress?.(item)
+          },
+        })
+      })}
+      {childrenBy.others}
     </InputContainer>
   )
 }
@@ -143,7 +167,7 @@ TextInput.Dropdown = InputBase.Dropdown
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({}))
 
-const NativeInput = themed<Partial<TextInputProps>>(Native.TextInput, (p) => ({
+const NativeInputStyle = createThemedStyle<Partial<TextInputProps>>((p) => ({
   flex: 1,
   ...(isWeb() && {
     outlineWidth: 0,

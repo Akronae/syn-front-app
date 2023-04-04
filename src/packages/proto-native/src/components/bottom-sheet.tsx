@@ -14,7 +14,7 @@ export type BottomSheetProps = BaseProps & {
 
 export function BottomSheet(props: BottomSheetProps) {
   const { children, open: openProps, ...passed } = props
-  const open = useExistingStateOr(openProps, false)
+  const open = useExistingStateOr(openProps, true)
 
   const close = () => {
     setTimeout(() => {
