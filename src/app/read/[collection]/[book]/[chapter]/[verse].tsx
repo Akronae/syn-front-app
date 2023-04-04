@@ -5,7 +5,7 @@ import * as React from 'react'
 
 import * as Native from 'react-native'
 import { Verse } from 'src/components/verse'
-import ReadStorage from 'src/storage/ReadStorage'
+import BooksReadStorage from 'src/storage/BooksReadStorage'
 import styled from 'styled-components/native'
 import { WordDetails } from 'src/components/word-details'
 import { Stack, useSearchParams } from 'expo-router'
@@ -48,8 +48,8 @@ export default function ReadVerse() {
 
   const scrollView = React.useRef<Native.ScrollView>(null)
 
-  ReadStorage.merge({
-    [`${params.collection}/${params.book}`.toLowerCase()]: {
+  BooksReadStorage.merge({
+    [BooksReadStorage.getKey(params.collection, params.book)]: {
       book: verse.book,
       chapter: verse.chapter,
       verse: verse.verseNumber,

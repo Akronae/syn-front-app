@@ -1,1 +1,1 @@
-export * as ReadStorage from './ReadStorage'
+export * as ReadStorage from './BooksReadStorage'

@@ -8,11 +8,15 @@ export interface ReadPayload {
   }
 }
 
-class ReadStorage extends LocalStored<ReadPayload | null> {
+class BooksReadStorage extends LocalStored<ReadPayload | null> {
   key = `Read`
   get default() {
     return null
   }
+
+  public getKey(collection: string, book: string) {
+    return `${collection}/${book}`.toLowerCase()
+  }
 }
 
-export default new ReadStorage()
+export default new BooksReadStorage()
