@@ -25,15 +25,17 @@ export function View(props: ViewProps) {
   } = props
   const theme = useTheme()
   const gap = computeThemeValue(gapProps, theme)
-  const childrenToRenderCount = useState(
-    (() => {
-      if (!childRendering) return Children.count(children)
-      if (childRendering?.instant?.first) {
-        return childRendering.instant.first
-      }
-      return 0
-    })(),
-  )
+
+  const computeChildrenToRenderCount = () => {
+    if (!childRendering) return Children.count(children)
+    else if (childRendering?.instant?.first) {
+      return childRendering.instant.first
+    } else return 0
+  }
+  const childrenToRenderCount = useState(computeChildrenToRenderCount())
+  React.useEffect(() => {
+    childrenToRenderCount.state = computeChildrenToRenderCount()
+  }, [childRendering, children])
 
   const flatChildren = useMemo(() => {
     return castArray(children)
