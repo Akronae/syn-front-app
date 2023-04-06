@@ -9,7 +9,7 @@ import {
   useForm,
   useFormField,
 } from '@proto-native/components/form'
-import { takeTextOwnProps } from '@proto-native/components/text'
+import { takeTextOwnProps, Text } from '@proto-native/components/text'
 import {
   hexLerp,
   ReactiveState,
@@ -158,7 +158,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     </InputBaseBase>
   )
 }
-
+InputBase.Placeholder = themed(Text, (p) => ({}))
 InputBase.Dropdown = Dropdown
 
 const InputBaseBase = Base

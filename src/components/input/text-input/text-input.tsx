@@ -47,6 +47,7 @@ export function TextInput(props: TextInputProps) {
   numberOfLines ??= 1
   multiline ??= numberOfLines > 1
   const childrenBy = useGroupChildrenByType(children, {
+    Placeholder: TextInput.Placeholder,
     Dropdown: TextInput.Dropdown,
   })
   const textProps = takeTextOwnProps(passed)
@@ -65,10 +66,9 @@ export function TextInput(props: TextInputProps) {
     return isFocused?.state || false
   }, [isFocused?.state])
 
-  const placeholder = React.Children.toArray(children).reduce(
-    (acc, child) => `${acc} ${child?.toString()}`,
-    ``,
-  ) as string
+  const placeholder = childrenBy.Placeholder.flatMap(
+    (p) => p.props.children,
+  ).reduce((acc, child) => `${acc} ${child?.toString()}`, ``) as string
 
   const onKeyPressBase = (
     e: Native.NativeSyntheticEvent<Native.TextInputKeyPressEventData>,
@@ -162,8 +162,8 @@ export function TextInput(props: TextInputProps) {
     </InputContainer>
   )
 }
-
 TextInput.Dropdown = InputBase.Dropdown
+TextInput.Placeholder = InputBase.Placeholder
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({}))
 

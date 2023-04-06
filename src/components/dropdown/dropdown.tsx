@@ -6,7 +6,7 @@ import { useGroupChildrenByType, useState } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { useWindowDimensions } from 'react-native'
-import { Modal } from 'src/components/modal'
+import { Modal } from '@proto-native/components/modal'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void

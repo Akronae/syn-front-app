@@ -13,7 +13,7 @@ export type ModalProps = BaseProps & {
 }
 
 export function Modal(props: ModalProps) {
-  const { children, transparent, overlay, open: openProps, ...passed } = props
+  const { children, overlay, open: openProps, ...passed } = props
   const open = useExistingStateOr(openProps, true)
 
   const onBackgroundPress = (e: Native.GestureResponderEvent) => {
