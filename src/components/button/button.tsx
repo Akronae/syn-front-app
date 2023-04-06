@@ -16,11 +16,11 @@ import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export type ButtonType = `primary` | `secondary` | `text`
 
-export type ButtonProps = BaseProps<Native.ViewStyle, Native.TextStyle> &
+export type ButtonProps = BaseProps<Native.ViewStyle & { stroke?: string, fill?: string }, Native.TextStyle> &
   Omit<TextProps, 'style'> &
   Omit<Native.ViewProps, 'style'> & {
     icon?: {
-      style?: Native.StyleProp<Native.ViewStyle>
+      style?: Native.StyleProp<Native.ViewStyle & { stroke?: string, fill?: string }>
       ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
       position?: `left` | `right`
@@ -52,15 +52,15 @@ export function Button(props: ButtonProps) {
       {icon?.ionicons && (
         <Icon
           name={icon.ionicons}
-          style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
+          style={Native.StyleSheet.flatten([icon.style, omitBy({ color, fontSize }, isUndefined)])}
         />
       )}
       {icon?.custom && (
         <icon.custom
-          style={[
+          style={Native.StyleSheet.flatten([
             icon.style,
-            omitBy({ color, fontSize, fill, stroke }, isUndefined),
-          ]}
+            omitBy({ color, fontSize, stroke }, isUndefined),
+          ])}
         />
       )}
     </>
