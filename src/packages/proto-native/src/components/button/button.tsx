@@ -10,18 +10,20 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
 import * as Native from 'react-native'
+import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
 export type ButtonType = `primary` | `secondary` | `text`
 
-export type ButtonProps = BaseProps<Native.ViewStyle, Native.TextStyle> &
+export type ButtonProps = BaseProps<Native.ViewStyle & { stroke?: string, fill?: string }, Native.TextStyle> &
   Omit<TextProps, 'style'> &
   Omit<Native.ViewProps, 'style'> & {
     icon?: {
-      style?: Native.StyleProp<Native.ViewStyle>
+      style?: Native.StyleProp<Native.ViewStyle & { stroke?: string, fill?: string }>
       ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
+      position?: `left` | `right`
     }
     pressAnimation?: ButtonPressAnimation
     type?: ButtonType
@@ -45,40 +47,49 @@ export function Button(props: ButtonProps) {
   const pressAnimation = btnProps.taken.pressAnimation || `none`
   const anim = usePressAnimation(pressAnimation)
 
-  return (
-    <ButtonBase
-      {...textProps.rest}
-      {...btnProps.taken}
-      style={[anim.style, btnProps.taken.style, textProps.rest.style]}
-      onTouchStart={(e) => {
-        anim.start(() => btnProps.taken?.onTouchStart?.(e))
-      }}
-      onTouchEnd={(e) => {
-        anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
-      }}
-    >
-      {textProps.taken.children && (
-        <CardBtnText
-          {...textProps.taken}
-          style={[{ color, fontWeight }, textProps.taken.style]}
-          parent={{ props }}
-        />
-      )}
+  const IconComponent = () => (
+    <>
       {icon?.ionicons && (
         <Icon
           name={icon.ionicons}
-          style={[icon.style, omitBy({ color, fontSize }, isUndefined)]}
+          style={Native.StyleSheet.flatten([icon.style, omitBy({ color, fontSize }, isUndefined)])}
         />
       )}
       {icon?.custom && (
         <icon.custom
-          style={[
+          style={Native.StyleSheet.flatten([
             icon.style,
-            omitBy({ color, fontSize, fill, stroke }, isUndefined),
-          ]}
+            omitBy({ color, fontSize, stroke }, isUndefined),
+          ])}
         />
       )}
-    </ButtonBase>
+    </>
+  )
+
+  return (
+    <Animated.View style={anim.style}>
+      <ButtonBase
+        {...textProps.rest}
+        {...btnProps.taken}
+        style={[btnProps.taken.style, textProps.rest.style]}
+        onTouchStart={(e) => {
+          anim.start(() => btnProps.taken?.onTouchStart?.(e))
+        }}
+        onTouchEnd={(e) => {
+          anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
+        }}
+      >
+        {icon?.position !== `right` && <IconComponent />}
+        {textProps.taken.children && (
+          <CardBtnText
+            {...textProps.taken}
+            style={[{ color, fontWeight }, textProps.taken.style]}
+            parent={{ props }}
+          />
+        )}
+        {icon?.position === `right` && <IconComponent />}
+      </ButtonBase>
+    </Animated.View>
   )
 }
 

@@ -124,7 +124,7 @@ InputSelect.Option = themed<DropdownItemProps>(
   (p) => ({}),
 )
 
-InputSelect.Placeholder = themed(Text, (p) => ({}))
+InputSelect.Placeholder = InputBase.Placeholder
 InputSelect.Selected = themed(Text, (p) => ({}))
 InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
 

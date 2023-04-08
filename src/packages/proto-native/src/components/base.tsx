@@ -72,7 +72,7 @@ export function Base<
 
   const Wrapper: React.ElementType = onPress
     ? Native.TouchableOpacity
-    : Animated.View
+    : Native.View
 
   const isClickable = Boolean(onPress || onTouchEndProps)
 
