@@ -14,45 +14,61 @@ import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
+export type ButtonState = `default` | `disabled`
 export type ButtonType = `primary` | `secondary` | `text`
+export type ButtonSize = `sm` | `md` | `lg`
+export type ButtonVariant = {
+  state: ButtonState
+  type: ButtonType
+  size: ButtonSize
+}
 
-export type ButtonProps = BaseProps<Native.ViewStyle & { stroke?: string, fill?: string }, Native.TextStyle> &
+export type ButtonProps = BaseProps<
+  Native.ViewStyle & { stroke?: string; fill?: string },
+  Native.TextStyle
+> &
   Omit<TextProps, 'style'> &
   Omit<Native.ViewProps, 'style'> & {
     icon?: {
-      style?: Native.StyleProp<Native.ViewStyle & { stroke?: string, fill?: string }>
+      style?: Native.StyleProp<
+        Native.ViewStyle & { stroke?: string; fill?: string }
+      >
       ionicons?: keyof (typeof Ionicons)[`glyphMap`]
       custom?: React.ComponentType<Partial<ButtonProps>>
       position?: `left` | `right`
     }
     pressAnimation?: ButtonPressAnimation
-    type?: ButtonType
-    disabled?: boolean
-  }
+  } & Partial<ButtonVariant>
 
 export function Button(props: ButtonProps) {
-  const { icon, ...rest } = props
-  const style = props.style
+  const { icon, state, type, size, ...rest } = props
   const theme = useTheme()
   const btnProps = takeButtonOwnProps(rest)
   const textProps = takeTextOwnProps(btnProps.rest)
+  const pressAnimation = btnProps.taken.pressAnimation || `none`
+  const anim = usePressAnimation(pressAnimation)
+  const style = props.style
+  const variant: ButtonVariant = {
+    state: state || `default`,
+    type: type || `primary`,
+    size: size || `md`,
+  }
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
   const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
   const color = flatStyle?.color || theme.protonative.colors.text.primary
-  const fill = flatStyle?.fill || color
   const stroke = flatStyle?.stroke || color
   const fontWeight = flatStyle?.fontWeight
-
-  const pressAnimation = btnProps.taken.pressAnimation || `none`
-  const anim = usePressAnimation(pressAnimation)
 
   const IconComponent = () => (
     <>
       {icon?.ionicons && (
         <Icon
           name={icon.ionicons}
-          style={Native.StyleSheet.flatten([icon.style, omitBy({ color, fontSize }, isUndefined)])}
+          style={Native.StyleSheet.flatten([
+            icon.style,
+            omitBy({ color, fontSize }, isUndefined),
+          ])}
         />
       )}
       {icon?.custom && (
@@ -71,6 +87,7 @@ export function Button(props: ButtonProps) {
       <ButtonBase
         {...textProps.rest}
         {...btnProps.taken}
+        {...variant}
         style={[btnProps.taken.style, textProps.rest.style]}
         onTouchStart={(e) => {
           anim.start(() => btnProps.taken?.onTouchStart?.(e))
@@ -81,8 +98,9 @@ export function Button(props: ButtonProps) {
       >
         {icon?.position !== `right` && <IconComponent />}
         {textProps.taken.children && (
-          <CardBtnText
+          <BtnCardText
             {...textProps.taken}
+            {...variant}
             style={[{ color, fontWeight }, textProps.taken.style]}
             parent={{ props }}
           />
@@ -135,10 +153,11 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   }
 }
 
-const ButtonBase = themed<ButtonProps>(Base, (p) => ({
+const ButtonBase = themed<ButtonProps & ButtonVariant>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `center`,
+  gap: p.theme.protonative.spacing(3),
   textAlign: `center`,
   backgroundColor: p.theme.protonative.colors.surface.primary,
   borderRadius: 8,
@@ -146,24 +165,30 @@ const ButtonBase = themed<ButtonProps>(Base, (p) => ({
   color: p.theme.protonative.colors.text.light,
   paddingVertical: 10,
   paddingHorizontal: 15,
-  ...(p.disabled && Disabled),
-  ...(p.type === `text` && ButtonText),
+  ...(p.state == `disabled` && StateDisabled(p)),
+  ...(p.type === `text` && StateText(p)),
+  ...(p.type === `secondary` && StateSecondary(p)),
 }))
 
-const Disabled: ThemedStyle = (p) => ({
+const StateDisabled: ThemedStyle = (p) => ({
   backgroundColor: p.theme.protonative.colors.surface.disabled,
   color: p.theme.protonative.colors.text.primary,
 })
 
-const ButtonText: ThemedStyle = (p) => ({
+const StateText: ThemedStyle = (p) => ({
   backgroundColor: `transparent`,
   color: p.theme.protonative.colors.text.primary,
 })
 
-const CardBtnText = themed<TextProps>(Text, (p) => ({
+const StateSecondary: ThemedStyle = (p) => ({
+  backgroundColor: p.theme.protonative.colors.surface.sub,
+  color: p.theme.protonative.colors.text.primary,
+})
+
+const BtnCardText = themed<TextProps & ButtonVariant>(Text, (p) => ({
   fontSize:
     Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
-    p.theme.protonative.typography.size.md,
+    p.theme.protonative.typography.size[p.size],
 }))
 
 const Icon = Ionicons

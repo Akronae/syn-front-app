@@ -44,7 +44,7 @@ const Background = themed(Base, (p) => ({
   bottom: 0,
   width: `100%`,
   height: `100%`,
-  backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.8),
+  backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.1),
 }))
 
 const Sheet = themed(Base, (p) => ({
@@ -61,6 +61,14 @@ const Sheet = themed(Base, (p) => ({
   borderBottomRightRadius: 0,
   minHeight: 200,
   zIndex: 10,
+  shadowColor: `#000`,
+  shadowOffset: {
+    width: 0,
+    height: -10,
+  },
+  shadowOpacity: 1,
+  shadowRadius: 100,
+  elevation: 20,
 }))
 
 const TopNotch = themed(Base, (p) => ({
