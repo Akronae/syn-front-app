@@ -1,10 +1,9 @@
-import { ReactiveState, Text, useExistingStateOr } from '@proto-native'
+import { ReactiveState, Text, themed, useExistingStateOr } from '@proto-native'
 import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { Word } from 'src/components/word'
 import { column } from 'src/styles/column'
 import * as Types from 'src/types'
-import styled from 'styled-components/native'
 
 export interface VerseProps extends ViewProps {
   verse: Types.Verse
@@ -35,18 +34,19 @@ export function Verse(props: VerseProps) {
   )
 }
 
-const VerseWrapper = styled(View)`
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: stretch;
-  gap: 4px 2px;
-`
+const VerseWrapper = themed(View, (p) => ({
+  flex: 1,
+  flexDirection: `row`,
+  flexWrap: `wrap`,
+  alignContent: `flex-start`,
+  alignItems: `stretch`,
+  rowGap: 4,
+  columnGap: 2,
+}))
 
-const VerseTranslated = styled(Text)`
-  padding-top: 10px;
-  padding-bottom: 20px;
-  font-size: 14px;
-  color: ${(p) => p.theme.syn.colors.text.sub};
-`
+const VerseTranslated = themed(Text, (p) => ({
+  paddingTop: 10,
+  paddingBottom: 20,
+  fontSize: 14,
+  color: p.theme.syn.colors.text.sub,
+}))

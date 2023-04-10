@@ -4,11 +4,11 @@ import {
   BottomSheet,
   ReactiveState,
   Text,
+  themed,
   useState,
 } from '@proto-native'
 import { useEffect } from 'react'
 import * as React from 'react-native'
-import styled from 'styled-components/native'
 
 export type WordDetailsProps = BaseProps & {
   word: ReactiveState<string | undefined>
@@ -37,7 +37,7 @@ export function WordDetails(props: WordDetailsProps) {
   )
 }
 
-const WordDetailsBase = styled(Base)``
-const Title = styled(Text)`
-  font-size: ${(p) => p.theme.syn.typography.size.xl};
-`
+const WordDetailsBase = themed(Base, (p) => ({}))
+const Title = themed(Text, (p) => ({
+  fontSize: p.theme.syn.typography.size.xl,
+}))

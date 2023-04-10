@@ -3,12 +3,7 @@ import { View } from '@proto-native'
 import * as React from 'react'
 
 import * as Native from 'react-native'
-import {
-  Stack,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'expo-router'
+import { Stack, usePathname, useRouter, useSearchParams } from 'expo-router'
 import text from 'src/assets/text'
 import * as Types from 'src/types'
 import { findByKey } from 'src/utils/object/find-by-key'

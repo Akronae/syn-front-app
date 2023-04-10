@@ -4,7 +4,15 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "syn2",
-    "slug": "syn2"
+    "name": "syneidesis",
+    "slug": "syneidesis",
+    "extra": {
+      "eas": {
+        "projectId": "eeb9b996-eac4-4dc9-a6d7-96c17e218219"
+      }
+    },
+    "android": {
+      "package": "com.daubricourt.syneidesis"
+    }
   }
 }

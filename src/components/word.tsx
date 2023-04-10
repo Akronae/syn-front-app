@@ -1,10 +1,9 @@
-import { Text } from '@proto-native'
+import { Text, themed } from '@proto-native'
 import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
 import { GrammaticalCase, PartOfSpeech } from 'src/types'
 import * as Types from 'src/types'
-import styled from 'styled-components/native'
 
 export type WordProps = ViewProps & {
   word: Types.Word
@@ -43,29 +42,29 @@ export function Word(props: WordProps) {
   )
 }
 
-const WordWrapper = styled(View)`
-  gap: 5px;
-  padding: 15px;
-  border-radius: 20px;
-  margin: 5px;
-  align-items: center;
-  border-width: 1px;
-  border-color: #ffffff18;
-  background-color: #1c2434;
-  flex-grow: 1;
-`
+const WordWrapper = themed(View, (p) => ({
+  gap: 5,
+  padding: 15,
+  borderRadius: 20,
+  margin: 5,
+  alignItems: `center`,
+  borderWidth: 1,
+  borderColor: `#ffffff18`,
+  backgroundColor: `#1c2434`,
+  flexGrow: 1,
+}))
 
-const Greek = styled(Text)`
-  font-size: 20px;
-  color: ${(p) => p.theme.syn.colors.text.sub};
-  text-align: center;
-`
+const Greek = themed(Text, (p) => ({
+  fontSize: 20,
+  color: p.theme.syn.colors.text.sub,
+  textAlign: `center`,
+}))
 
-const English = styled(Text)`
-  font-size: 12px;
-  color: ${(p) => p.theme.syn.colors.text.sub};
-  text-align: center;
-`
+const English = themed(Text, (p) => ({
+  fontSize: 12,
+  color: p.theme.syn.colors.text.sub,
+  textAlign: `center`,
+}))
 
 export const styles = StyleSheet.create({
   [PartOfSpeech.Adjective]: {},

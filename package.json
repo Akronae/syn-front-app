@@ -8,6 +8,7 @@
     "lint": "eslint src --fix",
     "format": "yarn pretty && yarn lint",
     "build:android:apk": "rm *.apk; eas build -p android --profile preview --local",
+    "install:android:apk": "adb install $(find . -name '*.apk')",
     "log:android": "npx react-native log-android",
     "log:ios": "npx react-native log-ios"
   },

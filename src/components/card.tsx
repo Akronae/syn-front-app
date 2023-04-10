@@ -1,9 +1,4 @@
-import {
-  BaseProps,
-  Text,
-  View,
-  useGroupChildrenByType,
-} from '@proto-native'
+import { BaseProps, Text, View, useGroupChildrenByType } from '@proto-native'
 import * as React from 'react-native'
 import { themed } from 'src/packages/proto-native/src/utils/theme/themed'
 import { Title } from './title'
@@ -30,5 +25,5 @@ const CardBase = themed(View, (p) => ({
   flexDirection: `column`,
   backgroundColor: p.theme.syn.colors.surface.sub,
   padding: p.theme.syn.spacing(4),
-  borderRadius: p.theme.syn.spacing(4),
+  borderRadius: p.theme.syn.borderRadius(4),
 }))

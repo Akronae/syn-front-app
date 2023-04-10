@@ -45,23 +45,27 @@ export default function ReadVerse() {
     },
   ])
 
-  const goToVerse = (verse: number) => {
-    router.setParams({ verse: verse.toString() })
-  }
   const goToChapter = (chapter: number, verse: number) => {
+    const c = book[chapter]
     if (verse < 0) {
-      const c = book[chapter - 1]
-      verse = c.versesParsed.length - verse
+      verse = c.versesParsed.length + verse + 1
+    }
+    if (verse > c.versesParsed.length) {
+      verse = 1
+      chapter = chapter + 1
+    }
+    if (chapter > Object.values(book).length) {
+      return router.push(`/`)
     }
     router.setParams({ chapter: chapter.toString(), verse: verse.toString() })
   }
 
   const goNext = () => {
-    goToVerse(verse.verseNumber + 1)
+    goToChapter(verse.chapter, verse.verseNumber + 1)
   }
   const goBack = () => {
     if (verse.verseNumber === 1) return goToChapter(verse.chapter - 1, -1)
-    else goToVerse(verse.verseNumber - 1)
+    else goToChapter(verse.chapter, verse.verseNumber - 1)
   }
   const goHome = () => {
     router.push(`/`)
