@@ -55,28 +55,31 @@ export function Button(props: ButtonProps) {
   }
 
   const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
-  const fontSize = flatStyle?.fontSize || theme.protonative.typography.size.md
-  const color = flatStyle?.color || theme.protonative.colors.text.primary
+  const fontSize = flatStyle?.fontSize
+  const color = flatStyle?.color
   const stroke = flatStyle?.stroke || color
   const fontWeight = flatStyle?.fontWeight
+
+  const iconStyle = omitBy(
+    {
+      color: color || theme.protonative.colors.text.primary,
+      fontSize: fontSize || theme.protonative.typography.size.md,
+      stroke,
+    },
+    isUndefined,
+  )
 
   const IconComponent = () => (
     <>
       {icon?.ionicons && (
         <Icon
           name={icon.ionicons}
-          style={Native.StyleSheet.flatten([
-            icon.style,
-            omitBy({ color, fontSize }, isUndefined),
-          ])}
+          style={Native.StyleSheet.flatten([icon.style, iconStyle])}
         />
       )}
       {icon?.custom && (
         <icon.custom
-          style={Native.StyleSheet.flatten([
-            icon.style,
-            omitBy({ color, fontSize, stroke }, isUndefined),
-          ])}
+          style={Native.StyleSheet.flatten([icon.style, iconStyle])}
         />
       )}
     </>
@@ -101,7 +104,10 @@ export function Button(props: ButtonProps) {
           <BtnCardText
             {...textProps.taken}
             {...variant}
-            style={[{ color, fontWeight }, textProps.taken.style]}
+            style={[
+              omitBy({ color, fontWeight, fontSize }, isUndefined),
+              textProps.taken.style,
+            ]}
             parent={{ props }}
           />
         )}
@@ -157,12 +163,11 @@ const ButtonBase = themed<ButtonProps & ButtonVariant>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `center`,
+  alignItems: `center`,
   gap: p.theme.protonative.spacing(3),
   textAlign: `center`,
   backgroundColor: p.theme.protonative.colors.surface.primary,
   borderRadius: 8,
-  fontWeight: `bold`,
-  color: p.theme.protonative.colors.text.light,
   paddingVertical: 10,
   paddingHorizontal: 15,
   ...(p.state == `disabled` && StateDisabled(p)),
@@ -185,10 +190,12 @@ const StateSecondary: ThemedStyle = (p) => ({
   color: p.theme.protonative.colors.text.primary,
 })
 
-const BtnCardText = themed<TextProps & ButtonVariant>(Text, (p) => ({
-  fontSize:
-    Native.StyleSheet.flatten(p.parent?.props?.style)?.fontSize ||
-    p.theme.protonative.typography.size[p.size],
-}))
+const BtnCardText = themed<TextProps & ButtonVariant>(Text, (p) => {
+  return {
+    fontSize: p.theme.protonative.typography.size[p.size],
+    fontWeight: `500`,
+    color: p.theme.protonative.colors.text.light,
+  }
+})
 
 const Icon = Ionicons
