@@ -40,6 +40,7 @@ export interface Theme {
       md: number
       sm: number
       xs: number
+      xxs: number
     }
   }
   spacing: (index: number) => number
