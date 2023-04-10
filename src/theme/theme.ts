@@ -51,6 +51,7 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
       md: 20,
       sm: 16,
       xs: 14,
+      xxs: 11,
     },
   },
 }

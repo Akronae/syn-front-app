@@ -8,5 +8,6 @@
       "@proto-native": ["./src/packages/proto-native/src/index"],
       "@proto-native/*": ["./src/packages/proto-native/src/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }

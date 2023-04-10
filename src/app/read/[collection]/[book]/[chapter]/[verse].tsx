@@ -1,28 +1,16 @@
-import { Base, useState } from '@proto-native'
+import { Base, themed, useState } from '@proto-native'
 import { View } from '@proto-native'
-import { SkeletonLoader } from '@proto-native'
 import * as React from 'react'
 
 import * as Native from 'react-native'
 import { Verse } from 'src/components/verse'
-import BooksReadStorage from 'src/storage/BooksReadStorage'
-import styled from 'styled-components/native'
+import BooksReadStorage from 'src/storage/books-read-stored'
 import { WordDetails } from 'src/components/word-details'
-import { Stack, useSearchParams } from 'expo-router'
+import { Stack, useRouter, useSearchParams } from 'expo-router'
 import text from 'src/assets/text'
 import * as Types from 'src/types'
-
-function find<T = any>(
-  obj: Record<string, any> | undefined,
-  key: string,
-): T | undefined {
-  if (!obj) return undefined
-  const foundKey = Object.keys(obj).find(
-    (k) => k.toLowerCase() === key.toLowerCase(),
-  )
-  if (!foundKey) return undefined
-  return obj[foundKey] as T
-}
+import { Button } from 'src/components/button'
+import { findByKey } from 'src/utils/object/find-by-key'
 
 export type ReadVerseParams = {
   collection: string
@@ -32,45 +20,52 @@ export type ReadVerseParams = {
 }
 
 export default function ReadVerse() {
+  const router = useRouter()
   const params = useSearchParams<ReadVerseParams>() as ReadVerseParams
   const focusedWord = useState<string | undefined>(undefined)
-  const collection = find(text, params.collection)
-  const book = find(collection, params.book as string)
-  const chapter = find<Types.Chapter>(book, params.chapter as string)
-  const verse = find<Types.Verse>(
+  const collection = findByKey<Types.collection>(text, params.collection)
+  const book = findByKey<Types.Book>(collection, params.book as string)
+  const chapter = findByKey<Types.Chapter>(book, params.chapter as string)
+  const verse = findByKey<Types.Verse>(
     chapter?.versesParsed,
     (parseInt(params.verse) - 1).toString(),
   )
 
-  const isReady = useState(true)
+  if (!book || !verse) return null
 
-  if (!verse) return null
-
-  const scrollView = React.useRef<Native.ScrollView>(null)
-
-  BooksReadStorage.merge({
-    [BooksReadStorage.getKey(params.collection, params.book)]: {
-      book: verse.book,
+  BooksReadStorage.merge([
+    {
+      collection: params.collection,
+      book: params.book,
       chapter: verse.chapter,
       verse: verse.verseNumber,
+      firstReadDate: new Date().toUTCString(),
+      lastReadDate: new Date().toUTCString(),
+      read: true,
     },
-  })
+  ])
 
-  const SkeletonCard = () => (
-    <SkeletonLoader.Container style={[{ flex: 1, flexDirection: `row` }]}>
-      <SkeletonLoader.Item
-        style={{
-          height: 200,
-          borderRadius: 30,
-          marginBottom: 30,
-        }}
-      />
-    </SkeletonLoader.Container>
-  )
+  const goToVerse = (verse: number) => {
+    router.setParams({ verse: verse.toString() })
+  }
+  const goToChapter = (chapter: number, verse: number) => {
+    if (verse < 0) {
+      const c = book[chapter - 1]
+      verse = c.versesParsed.length - verse
+    }
+    router.setParams({ chapter: chapter.toString(), verse: verse.toString() })
+  }
 
-  const d = React.useMemo(() => {
-    return <WordDetails word={focusedWord} />
-  }, [focusedWord.state])
+  const goNext = () => {
+    goToVerse(verse.verseNumber + 1)
+  }
+  const goBack = () => {
+    if (verse.verseNumber === 1) return goToChapter(verse.chapter - 1, -1)
+    else goToVerse(verse.verseNumber - 1)
+  }
+  const goHome = () => {
+    router.push(`/`)
+  }
 
   return (
     <ReadChapterBase>
@@ -79,33 +74,52 @@ export default function ReadVerse() {
           title: `${verse.book} ${verse.chapter}:${verse.verseNumber}`,
         }}
       />
-      <ScrollView scrollEventThrottle={1000} ref={scrollView}>
-        <SkeletonLoader showIf={!isReady.state}>
-          {SkeletonCard()}
-          {SkeletonCard()}
-          {SkeletonCard()}
-          {SkeletonCard()}
-        </SkeletonLoader>
-        <View
-          gap={40}
-          childRendering={{
-            interval: { ms: 500 },
-            instant: { first: 5 },
-          }}
-        >
+      <ScrollView>
+        <View gap={40}>
           <Verse verse={verse} focusedWord={focusedWord} />
         </View>
       </ScrollView>
-      {d}
+      <BottomActions>
+        <Button
+          onPress={goBack}
+          type='text'
+          size='sm'
+          icon={{ ionicons: `arrow-back` }}
+        >
+          Back
+        </Button>
+        <Button
+          onPress={goHome}
+          type='text'
+          icon={{ ionicons: `home` }}
+        ></Button>
+        <Button
+          onPress={goNext}
+          type='text'
+          size='sm'
+          icon={{ ionicons: `arrow-forward`, position: `right` }}
+        >
+          Next
+        </Button>
+      </BottomActions>
+      <WordDetails word={focusedWord} />
     </ReadChapterBase>
   )
 }
 
-const ReadChapterBase = styled(Base)`
-  flex: 1;
-`
+const ReadChapterBase = themed(Base, (p) => ({
+  flex: 1,
+}))
 
-const ScrollView = styled(Native.ScrollView)`
-  padding: 20px;
-  padding-top: 50px;
-`
+const ScrollView = themed(Native.ScrollView, (p) => ({
+  padding: 20,
+  paddingTop: 50,
+}))
+
+const BottomActions = themed(View, (p) => ({
+  flexDirection: `row`,
+  justifyContent: `space-between`,
+  padding: 5,
+  borderTopColor: p.theme.syn.colors.border.disabled,
+  borderTopWidth: 1,
+}))

@@ -1,9 +1,10 @@
 import { useRouter } from 'expo-router'
 import text from 'src/assets/text'
+import { Card } from 'src/components/card'
 import { Title, TitleProps } from 'src/components/title'
-import { View, Text, useAsync } from 'src/packages/proto-native/src'
+import { View, useAsync } from 'src/packages/proto-native/src'
 import { themed } from 'src/packages/proto-native/src/utils/theme/themed'
-import BooksReadStorage from 'src/storage/BooksReadStorage'
+import BooksReadStorage from 'src/storage/books-read-stored'
 
 function BookThumbs() {
   const router = useRouter()
@@ -15,18 +16,24 @@ function BookThumbs() {
     <View gap={(t) => t.syn.spacing(4)}>
       {Object.keys(text.NT).map((bookName) => {
         const book = text.NT[bookName as keyof typeof text.NT]
-        const last = booksRead.value?.[BooksReadStorage.getKey('nt', bookName)]
+        const bookVersesRead = booksRead.value?.filter(
+          (b) => b.book === bookName,
+        )
+        const bookChaptersRead = Array.from(
+          new Set(bookVersesRead?.map((b) => b.chapter)),
+        )
         return (
           <BookThumb
             key={bookName}
             onPress={() => {
-              router.push(`/read/nt/${bookName}/${last?.chapter ?? 1}/${last?.verse ?? 1}`)
+              router.push(`/read/nt/${bookName}`)
             }}
           >
-            <Title size='h5'>{bookName}</Title>
-            <BookThumbDesc>
-              Read {last?.chapter ?? 0} out of {Object.keys(book).length} chapters
-            </BookThumbDesc>
+            <BookThumb.Title>{bookName}</BookThumb.Title>
+            <BookThumb.Description>
+              Read {bookChaptersRead.length} out of {Object.keys(book).length}{` `}
+              chapters
+            </BookThumb.Description>
           </BookThumb>
         )
       })}
@@ -66,12 +73,4 @@ const GetStartedTitle = themed<TitleProps>(Title, (p) => ({
   // marginTop: p.theme.syn.spacing(10),
 }))
 
-const BookThumb = themed(View, (p) => ({
-  backgroundColor: p.theme.syn.colors.surface.sub,
-  padding: p.theme.syn.spacing(4),
-  borderRadius: p.theme.syn.spacing(4),
-})) as typeof View
-
-const BookThumbDesc = themed(Text, (p) => ({
-  fontSize: p.theme.syn.typography.size.xs,
-}))
+const BookThumb = themed(Card, (p) => ({})) as typeof Card

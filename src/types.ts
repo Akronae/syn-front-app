@@ -41,3 +41,11 @@ export interface Chapter {
   book: string
   versesParsed: Verse[]
 }
+
+export type Book = {
+  [index: number]: Chapter
+}
+
+export type collection = {
+  [index: string]: Book
+}

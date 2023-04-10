@@ -1,4 +1,3 @@
-import * as React from 'react-native'
 import styled from 'styled-components/native'
 import * as Proto from '@proto-native'
 
