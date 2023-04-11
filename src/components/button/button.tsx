@@ -7,7 +7,7 @@ import {
 } from '@proto-native/components/text'
 import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { isUndefined, omitBy } from 'lodash-es'
+import { isUndefined, omit, omitBy } from 'lodash-es'
 import * as React from 'react'
 import * as Native from 'react-native'
 import Animated from 'react-native-reanimated'
@@ -74,7 +74,10 @@ export function Button(props: ButtonProps) {
       {icon?.ionicons && (
         <Icon
           name={icon.ionicons}
-          style={Native.StyleSheet.flatten([icon.style, iconStyle])}
+          style={Native.StyleSheet.flatten([
+            icon.style,
+            omit(iconStyle, [`stroke`]),
+          ])}
         />
       )}
       {icon?.custom && (
