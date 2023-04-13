@@ -96,8 +96,8 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   }, [formField?.state])
 
   if (!dropdown) dropdown = {}
-  const showDropdown = useExistingStateOr(dropdown?.show, false)
-  dropdown.show = showDropdown
+  const dropdownShow = useExistingStateOr(dropdown?.show, false)
+  dropdown.show = dropdownShow
 
   const childrenBy = useGroupChildrenByType(children, {
     Dropdown: InputBase.Dropdown,
