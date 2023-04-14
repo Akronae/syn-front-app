@@ -96,8 +96,8 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   }, [formField?.state])
 
   if (!dropdown) dropdown = {}
-  const showDropdown = useExistingStateOr(dropdown?.show, false)
-  dropdown.show = showDropdown
+  const dropdownShow = useExistingStateOr(dropdown?.show, false)
+  dropdown.show = dropdownShow
 
   const childrenBy = useGroupChildrenByType(children, {
     Dropdown: InputBase.Dropdown,
@@ -106,6 +106,20 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   const style = omit(
     Native.StyleSheet.flatten([props.style, textProps.taken.style]) ?? {},
     `textDecoration`,
+  )
+
+  const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
+  const fontSize = flatStyle?.fontSize
+  const color = flatStyle?.color
+  const stroke = flatStyle?.stroke || color
+
+  const iconStyle = omitBy(
+    {
+      color: color || theme.protonative.colors.text.primary,
+      fontSize: fontSize || theme.protonative.typography.size.md,
+      stroke: stroke || color,
+    },
+    isUndefined,
   )
 
   return (
@@ -122,20 +136,11 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
             name={icon.ionicons}
             isInvalid={isInvalid}
             invalid={invalid}
-            style={omitBy(
-              { color: style.color, fontSize: style.fontSize },
-              isUndefined,
-            )}
+            style={iconStyle}
           />
         )}
         {icon?.custom && (
-          <icon.custom
-            isInvalid={isInvalid}
-            style={omitBy(
-              { color: style.color, fontSize: style.fontSize },
-              isUndefined,
-            )}
-          />
+          <icon.custom isInvalid={isInvalid} style={iconStyle} />
         )}
         {childrenBy.others.filter((c) => React.isValidElement(c))}
         {rightSlot?.(rightSlotProps)}
