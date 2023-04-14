@@ -4,10 +4,7 @@ import {
   getStyleBoldness,
   takeTextOwnProps,
 } from '@proto-native/components/text'
-import {
-  useExistingStateOr,
-  useGroupChildrenByType,
-} from '@proto-native/utils'
+import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
@@ -21,10 +18,10 @@ import {
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
 import { DropdownProps } from '@proto-native/components/dropdown'
 
-export type TextInputProps<TSlotProps = any> = InputBaseProps<
-  string,
-  TSlotProps
->
+export type TextInputProps<
+  TSlotProps = any,
+  TInputType = string,
+> = InputBaseProps<TInputType, TSlotProps>
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
