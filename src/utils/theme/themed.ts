@@ -7,7 +7,7 @@ export function themed<T extends Record<string, any>>(
   comp: React.ComponentType<any>,
   p: ThemedStyle<T>,
 ): React.ComponentType<T> {
-  const c = (props: any) => {
+  const c = React.forwardRef((props: any, ref) => {
     const theme = useTheme()
     if (!props) props = {} as T
     const concatProps = { ...props, theme }
@@ -16,11 +16,14 @@ export function themed<T extends Record<string, any>>(
       themedStyle = Native.StyleSheet.flatten([themedStyle, concatProps.style])
     }
 
-    return React.createElement(comp, { ...props, style: themedStyle })
+    return React.createElement(comp, { ...props, style: themedStyle, ref })
+  }) as React.ForwardRefExoticComponent<any> & {
+    extends: React.ComponentType<any>
   }
 
   Object.keys(comp).forEach((key) => {
-    (c as any)[key] = (comp as any)[key]
+    if (key == `$$typeof` || key == `render`) return
+    ;(c as any)[key] = (comp as any)[key]
   })
   c.displayName = `ThemedComponent(${comp.displayName || comp.name})`
   c.extends = comp
