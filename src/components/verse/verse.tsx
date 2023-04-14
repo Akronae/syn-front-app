@@ -1,4 +1,4 @@
-import { ReactiveState, Text, themed, useExistingStateOr } from '@proto-native'
+import { ReactiveState, themed, useExistingStateOr } from '@proto-native'
 import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { Word } from 'src/components/word'
@@ -16,10 +16,6 @@ export function Verse(props: VerseProps) {
 
   return (
     <View style={[column]} {...passed}>
-      <Text>
-        {verse.book} {verse.chapter}:{verse.verseNumber}
-      </Text>
-      <VerseTranslated>{verse.verseTranslated}</VerseTranslated>
       <VerseWrapper gap={0}>
         {verse.wordsParsed.map((word, i) => (
           <Word
@@ -42,11 +38,4 @@ const VerseWrapper = themed(View, (p) => ({
   alignItems: `stretch`,
   rowGap: 4,
   columnGap: 2,
-}))
-
-const VerseTranslated = themed(Text, (p) => ({
-  paddingTop: 10,
-  paddingBottom: 20,
-  fontSize: 14,
-  color: p.theme.syn.colors.text.sub,
 }))

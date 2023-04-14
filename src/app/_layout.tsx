@@ -1,10 +1,10 @@
 import { useFonts } from 'expo-font'
 import * as NavigationBar from 'expo-navigation-bar'
 import { StatusBar } from 'expo-status-bar'
-import { Platform, useColorScheme } from 'react-native'
+import { Platform, SafeAreaView, useColorScheme } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Theme } from 'src/theme/theme'
-import styled, { ThemeProvider } from 'styled-components/native'
+import { ThemeProvider } from 'styled-components/native'
 import * as Proto from '@proto-native'
 import { PortalHost, PortalProvider } from '@gorhom/portal'
 import { isAndroid } from 'src/packages/proto-native/src/utils/device/is-android'
@@ -28,7 +28,7 @@ export default function AppLayout() {
 
   if (isAndroid())
     NavigationBar.setBackgroundColorAsync(
-      Theme.syn.colors.surface.primary || `#000`,
+      Theme.syn.colors.surface.default || `#000`,
     )
   if (isAndroid()) NavigationBar.setVisibilityAsync(`hidden`)
 
@@ -64,9 +64,9 @@ export default function AppLayout() {
   )
 }
 
-const Page = styled.SafeAreaView`
-  flex: 1;
-  background-color: ${(props) => props.theme.syn.colors.surface.default};
-  color: ${(props) => props.theme.syn.colors.text.primary};
-  font-size: 18px;
-`
+const Page = Proto.themed(SafeAreaView, (p) => ({
+  flex: 1,
+  backgroundColor: p.theme.syn.colors.surface.default,
+  color: p.theme.syn.colors.text.primary,
+  fontSize: 18,
+}))

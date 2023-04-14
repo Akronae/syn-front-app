@@ -32,11 +32,12 @@ export default function AppIndex() {
             <GetBackButton
               size='sm'
               icon={{ ionicons: `arrow-forward`, position: `right` }}
-              onPress={() =>
+              onPress={() => {
+                const l = lastVerseRead
                 router.push(
-                  `/read/${lastVerseRead.collection}/${lastVerseRead.book}/${lastVerseRead.chapter}/${lastVerseRead.verse}`,
+                  `/read/${l.collection}/${l.book}/${l.chapter}/${l.verse}`,
                 )
-              }
+              }}
             >
               {lastVerseRead.book} {lastVerseRead.chapter}:{lastVerseRead.verse}
             </GetBackButton>
