@@ -120,7 +120,7 @@ export function TextInput(props: TextInputProps) {
         ref={nativeInputRef}
         placeholder={placeholder}
         placeholderTextColor={theme.protonative.colors.text.sub}
-        value={model.state}
+        value={model.state ?? ``}
         numberOfLines={numberOfLines}
         multiline={multiline}
         onKeyPress={onKeyPressBase}
