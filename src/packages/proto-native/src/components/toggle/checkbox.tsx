@@ -8,8 +8,12 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 
 export type CheckboxProps = BaseProps & {
   model?: ReactiveState<boolean | null>
-  mark?: {
+  markbox?: {
     style?: ReturnType<ThemedStyle>
+    mark?: {
+      custom?: React.ComponentType<Partial<CheckboxProps>>
+      ionicons?: keyof (typeof Ionicons)[`glyphMap`]
+    }
   }
 }
 
@@ -18,7 +22,7 @@ export function Checkbox(props: CheckboxProps) {
     model: modelProps,
     onPress: onPressProps,
     children,
-    mark,
+    markbox,
     ...passed
   } = props
 
@@ -30,8 +34,15 @@ export function Checkbox(props: CheckboxProps) {
 
   return (
     <CheckboxBase {...passed} onPress={onPress}>
-      <Markbox model={model} mark={mark}>
-        <Mark model={model} name='remove-outline' />
+      <Markbox model={model} markbox={markbox}>
+        {markbox?.mark?.custom ? (
+          <markbox.mark.custom model={model} />
+        ) : (
+          <Mark
+            model={model}
+            name={markbox?.mark?.ionicons ?? `remove-outline`}
+          />
+        )}
       </Markbox>
       {children}
     </CheckboxBase>
@@ -49,7 +60,10 @@ const CheckboxBase = themed<BaseProps>(Base, (p) => ({
 }))
 
 const Markbox = themed<
-  BaseProps & { model: CheckboxProps['model']; mark: CheckboxProps['mark'] }
+  BaseProps & {
+    model: CheckboxProps['model']
+    markbox: CheckboxProps['markbox']
+  }
 >(Base, (p) => ({
   display: `flex`,
   justifyContent: `center`,
@@ -63,7 +77,7 @@ const Markbox = themed<
     p.model?.state === true
       ? p.theme.protonative.colors.surface.primary
       : undefined,
-  ...p.mark?.style,
+  ...p.markbox?.style,
 }))
 
 const Mark = themed<{

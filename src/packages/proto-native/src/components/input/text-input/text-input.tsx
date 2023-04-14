@@ -7,7 +7,6 @@ import {
 import {
   useExistingStateOr,
   useGroupChildrenByType,
-  useState,
 } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
@@ -59,10 +58,10 @@ export function TextInput(props: TextInputProps) {
   const isInvalid = useExistingStateOr(isInvalidProps, false)
   invalid ??= {}
 
-  if (!dropdown) dropdown = {}
-  const showDropdown = useState(dropdown?.show?.state ?? false)
-  dropdown.show = showDropdown
-  showDropdown.state = useMemo(() => {
+  dropdown ??= {}
+  const dropdownShow = useExistingStateOr(dropdown?.show, false)
+  dropdown.show = dropdownShow
+  dropdownShow.state = useMemo(() => {
     return isFocused?.state || false
   }, [isFocused?.state])
 
