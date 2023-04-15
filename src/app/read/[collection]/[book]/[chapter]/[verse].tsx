@@ -2,8 +2,6 @@ import { Base, themed, useState } from '@proto-native'
 import { View } from '@proto-native'
 import * as React from 'react'
 
-import * as Native from 'react-native'
-import { Verse } from 'src/components/verse/verse'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { WordDetails } from 'src/components/word-details'
 import { Stack, useRouter, useSearchParams } from 'expo-router'
@@ -11,9 +9,12 @@ import text from 'src/assets/text'
 import * as Types from 'src/types'
 import { Button } from 'src/components/button'
 import { findByKey } from 'src/utils/object/find-by-key'
-import { VerseHeader } from 'src/components/verse/verse-header'
-import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { useSharedValue } from 'react-native-reanimated'
+
+
+import * as RNGH from 'react-native-gesture-handler'
+
+
+import { VerseScrollView } from 'src/components/verse/verse-scrollview'
 
 export type ReadVerseParams = {
   collection: string
@@ -34,8 +35,7 @@ export default function ReadVerse() {
     (parseInt(params.verse) - 1).toString(),
   )
 
-  const scrollview = React.useRef<Native.ScrollView>(null)
-  const isDragging = useSharedValue(false)
+  const scrollview = React.useRef<RNGH.ScrollView>(null)
 
   if (!book || !verse) return null
 
@@ -78,25 +78,10 @@ export default function ReadVerse() {
     router.push(`/`)
   }
 
-  const longPressGesture = Gesture.LongPress()
-    .onStart(() => {
-      isDragging.value = true
-    })
-    .minDuration(250)
-  const Lol = Gesture.Pan()
-    .onEnd(console.log)
-    .manualActivation(true)
-    .simultaneousWithExternalGesture(longPressGesture)
-    .onTouchesMove((_e, state) => {
-      if (isDragging.value) {
-        state.activate()
-      } else {
-        state.fail()
-      }
-    })
-    .onFinalize(() => {
-      isDragging.value = false
-    })
+  const onPull = (direction: 'up' | 'down') => {
+    if (direction === `up`) goNext()
+    else goBack()
+  }
 
   return (
     <ReadChapterBase>
@@ -105,18 +90,12 @@ export default function ReadVerse() {
           title: `${verse.book} ${verse.chapter}:${verse.verseNumber}`,
         }}
       />
-      <ScrollView
-        stickyHeaderIndices={[0]}
-        contentContainerStyle={{ paddingBottom: 30, paddingHorizontal: 30 }}
+      <VerseScrollView
+        focusedWord={focusedWord}
+        verse={verse}
+        onPull={onPull}
         ref={scrollview}
-      >
-        <VerseHeader verse={verse} />
-        <GestureDetector gesture={Gesture.Race(Lol, longPressGesture)}>
-          <View gap={40}>
-            <Verse verse={verse} focusedWord={focusedWord} />
-          </View>
-        </GestureDetector>
-      </ScrollView>
+      />
       <BottomActions>
         <Button
           onPress={goBack}
@@ -148,10 +127,6 @@ export default function ReadVerse() {
 const ReadChapterBase = themed(Base, (p) => ({
   flex: 1,
 })) as typeof View
-
-const ScrollView = themed(Native.ScrollView, (p) => ({
-  marginTop: 10,
-})) as typeof Native.ScrollView
 
 const BottomActions = themed(View, (p) => ({
   flexDirection: `row`,

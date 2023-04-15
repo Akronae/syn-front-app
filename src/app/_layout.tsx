@@ -2,7 +2,10 @@ import { useFonts } from 'expo-font'
 import * as NavigationBar from 'expo-navigation-bar'
 import { StatusBar } from 'expo-status-bar'
 import { Platform, SafeAreaView, useColorScheme } from 'react-native'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import {
+  GestureHandlerRootView,
+  enableExperimentalWebImplementation,
+} from 'react-native-gesture-handler'
 import { Theme } from 'src/theme/theme'
 import { ThemeProvider } from 'styled-components/native'
 import * as Proto from '@proto-native'
@@ -14,6 +17,8 @@ import * as ReactNavigation from '@react-navigation/native'
 import { getNavigationTheme } from 'src/routing/get-navigation-theme'
 
 export default function AppLayout() {
+  enableExperimentalWebImplementation()
+
   const [loaded] = useFonts({
     'MazzardH-Bold': require(`src/assets/fonts/Mazzard/MazzardH-Bold.ttf`),
     'MazzardH-Regular': require(`src/assets/fonts/Mazzard/MazzardH-Regular.ttf`),

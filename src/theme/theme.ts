@@ -12,10 +12,10 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
   colors: {
     surface: {
       primary: `#800080`,
-      default: `#000000`,
+      default: `#0e0e11`,
       contrast: `#ffffff`,
       disabled: `#32373e`,
-      sub: `#222`,
+      sub: `#232326`,
       error: `#ff0000`,
     },
     text: {
