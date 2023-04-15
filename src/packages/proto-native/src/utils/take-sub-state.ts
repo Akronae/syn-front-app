@@ -8,11 +8,12 @@ import { ReactiveState } from './reactive-state'
  */
 export function takeSubState<T extends object>(
   key: string,
-  reactState: ReactiveState<T>,
+  reactState: ReactiveState<T | undefined>,
 ): ReactiveState<any> {
   return new ReactiveState(
     get(reactState.state, key),
     (val: SetStateAction<any>) => {
+      if (!reactState.state) return
       set(reactState.state, key, val)
       reactState.state = { ...reactState.state }
     },

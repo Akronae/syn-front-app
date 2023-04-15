@@ -18,10 +18,10 @@ import {
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
 import { DropdownProps } from '@proto-native/components/dropdown'
 
-export type TextInputProps<TSlotProps = any> = InputBaseProps<
-  string,
-  TSlotProps
->
+export type TextInputProps<
+  TSlotProps = any,
+  TInputType = string,
+> = InputBaseProps<TInputType, TSlotProps>
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
@@ -120,7 +120,7 @@ export function TextInput(props: TextInputProps) {
         ref={nativeInputRef}
         placeholder={placeholder}
         placeholderTextColor={theme.protonative.colors.text.sub}
-        value={model.state}
+        value={model.state ?? ``}
         numberOfLines={numberOfLines}
         multiline={multiline}
         onKeyPress={onKeyPressBase}
