@@ -33,15 +33,19 @@ export function Dropdown(props: DropdownProps) {
       anchorLayoutLoaded.state = true
     })
   }, [])
+
+  const childrenWrapperLayoutLoaded = useState(false)
+  const childrenWrapperLayout = useState({ width: 0, height: 0, x: 0, y: 0 })
   const onChildrenWrapperLayout = React.useCallback(
     (e: Native.LayoutChangeEvent) => {
       childrenWrapperLayout.state = e.nativeEvent.layout
-      childrenWrapperLayoutLoaded.state = true
+      setTimeout(() => {
+        childrenWrapperLayoutLoaded.state = true
+      }, 100)
     },
     [],
   )
-  const childrenWrapperLayoutLoaded = useState(false)
-  const childrenWrapperLayout = useState({ width: 0, height: 0, x: 0, y: 0 })
+
   const layoutsLoaded =
     anchorLayoutLoaded.state && childrenWrapperLayoutLoaded.state
 
