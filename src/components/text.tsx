@@ -1,4 +1,5 @@
 import { Base, BaseProps } from '@proto-native/components/base'
+import { isAndroid } from '@proto-native/utils/device/is-android'
 import { themed } from '@proto-native/utils/theme/themed'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as Native from 'react-native'
@@ -76,7 +77,7 @@ function TextCompo(props: TextProps) {
 
   const textBaseStyle = Native.StyleSheet.flatten(textOwnProps.taken.style)
   let fontWeight = textBaseStyle?.fontWeight || `normal`
-  if (parseInt(fontWeight) >= 700 && Native.Platform.OS === `android`) {
+  if (isAndroid() && parseInt(fontWeight) >= 700) {
     // Android doesn't support 700+ font weight
     fontWeight = `600`
   }
