@@ -1,10 +1,17 @@
 import { ReactiveState } from '@proto-native/utils'
 
 export type WizardHandle<T = any> = {
-  step: ReactiveState<number>
+  step: {
+    current: ReactiveState<number>
+    count: number
+  }
   data?: ReactiveState<T>
-  back: () => void
-  next: () => void
-  go: (to: number) => void
+  back: () => boolean
+  next: () => boolean
+  go: (to: number) => boolean
   guards: { back?: () => boolean; next?: () => boolean }
+  canGo: {
+    next: () => boolean
+    back: () => boolean
+  }
 }

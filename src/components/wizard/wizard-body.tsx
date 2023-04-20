@@ -1,8 +1,13 @@
 import { Base, BaseProps } from '@proto-native/components/base'
-import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import {
+  ReactiveState,
+  useExistingStateOr,
+  useGroupChildrenByType,
+} from '@proto-native/utils'
 import React, { forwardRef, useImperativeHandle, useMemo } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
+import { WizardStep } from './wizard-step'
 
 export type WizardBodyProps<T> = BaseProps & {
   data: ReactiveState<T>
@@ -12,35 +17,45 @@ export type WizardBodyProps<T> = BaseProps & {
 export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
   const { children, data, step: stepProps, ...passed } = props
 
-  const step = useExistingStateOr(stepProps, 0)
-
-  const activeChild = useMemo(() => {
-    const c = React.Children.toArray(children)
-    return c[step.state]
-  }, [children, step.state])
-
-  const go = (to: number) => {
-    console.log(`Going from wizard step`, step.state, `to`, to)
-    step.state = to
+  const byType = useGroupChildrenByType(children, { Step: WizardStep })
+  const stepElems = byType.Step
+  const step = {
+    current: useExistingStateOr(stepProps, 0),
+    count: stepElems.length,
   }
-  const back = () => {
+  const activeChild = useMemo(() => {
+    return stepElems[step.current.state]
+  }, [children, step.current.state])
+
+  const go = (to: number): boolean => {
+    console.log(`Going from wizard step`, step.current.state, `to`, to)
+    step.current.state = to
+    return stepElems[to] !== undefined
+  }
+  const back = (): boolean => {
     if (wizardValue.guards.back) {
       if (!wizardValue.guards.back()) {
         console.warn(`Wizard back guard prevented going backwards`, wizardValue)
-        return
+        return false
       }
     }
-    go(step.state - 1)
+    return go(step.current.state - 1)
   }
-  const next = () => {
+  const next = (): boolean => {
     if (wizardValue.guards.next) {
       if (!wizardValue.guards.next()) {
         console.warn(`Wizard next guard prevented going forwards`, wizardValue)
-        return
+        return false
       }
     }
-    go(step.state + 1)
+    return go(step.current.state + 1)
   }
+
+  const canGo = {
+    next: () => step.current.state < step.count - 1,
+    back: () => step.current.state > 0,
+  }
+
   const wizardValue: WizardHandle = {
     step,
     back,
@@ -48,6 +63,7 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     go,
     data,
     guards: {},
+    canGo,
   }
 
   useImperativeHandle(ref, () => wizardValue)

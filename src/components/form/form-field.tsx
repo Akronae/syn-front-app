@@ -27,7 +27,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
 
     const form = useForm()
     const state = useExistingStateOr(
-      form.fields[name]?.state,
+      form?.fields[name]?.state,
       FormFieldState.Normal,
     )
     const defaultInput = useState<any>(null)
@@ -38,7 +38,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
       props,
     }
     useImperativeHandle(ref, () => refHandle)
-    form.fields[name] = refHandle
+    if (form) form.fields[name] = refHandle
 
     return (
       <FormFieldBase gap={(t) => t.protonative.spacing(2)} {...passed}>

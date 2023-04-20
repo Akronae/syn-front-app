@@ -86,7 +86,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   if (formField) formField.input = model
   const form = useForm()
   useEffect(() => {
-    if (formField?.state.state == FormFieldState.Error) {
+    if (form && formField?.state.state == FormFieldState.Error) {
       formField.state.state = FormFieldState.Normal
       form.rerender()
     }
