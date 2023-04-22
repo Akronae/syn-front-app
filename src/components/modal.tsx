@@ -9,6 +9,7 @@ export type ModalProps = BaseProps & {
   overlay?: {
     style?: Native.StyleProp<Native.ViewStyle>
     onPress?: (e: Native.GestureResponderEvent) => void
+    dismissOnPress?: boolean
   }
 }
 
@@ -18,7 +19,7 @@ export function Modal(props: ModalProps) {
 
   const onBackgroundPress = (e: Native.GestureResponderEvent) => {
     setTimeout(() => {
-      open.state = false
+      if (overlay?.dismissOnPress) open.state = false
       overlay?.onPress?.(e)
     }, 1)
   }

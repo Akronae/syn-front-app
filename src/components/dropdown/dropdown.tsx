@@ -75,6 +75,7 @@ export function Dropdown(props: DropdownProps) {
           onPress: () => {
             onDismiss?.()
           },
+          dismissOnPress: true,
         }}
       >
         <Native.View
@@ -90,6 +91,7 @@ export function Dropdown(props: DropdownProps) {
               },
             })
           })}
+          {childrenBy.others}
         </Native.View>
       </Modal>
     </DropdownBase>
