@@ -3,6 +3,7 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
+import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
@@ -36,7 +37,7 @@ export function takeImageOwnProps(props: ImageProps) {
 
 const ImageBase = Base
 
-const Img = themed(ExpoImage.Image, (p) => ({
+const Img = themed(isWeb() ? Native.Image : ExpoImage.Image, (p) => ({
   width: `100%`,
   height: `100%`,
 }))

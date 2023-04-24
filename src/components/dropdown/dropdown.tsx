@@ -2,7 +2,12 @@ import { Base, BaseProps } from '@proto-native/components/base'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react'
 import { DropdownItem, DropdownItemProps } from './dropdown-item'
-import { useGroupChildrenByType, useState } from '@proto-native/utils'
+import {
+  ReactiveState,
+  useExistingStateOr,
+  useGroupChildrenByType,
+  useState,
+} from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { useWindowDimensions } from 'react-native'
@@ -16,13 +21,22 @@ export type DropdownProps = BaseProps & {
       style: ReturnType<ThemedStyle>
     }
   }
+  open?: ReactiveState<boolean>
 }
 
 export function Dropdown(props: DropdownProps) {
-  const { children, style, modal, onDismiss, ...passed } = props
+  const {
+    children,
+    style,
+    modal,
+    onDismiss,
+    open: openProps,
+    ...passed
+  } = props
   const childrenBy = useGroupChildrenByType(children, {
     DropdownItem: Dropdown.Item,
   })
+  const open = useExistingStateOr(openProps, true)
 
   const anchor = React.useRef<Native.View>(null)
   const anchorLayout = useState({ top: 0, left: 0, width: 0, height: 0 })
@@ -77,6 +91,7 @@ export function Dropdown(props: DropdownProps) {
           },
           dismissOnPress: true,
         }}
+        open={open}
       >
         <Native.View
           style={childrenWrapperStyle}
