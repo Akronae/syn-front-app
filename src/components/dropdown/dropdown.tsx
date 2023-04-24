@@ -100,8 +100,8 @@ export function Dropdown(props: DropdownProps) {
           {childrenBy.DropdownItem.map((child, index) => {
             return React.cloneElement<DropdownItemProps>(child, {
               key: index,
-              onTouchStart: () => {
-                child.props.onPress?.()
+              onTouchStart: (e: any) => {
+                child.props.onTouchStart?.(e)
                 props.onItemPress?.(child)
               },
             })
