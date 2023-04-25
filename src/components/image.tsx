@@ -37,7 +37,7 @@ export function takeImageOwnProps(props: ImageProps) {
 
 const ImageBase = Base
 
-const Img = themed(isWeb() ? Native.Image : ExpoImage.Image, (p) => ({
+const Img = themed(ExpoImage.Image, (p) => ({
   width: `100%`,
   height: `100%`,
 }))
