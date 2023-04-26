@@ -3,7 +3,6 @@ import {
   BaseProps,
   takeBaseOwnProps,
 } from '@proto-native/components/base'
-import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'

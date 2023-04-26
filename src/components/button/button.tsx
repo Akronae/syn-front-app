@@ -69,6 +69,15 @@ export function Button(props: ButtonProps) {
     isUndefined,
   )
 
+  const containerStyle: Native.ViewStyle = {
+    flexGrow: flatStyle.flexGrow,
+    flexShrink: flatStyle.flexShrink,
+    flexBasis: flatStyle.flexBasis,
+    width: flatStyle.width,
+    height: flatStyle.height,
+    alignSelf: flatStyle.alignSelf,
+  }
+
   const IconComponent = () => (
     <>
       {icon?.ionicons && (
@@ -89,34 +98,36 @@ export function Button(props: ButtonProps) {
   )
 
   return (
-    <Animated.View style={anim.style}>
-      <ButtonBase
-        {...textProps.rest}
-        {...btnProps.taken}
-        {...variant}
-        style={[btnProps.taken.style, textProps.rest.style]}
-        onTouchStart={(e) => {
-          anim.start(() => btnProps.taken?.onTouchStart?.(e))
-        }}
-        onTouchEnd={(e) => {
-          anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
-        }}
-      >
-        {icon?.position !== `right` && <IconComponent />}
-        {textProps.taken.children && (
-          <BtnCardText
-            {...textProps.taken}
-            {...variant}
-            style={[
-              omitBy({ color, fontWeight, fontSize }, isUndefined),
-              textProps.taken.style,
-            ]}
-            parent={{ props }}
-          />
-        )}
-        {icon?.position === `right` && <IconComponent />}
-      </ButtonBase>
-    </Animated.View>
+    <Native.View style={containerStyle}>
+      <Animated.View style={anim.style}>
+        <ButtonBase
+          {...textProps.rest}
+          {...btnProps.taken}
+          {...variant}
+          style={[btnProps.taken.style, textProps.rest.style]}
+          onTouchStart={(e) => {
+            anim.start(() => btnProps.taken?.onTouchStart?.(e))
+          }}
+          onTouchEnd={(e) => {
+            anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
+          }}
+        >
+          {icon?.position !== `right` && <IconComponent />}
+          {textProps.taken.children && (
+            <BtnCardText
+              {...textProps.taken}
+              {...variant}
+              style={[
+                omitBy({ color, fontWeight, fontSize }, isUndefined),
+                textProps.taken.style,
+              ]}
+              parent={{ props }}
+            />
+          )}
+          {icon?.position === `right` && <IconComponent />}
+        </ButtonBase>
+      </Animated.View>
+    </Native.View>
   )
 }
 
