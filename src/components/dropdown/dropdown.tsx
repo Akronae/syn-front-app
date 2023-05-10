@@ -53,9 +53,7 @@ export function Dropdown(props: DropdownProps) {
   const onChildrenWrapperLayout = React.useCallback(
     (e: Native.LayoutChangeEvent) => {
       childrenWrapperLayout.state = e.nativeEvent.layout
-      setTimeout(() => {
-        childrenWrapperLayoutLoaded.state = true
-      }, 100)
+      childrenWrapperLayoutLoaded.state = true
     },
     [],
   )
@@ -72,7 +70,6 @@ export function Dropdown(props: DropdownProps) {
     ),
     left: anchorLayout.state.left,
     width: anchorLayout.state.width,
-    ...Native.StyleSheet.flatten(style),
     opacity: layoutsLoaded ? 1 : 0,
   }
 
@@ -92,11 +89,9 @@ export function Dropdown(props: DropdownProps) {
           dismissOnPress: true,
         }}
         open={open}
+        style={childrenWrapperStyle}
       >
-        <Native.View
-          style={childrenWrapperStyle}
-          onLayout={onChildrenWrapperLayout}
-        >
+        <Native.View style={style} onLayout={onChildrenWrapperLayout}>
           {childrenBy.DropdownItem.map((child, index) => {
             return React.cloneElement<DropdownItemProps>(child, {
               key: index,

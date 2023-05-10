@@ -18,4 +18,5 @@ const DropdownItemBase = themed(Base, (p) => ({
   borderBottomRightRadius: p.css?.selectors?.lastChild ? 10 : 0,
   borderBottomLeftRadius: p.css?.selectors?.lastChild ? 10 : 0,
   backgroundColor: p.theme.protonative.colors.surface.sub,
+  cursor: `pointer`,
 }))

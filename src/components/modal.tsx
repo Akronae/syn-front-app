@@ -2,6 +2,7 @@ import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
 import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
+import { useMemo } from 'react'
 import * as Native from 'react-native'
 
 export type ModalProps = BaseProps & {
@@ -24,11 +25,25 @@ export function Modal(props: ModalProps) {
     }, 1)
   }
 
+  const flatStyle = useMemo(
+    () => Native.StyleSheet.flatten(props.style),
+    [props.style],
+  )
+
   return (
     <ModalBase showIf={open.state} {...passed}>
       <Portal hostName='modal'>
         <Overlay onPress={onBackgroundPress} style={overlay?.style} />
-        <Content>{children}</Content>
+        <Content
+          style={{
+            left: flatStyle.left,
+            top: flatStyle.top,
+            width: flatStyle.width,
+            opacity: flatStyle.opacity,
+          }}
+        >
+          {children}
+        </Content>
       </Portal>
     </ModalBase>
   )
@@ -51,5 +66,4 @@ const Content = themed(Base, (p) => ({
   position: `absolute`,
   left: 0,
   top: 0,
-  width: `100%`,
 }))
