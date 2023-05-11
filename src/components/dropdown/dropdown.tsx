@@ -12,6 +12,7 @@ import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { useWindowDimensions } from 'react-native'
 import { Modal } from '@proto-native/components/modal'
+import { isWeb } from '@proto-native/utils/device/is-web'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -44,7 +45,9 @@ export function Dropdown(props: DropdownProps) {
   const onAnchorViewLayout = React.useCallback(() => {
     anchor.current?.measureInWindow((x, y, width, height) => {
       anchorLayout.state = { top: y, left: x, width, height }
-      anchorLayoutLoaded.state = true
+      setTimeout(() => {
+        anchorLayoutLoaded.state = true
+      }, 100)
     })
   }, [])
 
@@ -53,9 +56,15 @@ export function Dropdown(props: DropdownProps) {
   const onChildrenWrapperLayout = React.useCallback(
     (e: Native.LayoutChangeEvent) => {
       childrenWrapperLayout.state = e.nativeEvent.layout
-      childrenWrapperLayoutLoaded.state = true
+      setTimeout(() => {
+        childrenWrapperLayoutLoaded.state = true
+      }, 100)
     },
     [],
+  )
+
+  const initialBodyOverflowMode = useState(
+    isWeb() ? document.body.style.overflow : null,
   )
 
   const layoutsLoaded =
@@ -72,6 +81,12 @@ export function Dropdown(props: DropdownProps) {
     width: anchorLayout.state.width,
     opacity: layoutsLoaded ? 1 : 0,
   }
+
+  if (!layoutsLoaded && isWeb()) document.body.style.overflow = `hidden`
+  if (layoutsLoaded && isWeb())
+    setTimeout(() => {
+      document.body.style.overflow = initialBodyOverflowMode.state ?? `visible`
+    }, 100)
 
   if (!childrenBy.DropdownItem.length) return null
 

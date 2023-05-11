@@ -59,7 +59,7 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
   }, [selectedItem.state])
 
   useEffect(() => {
-    if (model.state) {
+    if (model.state != null) {
       const found = childrenBy.Dropdown.map((child) => {
         return child.props.children.find(
           (item: ReactElement<DropdownItemProps>) =>
@@ -87,7 +87,7 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
         isFocused.state = !isFocused.state
       }}
     >
-      {selectedItem.state ? (
+      {selectedItem.state != null ? (
         <InputSelect.Selected style={textSlot?.selected?.style}>
           {selectedItem.state.props.children}
         </InputSelect.Selected>

@@ -20,6 +20,10 @@ export function useFormValidate() {
             // as the state update comes from outside the component
             handle.rerender()
           }
+        } else {
+          if (fieldElemHandle) {
+            fieldElemHandle.state.state = FormFieldState.Success
+          }
         }
       }
     })
