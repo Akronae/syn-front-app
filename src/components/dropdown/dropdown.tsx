@@ -88,7 +88,7 @@ export function Dropdown(props: DropdownProps) {
       document.body.style.overflow = initialBodyOverflowMode.state ?? `visible`
     }, 100)
 
-  if (!childrenBy.DropdownItem.length) return null
+  if (!children) return null
 
   return (
     <DropdownBase {...passed}>
@@ -106,7 +106,7 @@ export function Dropdown(props: DropdownProps) {
         open={open}
         style={childrenWrapperStyle}
       >
-        <Native.View style={style} onLayout={onChildrenWrapperLayout}>
+        <Base style={style} onLayout={onChildrenWrapperLayout}>
           {childrenBy.DropdownItem.map((child, index) => {
             return React.cloneElement<DropdownItemProps>(child, {
               key: index,
@@ -117,7 +117,7 @@ export function Dropdown(props: DropdownProps) {
             })
           })}
           {childrenBy.others}
-        </Native.View>
+        </Base>
       </Modal>
     </DropdownBase>
   )

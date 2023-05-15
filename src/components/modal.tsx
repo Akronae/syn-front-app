@@ -1,8 +1,11 @@
 import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
-import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import {
+  ReactiveState,
+  useExistingStateOr,
+  useFlatStyle,
+} from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
-import { useMemo } from 'react'
 import * as Native from 'react-native'
 
 export type ModalProps = BaseProps & {
@@ -25,10 +28,7 @@ export function Modal(props: ModalProps) {
     }, 1)
   }
 
-  const flatStyle = useMemo(
-    () => Native.StyleSheet.flatten(props.style),
-    [props.style],
-  )
+  const flatStyle = useFlatStyle(props.style)
 
   return (
     <ModalBase showIf={open.state} {...passed}>
@@ -38,7 +38,9 @@ export function Modal(props: ModalProps) {
           style={{
             left: flatStyle.left,
             top: flatStyle.top,
+            bottom: flatStyle.bottom,
             width: flatStyle.width,
+            height: flatStyle.height,
             opacity: flatStyle.opacity,
           }}
         >
