@@ -173,7 +173,7 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
   }
 }
 
-const ButtonBase = themed<ButtonProps & ButtonVariant>(Base, (p) => ({
+const ButtonBase = themed<BaseProps & ButtonVariant>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `center`,
@@ -204,7 +204,7 @@ const StateSecondary: ThemedStyle = (p) => ({
   color: p.theme.protonative.colors.text.primary,
 })
 
-const BtnCardText = themed<TextProps & ButtonVariant>(Text, (p) => {
+const BtnCardText = themed<BaseProps & ButtonVariant>(Text, (p) => {
   return {
     fontSize: p.theme.protonative.typography.size[p.size],
     fontWeight: `500`,

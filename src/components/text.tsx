@@ -3,12 +3,71 @@ import { isAndroid } from '@proto-native/utils/device/is-android'
 import { themed } from '@proto-native/utils/theme/themed'
 import { isUndefined, omitBy } from 'lodash-es'
 import * as Native from 'react-native'
-import { DefaultTheme } from 'styled-components/native'
+import * as React from 'react'
+import { DefaultTheme, useTheme } from 'styled-components/native'
 
+export type TextType = 'normal' | 'bold'
+export type TextDecoration = 'underline' | undefined
+export type TextVariant = {
+  type: TextType
+  decoration: TextDecoration
+}
 export type TextProps = BaseProps<
   Native.TextStyle,
   Omit<Native.TextProps, 'onPress'>
->
+> & {
+  inherits?: boolean
+} & Partial<TextVariant>
+
+const VariantContext = React.createContext<TextVariant | undefined>(undefined)
+
+export function Text(props: TextProps) {
+  const { type, decoration, inherits, ...passed } = props
+  const textOwnProps = takeTextOwnProps(passed)
+  const theme = useTheme()
+
+  const parentVariant = React.useContext(VariantContext)
+  const variant: TextVariant = {
+    type: type || parentVariant?.type || `normal`,
+    decoration: decoration || parentVariant?.decoration,
+  }
+
+  const textBaseStyle = Native.StyleSheet.flatten(textOwnProps.taken.style)
+  let fontWeight = textBaseStyle?.fontWeight || `normal`
+  if (isAndroid() && parseInt(fontWeight) >= 700) {
+    // Android doesn't support 700+ font weight
+    fontWeight = `600`
+  }
+  if (variant.type == `bold`) fontWeight = `bold`
+
+  const baseStyle = {
+    color: theme.protonative.colors.text.primary,
+    fontSize: theme.protonative.typography.size.md,
+  }
+
+  return (
+    <TextWrapper {...textOwnProps.rest}>
+      <VariantContext.Provider value={variant}>
+        <TextBase
+          {...textOwnProps.taken}
+          style={[!inherits && baseStyle, textBaseStyle, { fontWeight }]}
+          {...variant}
+        />
+      </VariantContext.Provider>
+    </TextWrapper>
+  )
+}
+Text.Inherits = TextInherits
+function TextInherits(p: TextProps) {
+  return <Text inherits {...p} />
+}
+
+const TextWrapper = Base
+
+const TextBase = themed<TextProps>(Native.Text, (p) => ({
+  fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
+  ...(p.decoration == `underline` && { textDecorationLine: `underline` }),
+}))
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
   const { children, style, ...rest } = props
@@ -71,36 +130,3 @@ export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
   if (boldness <= 800) return theme.protonative.typography.font.extraBold
   return theme.protonative.typography.font.black
 }
-
-function TextCompo(props: TextProps) {
-  const textOwnProps = takeTextOwnProps(props)
-
-  const textBaseStyle = Native.StyleSheet.flatten(textOwnProps.taken.style)
-  let fontWeight = textBaseStyle?.fontWeight || `normal`
-  if (isAndroid() && parseInt(fontWeight) >= 700) {
-    // Android doesn't support 700+ font weight
-    fontWeight = `600`
-  }
-
-  return (
-    <TextWrapper {...textOwnProps.rest}>
-      <TextBase
-        {...textOwnProps.taken}
-        style={[textBaseStyle, { fontWeight }]}
-      />
-    </TextWrapper>
-  )
-}
-
-const TextWrapper = Base
-
-const TextBase = themed<TextProps>(Native.Text, (p) => ({
-  fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
-}))
-
-export const Text = themed(TextCompo, (p) => ({
-  color: p.theme.protonative.colors.text.primary,
-  fontSize: p.theme.protonative.typography.size.md,
-})) as unknown as typeof TextCompo & { Inherit: typeof TextCompo }
-
-Text.Inherit = TextCompo
