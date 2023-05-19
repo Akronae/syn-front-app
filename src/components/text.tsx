@@ -9,7 +9,7 @@ import { DefaultTheme, useTheme } from 'styled-components/native'
 export type TextType = 'normal' | 'bold'
 export type TextDecoration = 'underline' | undefined
 export type TextVariant = {
-  type: TextType
+  bold: boolean
   decoration: TextDecoration
 }
 export type TextProps = BaseProps<
@@ -20,17 +20,23 @@ export type TextProps = BaseProps<
 } & Partial<TextVariant>
 
 const VariantContext = React.createContext<TextVariant | undefined>(undefined)
+export function useVariant(props: TextProps) {
+  const { bold, decoration } = props
+  const parentVariant = React.useContext(VariantContext)
+  const variant: TextVariant = {
+    bold: bold ?? parentVariant?.bold ?? false,
+    decoration: decoration ?? parentVariant?.decoration,
+  }
+
+  return variant
+}
 
 export function Text(props: TextProps) {
-  const { type, decoration, inherits, ...passed } = props
+  const { inherits, ...passed } = props
   const textOwnProps = takeTextOwnProps(passed)
   const theme = useTheme()
 
-  const parentVariant = React.useContext(VariantContext)
-  const variant: TextVariant = {
-    type: type || parentVariant?.type || `normal`,
-    decoration: decoration || parentVariant?.decoration,
-  }
+  const variant = useVariant(props)
 
   const textBaseStyle = Native.StyleSheet.flatten(textOwnProps.taken.style)
   let fontWeight = textBaseStyle?.fontWeight || `normal`
@@ -38,7 +44,7 @@ export function Text(props: TextProps) {
     // Android doesn't support 700+ font weight
     fontWeight = `600`
   }
-  if (variant.type == `bold`) fontWeight = `bold`
+  if (variant.bold) fontWeight = `bold`
 
   const baseStyle = {
     color: theme.protonative.colors.text.primary,
@@ -57,7 +63,7 @@ export function Text(props: TextProps) {
     </TextWrapper>
   )
 }
-Text.Inherits = TextInherits
+Text.Inherits = TextInherits as typeof Text
 function TextInherits(p: TextProps) {
   return <Text inherits {...p} />
 }

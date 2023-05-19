@@ -3,10 +3,15 @@ import {
   ReactiveState,
   useExistingStateOr,
   useGroupChildrenByType,
+  useState,
 } from '@proto-native/utils'
 import React, { forwardRef, useImperativeHandle, useMemo } from 'react'
 import { WizardContext } from './wizard-context'
-import { WizardHandle } from './wizard-handle'
+import {
+  createWizardEventRegisters,
+  EventListenerRegister,
+  WizardHandle,
+} from './wizard-handle'
 import { WizardStep } from './wizard-step'
 
 export type WizardBodyProps<T> = BaseProps & {
@@ -27,6 +32,8 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     return stepElems[step.current.state]
   }, [children, step.current.state])
 
+  const eventListenners = useState<Partial<EventListenerRegister>>({})
+
   const go = (to: number): boolean => {
     console.log(`Going from wizard step`, step.current.state, `to`, to)
     step.current.state = to
@@ -41,14 +48,26 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     }
     return go(step.current.state - 1)
   }
+
   const next = (): boolean => {
-    if (wizardValue.guards.next) {
-      if (!wizardValue.guards.next()) {
-        console.warn(`Wizard next guard prevented going forwards`, wizardValue)
-        return false
+    const n = () => {
+      if (wizardValue.guards.next) {
+        if (!wizardValue.guards.next()) {
+          console.warn(
+            `Wizard next guard prevented going forwards`,
+            wizardValue,
+          )
+          return false
+        }
       }
+      return go(step.current.state + 1)
     }
-    return go(step.current.state + 1)
+
+    const val = n()
+    eventListenners.state?.next?.forEach((cb) =>
+      cb({ data: { stopped: !val }, wizard: wizardValue }),
+    )
+    return val
   }
 
   const canGo = {
@@ -64,6 +83,10 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     data,
     guards: {},
     canGo,
+    on: {
+      next: createWizardEventRegisters(`next`, eventListenners),
+    },
+    eventListenners,
   }
 
   useImperativeHandle(ref, () => wizardValue)
