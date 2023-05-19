@@ -77,7 +77,10 @@ export function Dropdown(props: DropdownProps) {
       viewport.height - childrenWrapperLayout.state.height,
       anchorLayout.state.top,
     ),
-    left: anchorLayout.state.left,
+    left: Math.min(
+      viewport.width - childrenWrapperLayout.state.width,
+      anchorLayout.state.left,
+    ),
     width: anchorLayout.state.width,
     opacity: layoutsLoaded ? 1 : 0,
   }
