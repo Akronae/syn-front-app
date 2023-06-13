@@ -5,7 +5,7 @@ import {
 } from '@proto-native/components/base'
 import * as Native from 'react-native'
 
-export type ScrollViewProps = BaseProps<Native.ScrollViewProps>
+export type ScrollViewProps = BaseProps & Native.ScrollViewProps
 
 export function ScrollView(props: ScrollViewProps) {
   const { children, ...passed } = props
