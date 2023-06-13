@@ -114,6 +114,7 @@ export function Dropdown(props: DropdownProps) {
             return React.cloneElement<DropdownItemProps>(child, {
               key: index,
               onTouchStart: (e: any) => {
+                if (child.props.interactive === false) return
                 child.props.onTouchStart?.(e)
                 props.onItemPress?.(child)
               },

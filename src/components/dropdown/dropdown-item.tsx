@@ -4,6 +4,7 @@ import * as React from 'react-native'
 
 export type DropdownItemProps<T = any> = BaseProps & {
   value?: T
+  interactive?: boolean
 }
 
 export function DropdownItem<T>(props: DropdownItemProps<T>) {
