@@ -62,9 +62,12 @@ export function TextInput(props: TextInputProps) {
     return isFocused?.state || false
   }, [isFocused?.state])
 
-  const placeholder = childrenBy.Placeholder.flatMap(
-    (p) => p.props.children,
-  ).reduce((acc, child) => `${acc} ${child?.toString()}`, ``) as string
+  const placeholder = (
+    childrenBy.Placeholder.flatMap((p) => p.props.children).reduce(
+      (acc, child) => `${acc} ${child?.toString()}`,
+      ``,
+    ) as string
+  ).trim()
 
   const onKeyPressBase = (
     e: Native.NativeSyntheticEvent<Native.TextInputKeyPressEventData>,

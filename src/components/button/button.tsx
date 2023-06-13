@@ -14,7 +14,7 @@ import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 
-export type ButtonState = `default` | `disabled`
+export type ButtonState = `default` | `disabled` | `hover` | `pressed`
 export type ButtonType = `primary` | `secondary` | `text`
 export type ButtonSize = `sm` | `md` | `lg`
 export type ButtonVariant = {
@@ -105,11 +105,11 @@ export function Button(props: ButtonProps) {
           {...btnProps.taken}
           {...variant}
           style={[btnProps.taken.style, textProps.rest.style]}
-          onTouchStart={(e) => {
-            anim.start(() => btnProps.taken?.onTouchStart?.(e))
+          onPressIn={(e) => {
+            anim.start(() => btnProps.taken?.onPressIn?.(e))
           }}
-          onTouchEnd={(e) => {
-            anim.revert(() => btnProps.taken?.onTouchEnd?.(e))
+          onPressOut={(e) => {
+            anim.revert(() => btnProps.taken?.onPressOut?.(e))
           }}
         >
           {icon?.position !== `right` && <IconComponent />}
@@ -138,6 +138,11 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
     disabled,
     onTouchStart,
     onTouchEnd,
+    onTouchCancel,
+    onTouchEndCapture,
+    onTouchMove,
+    onPressOut,
+    onPressIn,
     onPress,
     pressAnimation,
     style,
@@ -165,6 +170,11 @@ export function takeButtonOwnProps<T extends ButtonProps>(props: T) {
       disabled,
       onTouchStart,
       onTouchEnd,
+      onTouchCancel,
+      onTouchEndCapture,
+      onTouchMove,
+      onPressOut,
+      onPressIn,
       onPress,
       pressAnimation,
       style: styleTaken,
