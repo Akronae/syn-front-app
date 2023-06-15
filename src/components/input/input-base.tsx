@@ -123,28 +123,30 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   )
 
   return (
-    <InputBaseBase {...baseProps.taken} {...textProps.rest}>
-      <InputContainer
-        focused={focused}
-        isFocused={isFocused}
-        invalid={invalid}
-        isInvalid={isInvalid}
-        input={input}
-      >
-        {icon?.ionicons && (
-          <Icon
-            name={icon.ionicons}
-            isInvalid={isInvalid}
-            invalid={invalid}
-            style={iconStyle}
-          />
-        )}
-        {icon?.custom && (
-          <icon.custom isInvalid={isInvalid} style={iconStyle} />
-        )}
-        {childrenBy.others.filter((c) => React.isValidElement(c))}
-        {rightSlot?.(rightSlotProps)}
-      </InputContainer>
+    <Base>
+      <InputBaseBase {...baseProps.taken} {...textProps.rest}>
+        <InputContainer
+          focused={focused}
+          isFocused={isFocused}
+          invalid={invalid}
+          isInvalid={isInvalid}
+          input={input}
+        >
+          {icon?.ionicons && (
+            <Icon
+              name={icon.ionicons}
+              isInvalid={isInvalid}
+              invalid={invalid}
+              style={iconStyle}
+            />
+          )}
+          {icon?.custom && (
+            <icon.custom isInvalid={isInvalid} style={iconStyle} />
+          )}
+          {childrenBy.others.filter((c) => React.isValidElement(c))}
+          {rightSlot?.(rightSlotProps)}
+        </InputContainer>
+      </InputBaseBase>
       {childrenBy.Dropdown.map((child: ReactElement<DropdownProps>, i) => {
         if (dropdown?.show?.state)
           return React.cloneElement(child, {
@@ -160,7 +162,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
             },
           })
       })}
-    </InputBaseBase>
+    </Base>
   )
 }
 InputBase.Placeholder = themed(Text, (p) => ({}))

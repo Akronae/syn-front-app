@@ -5,12 +5,13 @@ import { DropdownItem, DropdownItemProps } from './dropdown-item'
 import {
   ReactiveState,
   useExistingStateOr,
+  useFlatStyle,
   useGroupChildrenByType,
   useState,
 } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { useWindowDimensions } from 'react-native'
+import { StyleProp, useWindowDimensions } from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
 
@@ -38,6 +39,7 @@ export function Dropdown(props: DropdownProps) {
     DropdownItem: Dropdown.Item,
   })
   const open = useExistingStateOr(openProps, true)
+  const flatStyle = useFlatStyle(style)
 
   const anchor = React.useRef<Native.View>(null)
   const anchorLayout = useState({ top: 0, left: 0, width: 0, height: 0 })
@@ -47,7 +49,7 @@ export function Dropdown(props: DropdownProps) {
       anchorLayout.state = { top: y, left: x, width, height }
       setTimeout(() => {
         anchorLayoutLoaded.state = true
-      }, 100)
+      }, 50)
     })
   }, [])
 
@@ -58,7 +60,7 @@ export function Dropdown(props: DropdownProps) {
       childrenWrapperLayout.state = e.nativeEvent.layout
       setTimeout(() => {
         childrenWrapperLayoutLoaded.state = true
-      }, 100)
+      }, 50)
     },
     [],
   )
@@ -72,9 +74,11 @@ export function Dropdown(props: DropdownProps) {
 
   const viewport = useWindowDimensions()
 
-  const childrenWrapperStyle = {
+  
+  const marginTop = parseFloat(flatStyle.marginTop?.toString() ?? '0')
+  const childrenWrapperStyle: StyleProp<Native.ViewStyle> = {
     top: Math.min(
-      viewport.height - childrenWrapperLayout.state.height,
+      viewport.height - childrenWrapperLayout.state.height - marginTop,
       anchorLayout.state.top,
     ),
     left: Math.min(
