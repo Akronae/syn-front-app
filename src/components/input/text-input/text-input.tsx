@@ -18,14 +18,20 @@ import {
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
 import { DropdownProps } from '@proto-native/components/dropdown'
 
+export type TextInputType = 'text' | 'password' | 'email' | 'numeric'
 export type TextInputProps<
   TSlotProps = any,
   TInputType = string,
-> = InputBaseProps<TInputType, TSlotProps>
+> = InputBaseProps<TInputType, TSlotProps> & {
+  type?: TextInputType
+  inputFilter?: (input: string) => string
+}
 export function TextInput(props: TextInputProps) {
   const theme = useTheme()
   let {
     children,
+    type = 'text',
+    inputFilter: inputFilterProps,
     isFocused: isFocusedProps,
     isInvalid: isInvalidProps,
     invalid,
@@ -33,15 +39,18 @@ export function TextInput(props: TextInputProps) {
     onChangeText: onChangeTextProps,
     onFocus,
     onBlur,
-    numberOfLines,
+    numberOfLines = 1,
     multiline,
     onKeyPress,
     onSubmitEditing,
     input,
+    keyboardType,
     ...passed
   } = props
-  numberOfLines ??= 1
   multiline ??= numberOfLines > 1
+  const inputFilter = inputFilterProps ?? getDefaultInputFilter(type)
+  keyboardType ??= textInputTypeToKeyboard(type)
+
   const childrenBy = useGroupChildrenByType(children, {
     Placeholder: TextInput.Placeholder,
     Dropdown: TextInput.Dropdown,
@@ -86,6 +95,7 @@ export function TextInput(props: TextInputProps) {
   }
 
   const onChangeText = (text: string) => {
+    text = inputFilter(text)
     model.state = text
     onChangeTextProps?.(text)
   }
@@ -124,6 +134,7 @@ export function TextInput(props: TextInputProps) {
         placeholder={placeholder}
         placeholderTextColor={theme.protonative.colors.text.sub}
         value={model.state ?? ``}
+        keyboardType={keyboardType}
         numberOfLines={numberOfLines}
         multiline={multiline}
         onKeyPress={onKeyPressBase}
@@ -179,3 +190,33 @@ const NativeInputStyle = createThemedStyle<Partial<TextInputProps>>((p) => ({
   fontSize: p.theme.protonative.typography.size.md,
   ...(p.isInvalid?.state && p.invalid?.style),
 }))
+
+function textInputTypeToKeyboard(type: TextInputType): Native.KeyboardType {
+  switch (type) {
+    case `email`:
+      return `email-address`
+    case `numeric`:
+      return `numeric`
+    case `password`:
+      return `default`
+    case `text`:
+      return `default`
+  }
+}
+
+function getDefaultInputFilter(type: TextInputType): NonNullable<TextInputProps['inputFilter']> {
+  switch (type) {
+    case 'numeric':
+      return numericInputFilter
+    default:
+      return textInputFilter
+  }
+}
+
+function textInputFilter(input: string): string {
+  return input
+}
+
+function numericInputFilter(input: string): string {
+  return input.replace(/[^0-9,\.]/g, ``)
+}
