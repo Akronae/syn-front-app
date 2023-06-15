@@ -14,7 +14,10 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { StyleProp, useWindowDimensions } from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
-import { ScrollView, ScrollViewProps } from '../scroll-view'
+import {
+  ScrollView,
+  ScrollViewProps,
+} from '@proto-native/components/scroll-view'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -75,21 +78,30 @@ export function Dropdown(props: DropdownProps) {
 
   const viewport = useWindowDimensions()
 
-  
-  const marginTop = parseFloat(flatStyle.marginTop?.toString() ?? '0')
-  const paddingTop = parseFloat(flatStyle.paddingTop?.toString() ?? '0')
-  const paddingBottom = parseFloat(flatStyle.paddingBottom?.toString() ?? '0')
-  const borderWidth = parseFloat(flatStyle.borderWidth?.toString() ?? '0')
+  const marginTop = parseFloat(flatStyle.marginTop?.toString() ?? `0`)
+  const paddingTop = parseFloat(flatStyle.paddingTop?.toString() ?? `0`)
+  const paddingBottom = parseFloat(flatStyle.paddingBottom?.toString() ?? `0`)
+  const borderWidth = parseFloat(flatStyle.borderWidth?.toString() ?? `0`)
   const childrenWrapperStyle: StyleProp<Native.ViewStyle> = {
-    top: Math.max(0,
+    top: Math.max(
+      0,
       Math.min(
-        viewport.height - (childrenWrapperLayout.state.height + marginTop + paddingTop + paddingBottom + borderWidth * 2),
+        viewport.height -
+          (childrenWrapperLayout.state.height +
+            marginTop +
+            paddingTop +
+            paddingBottom +
+            borderWidth * 2),
         anchorLayout.state.top,
-      )),
-    left: Math.max(0,Math.min(
-      viewport.width - childrenWrapperLayout.state.width,
-      anchorLayout.state.left,
-    )),
+      ),
+    ),
+    left: Math.max(
+      0,
+      Math.min(
+        viewport.width - childrenWrapperLayout.state.width,
+        anchorLayout.state.left,
+      ),
+    ),
     width: anchorLayout.state.width,
     opacity: layoutsLoaded ? 1 : 0,
   }
@@ -137,8 +149,6 @@ export function Dropdown(props: DropdownProps) {
 }
 Dropdown.Item = DropdownItem
 
-const DropdownBase = themed<DropdownProps>(Base, (p) => ({
-}))
+const DropdownBase = themed<DropdownProps>(Base, (p) => ({}))
 
-const Wrapper = themed<ScrollViewProps>(ScrollView, p => ({
-}))
+const Wrapper = themed<ScrollViewProps>(ScrollView, (p) => ({}))
