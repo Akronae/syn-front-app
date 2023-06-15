@@ -14,6 +14,7 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 import { StyleProp, useWindowDimensions } from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
+import { ScrollView, ScrollViewProps } from '../scroll-view'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -76,15 +77,19 @@ export function Dropdown(props: DropdownProps) {
 
   
   const marginTop = parseFloat(flatStyle.marginTop?.toString() ?? '0')
+  const paddingTop = parseFloat(flatStyle.paddingTop?.toString() ?? '0')
+  const paddingBottom = parseFloat(flatStyle.paddingBottom?.toString() ?? '0')
+  const borderWidth = parseFloat(flatStyle.borderWidth?.toString() ?? '0')
   const childrenWrapperStyle: StyleProp<Native.ViewStyle> = {
-    top: Math.min(
-      viewport.height - childrenWrapperLayout.state.height - marginTop,
-      anchorLayout.state.top,
-    ),
-    left: Math.min(
+    top: Math.max(0,
+      Math.min(
+        viewport.height - (childrenWrapperLayout.state.height + marginTop + paddingTop + paddingBottom + borderWidth * 2),
+        anchorLayout.state.top,
+      )),
+    left: Math.max(0,Math.min(
       viewport.width - childrenWrapperLayout.state.width,
       anchorLayout.state.left,
-    ),
+    )),
     width: anchorLayout.state.width,
     opacity: layoutsLoaded ? 1 : 0,
   }
@@ -113,7 +118,7 @@ export function Dropdown(props: DropdownProps) {
         open={open}
         style={childrenWrapperStyle}
       >
-        <Base style={style} onLayout={onChildrenWrapperLayout}>
+        <Wrapper style={style} onLayout={onChildrenWrapperLayout}>
           {childrenBy.DropdownItem.map((child, index) => {
             return React.cloneElement<DropdownItemProps>(child, {
               key: index,
@@ -125,11 +130,15 @@ export function Dropdown(props: DropdownProps) {
             })
           })}
           {childrenBy.others}
-        </Base>
+        </Wrapper>
       </Modal>
     </DropdownBase>
   )
 }
 Dropdown.Item = DropdownItem
 
-const DropdownBase = themed<DropdownProps>(Base, (p) => ({}))
+const DropdownBase = themed<DropdownProps>(Base, (p) => ({
+}))
+
+const Wrapper = themed<ScrollViewProps>(ScrollView, p => ({
+}))
