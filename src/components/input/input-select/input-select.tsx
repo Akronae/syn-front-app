@@ -22,7 +22,7 @@ import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 
 export type InputSelectProps<
   TModel = string,
-  TSlotProps = any,
+  TSlotProps = {isFocused: boolean},
 > = InputBaseProps<TModel | undefined, TSlotProps> & {
   openIndicator?: React.ComponentType<Partial<TSlotProps>>
   textSlot?: {
@@ -77,6 +77,8 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     return isFocused?.state || false
   }, [isFocused?.state])
 
+  const OpenIndicator = openIndicator || (() => <Ionicons name={showDropdown.state ? `chevron-up` : `chevron-down`} />)
+
   return (
     <InputContainer
       {...passed}
@@ -110,11 +112,9 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
       })}
       {childrenBy.others}
       <IconWrapper>
-        {(openIndicator && React.createElement(openIndicator, props)) || (
-          <Ionicons name={showDropdown.state ? `chevron-up` : `chevron-down`} />
-        )}
+        <OpenIndicator isFocused={showDropdown.state} />
       </IconWrapper>
-      {rightSlot?.(props)}
+      {rightSlot?.({isFocused: showDropdown.state})}
     </InputContainer>
   )
 }
