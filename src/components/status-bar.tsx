@@ -9,17 +9,21 @@ import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
 
-export type StatusBarProps = BaseProps
+export type StatusBarProps = BaseProps & {
+  mockup?: {
+    show?: boolean
+  }
+}
 
 export function StatusBarMockup(props: StatusBarProps) {
-  const { ...passed } = props
+  const { mockup, ...passed } = props
   const desktopOrMore = isDesktopOrMore.use()
 
   if (desktopOrMore) return null
 
   return (
     <StatusBarBase {...passed}>
-      {isWeb() && isDev() && <Mockup />}
+      {mockup?.show && <Mockup />}
     </StatusBarBase>
   )
 }
