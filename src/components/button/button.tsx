@@ -106,10 +106,12 @@ export function Button(props: ButtonProps) {
           {...variant}
           style={[btnProps.taken.style, textProps.rest.style]}
           onPressIn={(e) => {
-            anim.start(() => btnProps.taken?.onPressIn?.(e))
+            anim.start()
+            props.onPressIn?.(e)
           }}
           onPressOut={(e) => {
-            anim.revert(() => btnProps.taken?.onPressOut?.(e))
+            anim.revert()
+            props.onPressOut?.(e)
           }}
         >
           {icon?.position !== `right` && <IconComponent />}
