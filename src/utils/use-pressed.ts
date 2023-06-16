@@ -35,6 +35,6 @@ export function usePressed(
 
   return {
     isPressed,
-    pressedListenners: { onPressIn, onPressOut, onTouchEnd, onTouchStart, onTouchCancel },
+    pressListenners: { onPressIn, onPressOut, onTouchEnd, onTouchStart, onTouchCancel },
   }
 }

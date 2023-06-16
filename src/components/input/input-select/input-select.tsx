@@ -43,6 +43,7 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     rightSlot,
     openIndicator,
     textSlot,
+    onPress: onPressProps,
     ...passed
   } = props
   const model = useExistingStateOr(props.model, undefined)
@@ -89,8 +90,9 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
       model={model}
       dropdown={dropdown}
       isFocused={isFocused}
-      onPress={() => {
+      onPress={(e: any) => {
         isFocused.state = !isFocused.state
+        onPressProps?.(e)
       }}
     >
       {selectedItem.state != null ? (
