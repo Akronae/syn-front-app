@@ -3,14 +3,21 @@ import { useState } from '@proto-native/utils/use-state'
 
 export function usePressed(
   props?: Partial<
-    Pick<BaseProps, 'onPressIn' | 'onPressOut' | 'onTouchEnd' | 'onTouchStart' | 'onTouchCancel'>
+    Pick<
+      BaseProps,
+      | 'onPressIn'
+      | 'onPressOut'
+      | 'onTouchEnd'
+      | 'onTouchStart'
+      | 'onTouchCancel'
+    >
   >,
 ) {
   const isPressed = useState(false)
 
   const onPressIn = (e: any) => {
-    isPressed.state = true
     props?.onPressIn?.(e)
+    isPressed.state = true
   }
 
   const onPressOut = (e: any) => {
@@ -24,8 +31,8 @@ export function usePressed(
   }
 
   const onTouchStart = (e: any) => {
-    isPressed.state = true
     props?.onTouchStart?.(e)
+    isPressed.state = true
   }
 
   const onTouchCancel = (e: any) => {
@@ -35,6 +42,12 @@ export function usePressed(
 
   return {
     isPressed,
-    pressListenners: { onPressIn, onPressOut, onTouchEnd, onTouchStart, onTouchCancel },
+    pressListenners: {
+      onPressIn,
+      onPressOut,
+      onTouchEnd,
+      onTouchStart,
+      onTouchCancel,
+    },
   }
 }

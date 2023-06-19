@@ -139,7 +139,7 @@ export function Dropdown(props: DropdownProps) {
                 setTimeout(() => {
                   child.props.onTouchStart?.(e)
                   props.onItemPress?.(child)
-                }, 300);
+                }, 300)
               },
             })
           })}

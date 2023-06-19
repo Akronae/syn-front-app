@@ -20,20 +20,20 @@ export type CheckboxProps = BaseProps & {
 export function Checkbox(props: CheckboxProps) {
   const {
     model: modelProps,
-    onPress: onPressProps,
+    onTouchEnd: onTouchEndProps,
     children,
     markbox,
     ...passed
   } = props
 
   const model = useExistingStateOr(modelProps, false)
-  const onPress = (e: any) => {
+  const onTouchEnd = (e: any) => {
     model.state = !model.state
-    onPressProps?.(e)
+    onTouchEndProps?.(e)
   }
 
   return (
-    <CheckboxBase {...passed} onPress={onPress}>
+    <CheckboxBase {...passed} onTouchEnd={onTouchEnd}>
       <Markbox model={model} markbox={markbox}>
         {markbox?.mark?.custom ? (
           <markbox.mark.custom model={model} />

@@ -1,9 +1,7 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { View } from '@proto-native/components/view'
-import { isWeb } from '@proto-native/utils/device/is-web'
 import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
-import { isDev } from '@proto-native/utils/env/is-dev'
 import { themed } from '@proto-native/utils/theme/themed'
 import Constants from 'expo-constants'
 import * as React from 'react-native'
@@ -21,11 +19,7 @@ export function StatusBarMockup(props: StatusBarProps) {
 
   if (desktopOrMore) return null
 
-  return (
-    <StatusBarBase {...passed}>
-      {mockup?.show && <Mockup />}
-    </StatusBarBase>
-  )
+  return <StatusBarBase {...passed}>{mockup?.show && <Mockup />}</StatusBarBase>
 }
 
 function Mockup() {
