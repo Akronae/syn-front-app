@@ -56,7 +56,8 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
 
   const selectedItem = useState<ReactElement<DropdownItemProps> | null>(null)
   useEffect(() => {
-    model.state = selectedItem.state?.props.value
+    if (selectedItem.state?.props.value)
+      model.state = selectedItem.state?.props.value
   }, [selectedItem.state])
 
   useEffect(() => {
