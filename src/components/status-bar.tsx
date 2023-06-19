@@ -1,7 +1,7 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { View } from '@proto-native/components/view'
-import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
+import { isAndroid } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import Constants from 'expo-constants'
 import * as React from 'react-native'
@@ -15,9 +15,10 @@ export type StatusBarProps = BaseProps & {
 
 export function StatusBarMockup(props: StatusBarProps) {
   const { mockup, ...passed } = props
-  const desktopOrMore = isDesktopOrMore.use()
 
-  if (desktopOrMore) return null
+  // somehow only android status bar gets overlapped by the SafeAreaView
+  // so we need to keep the StatusBarBase to act as a padding
+  if (!isAndroid()) return null
 
   return <StatusBarBase {...passed}>{mockup?.show && <Mockup />}</StatusBarBase>
 }

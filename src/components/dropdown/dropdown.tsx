@@ -3,6 +3,7 @@ import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react'
 import { DropdownItem, DropdownItemProps } from './dropdown-item'
 import {
+  isAndroid,
   ReactiveState,
   useExistingStateOr,
   useFlatStyle,
@@ -11,7 +12,11 @@ import {
 } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { StyleProp, useWindowDimensions } from 'react-native'
+import {
+  StatusBar,
+  StyleProp,
+  useWindowDimensions,
+} from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import {
@@ -92,7 +97,9 @@ export function Dropdown(props: DropdownProps) {
             paddingTop +
             paddingBottom +
             borderWidth * 2),
-        anchorLayout.state.top,
+        anchorLayout.state.top +
+          // idk why we have to do that on Android
+          (isAndroid() ? StatusBar.currentHeight ?? 0 : 0),
       ),
     ),
     left: Math.max(
