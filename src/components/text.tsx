@@ -5,6 +5,7 @@ import { isUndefined, omitBy } from 'lodash-es'
 import * as Native from 'react-native'
 import * as React from 'react'
 import { DefaultTheme, useTheme } from 'styled-components/native'
+import { nbsp } from '@proto-native/utils'
 
 export type TextType = 'normal' | 'bold'
 export type TextDecoration = 'underline' | undefined
@@ -32,7 +33,7 @@ export function useVariant(props: TextProps) {
 }
 
 export function Text(props: TextProps) {
-  const { inherits, ...passed } = props
+  const { children, inherits, ...passed } = props
   const textOwnProps = takeTextOwnProps(passed)
   const theme = useTheme()
 
@@ -51,6 +52,16 @@ export function Text(props: TextProps) {
     fontSize: theme.protonative.typography.size.md,
   }
 
+  const nonBreakingChildren = React.Children.map(children, (child) => {
+    if (typeof child == 'string') {
+      return child
+        .replaceAll(' ?', nbsp + '?')
+        .replaceAll(' !', nbsp + '!')
+        .replaceAll(' :', nbsp + ':')
+    }
+    return child
+  })
+
   return (
     <TextWrapper {...textOwnProps.rest}>
       <VariantContext.Provider value={variant}>
@@ -58,7 +69,9 @@ export function Text(props: TextProps) {
           {...textOwnProps.taken}
           style={[!inherits && baseStyle, textBaseStyle, { fontWeight }]}
           {...variant}
-        />
+        >
+          {nonBreakingChildren}
+        </TextBase>
       </VariantContext.Provider>
     </TextWrapper>
   )
