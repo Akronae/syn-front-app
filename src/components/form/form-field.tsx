@@ -1,5 +1,5 @@
 import { View, ViewProps } from '@proto-native/components/view'
-import { useExistingStateOr, useState } from '@proto-native/utils'
+import { useExistingStateOr, useFlatStyle, useState } from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -41,10 +41,7 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
     useImperativeHandle(ref, () => refHandle)
     if (form) form.fields[name] = refHandle
 
-    const flattenStyle = useMemo(
-      () => Native.StyleSheet.flatten(props.style),
-      [props.style],
-    )
+    const flattenStyle = useFlatStyle(props.style)
     const globalgap = gap ?? flattenStyle?.gap
 
     return (
