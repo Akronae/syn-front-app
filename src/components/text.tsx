@@ -53,11 +53,11 @@ export function Text(props: TextProps) {
   }
 
   const nonBreakingChildren = React.Children.map(children, (child) => {
-    if (typeof child == 'string') {
+    if (typeof child == `string`) {
       return child
-        .replaceAll(' ?', nbsp + '?')
-        .replaceAll(' !', nbsp + '!')
-        .replaceAll(' :', nbsp + ':')
+        .replaceAll(` ?`, `${nbsp}?`)
+        .replaceAll(` !`, `${nbsp}!`)
+        .replaceAll(` :`, `${nbsp}:`)
     }
     return child
   })
