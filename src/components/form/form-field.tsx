@@ -5,7 +5,6 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
   useImperativeHandle,
-  useMemo,
 } from 'react'
 import * as Native from 'react-native'
 import { FormFieldContext } from './form-field-context'

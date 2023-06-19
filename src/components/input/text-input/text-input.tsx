@@ -193,14 +193,14 @@ const NativeInputStyle = createThemedStyle<Partial<TextInputProps>>((p) => ({
 
 function textInputTypeToKeyboard(type: TextInputType): Native.KeyboardType {
   switch (type) {
-    case `email`:
-      return `email-address`
-    case `numeric`:
-      return `numeric`
-    case `password`:
-      return `default`
-    case `text`:
-      return `default`
+  case `email`:
+    return `email-address`
+  case `numeric`:
+    return `numeric`
+  case `password`:
+    return `default`
+  case `text`:
+    return `default`
   }
 }
 
@@ -208,10 +208,10 @@ function getDefaultInputFilter(
   type: TextInputType,
 ): NonNullable<TextInputProps['inputFilter']> {
   switch (type) {
-    case `numeric`:
-      return numericInputFilter
-    default:
-      return textInputFilter
+  case `numeric`:
+    return numericInputFilter
+  default:
+    return textInputFilter
   }
 }
 
