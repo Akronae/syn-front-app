@@ -12,11 +12,7 @@ import {
 } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import {
-  StatusBar,
-  StyleProp,
-  useWindowDimensions,
-} from 'react-native'
+import { StatusBar, StyleProp, useWindowDimensions } from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import {
