@@ -1,4 +1,5 @@
 import { ReactiveState } from '@proto-native/utils'
+import { WizardStepProps } from './wizard-step'
 
 export type WizardEventData<T> = { wizard: WizardHandle; data: T }
 export type WizardEventListenerRegister<T> = (
@@ -20,6 +21,7 @@ export type WizardHandle<T = any> = {
   step: {
     current: ReactiveState<number>
     count: number
+    elem: React.ReactElement<WizardStepProps>
   }
   data?: ReactiveState<T>
   back: () => boolean

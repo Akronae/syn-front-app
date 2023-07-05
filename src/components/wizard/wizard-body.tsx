@@ -27,6 +27,7 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
   const step = {
     current: useExistingStateOr(stepProps, 0),
     count: stepElems.length,
+    elem: stepElems[stepProps?.state || 0],
   }
   const activeChild = useMemo(() => {
     return stepElems[step.current.state]
