@@ -38,6 +38,7 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
   const go = (to: number): boolean => {
     console.log(`Going from wizard step`, step.current.state, `to`, to)
     step.current.state = to
+    step.elem = stepElems[to]
     return stepElems[to] !== undefined
   }
   const back = (): boolean => {
