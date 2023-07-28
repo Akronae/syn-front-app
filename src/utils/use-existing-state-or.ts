@@ -7,9 +7,9 @@ import { useState } from '@proto-native/utils/use-state'
  * As one cannot call hooks conditionally, this function is a workaround.
  * Same as
  * @example
- * const model = props.model || useState(fallbackValue); // error ❌
+ * const model = props.model || useState(fallbackValue); // ❌ error
  * @example
- * const model = useStateOr(props.model, fallbackValue); // ok ✔
+ * const model = useExistingStateOr(props.model, fallbackValue); // ✔ ok
  */
 export function useExistingStateOr<T>(
   model: ReactiveState<T> | T | undefined,

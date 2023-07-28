@@ -13,6 +13,7 @@ import { takeTextOwnProps, Text } from '@proto-native/components/text'
 import {
   hexLerp,
   ReactiveState,
+  takeLayoutProps,
   useExistingStateOr,
   useGroupChildrenByType,
 } from '@proto-native/utils'
@@ -51,6 +52,8 @@ export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
   dropdown?: {
     show?: ReactiveState<boolean>
   }
+  leftSlot?: (props: TSlotProps) => React.ReactNode
+  leftSlotProps?: TSlotProps
   rightSlot?: (props: TSlotProps) => React.ReactNode
   rightSlotProps?: TSlotProps
 }
@@ -65,13 +68,16 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     invalid,
     model,
     icon,
+    leftSlot,
+    leftSlotProps,
     rightSlot,
     rightSlotProps,
     input,
     dropdown,
     ...passed
   } = props
-  const textProps = takeTextOwnProps(passed)
+  const layoutProps = takeLayoutProps(passed)
+  const textProps = takeTextOwnProps(layoutProps.rest)
   const baseProps = takeBaseOwnProps(textProps.rest)
 
   const focused = focusedProps ?? {}
@@ -123,15 +129,20 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   )
 
   return (
-    <Base>
-      <InputBaseBase {...baseProps.taken} {...textProps.rest}>
+    <Base {...layoutProps.taken}>
+      <InputBaseBase>
         <InputContainer
           focused={focused}
           isFocused={isFocused}
           invalid={invalid}
           isInvalid={isInvalid}
           input={input}
+          {...layoutProps.rest}
+          {...baseProps.taken}
+          {...baseProps.rest}
+          {...textProps.rest}
         >
+          {leftSlot?.(leftSlotProps)}
           {icon?.ionicons && (
             <Icon
               name={icon.ionicons}

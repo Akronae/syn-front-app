@@ -85,6 +85,20 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
       <Ionicons name={showDropdown.state ? `chevron-up` : `chevron-down`} />
     ))
 
+  const placeholder =
+    selectedItem.state != null ? (
+      <InputSelect.Selected style={textSlot?.selected?.style}>
+        {selectedItem.state.props.children}
+      </InputSelect.Selected>
+    ) : (
+      childrenBy.Placeholder.map((child, i) => {
+        return React.cloneElement(child, {
+          key: i,
+          style: textSlot?.placeholder?.style,
+        })
+      })
+    )
+
   return (
     <InputContainer
       {...passed}
@@ -96,18 +110,7 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
         onPressProps?.(e)
       }}
     >
-      {selectedItem.state != null ? (
-        <InputSelect.Selected style={textSlot?.selected?.style}>
-          {selectedItem.state.props.children}
-        </InputSelect.Selected>
-      ) : (
-        childrenBy.Placeholder.map((child, i) => {
-          return React.cloneElement(child, {
-            key: i,
-            style: textSlot?.placeholder?.style,
-          })
-        })
-      )}
+      {placeholder}
       {childrenBy.Dropdown.map((child, i) => {
         return React.cloneElement(child, {
           key: i,
@@ -136,7 +139,7 @@ InputSelect.Selected = themed(Text, (p) => ({}))
 InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
-  gap: p.theme.protonative.spacing(2),
+  // gap: p.theme.protonative.spacing(2),
 }))
 
 const IconWrapper = themed(Base, (p) => ({

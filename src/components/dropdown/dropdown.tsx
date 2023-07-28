@@ -12,13 +12,16 @@ import {
 } from '@proto-native/utils'
 import * as Native from 'react-native'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
-import { StatusBar, StyleProp, useWindowDimensions } from 'react-native'
+import {
+  FlatListProps,
+  StatusBar,
+  StyleProp,
+  useWindowDimensions,
+} from 'react-native'
 import { Modal } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
-import {
-  ScrollView,
-  ScrollViewProps,
-} from '@proto-native/components/scroll-view'
+
+import { FlatList } from 'react-native'
 
 export type DropdownProps = BaseProps & {
   onItemPress?: (item: React.ReactElement<DropdownItemProps>) => void
@@ -115,6 +118,24 @@ export function Dropdown(props: DropdownProps) {
       document.body.style.overflow = initialBodyOverflowMode.state ?? `visible`
     }, 100)
 
+  const dropdownItems = React.useMemo(() => {
+    return [
+      ...childrenBy.DropdownItem.map((child, index) => {
+        return React.cloneElement<DropdownItemProps>(child, {
+          key: index,
+          onTouchStart: (e: any) => {
+            if (child.props.interactive === false) return
+            setTimeout(() => {
+              child.props.onTouchStart?.(e)
+              props.onItemPress?.(child)
+            }, 300)
+          },
+        })
+      }),
+      ...childrenBy.others,
+    ]
+  }, [childrenBy.DropdownItem, childrenBy.others])
+
   if (!children) return null
 
   return (
@@ -133,19 +154,12 @@ export function Dropdown(props: DropdownProps) {
         open={open}
         style={childrenWrapperStyle}
       >
-        <Wrapper style={style} onLayout={onChildrenWrapperLayout}>
-          {childrenBy.DropdownItem.map((child, index) => {
-            return React.cloneElement<DropdownItemProps>(child, {
-              key: index,
-              onTouchStart: (e: any) => {
-                if (child.props.interactive === false) return
-                setTimeout(() => {
-                  child.props.onTouchStart?.(e)
-                  props.onItemPress?.(child)
-                }, 300)
-              },
-            })
-          })}
+        <Wrapper
+          style={style}
+          onLayout={onChildrenWrapperLayout}
+          data={dropdownItems}
+          renderItem={(d) => d.item}
+        >
           {childrenBy.others}
         </Wrapper>
       </Modal>
@@ -156,4 +170,4 @@ Dropdown.Item = DropdownItem
 
 const DropdownBase = themed<DropdownProps>(Base, (p) => ({}))
 
-const Wrapper = themed<ScrollViewProps>(ScrollView, (p) => ({}))
+const Wrapper = themed<FlatListProps<any>>(FlatList, (p) => ({}))
