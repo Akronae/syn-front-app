@@ -4,16 +4,19 @@ import {
   hexOpacity,
   ReactiveState,
   useExistingStateOr,
-  useFlatStyle,
 } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as Native from 'react-native'
 import * as React from 'react'
 import * as RNGH from 'react-native-gesture-handler'
 import Animated, {
+  Easing,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
+  withTiming,
 } from 'react-native-reanimated'
+import { useWindowDimensions } from 'react-native'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>
@@ -36,36 +39,67 @@ export type BottomSheetProps = BaseProps & {
 
 export function BottomSheet(props: BottomSheetProps) {
   const { children, open: openProps, sheet, overlay, ...passed } = props
-  const contianerFlatStyle = useFlatStyle(sheet?.container?.style)
   const open = useExistingStateOr(openProps, true)
+  const { height } = useWindowDimensions()
 
+  const y = useSharedValue(1000)
+  const yAnimGoTo = 1000
+  const yAnimDur = 400
+  const yDur = useSharedValue(0)
+  const yAnimCallback = () => {
+    if (y.value >= yAnimGoTo) {
+      runOnJS(close)()
+    }
+  }
+  const yAnimReset = () => {
+    y.value = 1000
+    yDur.value = 0
+  }
   const close = () => {
     open.state = false
+    setTimeout(yAnimReset, 200)
   }
-
-  const y = useSharedValue(0)
+  React.useEffect(() => {
+    y.value = open.state ? 0 : 1000
+    yDur.value = open.state ? 300 : 0
+  }, [open.state])
   const animStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: Math.max(y.value, 0) }],
-    height: contianerFlatStyle.height ?? `100%`,
+    transform: [
+      {
+        translateY: withTiming(
+          y.value,
+          { duration: yDur.value, easing: Easing.bezier(0.25, 0.1, 0.25, 1) },
+          runOnJS(yAnimCallback),
+        ),
+      },
+    ],
+    height: `100%`,
   }))
 
   const pan = RNGH.Gesture.Pan()
     .onChange((e) => {
+      yDur.value = 0
+      if (e.translationY < 0) return
       y.value = e.translationY
     })
     .onEnd((e) => {
-      y.value = 0
-
-      if (e.velocityY > 1000 || e.absoluteY < 100) {
-        close()
+      if (e.velocityY > 1000 || e.translationY / height > 0.2) {
+        yDur.value = yAnimDur
+        y.value = yAnimGoTo
+      } else {
+        y.value = 0
       }
     })
 
   const SheetWrapper = RNGH.gestureHandlerRootHOC(() => (
     <RNGH.GestureDetector gesture={pan}>
-      <TopNotchContainer>
-        {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}
-      </TopNotchContainer>
+      <Sheet style={sheet?.container?.style}>
+        <TopNotchContainer>
+          {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}
+        </TopNotchContainer>
+
+        <Content style={sheet?.content?.style}>{children}</Content>
+      </Sheet>
     </RNGH.GestureDetector>
   ))
 
@@ -73,21 +107,15 @@ export function BottomSheet(props: BottomSheetProps) {
     <BottomSheetBase showIf={open.state} {...passed}>
       <Portal hostName='bottom-sheet'>
         <Background onTouchEnd={close} style={overlay?.style} />
-        <Animated.View style={[animStyle]}>
-          <Sheet style={{ height: `100%` }}>
-            <Base>
-              <SheetWrapper />
-            </Base>
-
-            <Content style={sheet?.content?.style}>{children}</Content>
-          </Sheet>
+        <Animated.View style={animStyle}>
+          <SheetWrapper />
         </Animated.View>
       </Portal>
     </BottomSheetBase>
   )
 }
 
-const BottomSheetBase = Base
+const BottomSheetBase = themed<BaseProps>(Base, (p) => ({}))
 
 const Background = themed<BaseProps>(Base, (p) => ({
   position: `absolute`,
@@ -110,7 +138,8 @@ const Sheet = themed<BaseProps>(Base, (p) => ({
   borderRadius: p.theme.protonative.borderRadius(12),
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  minHeight: 200,
+  minHeight: `20%`,
+  maxHeight: `80%`,
   shadowColor: `#000`,
   shadowOffset: {
     width: 0,
@@ -123,16 +152,16 @@ const Sheet = themed<BaseProps>(Base, (p) => ({
 
 const TopNotchContainer = themed<BaseProps>(Base, (p) => ({}))
 const TopNotch = themed<BaseProps>(Base, (p) => ({
-  width: 50,
+  width: 80,
   height: 6,
   borderRadius: 99,
   backgroundColor: p.theme.protonative.colors.surface.disabled,
   marginTop: p.theme.protonative.spacing(3),
   marginLeft: `auto`,
   marginRight: `auto`,
-  marginBottom: 0,
 }))
 
 const Content = themed<BaseProps>(Base, (p) => ({
-  padding: p.theme.protonative.spacing(6),
+  padding: p.theme.protonative.spacing(2),
+  flex: 1,
 }))

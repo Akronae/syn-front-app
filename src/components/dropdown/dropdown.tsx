@@ -153,6 +153,7 @@ export function Dropdown(props: DropdownProps) {
         }}
         open={open}
         style={childrenWrapperStyle}
+        portalName={`dropdown`}
       >
         <Wrapper
           style={style}

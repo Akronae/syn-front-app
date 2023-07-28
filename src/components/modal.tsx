@@ -1,14 +1,11 @@
 import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
-import {
-  ReactiveState,
-  useExistingStateOr,
-  useFlatStyle,
-} from '@proto-native/utils'
+import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as Native from 'react-native'
 
 export type ModalProps = BaseProps & {
+  portalName?: string
   open?: ReactiveState<boolean>
   overlay?: {
     style?: Native.StyleProp<Native.ViewStyle>
@@ -18,7 +15,13 @@ export type ModalProps = BaseProps & {
 }
 
 export function Modal(props: ModalProps) {
-  const { children, overlay, open: openProps, ...passed } = props
+  const {
+    children,
+    overlay,
+    open: openProps,
+    portalName = `modal`,
+    ...passed
+  } = props
   const open = useExistingStateOr(openProps, true)
 
   const onBackgroundPress = (e: Native.GestureResponderEvent) => {
@@ -28,24 +31,13 @@ export function Modal(props: ModalProps) {
     }, 1)
   }
 
-  const flatStyle = useFlatStyle(props.style)
-
   return (
-    <ModalBase showIf={open.state} {...passed}>
-      <Portal hostName='modal'>
-        <Overlay onPress={onBackgroundPress} style={overlay?.style} />
-        <Content
-          style={{
-            left: flatStyle.left,
-            top: flatStyle.top,
-            bottom: flatStyle.bottom,
-            width: flatStyle.width,
-            height: flatStyle.height,
-            opacity: flatStyle.opacity,
-          }}
-        >
-          {children}
-        </Content>
+    <ModalBase showIf={open.state}>
+      <Portal hostName={portalName}>
+        <Wrapper {...passed}>
+          <Overlay onPress={onBackgroundPress} style={overlay?.style} />
+          <Content>{children}</Content>
+        </Wrapper>
       </Portal>
     </ModalBase>
   )
@@ -64,8 +56,11 @@ const Overlay = themed<BaseProps & { transparent?: boolean }>(Base, (p) => ({
   backgroundColor: `transparent`,
 }))
 
-const Content = themed(Base, (p) => ({
+const Wrapper = themed<BaseProps>(Base, (p) => ({
   position: `absolute`,
+}))
+
+const Content = themed(Base, (p) => ({
   left: 0,
   top: 0,
 }))
