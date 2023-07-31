@@ -8,7 +8,7 @@ export type ModalProps = BaseProps & {
   portalName?: string
   open?: ReactiveState<boolean>
   overlay?: {
-    style?: Native.StyleProp<Native.ViewStyle>
+    style?: Native.ViewStyle
     onPress?: (e: Native.GestureResponderEvent) => void
     dismissOnPress?: boolean
   }
@@ -45,7 +45,7 @@ export function Modal(props: ModalProps) {
 
 const ModalBase = Base
 
-const Overlay = themed<BaseProps & { transparent?: boolean }>(Base, (p) => ({
+const Overlay = themed<BaseProps>(Base, (p) => ({
   position: `absolute`,
   left: 0,
   top: 0,

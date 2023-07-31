@@ -15,7 +15,7 @@ import {
 import { WizardStep } from './wizard-step'
 
 export type WizardBodyProps<T> = BaseProps & {
-  data: ReactiveState<T>
+  data: T
   step?: ReactiveState<number>
 }
 

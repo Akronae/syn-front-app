@@ -23,7 +23,7 @@ export type WizardHandle<T = any> = {
     count: number
     elem: React.ReactElement<WizardStepProps>
   }
-  data?: ReactiveState<T>
+  data?: T
   back: () => boolean
   next: () => boolean
   go: (to: number) => boolean

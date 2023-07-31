@@ -1,4 +1,4 @@
-import { ReactiveState, useState } from '@proto-native/utils'
+import { ReactiveState } from '@proto-native/utils'
 import { useContext } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
@@ -16,7 +16,7 @@ function useWizardInternal<T, TKey extends keyof T = keyof T>(
   data: T[TKey],
 ): {
   wizard: WizardHandle<T>
-  stepData: ReactiveState<NonNullable<T[TKey]>>
+  stepData: NonNullable<T>[TKey]
 } {
   let context: WizardHandle<T> | null = null
 
@@ -30,10 +30,8 @@ function useWizardInternal<T, TKey extends keyof T = keyof T>(
     throw new Error(`\`useWizard\` must be used within \`Wizard.Body\``)
   }
 
-  const stepDataState = useState(
-    context.data?.state[key] ?? (data as NonNullable<T[TKey]>),
-  )
-  if (context.data) context.data.state[key] = stepDataState.state
+  const stepDataState = context.data?.[key] ?? (data as NonNullable<T>[TKey])
+  if (context.data) context.data[key] = stepDataState
 
   return { wizard: context, stepData: stepDataState }
 }
