@@ -17,7 +17,7 @@ import useForm from './use-form'
 
 export type FormFieldProps = ViewProps & {
   name: string
-  validate?: (input: any) => boolean
+  validate?: (input: any) => Promise<boolean> | boolean
   error?: { message?: string; style?: Native.StyleProp<Native.TextStyle> }
 }
 

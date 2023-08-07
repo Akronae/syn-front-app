@@ -2,7 +2,9 @@ import { useContext } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
 
-export function useWizardNextGuard(shouldGoNext: () => boolean) {
+export function useWizardNextGuard(
+  shouldGoNext: () => Promise<boolean> | boolean,
+) {
   let context: WizardHandle<unknown> | null = null
 
   try {

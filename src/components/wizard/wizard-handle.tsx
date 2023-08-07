@@ -23,11 +23,14 @@ export type WizardHandle<T = any> = {
     count: number
     elem: React.ReactElement<WizardStepProps>
   }
-  data?: T
-  back: () => boolean
-  next: () => boolean
-  go: (to: number) => boolean
-  guards: { back?: () => boolean; next?: () => boolean }
+  data?: ReactiveState<T>
+  back: () => Promise<boolean>
+  next: () => Promise<boolean>
+  go: (to: number | string) => boolean
+  guards: {
+    back?: () => Promise<boolean> | boolean
+    next?: () => Promise<boolean> | boolean
+  }
   canGo: {
     next: () => boolean
     back: () => boolean

@@ -8,7 +8,14 @@ import { useExistingStateOr, useGroupChildrenByType } from '@proto-native/utils'
 import { isIos } from '@proto-native/utils/device/is-ios'
 import { isWeb } from '@proto-native/utils/device/is-web'
 import { themed } from '@proto-native/utils/theme/themed'
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, {
+  forwardRef,
+  ForwardRefExoticComponent,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react'
 import * as Native from 'react-native'
 import { useTheme } from 'styled-components/native'
 import {
@@ -27,152 +34,167 @@ export type InputTextProps<
   inputFilter?: (input: string, old: string) => string
 }
 
-export function InputText(props: InputTextProps) {
-  const theme = useTheme()
-  let {
-    children,
-    type = `text`,
-    inputFilter: inputFilterProps,
-    isFocused: isFocusedProps,
-    isInvalid: isInvalidProps,
-    invalid,
-    dropdown,
-    onChangeText: onChangeTextProps,
-    onFocus,
-    onBlur,
-    numberOfLines = 1,
-    multiline,
-    onKeyPress,
-    onSubmitEditing,
-    input,
-    keyboardType,
-    ...passed
-  } = props
-  multiline ??= numberOfLines > 1
-  const inputFilter = inputFilterProps ?? getDefaultInputFilter(type)
-  keyboardType ??= textInputTypeToKeyboard(type)
+export type InputTextRef = Native.TextInput
 
-  const childrenBy = useGroupChildrenByType(children, {
-    Placeholder: InputText.Placeholder,
-    Dropdown: InputText.Dropdown,
-  })
-  const textProps = takeTextOwnProps(passed)
-  const baseProps = takeBaseOwnProps(textProps.rest)
+export const InputText = forwardRef<InputTextRef, InputTextProps>(
+  (props, ref) => {
+    const theme = useTheme()
+    let {
+      children,
+      type = `text`,
+      inputFilter: inputFilterProps,
+      isFocused: isFocusedProps,
+      isInvalid: isInvalidProps,
+      invalid,
+      dropdown,
+      onChangeText: onChangeTextProps,
+      onFocus,
+      onBlur,
+      numberOfLines = 1,
+      multiline,
+      onKeyPress,
+      onSubmitEditing,
+      input,
+      keyboardType,
+      ...passed
+    } = props
+    multiline ??= numberOfLines > 1
+    const inputFilter = inputFilterProps ?? getDefaultInputFilter(type)
+    keyboardType ??= textInputTypeToKeyboard(type)
 
-  const model = useExistingStateOr(props.model, ``)
-  const isFocused = useExistingStateOr(isFocusedProps, false)
+    const childrenBy = useGroupChildrenByType(children, {
+      Placeholder: InputText.Placeholder,
+      Dropdown: InputText.Dropdown,
+    })
+    const textProps = takeTextOwnProps(passed)
+    const baseProps = takeBaseOwnProps(textProps.rest)
 
-  const isInvalid = useExistingStateOr(isInvalidProps, false)
-  invalid ??= {}
+    const model = useExistingStateOr(props.model, ``)
+    const isFocused = useExistingStateOr(isFocusedProps, false)
 
-  dropdown ??= {}
-  const dropdownShow = useExistingStateOr(dropdown?.show, false)
-  dropdown.show = dropdownShow
-  dropdownShow.state = useMemo(() => {
-    return isFocused?.state || false
-  }, [isFocused?.state])
+    const isInvalid = useExistingStateOr(isInvalidProps, false)
+    invalid ??= {}
 
-  const placeholder = (
-    childrenBy.Placeholder.flatMap((p) => p.props.children).reduce(
-      (acc, child) => `${acc} ${child?.toString()}`,
-      ``,
-    ) as string
-  ).trim()
+    dropdown ??= {}
+    const dropdownShow = useExistingStateOr(dropdown?.show, false)
+    dropdown.show = dropdownShow
+    dropdownShow.state = useMemo(() => {
+      return isFocused?.state || false
+    }, [isFocused?.state])
 
-  const onKeyPressBase = (
-    e: Native.NativeSyntheticEvent<Native.TextInputKeyPressEventData>,
-  ) => {
-    onKeyPress?.(e)
+    const placeholder = (
+      childrenBy.Placeholder.flatMap((p) => p.props.children).reduce(
+        (acc, child) => `${acc} ${child?.toString()}`,
+        ``,
+      ) as string
+    ).trim()
 
-    if (isWeb()) {
-      const event = e.nativeEvent as KeyboardEvent
-      if (event.key === `Enter` && event.ctrlKey) {
-        onSubmitEditing?.({
-          ...e,
-          nativeEvent: { ...e.nativeEvent, text: model.state },
-        })
+    const onKeyPressBase = (
+      e: Native.NativeSyntheticEvent<Native.TextInputKeyPressEventData>,
+    ) => {
+      onKeyPress?.(e)
+
+      if (isWeb()) {
+        const event = e.nativeEvent as KeyboardEvent
+        if (event.key === `Enter` && event.ctrlKey) {
+          onSubmitEditing?.({
+            ...e,
+            nativeEvent: { ...e.nativeEvent, text: model.state },
+          })
+        }
       }
     }
-  }
 
-  const onChangeText = (text: string) => {
-    text = inputFilter(text, model.state)
-    model.state = text
-    onChangeTextProps?.(text)
-  }
-
-  const style = Native.StyleSheet.flatten(props.style)
-  // https://github.com/facebook/react-native/issues/28012
-  const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
-  const iosLineHeightFix = {
-    paddingTop: lineHeightOverflow / 2,
-    paddingBottom: lineHeightOverflow / 2,
-    lineHeight: undefined,
-  }
-
-  const nativeInputRef = useRef<Native.TextInput>(null)
-  useEffect(() => {
-    if (isFocused?.state) {
-      nativeInputRef.current?.focus()
-    } else {
-      nativeInputRef.current?.blur()
+    const onChangeText = (text: string) => {
+      text = inputFilter(text, model.state)
+      model.state = text
+      onChangeTextProps?.(text)
     }
-  }, [isFocused?.state])
 
-  return (
-    <InputContainer
-      {...baseProps.taken}
-      {...textProps.rest}
-      style={[baseProps.taken.style, textProps.rest.style]}
-      model={model}
-      input={input}
-      dropdown={dropdown}
-      isFocused={isFocused}
-      isInvalid={isInvalid}
-    >
-      <Native.TextInput
-        ref={nativeInputRef}
-        placeholder={placeholder}
-        placeholderTextColor={theme.protonative.colors.text.sub}
-        value={model.state ?? ``}
-        keyboardType={keyboardType}
-        numberOfLines={numberOfLines}
-        multiline={multiline}
-        onKeyPress={onKeyPressBase}
-        onSubmitEditing={onSubmitEditing}
+    const style = Native.StyleSheet.flatten(props.style)
+    // https://github.com/facebook/react-native/issues/28012
+    const lineHeightOverflow = (style.lineHeight ?? 0) - (style.fontSize ?? 0)
+    const iosLineHeightFix = {
+      paddingTop: lineHeightOverflow / 2,
+      paddingBottom: lineHeightOverflow / 2,
+      lineHeight: undefined,
+    }
+
+    const nativeInputRef = useRef<Native.TextInput>(null)
+    useEffect(() => {
+      if (isFocused?.state) {
+        nativeInputRef.current?.focus()
+      } else {
+        nativeInputRef.current?.blur()
+      }
+    }, [isFocused?.state])
+
+    useImperativeHandle(ref, () => nativeInputRef.current as any)
+
+    return (
+      <InputContainer
+        {...baseProps.taken}
+        {...textProps.rest}
+        style={[baseProps.taken.style, textProps.rest.style]}
+        model={model}
+        input={input}
+        dropdown={dropdown}
+        isFocused={isFocused}
         isInvalid={isInvalid}
-        invalid={invalid}
-        {...textProps.taken}
-        {...baseProps.rest}
-        style={[
-          NativeInputStyle(theme, { isInvalid, invalid }),
-          textProps.taken.style,
-          baseProps.rest.style,
-          isIos() && iosLineHeightFix,
-        ]}
-        onChangeText={onChangeText}
-        onFocus={(e) => {
-          isFocused.state = true
-          onFocus?.(e)
-        }}
-        onBlur={(e) => {
-          isFocused.state = false
-          onBlur?.(e)
-        }}
-      />
-      {childrenBy.Dropdown.map((child, i) => {
-        return React.cloneElement(child as React.ReactElement<DropdownProps>, {
-          key: i,
-          onItemPress: (item: any) => {
+      >
+        <Native.TextInput
+          ref={nativeInputRef}
+          placeholder={placeholder}
+          placeholderTextColor={theme.protonative.colors.text.sub}
+          value={model.state ?? ``}
+          keyboardType={keyboardType}
+          numberOfLines={numberOfLines}
+          multiline={multiline}
+          onKeyPress={onKeyPressBase}
+          onSubmitEditing={onSubmitEditing}
+          isInvalid={isInvalid}
+          invalid={invalid}
+          {...textProps.taken}
+          {...baseProps.rest}
+          style={[
+            NativeInputStyle(theme, { isInvalid, invalid }),
+            textProps.taken.style,
+            baseProps.rest.style,
+            isIos() && iosLineHeightFix,
+          ]}
+          onChangeText={onChangeText}
+          onFocus={(e) => {
+            isFocused.state = true
+            onFocus?.(e)
+          }}
+          onBlur={(e) => {
             isFocused.state = false
-            child.props.onItemPress?.(item)
-          },
-        })
-      })}
-      {childrenBy.others}
-    </InputContainer>
-  )
+            onBlur?.(e)
+          }}
+        />
+        {childrenBy.Dropdown.map((child, i) => {
+          return React.cloneElement(
+            child as React.ReactElement<DropdownProps>,
+            {
+              key: i,
+              onItemPress: (item: any) => {
+                isFocused.state = false
+                child.props.onItemPress?.(item)
+              },
+            },
+          )
+        })}
+        {childrenBy.others}
+      </InputContainer>
+    )
+  },
+) as ForwardRefExoticComponent<
+  InputTextProps & React.RefAttributes<InputTextRef>
+> & {
+  Dropdown: typeof InputBase.Dropdown
+  Placeholder: typeof InputBase.Placeholder
 }
+InputText.displayName = `InputText`
 InputText.Dropdown = InputBase.Dropdown
 InputText.Placeholder = InputBase.Placeholder
 

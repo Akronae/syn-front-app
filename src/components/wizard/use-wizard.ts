@@ -1,4 +1,4 @@
-import { ReactiveState, useState } from '@proto-native/utils'
+import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
 import { useContext } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
@@ -11,7 +11,10 @@ type SubsetFunctionOf<T> = <TKey extends keyof T, TData extends T[TKey]>(
   stepData: ReactiveState<NonNullable<T[TKey]>>
 }
 
-function useWizardInternal<T extends {}, TKey extends keyof T = keyof T>(
+function useWizardInternal<
+  T extends Record<string, never>,
+  TKey extends keyof T = keyof T,
+>(
   key: TKey,
   data: NonNullable<T[TKey]>,
 ): {
@@ -30,8 +33,11 @@ function useWizardInternal<T extends {}, TKey extends keyof T = keyof T>(
     throw new Error(`\`useWizard\` must be used within \`Wizard.Body\``)
   }
 
-  const stepDataState = useState(context.data?.[key] ?? data)
-  if (context.data) context.data[key] = stepDataState.state
+  const stepDataState = useExistingStateOr(
+    context.data?.state?.[key],
+    data,
+  ) as ReactiveState<NonNullable<T[TKey]>>
+  if (context.data) context.data.state[key] = stepDataState.state
 
   return { wizard: context, stepData: stepDataState }
 }

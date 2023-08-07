@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
+export function useAsync<T>(fn: () => Promise<T>, deps?: any[]) {
   const [state, setState] = React.useState<{
     loading: boolean
     error: Error | null
@@ -15,7 +15,12 @@ export function useAsync<T>(fn: () => Promise<T>, deps: any[] = []) {
 
   const fetch: () => Promise<void> = () => {
     return fn()
-      .then((value) => setState({ ...state, loading: false, value }))
+      .then((value) => {
+        const newState = { ...state, loading: false, value }
+        if (JSON.stringify(newState) !== JSON.stringify(state)) {
+          setState(newState)
+        }
+      })
       .catch((error) =>
         setState({ ...state, loading: false, value: null, error }),
       )

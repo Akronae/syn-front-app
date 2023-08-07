@@ -34,6 +34,7 @@ export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
   Native.TextInputProps
 > & {
   model?: ReactiveState<TModel>
+  bindFormField?: boolean
   focused?: {
     style?: ReturnType<ThemedStyle>
   }
@@ -67,6 +68,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     isInvalid: isInvalidProps,
     invalid,
     model,
+    bindFormField = true,
     icon,
     leftSlot,
     leftSlotProps,
@@ -89,7 +91,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   invalid.style ??= NativeInputOnInvalid({ theme })
 
   const formField = useFormField()
-  if (formField) formField.input = model
+  if (formField && bindFormField) formField.input = model
   const form = useForm()
   useEffect(() => {
     if (form && formField?.state.state == FormFieldState.Error) {

@@ -15,7 +15,7 @@ import {
 import { WizardStep } from './wizard-step'
 
 export type WizardBodyProps<T> = BaseProps & {
-  data: T
+  data: ReactiveState<T>
   step?: ReactiveState<number>
 }
 
@@ -35,15 +35,24 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
 
   const eventListenners = useState<Partial<EventListenerRegister>>({})
 
-  const go = (to: number): boolean => {
-    console.log(`Going from wizard step`, step.current.state, `to`, to)
-    step.current.state = to
-    step.elem = stepElems[to]
-    return stepElems[to] !== undefined
+  const go = (to: number | string): boolean => {
+    if (typeof to == `number`) {
+      console.log(`Going from wizard step`, step.current.state, `to`, to)
+      step.current.state = to
+      step.elem = stepElems[to]
+      return stepElems[to] !== undefined
+    }
+
+    const index = stepElems.findIndex((e) => e.props.id == to)
+    if (index == -1) {
+      throw new Error(`Wizard step with id "${to}" not found`)
+    }
+    console.log(`Going to step with id`, to, `(${index})`)
+    return go(index)
   }
-  const back = (): boolean => {
+  const back = async (): Promise<boolean> => {
     if (wizardValue.guards.back) {
-      if (!wizardValue.guards.back()) {
+      if (!(await wizardValue.guards.back())) {
         console.warn(`Wizard back guard prevented going backwards`, wizardValue)
         return false
       }
@@ -51,10 +60,10 @@ export const WizardBody = forwardRef((props: WizardBodyProps<any>, ref) => {
     return go(step.current.state - 1)
   }
 
-  const next = (): boolean => {
-    const n = () => {
+  const next = (): Promise<boolean> => {
+    const n = async () => {
       if (wizardValue.guards.next) {
-        if (!wizardValue.guards.next()) {
+        if (!(await wizardValue.guards.next())) {
           console.warn(
             `Wizard next guard prevented going forwards`,
             wizardValue,
