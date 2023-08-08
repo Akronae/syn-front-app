@@ -73,13 +73,13 @@ export const createWizardEventRegisters = <K extends keyof WizardHandle['on']>(
   name: K,
   register: WizardHandle['eventListenners'],
 ) => ({
-  always: (cb: Parameters<WizardHandle['on'][K]['always']>[0]) =>
-    addEventListener(register, name, cb),
-  once: (cb: Parameters<WizardHandle['on'][K]['once']>[0]) => {
-    const wrap = (data: Parameters<typeof cb>[0]) => {
-      cb(data)
-      removeEventListener(data.wizard.eventListenners, name, wrap)
-    }
-    addEventListener(register, name, wrap)
-  },
-})
+    always: (cb: Parameters<WizardHandle['on'][K]['always']>[0]) =>
+      addEventListener(register, name, cb),
+    once: (cb: Parameters<WizardHandle['on'][K]['once']>[0]) => {
+      const wrap = (data: Parameters<typeof cb>[0]) => {
+        cb(data)
+        removeEventListener(data.wizard.eventListenners, name, wrap)
+      }
+      addEventListener(register, name, wrap)
+    },
+  })
