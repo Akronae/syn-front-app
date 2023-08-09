@@ -39,9 +39,10 @@ export const WizardBody = forwardRef(
     const go = (to: number | string): boolean => {
       if (typeof to == `number`) {
         console.log(`Going from wizard step`, step.current.state, `to`, to)
+        if (stepElems[to] == undefined) return false
         step.current.state = to
         step.elem = stepElems[to]
-        return stepElems[to] !== undefined
+        return true
       }
 
       const index = stepElems.findIndex((e) => e.props.id == to)
