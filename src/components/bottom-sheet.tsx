@@ -52,8 +52,10 @@ export function BottomSheet(props: BottomSheetProps) {
     }
   }
   const yAnimReset = () => {
-    y.value = 1000
-    yDur.value = 0
+    // on web an assignment, even if the value does not change
+    /// will trigger the animation -> loop
+    if (y.value != 1000) y.value = 1000
+    if (yDur.value != 0) yDur.value = 0
   }
   const close = () => {
     open.state = false
