@@ -35,10 +35,11 @@ export type BottomSheetProps = BaseProps & {
       style?: Native.ViewStyle
     }
   }
+  footer?: (props: any) => React.ReactNode
 }
 
 export function BottomSheet(props: BottomSheetProps) {
-  const { children, open: openProps, sheet, overlay, ...passed } = props
+  const { children, open: openProps, sheet, overlay, footer, ...passed } = props
   const open = useExistingStateOr(openProps, true)
   const { height } = useWindowDimensions()
 
@@ -101,6 +102,7 @@ export function BottomSheet(props: BottomSheetProps) {
         </TopNotchContainer>
 
         <Content style={sheet?.content?.style}>{children}</Content>
+        {footer?.(null)}
       </Sheet>
     </RNGH.GestureDetector>
   ))
@@ -163,7 +165,7 @@ const TopNotch = themed<BaseProps>(Base, (p) => ({
   marginRight: `auto`,
 }))
 
-const Content = themed<BaseProps>(Base, (p) => ({
+const Content = themed<Native.ScrollViewProps>(Native.ScrollView, (p) => ({
   padding: p.theme.protonative.spacing(2),
   flex: 1,
 }))
