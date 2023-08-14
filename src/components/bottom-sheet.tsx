@@ -16,7 +16,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated'
-import { useWindowDimensions } from 'react-native'
+import {
+  KeyboardAvoidingView,
+  KeyboardAvoidingViewProps,
+  useWindowDimensions,
+} from 'react-native'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>
@@ -96,7 +100,7 @@ export function BottomSheet(props: BottomSheetProps) {
 
   const SheetWrapper = RNGH.gestureHandlerRootHOC(() => (
     <RNGH.GestureDetector gesture={pan}>
-      <Sheet style={sheet?.container?.style}>
+      <Sheet style={sheet?.container?.style} behavior='padding'>
         <TopNotchContainer>
           {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}
         </TopNotchContainer>
@@ -130,7 +134,7 @@ const Background = themed<BaseProps>(Base, (p) => ({
   backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.1),
 }))
 
-const Sheet = themed<BaseProps>(Base, (p) => ({
+const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,
