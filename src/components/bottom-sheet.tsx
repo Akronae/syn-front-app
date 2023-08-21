@@ -2,6 +2,7 @@ import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
 import {
   hexOpacity,
+  isIos,
   ReactiveState,
   useExistingStateOr,
 } from '@proto-native/utils'
@@ -100,13 +101,16 @@ export function BottomSheet(props: BottomSheetProps) {
 
   const SheetWrapper = RNGH.gestureHandlerRootHOC(() => (
     <RNGH.GestureDetector gesture={pan}>
-      <Sheet style={sheet?.container?.style} behavior='padding'>
+      <Sheet
+        style={sheet?.container?.style}
+        behavior={isIos() ? 'padding' : undefined}
+      >
         <TopNotchContainer>
           {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}
         </TopNotchContainer>
 
         <Content style={sheet?.content?.style}>{children}</Content>
-        {footer?.(null)}
+        <Native.View>{footer?.(null)}</Native.View>
       </Sheet>
     </RNGH.GestureDetector>
   ))
@@ -146,8 +150,6 @@ const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
   borderRadius: p.theme.protonative.borderRadius(12),
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  minHeight: `20%`,
-  maxHeight: `80%`,
   shadowColor: `#000`,
   shadowOffset: {
     width: 0,
