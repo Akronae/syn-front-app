@@ -3,24 +3,22 @@ import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react'
 import { FlexStyle } from 'react-native'
 
-export type RowProps = BaseProps & {
+export type ColumnProps = BaseProps & {
   justifyContent?: FlexStyle['justifyContent']
   alignItems?: FlexStyle['alignItems']
-  flexWrap?: FlexStyle['flexWrap']
   gap?: number
 }
 
-export function Row(props: RowProps) {
+export function Column(props: ColumnProps) {
   const { ...passed } = props
 
-  return <RowBase {...passed}></RowBase>
+  return <ColumnBase {...passed}></ColumnBase>
 }
 
-const RowBase = themed<RowProps>(Base, (p) => ({
+const ColumnBase = themed<ColumnProps>(Base, (p) => ({
   display: `flex`,
-  flexDirection: `row`,
+  flexDirection: `column`,
   justifyContent: p.justifyContent,
   alignItems: p.alignItems,
-  flexWrap: p.flexWrap,
   gap: p.gap,
 }))

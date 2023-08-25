@@ -103,7 +103,7 @@ export function BottomSheet(props: BottomSheetProps) {
     <RNGH.GestureDetector gesture={pan}>
       <Sheet
         style={sheet?.container?.style}
-        behavior={isIos() ? 'padding' : undefined}
+        behavior={isIos() ? `padding` : undefined}
       >
         <TopNotchContainer>
           {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}

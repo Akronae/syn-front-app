@@ -206,6 +206,7 @@ const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   borderWidth: 2,
   borderStyle: `solid`,
   borderColor: `transparent`,
+  flexWrap: `wrap`,
   ...(p.isFocused?.state && p.focused?.style),
   ...(p.isInvalid?.state && p.invalid?.style),
   ...p.input?.style,

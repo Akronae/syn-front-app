@@ -13,7 +13,9 @@ export function ScrollView(props: ScrollViewProps) {
 
   return (
     <ScrollViewBase {...baseProps.taken}>
-      <Native.ScrollView {...baseProps.rest}>{children}</Native.ScrollView>
+      <Native.ScrollView {...baseProps.rest}>
+        <Base>{children}</Base>
+      </Native.ScrollView>
     </ScrollViewBase>
   )
 }
