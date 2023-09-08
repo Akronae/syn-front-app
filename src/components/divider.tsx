@@ -8,10 +8,11 @@ export type DividerProps = BaseProps & {
     top?: (theme: DefaultTheme) => number
     bottom?: (theme: DefaultTheme) => number
   }
+  orientation?: 'horizontal' | 'vertical'
 }
 
 export function Divider(props: DividerProps) {
-  const { margin, style, ...passed } = props
+  const { margin, style, orientation = `horizontal`, ...passed } = props
   const theme = useTheme()
 
   const marginTop = margin?.top?.(theme)
@@ -20,14 +21,20 @@ export function Divider(props: DividerProps) {
   return (
     <DividerBase
       style={[style, { marginTop, marginBottom }]}
+      orientation={orientation}
       {...passed}
     ></DividerBase>
   )
 }
 
-const DividerBase = themed(Base, (p) => ({
-  width: `100%`,
-  borderTopWidth: 1,
-  borderTopColor: p.theme.protonative.colors.border.disabled,
-  borderTopStyle: `solid`,
-}))
+const DividerBase = themed<BaseProps & Pick<DividerProps, 'orientation'>>(
+  Base,
+  (p) => ({
+    width: p.orientation == `horizontal` ? `100%` : 1,
+    height: p.orientation == `vertical` ? `100%` : 1,
+    borderTopWidth: p.orientation == `horizontal` ? 1 : 0,
+    borderLeftWidth: p.orientation == `vertical` ? 1 : 0,
+    borderTopColor: p.theme.protonative.colors.border.disabled,
+    borderTopStyle: `solid`,
+  }),
+)

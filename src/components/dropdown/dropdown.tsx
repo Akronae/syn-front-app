@@ -151,18 +151,20 @@ export function Dropdown(props: DropdownProps) {
           },
           dismissOnPress: true,
         }}
+        style={modal?.overlay?.style}
         open={open}
-        style={childrenWrapperStyle}
         portalName={`dropdown`}
       >
-        <Wrapper
-          style={style}
-          onLayout={onChildrenWrapperLayout}
-          data={dropdownItems}
-          renderItem={(d) => d.item}
-        >
-          {childrenBy.others}
-        </Wrapper>
+        <Base style={childrenWrapperStyle}>
+          <Wrapper
+            style={style}
+            onLayout={onChildrenWrapperLayout}
+            data={dropdownItems}
+            renderItem={(d) => d.item}
+          >
+            {childrenBy.others}
+          </Wrapper>
+        </Base>
       </Modal>
     </DropdownBase>
   )
