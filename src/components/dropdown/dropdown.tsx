@@ -18,7 +18,7 @@ import {
   StyleProp,
   useWindowDimensions,
 } from 'react-native'
-import { Modal } from '@proto-native/components/modal'
+import { Modal, ModalProps } from '@proto-native/components/modal'
 import { isWeb } from '@proto-native/utils/device/is-web'
 
 import { FlatList } from 'react-native'
@@ -30,6 +30,7 @@ export type DropdownProps = BaseProps & {
     overlay?: {
       style: ReturnType<ThemedStyle>
     }
+    wrapper: ModalProps['wrapper']
   }
   open?: ReactiveState<boolean>
 }
@@ -151,6 +152,7 @@ export function Dropdown(props: DropdownProps) {
           },
           dismissOnPress: true,
         }}
+        wrapper={modal?.wrapper}
         style={modal?.overlay?.style}
         open={open}
         portalName={`dropdown`}

@@ -1,8 +1,14 @@
 import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
-import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import {
+  createThemedStyle,
+  ReactiveState,
+  useExistingStateOr,
+} from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as Native from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useTheme } from 'styled-components/native'
 
 export type ModalProps = BaseProps & {
   portalName?: string
@@ -12,6 +18,7 @@ export type ModalProps = BaseProps & {
     onPress?: (e: Native.GestureResponderEvent) => void
     dismissOnPress?: boolean
   }
+  wrapper?: React.ComponentType<BaseProps>
 }
 
 export function Modal(props: ModalProps) {
@@ -20,9 +27,11 @@ export function Modal(props: ModalProps) {
     overlay,
     open: openProps,
     portalName = `modal`,
+    wrapper: Wrapper = Base,
     ...passed
   } = props
   const open = useExistingStateOr(openProps, true)
+  const theme = useTheme()
 
   const onBackgroundPress = (e: Native.GestureResponderEvent) => {
     setTimeout(() => {
@@ -34,7 +43,10 @@ export function Modal(props: ModalProps) {
   return (
     <ModalBase showIf={open.state}>
       <Portal hostName={portalName}>
-        <Wrapper {...passed}>
+        <Wrapper
+          {...passed}
+          style={StyleSheet.flatten([wrapperStyle(theme), passed.style])}
+        >
           <Overlay onPress={onBackgroundPress} style={overlay?.style} />
           <Content>{children}</Content>
         </Wrapper>
@@ -56,11 +68,12 @@ const Overlay = themed<BaseProps>(Base, (p) => ({
   backgroundColor: `transparent`,
 }))
 
-const Wrapper = themed<BaseProps>(Base, (p) => ({
+const wrapperStyle = createThemedStyle<BaseProps>((p) => ({
   position: `absolute`,
+  top: 0,
+  left: 0,
+  width: `100%`,
+  height: `100%`,
 }))
 
-const Content = themed(Base, (p) => ({
-  left: 0,
-  top: 0,
-}))
+const Content = themed(Base, (p) => ({}))
