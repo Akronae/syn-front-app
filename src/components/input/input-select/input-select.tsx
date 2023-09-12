@@ -19,6 +19,7 @@ import {
   DropdownProps,
 } from '@proto-native/components/dropdown'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
+import { getChildrenByType } from '@proto-native/utils/get-children-by-type'
 
 export type InputSelectProps<
   TModel = string,
@@ -63,10 +64,8 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
   useEffect(() => {
     if (model.state != null) {
       const found = childrenBy.Dropdown.map((child) => {
-        return child.props.children.find(
-          (item: ReactElement<DropdownItemProps>) =>
-            item.props.value === model.state,
-        )
+        const { taken: items } = getChildrenByType(child, Dropdown.Item)
+        return items.find((item) => item.props.value === model.state)
       })
       selectedItem.state = found[0] as ReactElement<DropdownItemProps>
     }

@@ -46,6 +46,7 @@ export function Dropdown(props: DropdownProps) {
   } = props
   const childrenBy = useGroupChildrenByType(children, {
     DropdownItem: Dropdown.Item,
+    Header: Dropdown.Header,
   })
   const open = useExistingStateOr(openProps, true)
   const flatStyle = useFlatStyle(style)
@@ -158,20 +159,23 @@ export function Dropdown(props: DropdownProps) {
         portalName={`dropdown`}
       >
         <Base style={childrenWrapperStyle}>
-          <Wrapper
-            style={style}
-            onLayout={onChildrenWrapperLayout}
-            data={dropdownItems}
-            renderItem={(d) => d.item}
-          >
-            {childrenBy.others}
-          </Wrapper>
+          <Base style={style}>
+            <Base>{childrenBy.Header}</Base>
+            <Wrapper
+              onLayout={onChildrenWrapperLayout}
+              data={dropdownItems}
+              renderItem={(d) => d.item}
+            >
+              {childrenBy.others}
+            </Wrapper>
+          </Base>
         </Base>
       </Modal>
     </DropdownBase>
   )
 }
 Dropdown.Item = DropdownItem
+Dropdown.Header = themed<BaseProps>(Base, (p) => ({}))
 
 const DropdownBase = themed<DropdownProps>(Base, (p) => ({}))
 
