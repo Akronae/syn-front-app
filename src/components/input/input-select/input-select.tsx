@@ -45,9 +45,10 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     openIndicator,
     textSlot,
     onPress: onPressProps,
+    model: modelProps,
     ...passed
   } = props
-  const model = useExistingStateOr(props.model, undefined)
+  const model = useExistingStateOr(modelProps, undefined)
   const isFocused = useExistingStateOr(isFocusedProps, false)
   const childrenBy = useGroupChildrenByType(children, {
     Dropdown: Dropdown,
@@ -63,8 +64,11 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
 
   useEffect(() => {
     if (model.state != null) {
-      const found = childrenBy.Dropdown.map((child) => {
-        const { taken: items } = getChildrenByType(child, Dropdown.Item)
+      const found = childrenBy.Dropdown.map((drop) => {
+        const { taken: items } = getChildrenByType(
+          drop.props.children,
+          Dropdown.Item,
+        )
         return items.find((item) => item.props.value === model.state)
       })
       selectedItem.state = found[0] as ReactElement<DropdownItemProps>
