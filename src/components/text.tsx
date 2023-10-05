@@ -48,8 +48,8 @@ export function Text(props: TextProps) {
   if (variant.bold) fontWeight = `bold`
 
   const baseStyle = {
-    color: theme.protonative.colors.text.primary,
-    fontSize: theme.protonative.typography.size.md,
+    color: theme.proto.colors.text.primary,
+    fontSize: theme.proto.typography.size.md,
   }
 
   const nonBreakingChildren = React.Children.map(children, (child) => {
@@ -139,13 +139,13 @@ export function getStyleBoldness(
 }
 
 export function boldnessToFont(boldness: number, theme: DefaultTheme): string {
-  if (boldness <= 100) return theme.protonative.typography.font.thin
-  if (boldness <= 200) return theme.protonative.typography.font.extraLight
-  if (boldness <= 300) return theme.protonative.typography.font.light
-  if (boldness <= 400) return theme.protonative.typography.font.regular
-  if (boldness <= 500) return theme.protonative.typography.font.medium
-  if (boldness <= 600) return theme.protonative.typography.font.semiBold
-  if (boldness <= 700) return theme.protonative.typography.font.bold
-  if (boldness <= 800) return theme.protonative.typography.font.extraBold
-  return theme.protonative.typography.font.black
+  if (boldness <= 100) return theme.proto.typography.font.thin
+  if (boldness <= 200) return theme.proto.typography.font.extraLight
+  if (boldness <= 300) return theme.proto.typography.font.light
+  if (boldness <= 400) return theme.proto.typography.font.regular
+  if (boldness <= 500) return theme.proto.typography.font.medium
+  if (boldness <= 600) return theme.proto.typography.font.semiBold
+  if (boldness <= 700) return theme.proto.typography.font.bold
+  if (boldness <= 800) return theme.proto.typography.font.extraBold
+  return theme.proto.typography.font.black
 }

@@ -49,14 +49,14 @@ export function Checkbox(props: CheckboxProps) {
   )
 }
 Checkbox.Label = themed(Text, (p) => ({
-  fontSize: p.theme.protonative.typography.size.xs,
+  fontSize: p.theme.proto.typography.size.xs,
 }))
 
 const CheckboxBase = themed<BaseProps>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   alignItems: `center`,
-  gap: p.theme.protonative.spacing(2),
+  gap: p.theme.proto.spacing(2),
 }))
 
 const Markbox = themed<
@@ -72,11 +72,9 @@ const Markbox = themed<
   height: 20,
   borderRadius: 6,
   borderWidth: 2,
-  borderColor: p.theme.protonative.colors.border.disabled,
+  borderColor: p.theme.proto.colors.border.disabled,
   backgroundColor:
-    p.model?.state === true
-      ? p.theme.protonative.colors.surface.primary
-      : undefined,
+    p.model?.state === true ? p.theme.proto.colors.surface.primary : undefined,
   ...p.markbox?.style,
 }))
 
@@ -85,5 +83,5 @@ const Mark = themed<{
   model: CheckboxProps['model']
 }>(Ionicons, (p) => ({
   display: p.model?.state == null ? `flex` : `none`,
-  color: p.theme.protonative.colors.surface.contrast,
+  color: p.theme.proto.colors.surface.contrast,
 }))

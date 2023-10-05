@@ -4,6 +4,6 @@ import { themed } from '@proto-native/utils/theme/themed'
 export type FormFieldLabelProps = TextProps
 
 export const FormFieldLabel = themed(Text, (p) => ({
-  fontSize: p.theme.protonative.typography.size.xs,
-  color: p.theme.protonative.colors.text.heavy,
+  fontSize: p.theme.proto.typography.size.xs,
+  color: p.theme.proto.colors.text.heavy,
 }))

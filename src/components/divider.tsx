@@ -34,7 +34,7 @@ const DividerBase = themed<BaseProps & Pick<DividerProps, 'orientation'>>(
     height: p.orientation == `vertical` ? `100%` : 1,
     borderTopWidth: p.orientation == `horizontal` ? 1 : 0,
     borderLeftWidth: p.orientation == `vertical` ? 1 : 0,
-    borderTopColor: p.theme.protonative.colors.border.disabled,
+    borderTopColor: p.theme.proto.colors.border.disabled,
     borderTopStyle: `solid`,
   }),
 )

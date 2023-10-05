@@ -46,9 +46,9 @@ const StatusBarBase = themed(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `space-around`,
-  color: p.theme.protonative.colors.text.contrast,
-  fill: p.theme.protonative.colors.text.contrast,
-  stroke: p.theme.protonative.colors.text.contrast,
+  color: p.theme.proto.colors.text.contrast,
+  fill: p.theme.proto.colors.text.contrast,
+  stroke: p.theme.proto.colors.text.contrast,
 }))
 
 const Time = themed(Text, (p) => ({
@@ -60,7 +60,7 @@ const Time = themed(Text, (p) => ({
   justifyContent: `center`,
   alignItems: `center`,
   fontWeight: 400,
-  color: p.theme.protonative.colors.text.contrast,
+  color: p.theme.proto.colors.text.contrast,
 }))
 
 const Icons = themed(View, (p) => ({
@@ -77,7 +77,7 @@ const Icons = themed(View, (p) => ({
 const Notch = themed(Base, (p) => ({
   height: 37,
   width: 125,
-  backgroundColor: p.theme.protonative.colors.text.contrast,
+  backgroundColor: p.theme.proto.colors.text.contrast,
   borderRadius: 40,
   marginTop: 11,
   marginBottom: 5,

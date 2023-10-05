@@ -145,7 +145,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
         <Native.TextInput
           ref={nativeInputRef}
           placeholder={placeholder}
-          placeholderTextColor={theme.protonative.colors.text.sub}
+          placeholderTextColor={theme.proto.colors.text.sub}
           value={model.state ?? ``}
           keyboardType={keyboardType}
           numberOfLines={numberOfLines}
@@ -209,21 +209,21 @@ const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
     getStyleBoldness(Native.StyleSheet.flatten(p.style)),
     p.theme,
   ),
-  color: p.theme.protonative.colors.text.primary,
-  fontSize: p.theme.protonative.typography.size.md,
+  color: p.theme.proto.colors.text.primary,
+  fontSize: p.theme.proto.typography.size.md,
   ...(p.isInvalid?.state && p.invalid?.style),
 }))
 
 function textInputTypeToKeyboard(type: InputTextType): Native.KeyboardType {
   switch (type) {
-  case `email`:
-    return `email-address`
-  case `numeric`:
-    return `numeric`
-  case `password`:
-    return `default`
-  case `text`:
-    return `default`
+    case `email`:
+      return `email-address`
+    case `numeric`:
+      return `numeric`
+    case `password`:
+      return `default`
+    case `text`:
+      return `default`
   }
 }
 
@@ -231,10 +231,10 @@ function getDefaultInputFilter(
   type: InputTextType,
 ): NonNullable<InputTextProps['inputFilter']> {
   switch (type) {
-  case `numeric`:
-    return numericInputFilter
-  default:
-    return textInputFilter
+    case `numeric`:
+      return numericInputFilter
+    default:
+      return textInputFilter
   }
 }
 

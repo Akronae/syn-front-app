@@ -14,6 +14,6 @@ export function DropdownItem<T>(props: DropdownItemProps<T>) {
 }
 const DropdownItemBase = themed(Base, (p) => ({
   padding: 10,
-  backgroundColor: p.theme.protonative.colors.surface.sub,
+  backgroundColor: p.theme.proto.colors.surface.sub,
   cursor: `pointer`,
 }))

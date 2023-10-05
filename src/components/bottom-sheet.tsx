@@ -135,19 +135,19 @@ const Background = themed<BaseProps>(Base, (p) => ({
   bottom: 0,
   width: `100%`,
   height: `100%`,
-  backgroundColor: hexOpacity(p.theme.protonative.colors.surface.default, 0.1),
+  backgroundColor: hexOpacity(p.theme.proto.colors.surface.default, 0.1),
 }))
 
 const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,
-  backgroundColor: p.theme.protonative.colors.surface.default,
+  backgroundColor: p.theme.proto.colors.surface.default,
   width: `100%`,
   borderWidth: 2,
-  borderColor: hexOpacity(p.theme.protonative.colors.border.disabled, 0.8),
+  borderColor: hexOpacity(p.theme.proto.colors.border.disabled, 0.8),
   borderBottomColor: `transparent`,
-  borderRadius: p.theme.protonative.borderRadius(12),
+  borderRadius: p.theme.proto.borderRadius(12),
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
   shadowColor: `#000`,
@@ -165,13 +165,13 @@ const TopNotch = themed<BaseProps>(Base, (p) => ({
   width: 80,
   height: 6,
   borderRadius: 99,
-  backgroundColor: p.theme.protonative.colors.surface.disabled,
-  marginTop: p.theme.protonative.spacing(3),
+  backgroundColor: p.theme.proto.colors.surface.disabled,
+  marginTop: p.theme.proto.spacing(3),
   marginLeft: `auto`,
   marginRight: `auto`,
 }))
 
 const Content = themed<Native.ScrollViewProps>(Native.ScrollView, (p) => ({
-  padding: p.theme.protonative.spacing(2),
+  padding: p.theme.proto.spacing(2),
   flex: 1,
 }))

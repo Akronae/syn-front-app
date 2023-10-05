@@ -142,7 +142,7 @@ InputSelect.Selected = themed(Text, (p) => ({}))
 InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
-  // gap: p.theme.protonative.spacing(2),
+  // gap: p.theme.proto.spacing(2),
 }))
 
 const IconWrapper = themed(Base, (p) => ({

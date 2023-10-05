@@ -15,5 +15,5 @@ export function FormFieldError(props: FormFieldErrorProps) {
 }
 
 const FormFieldErrorBase = themed(Text, (p) => ({
-  color: p.theme.protonative.colors.text.error,
+  color: p.theme.proto.colors.text.error,
 }))

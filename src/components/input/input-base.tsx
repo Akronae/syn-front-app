@@ -123,8 +123,8 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
 
   const iconStyle = omitBy(
     {
-      color: color || theme.protonative.colors.text.primary,
-      fontSize: fontSize || theme.protonative.typography.size.md,
+      color: color || theme.proto.colors.text.primary,
+      fontSize: fontSize || theme.proto.typography.size.md,
       stroke: stroke || color,
     },
     isUndefined,
@@ -185,22 +185,22 @@ const InputBaseBase = Base
 
 const NativeInputOnFocus: ThemedStyle = (p) => ({
   borderColor: hexLerp(
-    p.theme.protonative.colors.surface.sub,
-    p.theme.protonative.colors.surface.contrast,
+    p.theme.proto.colors.surface.sub,
+    p.theme.proto.colors.surface.contrast,
     0.05,
   ),
 })
 
 const NativeInputOnInvalid: ThemedStyle = (p) => ({
-  borderColor: p.theme.protonative.colors.surface.error,
-  color: p.theme.protonative.colors.surface.error,
+  borderColor: p.theme.proto.colors.surface.error,
+  color: p.theme.proto.colors.surface.error,
 })
 
 const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   alignItems: `center`,
-  backgroundColor: p.theme.protonative.colors.surface.sub,
+  backgroundColor: p.theme.proto.colors.surface.sub,
   padding: 10,
   borderRadius: 8,
   borderWidth: 2,
@@ -215,10 +215,10 @@ const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
 const Icon = themed<Partial<InputBaseProps> & { name: string }>(
   Ionicons,
   (p) => ({
-    marginRight: p.theme.protonative.spacing(2),
-    fontFamily: p.theme.protonative.typography.font.regular,
-    color: p.theme.protonative.colors.text.primary,
-    fontSize: p.theme.protonative.typography.size.md,
+    marginRight: p.theme.proto.spacing(2),
+    fontFamily: p.theme.proto.typography.font.regular,
+    color: p.theme.proto.colors.text.primary,
+    fontSize: p.theme.proto.typography.size.md,
     ...(p.isInvalid?.state && p.invalid?.style),
   }),
 )

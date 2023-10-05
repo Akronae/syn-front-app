@@ -32,7 +32,7 @@ RadioOption.Description = RadioOptionDescription
 const RadioOptionBase = themed<RadioOptionProps>(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
-  backgroundColor: p.theme.protonative.colors.surface.sub,
+  backgroundColor: p.theme.proto.colors.surface.sub,
   padding: 12,
   borderRadius: 8,
 }))
@@ -41,18 +41,18 @@ const CircleOuter = themed<{ isSelected?: boolean }>(Native.View, (p) => ({
   display: `flex`,
   justifyContent: `center`,
   alignItems: `center`,
-  height: p.theme.protonative.typography.size.sm,
+  height: p.theme.proto.typography.size.sm,
   aspectRatio: `1 / 1`,
   marginRight: 15,
   marginTop: 2,
   borderRadius: borderRadiusPercentToNumber(50),
   backgroundColor: p.isSelected
-    ? p.theme.protonative.colors.surface.primary
+    ? p.theme.proto.colors.surface.primary
     : hexLerp(
-      p.theme.protonative.colors.surface.sub,
-      p.theme.protonative.colors.surface.contrast,
-      0.1,
-    ),
+        p.theme.proto.colors.surface.sub,
+        p.theme.proto.colors.surface.contrast,
+        0.1,
+      ),
   borderWidth: 1,
   borderColor: `gray`,
 }))
@@ -61,16 +61,16 @@ const CircleInner = themed<{ isSelected?: boolean }>(Native.View, (p) => ({
   height: `50%`,
   aspectRatio: `1 / 1`,
   borderRadius: borderRadiusPercentToNumber(50),
-  backgroundColor: p.theme.protonative.colors.surface.default,
+  backgroundColor: p.theme.proto.colors.surface.default,
   opacity: p.isSelected ? 1 : 0,
 }))
 
 const Icon = themed(Ionicons, (p) => ({
   marginRight: 6,
-  fontSize: p.theme.protonative.typography.size.sm,
+  fontSize: p.theme.proto.typography.size.sm,
 }))
 
 const RadioOptionText = themed(Text, (p) => ({
   flexShrink: 1,
-  fontSize: p.theme.protonative.typography.size.sm,
+  fontSize: p.theme.proto.typography.size.sm,
 }))

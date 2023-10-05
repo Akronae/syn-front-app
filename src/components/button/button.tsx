@@ -62,8 +62,8 @@ export function Button(props: ButtonProps) {
 
   const iconStyle = omitBy(
     {
-      color: color || theme.protonative.colors.text.primary,
-      fontSize: fontSize || theme.protonative.typography.size.md,
+      color: color || theme.proto.colors.text.primary,
+      fontSize: fontSize || theme.proto.typography.size.md,
       stroke,
     },
     isUndefined,
@@ -190,9 +190,9 @@ const ButtonBase = themed<BaseProps & ButtonVariant>(Base, (p) => ({
   flexDirection: `row`,
   justifyContent: `center`,
   alignItems: `center`,
-  gap: p.theme.protonative.spacing(3),
+  gap: p.theme.proto.spacing(3),
   textAlign: `center`,
-  backgroundColor: p.theme.protonative.colors.surface.primary,
+  backgroundColor: p.theme.proto.colors.surface.primary,
   borderRadius: 8,
   paddingVertical: 10,
   paddingHorizontal: 15,
@@ -202,25 +202,25 @@ const ButtonBase = themed<BaseProps & ButtonVariant>(Base, (p) => ({
 }))
 
 const StateDisabled: ThemedStyle = (p) => ({
-  backgroundColor: p.theme.protonative.colors.surface.disabled,
-  color: p.theme.protonative.colors.text.primary,
+  backgroundColor: p.theme.proto.colors.surface.disabled,
+  color: p.theme.proto.colors.text.primary,
 })
 
 const StateText: ThemedStyle = (p) => ({
   backgroundColor: `transparent`,
-  color: p.theme.protonative.colors.text.primary,
+  color: p.theme.proto.colors.text.primary,
 })
 
 const StateSecondary: ThemedStyle = (p) => ({
-  backgroundColor: p.theme.protonative.colors.surface.sub,
-  color: p.theme.protonative.colors.text.primary,
+  backgroundColor: p.theme.proto.colors.surface.sub,
+  color: p.theme.proto.colors.text.primary,
 })
 
 const BtnCardText = themed<BaseProps & ButtonVariant>(Text, (p) => {
   return {
-    fontSize: p.theme.protonative.typography.size[p.size],
+    fontSize: p.theme.proto.typography.size[p.size],
     fontWeight: `500`,
-    color: p.theme.protonative.colors.text.light,
+    color: p.theme.proto.colors.text.light,
   }
 })
 

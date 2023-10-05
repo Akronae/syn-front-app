@@ -14,8 +14,8 @@ export function RadioOptionDescription(props: RadioOptionDescriptionProps) {
 const RadioOptionDescriptionBase = themed<RadioOptionDescriptionProps>(
   Text,
   (p) => ({
-    fontSize: p.theme.protonative.typography.size.xs,
-    color: p.theme.protonative.colors.text.sub,
+    fontSize: p.theme.proto.typography.size.xs,
+    color: p.theme.proto.colors.text.sub,
     marginTop: 6,
   }),
 )
