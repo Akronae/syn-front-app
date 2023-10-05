@@ -1,3 +1,4 @@
+import { StyleProp, ViewStyle } from 'react-native'
 import {
   AnimatedStyleProp,
   runOnJS,
@@ -9,7 +10,7 @@ import {
 export type ButtonPressAnimation = 'none' | 'scale-down'
 
 export type AnimationHandle = {
-  style: AnimatedStyleProp<unknown>
+  style: StyleProp<ViewStyle>
   start: (callback?: () => void) => void
   revert: (callback?: () => void) => void
 }

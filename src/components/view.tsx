@@ -70,6 +70,7 @@ export function View(props: ViewProps) {
   )
 }
 
-const BaseStyle: ViewStyle = {
+  // @ts-ignore
+  const BaseStyle: ViewStyle = {
   ...(isWeb() && { minHeight: `revert`, minWidth: `revert` }),
 }
