@@ -1,6 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native'
 import {
-  AnimatedStyleProp,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,

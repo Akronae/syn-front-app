@@ -49,10 +49,10 @@ const CircleOuter = themed<{ isSelected?: boolean }>(Native.View, (p) => ({
   backgroundColor: p.isSelected
     ? p.theme.proto.colors.surface.primary
     : hexLerp(
-        p.theme.proto.colors.surface.sub,
-        p.theme.proto.colors.surface.contrast,
-        0.1,
-      ),
+      p.theme.proto.colors.surface.sub,
+      p.theme.proto.colors.surface.contrast,
+      0.1,
+    ),
   borderWidth: 1,
   borderColor: `gray`,
 }))

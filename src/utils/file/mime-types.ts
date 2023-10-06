@@ -1,8 +1,8 @@
 export const mimeTypes = {
   image: {
-    all: 'image/*',
+    all: `image/*`,
   },
   application: {
-    pdf: 'application/pdf',
-  }
+    pdf: `application/pdf`,
+  },
 }
