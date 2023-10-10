@@ -25,7 +25,7 @@ export type ButtonVariant = {
 
 export type ButtonProps = BaseProps<
   Native.ViewStyle & { stroke?: string; fill?: string },
-  Native.TextStyle
+  any
 > &
   Omit<TextProps, 'style'> &
   Omit<Native.ViewProps, 'style'> & {
@@ -76,6 +76,7 @@ export function Button(props: ButtonProps) {
     width: flatStyle.width,
     height: flatStyle.height,
     alignSelf: flatStyle.alignSelf,
+    flex: flatStyle.flex,
   }
 
   const IconComponent = () => (

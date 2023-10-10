@@ -15,7 +15,13 @@ module.exports = {
     ecmaVersion: `latest`,
     sourceType: `module`,
   },
-  plugins: [`react`, `@typescript-eslint`, `unused-imports`, `import-quotes`],
+  plugins: [
+    `react`,
+    `@typescript-eslint`,
+    `unused-imports`,
+    `import-quotes`,
+    'regex',
+  ],
   rules: {
     indent: [`error`, 2],
     'prefer-const': [`error`, { destructuring: `all` }],
@@ -35,6 +41,9 @@ module.exports = {
       { vars: `all`, args: `none`, varsIgnorePattern: `_` },
     ],
     '@typescript-eslint/no-explicit-any': `off`,
+    '@typescript-eslint/no-var-requires': `off`,
+    '@typescript-eslint/ban-ts-comment': `off`,
+    '@typescript-eslint/no-non-null-assertion': 'off',
     'import-quotes/import-quotes': [1, `single`],
     'eol-last': [`error`, `always`],
     // forbids relative parent imports
@@ -44,8 +53,17 @@ module.exports = {
         patterns: [`..*`],
       },
     ],
+    'regex/invalid': [
+      'error',
+      [
+        {
+          regex: "from 'src/packages/proto-native/src",
+          replacement: "from '@proto-native",
+        },
+      ],
+    ],
   },
-  ignorePatterns: [`node_modules`, `dist`, `build`, `*.d.ts`],
+  ignorePatterns: [`node_modules`, `dist`, `build`, `*.d.ts`, `*.js`],
   settings: {
     react: {
       version: `detect`,
