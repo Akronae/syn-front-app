@@ -165,7 +165,9 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
           return React.cloneElement(child, {
             key: i,
             onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
-              if (model) model.state = item.props.value
+              if (model) {
+                model.state = item.props.value
+              }
               Native.Keyboard.dismiss()
               child.props.onItemPress?.(item)
             },

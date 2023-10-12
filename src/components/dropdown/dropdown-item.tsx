@@ -3,7 +3,7 @@ import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react-native'
 
 export type DropdownItemProps<T = any> = BaseProps & {
-  value?: T
+  value: T
   interactive?: boolean
 }
 
