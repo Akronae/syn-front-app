@@ -21,6 +21,6 @@ const RowBase = themed<RowProps>(Base, (p) => ({
   flexDirection: `row`,
   justifyContent: p.justifyContent,
   alignItems: p.alignItems,
-  flexWrap: p.flexWrap ?? 'wrap',
+  flexWrap: p.flexWrap ?? `wrap`,
   gap: p.gap,
 }))
