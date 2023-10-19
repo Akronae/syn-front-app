@@ -16,6 +16,7 @@ import {
   takeLayoutProps,
   useExistingStateOr,
   useGroupChildrenByType,
+  useHover,
 } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
@@ -38,7 +39,11 @@ export type InputBaseProps<TModel = any, TSlotProps = any> = BaseProps<
   focused?: {
     style?: ReturnType<ThemedStyle>
   }
+  hovered?: {
+    style?: ReturnType<ThemedStyle>
+  }
   isFocused?: ReactiveState<boolean>
+  isHovered?: ReactiveState<boolean>
   isInvalid?: ReactiveState<boolean>
   invalid?: {
     style?: ReturnType<ThemedStyle>
@@ -64,7 +69,9 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   let {
     children,
     focused: focusedProps,
+    hovered: hoveredProps,
     isFocused: isFocusedProps,
+    isHovered: isHoveredProps,
     isInvalid: isInvalidProps,
     invalid,
     model,
@@ -85,6 +92,15 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   const focused = focusedProps ?? {}
   if (!focused.style) focused.style = NativeInputOnFocus({ theme })
   const isFocused = useExistingStateOr(isFocusedProps, false)
+
+  const { isHovered: isHoveredHook, hoverListenners } = useHover(props)
+  const hovered = hoveredProps ?? {}
+  if (!hovered.style) hovered.style = NativeInputOnHover({ theme })
+  const isHovered = useExistingStateOr(isHoveredProps, isHoveredHook.state)
+
+  useEffect(() => {
+    isHovered.state = isHoveredHook.state
+  }, [isHoveredHook.state])
 
   const isInvalid = useExistingStateOr(isInvalidProps, false)
   invalid ??= {}
@@ -131,7 +147,7 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
   )
 
   return (
-    <Base {...layoutProps.taken}>
+    <Base {...layoutProps.taken} {...hoverListenners}>
       <InputBaseBase>
         <InputContainer
           focused={focused}
@@ -143,6 +159,16 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
           {...baseProps.taken}
           {...baseProps.rest}
           {...textProps.rest}
+          style={Native.StyleSheet.flatten([
+            layoutProps.rest.style,
+            baseProps.taken.style,
+            baseProps.rest.style,
+            textProps.rest.style,
+            isHovered?.state && hovered?.style,
+            isFocused?.state && focused?.style,
+            isInvalid?.state && invalid?.style,
+            input?.style,
+          ])}
         >
           {leftSlot?.(leftSlotProps)}
           {icon?.ionicons && (
@@ -193,6 +219,14 @@ const NativeInputOnFocus: ThemedStyle = (p) => ({
   ),
 })
 
+const NativeInputOnHover: ThemedStyle = (p) => ({
+  borderColor: hexLerp(
+    p.theme.proto.colors.surface.sub,
+    p.theme.proto.colors.surface.contrast,
+    0.02,
+  ),
+})
+
 const NativeInputOnInvalid: ThemedStyle = (p) => ({
   borderColor: p.theme.proto.colors.surface.error,
   color: p.theme.proto.colors.surface.error,
@@ -209,9 +243,6 @@ const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   borderStyle: `solid`,
   borderColor: `transparent`,
   flexWrap: `wrap`,
-  ...(p.isFocused?.state && p.focused?.style),
-  ...(p.isInvalid?.state && p.invalid?.style),
-  ...p.input?.style,
 }))
 
 const Icon = themed<Partial<InputBaseProps> & { name: string }>(

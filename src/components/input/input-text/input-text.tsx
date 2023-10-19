@@ -1,4 +1,8 @@
-import { takeBaseOwnProps } from '@proto-native/components/base'
+import {
+  Base,
+  BaseProps,
+  takeBaseOwnProps,
+} from '@proto-native/components/base'
 import {
   boldnessToFont,
   getStyleBoldness,
@@ -24,6 +28,7 @@ import {
 } from '@proto-native/components/input/input-base'
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
 import { DropdownProps } from '@proto-native/components/dropdown'
+import { Row } from '@proto-native/components/row'
 
 export type InputTextType = 'text' | 'password' | 'email' | 'numeric'
 export type InputTextProps<
@@ -65,6 +70,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
     const childrenBy = useGroupChildrenByType(children, {
       Placeholder: InputText.Placeholder,
       Dropdown: InputText.Dropdown,
+      TopSlot: InputText.TopSlot,
     })
     const textProps = takeTextOwnProps(passed)
     const baseProps = takeBaseOwnProps(textProps.rest)
@@ -142,49 +148,52 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
         isFocused={isFocused}
         isInvalid={isInvalid}
       >
-        <Native.TextInput
-          ref={nativeInputRef}
-          placeholder={placeholder}
-          placeholderTextColor={theme.proto.colors.text.sub}
-          value={model.state ?? ``}
-          keyboardType={keyboardType}
-          numberOfLines={numberOfLines}
-          multiline={multiline}
-          onKeyPress={onKeyPressBase}
-          onSubmitEditing={onSubmitEditing}
-          isInvalid={isInvalid}
-          invalid={invalid}
-          {...textProps.taken}
-          {...baseProps.rest}
-          style={[
-            NativeInputStyle(theme, { isInvalid, invalid }),
-            textProps.taken.style,
-            baseProps.rest.style,
-            isIos() && iosLineHeightFix,
-          ]}
-          onChangeText={onChangeText}
-          onFocus={(e) => {
-            isFocused.state = true
-            onFocus?.(e)
-          }}
-          onBlur={(e) => {
-            isFocused.state = false
-            onBlur?.(e)
-          }}
-        />
-        {childrenBy.Dropdown.map((child, i) => {
-          return React.cloneElement(
-            child as React.ReactElement<DropdownProps>,
-            {
-              key: i,
-              onItemPress: (item: any) => {
-                isFocused.state = false
-                child.props.onItemPress?.(item)
+        {childrenBy.TopSlot}
+        <Row style={{ width: '100%' }}>
+          <Native.TextInput
+            ref={nativeInputRef}
+            placeholder={placeholder}
+            placeholderTextColor={theme.proto.colors.text.sub}
+            value={model.state ?? ``}
+            keyboardType={keyboardType}
+            numberOfLines={numberOfLines}
+            multiline={multiline}
+            onKeyPress={onKeyPressBase}
+            onSubmitEditing={onSubmitEditing}
+            isInvalid={isInvalid}
+            invalid={invalid}
+            {...textProps.taken}
+            {...baseProps.rest}
+            style={[
+              NativeInputStyle(theme, { isInvalid, invalid }),
+              textProps.taken.style,
+              baseProps.rest.style,
+              isIos() && iosLineHeightFix,
+            ]}
+            onChangeText={onChangeText}
+            onFocus={(e) => {
+              isFocused.state = true
+              onFocus?.(e)
+            }}
+            onBlur={(e) => {
+              isFocused.state = false
+              onBlur?.(e)
+            }}
+          />
+          {childrenBy.Dropdown.map((child, i) => {
+            return React.cloneElement(
+              child as React.ReactElement<DropdownProps>,
+              {
+                key: i,
+                onItemPress: (item: any) => {
+                  isFocused.state = false
+                  child.props.onItemPress?.(item)
+                },
               },
-            },
-          )
-        })}
-        {childrenBy.others}
+            )
+          })}
+          {childrenBy.others}
+        </Row>
       </InputContainer>
     )
   },
@@ -193,12 +202,17 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
 > & {
   Dropdown: typeof InputBase.Dropdown
   Placeholder: typeof InputBase.Placeholder
+  TopSlot: typeof Base
 }
 InputText.displayName = `InputText`
 InputText.Dropdown = InputBase.Dropdown
 InputText.Placeholder = InputBase.Placeholder
+InputText.TopSlot = themed<BaseProps>(Base, (p) => ({})) as typeof Base
 
-const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({}))
+const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
+  display: `flex`,
+  flexDirection: 'column',
+}))
 
 const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
   flex: 1,
@@ -216,14 +230,14 @@ const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
 
 function textInputTypeToKeyboard(type: InputTextType): Native.KeyboardType {
   switch (type) {
-  case `email`:
-    return `email-address`
-  case `numeric`:
-    return `numeric`
-  case `password`:
-    return `default`
-  case `text`:
-    return `default`
+    case `email`:
+      return `email-address`
+    case `numeric`:
+      return `numeric`
+    case `password`:
+      return `default`
+    case `text`:
+      return `default`
   }
 }
 
@@ -231,10 +245,10 @@ function getDefaultInputFilter(
   type: InputTextType,
 ): NonNullable<InputTextProps['inputFilter']> {
   switch (type) {
-  case `numeric`:
-    return numericInputFilter
-  default:
-    return textInputFilter
+    case `numeric`:
+      return numericInputFilter
+    default:
+      return textInputFilter
   }
 }
 
