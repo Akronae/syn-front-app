@@ -149,7 +149,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
         isInvalid={isInvalid}
       >
         {childrenBy.TopSlot}
-        <Row style={{ width: '100%' }}>
+        <Row style={{ width: `100%` }}>
           <Native.TextInput
             ref={nativeInputRef}
             placeholder={placeholder}
@@ -211,7 +211,7 @@ InputText.TopSlot = themed<BaseProps>(Base, (p) => ({})) as typeof Base
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
   display: `flex`,
-  flexDirection: 'column',
+  flexDirection: `column`,
 }))
 
 const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
@@ -230,14 +230,14 @@ const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
 
 function textInputTypeToKeyboard(type: InputTextType): Native.KeyboardType {
   switch (type) {
-    case `email`:
-      return `email-address`
-    case `numeric`:
-      return `numeric`
-    case `password`:
-      return `default`
-    case `text`:
-      return `default`
+  case `email`:
+    return `email-address`
+  case `numeric`:
+    return `numeric`
+  case `password`:
+    return `default`
+  case `text`:
+    return `default`
   }
 }
 
@@ -245,10 +245,10 @@ function getDefaultInputFilter(
   type: InputTextType,
 ): NonNullable<InputTextProps['inputFilter']> {
   switch (type) {
-    case `numeric`:
-      return numericInputFilter
-    default:
-      return textInputFilter
+  case `numeric`:
+    return numericInputFilter
+  default:
+    return textInputFilter
   }
 }
 
