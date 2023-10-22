@@ -61,6 +61,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
       onSubmitEditing,
       input,
       keyboardType,
+      placeholderTextColor,
       ...passed
     } = props
     multiline ??= numberOfLines > 1
@@ -153,7 +154,9 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
           <Native.TextInput
             ref={nativeInputRef}
             placeholder={placeholder}
-            placeholderTextColor={theme.proto.colors.text.sub}
+            placeholderTextColor={
+              placeholderTextColor ?? theme.proto.colors.text.sub
+            }
             value={model.state ?? ``}
             keyboardType={keyboardType}
             numberOfLines={numberOfLines}
