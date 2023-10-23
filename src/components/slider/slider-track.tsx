@@ -89,7 +89,7 @@ const SliderThumb = themed<BaseProps>(Base, (p) => ({
   marginLeft: -23,
   borderRadius: 48,
   cursor: `pointer`,
-  borderColor: p.theme.proto.colors.border.disabled,
+  borderColor: p.theme.proto.colors.surface.contrast,
   borderWidth: 1,
   display: `flex`,
   justifyContent: `center`,
@@ -98,7 +98,7 @@ const SliderThumb = themed<BaseProps>(Base, (p) => ({
 
 const SliderThumbTip = themed<BaseProps>(Base, (p) => ({
   backgroundColor: p.theme.proto.colors.surface.default,
-  borderColor: p.theme.proto.colors.border.disabled,
+  borderColor: p.theme.proto.colors.surface.contrast,
   borderWidth: 1,
   position: `absolute`,
   bottom: -3,

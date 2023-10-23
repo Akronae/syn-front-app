@@ -26,7 +26,7 @@ const GraduationWrapper = themed<BaseProps>(Base, (p) => ({
 const GraduationMark = themed<BaseProps>(Base, (p) => ({
   width: 1,
   height: 4,
-  backgroundColor: p.theme.proto.colors.border.disabled,
+  backgroundColor: p.theme.proto.colors.surface.contrast,
 }))
 
 const GradutionText = themed<TextProps>(Text, (p) => ({

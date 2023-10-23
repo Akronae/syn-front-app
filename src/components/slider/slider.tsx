@@ -10,7 +10,7 @@ import {
   useFormField,
   FormFieldState,
 } from '@proto-native/components/form'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import * as RNGH from 'react-native-gesture-handler'
 import { runOnJS, useSharedValue } from 'react-native-reanimated'
 import { clamp } from 'lodash-es'
@@ -19,10 +19,10 @@ import { SliderGradation } from './slider-gradation'
 import * as Haptics from 'expo-haptics'
 import { isWeb } from '@proto-native/utils/device/is-web'
 
-const GRADUATIONS_HORIZONTAL_PADDING = 8 * 2
+const GRADATIONS_HORIZONTAL_PADDING = 8 * 2
 
 interface ToStringable {
-  toString(): React.ReactNode
+  toString(): string
 }
 
 export type SliderProps<T extends ToStringable = number> = BaseProps & {
@@ -33,7 +33,8 @@ export type SliderProps<T extends ToStringable = number> = BaseProps & {
 export function Slider<T extends ToStringable>(props: SliderProps<T>) {
   const { values, model: modelProps, ...passed } = props
   const trackBounds = useState({ x: 0, y: 0, width: 0, height: 0 })
-  const gap = useState<number>(0)
+  const gap = useState(0)
+  const showGradRatio = useRef(0)
   const model = useExistingStateOr(modelProps, values[0])
   const thumbIndex = useSharedValue(
     model.state ? values.indexOf(model.state) : 0,
@@ -55,7 +56,7 @@ export function Slider<T extends ToStringable>(props: SliderProps<T>) {
   useEffect(
     () =>
       gap.setter(
-        (trackBounds.state.width - GRADUATIONS_HORIZONTAL_PADDING * 2) /
+        (trackBounds.state.width - GRADATIONS_HORIZONTAL_PADDING * 2) /
           (values.length - 1),
       ),
     [trackBounds],
@@ -64,8 +65,8 @@ export function Slider<T extends ToStringable>(props: SliderProps<T>) {
   const globalPosToIndex = (pageX: number) => {
     const start = pageX - trackBounds.state.x
     let perc =
-      (start - GRADUATIONS_HORIZONTAL_PADDING) /
-      (trackBounds.state.width - GRADUATIONS_HORIZONTAL_PADDING * 2)
+      (start - GRADATIONS_HORIZONTAL_PADDING) /
+      (trackBounds.state.width - GRADATIONS_HORIZONTAL_PADDING * 2)
     perc = clamp(perc, 0, 1)
     return Math.round((values.length - 1) * perc)
   }
@@ -96,6 +97,16 @@ export function Slider<T extends ToStringable>(props: SliderProps<T>) {
       runOnJS(() => cursorEndTo(e.absoluteX))()
     })
 
+  const biggestGrad = useMemo(
+    () =>
+      (values
+        .map((x) => x.toString().length)
+        .sort()
+        .pop() ?? 0) * 8,
+    [values],
+  )
+  showGradRatio.current = Math.ceil((biggestGrad + 16) / gap.state)
+
   return (
     <SliderBase {...passed}>
       <Wrapper>
@@ -104,7 +115,7 @@ export function Slider<T extends ToStringable>(props: SliderProps<T>) {
           gesture={RNGH.Gesture.Race(pan, tap)}
           thumbIndex={thumbIndex}
           gap={gap}
-          horizontalPadding={GRADUATIONS_HORIZONTAL_PADDING}
+          horizontalPadding={GRADATIONS_HORIZONTAL_PADDING}
         />
       </Wrapper>
       <Wrapper>
@@ -118,9 +129,9 @@ export function Slider<T extends ToStringable>(props: SliderProps<T>) {
                 })
               }
               key={i}
-              val={v.toString()}
+              val={i % showGradRatio.current == 0 ? v.toString() : ``}
               style={{
-                left: gap.state * i + GRADUATIONS_HORIZONTAL_PADDING,
+                left: gap.state * i + GRADATIONS_HORIZONTAL_PADDING,
                 marginLeft: -(graduationSizes.current?.[i]?.width ?? 0) / 2,
               }}
             />
@@ -142,6 +153,6 @@ const Wrapper = themed(Base, () => ({
 
 const GraduationsContainer = themed<BaseProps>(Base, (p) => ({
   width: `100%`,
-  paddingHorizontal: GRADUATIONS_HORIZONTAL_PADDING,
+  paddingHorizontal: GRADATIONS_HORIZONTAL_PADDING,
   marginTop: 8,
 }))
