@@ -13,6 +13,7 @@ import {
   WizardHandle,
 } from './wizard-handle'
 import { WizardStep } from './wizard-step'
+import { log } from '@proto-native/utils/log'
 
 export type WizardBodyProps<T, T2> = BaseProps & {
   data: { reactive: ReactiveState<T>; static: T2 }
@@ -38,8 +39,11 @@ export const WizardBody = forwardRef(
 
     const go = (to: number | string): boolean => {
       if (typeof to == `number`) {
-        console.log(`Going from wizard step`, step.current.state, `to`, to)
-        if (stepElems[to] == undefined) return false
+        log.info(`Going from wizard step`, step.current.state, `to`, to)
+        if (stepElems[to] == undefined) {
+          log.warn(`Wizard step with index "${to}" not found`, stepElems)
+          return false
+        }
         step.current.state = to
         step.elem = stepElems[to]
         return true
@@ -49,7 +53,7 @@ export const WizardBody = forwardRef(
       if (index == -1) {
         throw new Error(`Wizard step with id "${to}" not found`)
       }
-      console.log(`Going to step with id`, to, `(${index})`)
+      log.info(`Going to step with id`, to, `(${index})`)
       return go(index)
     }
     const back = async (): Promise<boolean> => {

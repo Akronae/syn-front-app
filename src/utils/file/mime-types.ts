@@ -1,8 +1,12 @@
+import { from } from '@proto-native/utils/union'
+
+export type MimeType = 'image/*' | 'application/pdf'
+
 export const mimeTypes = {
   image: {
-    all: `image/*`,
+    all: from<MimeType>(`image/*`),
   },
   application: {
-    pdf: `application/pdf`,
+    pdf: from<MimeType>(`application/pdf`),
   },
 }

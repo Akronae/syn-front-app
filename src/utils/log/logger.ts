@@ -33,7 +33,7 @@ export class Logger {
     error: (callback: (msg: string, err?: Error) => void) => {
       this.eventEmitter.addListener(`error`, callback)
     },
-    info: (callback: (msg: string) => void) => {
+    info: (callback: (msg: any[]) => void) => {
       this.eventEmitter.addListener(`info`, callback)
     },
   }
@@ -43,12 +43,12 @@ export class Logger {
     this.eventEmitter.emit(`error`, msg, err)
   }
 
-  info(msg: string) {
-    console.info(msg)
+  info(...msg: any[]) {
+    console.info(...msg)
     this.eventEmitter.emit(`info`, msg)
   }
 
-  warn(msg: string) {
-    console.warn(msg)
+  warn(...msg: any[]) {
+    console.warn(...msg)
   }
 }

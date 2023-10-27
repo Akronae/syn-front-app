@@ -9,7 +9,12 @@ export type WizardEventListenner<T> = {
   once: WizardEventListenerRegister<T>
   always: WizardEventListenerRegister<T>
 }
-export type WizardNextEventData = { stopped: boolean }
+export type WizardNextEventData = {
+  /**
+   * Wether a wizard guard has stopped a next call
+   */
+  stopped: boolean
+}
 
 export type EventListenerRegister = {
   [K in keyof WizardHandle['on']]: Parameters<
