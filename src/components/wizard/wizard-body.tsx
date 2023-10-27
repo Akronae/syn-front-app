@@ -5,7 +5,11 @@ import {
   useGroupChildrenByType,
   useState,
 } from '@proto-native/utils'
-import React, { forwardRef, useImperativeHandle, useMemo } from 'react'
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+} from 'react'
 import { WizardContext } from './wizard-context'
 import {
   createWizardEventRegisters,
@@ -14,6 +18,7 @@ import {
 } from './wizard-handle'
 import { WizardStep } from './wizard-step'
 import { log } from '@proto-native/utils/log'
+import { useCompensateSteps } from './use-compensate-steps'
 
 export type WizardBodyProps<T, T2> = BaseProps & {
   data: { reactive: ReactiveState<T>; static: T2 }
@@ -31,6 +36,7 @@ export const WizardBody = forwardRef(
       count: stepElems.length,
       elem: stepElems[stepProps?.state || 0],
     }
+    useCompensateSteps(step.current, stepElems)
     const activeChild = useMemo(() => {
       return stepElems[step.current.state]
     }, [children, step.current.state])
