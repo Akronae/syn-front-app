@@ -19,20 +19,31 @@ import { useCompensateSteps } from './use-compensate-steps'
 export type WizardBodyProps<T, T2> = BaseProps & {
   data: { reactive: ReactiveState<T>; static: T2 }
   step?: ReactiveState<number>
+  name?: ReactiveState<string>
 }
 
-export const WizardBody = forwardRef(
+export const WizardBody = forwardRef<WizardHandle, WizardBodyProps<any, any>>(
   (props: WizardBodyProps<any, any>, ref) => {
-    const { children, data, step: stepProps, ...passed } = props
+    const {
+      children,
+      data,
+      step: stepProps,
+      name: nameProps,
+      ...passed
+    } = props
 
     const byType = useGroupChildrenByType(children, { Step: WizardStep })
     const stepElems = byType.Step
+    const name = useExistingStateOr(nameProps, ``)
     const step = {
       current: useExistingStateOr(stepProps, 0),
       count: stepElems.length,
       elem: stepElems[stepProps?.state || 0],
     }
     useCompensateSteps(step.current, stepElems)
+    setImmediate(() => {
+      name.state = step.elem.props.id
+    })
     const activeChild = useMemo(() => {
       return stepElems[step.current.state]
     }, [children, step.current.state])
