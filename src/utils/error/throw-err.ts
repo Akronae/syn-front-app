@@ -1,3 +1,3 @@
-export function throwErr<T>(msg: string): T {
+export function throwErr<T>(msg: string): NonNullable<T> {
   throw new Error(msg)
 }
