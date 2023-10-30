@@ -47,6 +47,7 @@ export type WizardHandle<T extends WizardDataBase<any, any> = any> = {
   }
   on: {
     next: WizardEventListenner<WizardNextEventData>
+    change: WizardEventListenner<null>
   }
   eventListenners: ReactiveState<Partial<EventListenerRegister>>
 }
@@ -82,7 +83,7 @@ export const createWizardEventRegisters = <K extends keyof WizardHandle['on']>(
       addEventListener(register, name, cb),
     once: (cb: Parameters<WizardHandle['on'][K]['once']>[0]) => {
       const wrap = (data: Parameters<typeof cb>[0]) => {
-        cb(data)
+        cb(data as any)
         removeEventListener(data.wizard.eventListenners, name, wrap)
       }
       addEventListener(register, name, wrap)

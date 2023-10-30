@@ -5,11 +5,7 @@ import {
   useGroupChildrenByType,
   useState,
 } from '@proto-native/utils'
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-} from 'react'
+import React, { forwardRef, useImperativeHandle, useMemo } from 'react'
 import { WizardContext } from './wizard-context'
 import {
   createWizardEventRegisters,
@@ -50,8 +46,14 @@ export const WizardBody = forwardRef(
           log.warn(`Wizard step with index "${to}" not found`, stepElems)
           return false
         }
+
         step.current.state = to
         step.elem = stepElems[to]
+
+        eventListenners.state?.change?.forEach((cb) =>
+          cb({ data: null, wizard: wizardValue }),
+        )
+
         return true
       }
 
@@ -111,6 +113,7 @@ export const WizardBody = forwardRef(
       canGo,
       on: {
         next: createWizardEventRegisters(`next`, eventListenners),
+        change: createWizardEventRegisters(`change`, eventListenners),
       },
       eventListenners,
     }
