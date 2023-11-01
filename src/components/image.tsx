@@ -26,9 +26,24 @@ export function takeImageOwnProps(props: ImageProps) {
   const { style, ...rest } = props
 
   const flattenStyle = Native.StyleSheet.flatten(style)
-  const { resizeMode, borderRadius, ...styleRest } = flattenStyle
+  const {
+    resizeMode,
+    borderRadius,
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
+    ...styleRest
+  } = flattenStyle
   const styleTaken = pickBy(
-    { resizeMode, borderRadius },
+    {
+      resizeMode,
+      borderRadius,
+      borderTopLeftRadius,
+      borderTopRightRadius,
+      borderBottomLeftRadius,
+      borderBottomRightRadius,
+    },
     (e) => !isUndefined(e),
   )
   if (!styleTaken.resizeMode && (flattenStyle as any).objectFit)

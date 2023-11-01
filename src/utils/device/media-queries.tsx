@@ -14,6 +14,18 @@ export const isDesktopOrMore = {
   },
 }
 
+export const IsMobileOrLess = {
+  ratio: 1 / 2,
+  use() {
+    const r = useWindowAspectRatio()
+    return r <= this.ratio
+  },
+  get() {
+    const r = getWindowAspectRatio()
+    return r <= this.ratio
+  },
+}
+
 const OnDesktopOrMore = ({ children }: PropsWithChildren) => {
   return <>{isDesktopOrMore.use() ? children : null}</>
 }

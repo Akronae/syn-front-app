@@ -243,6 +243,7 @@ const InputContainer = themed<Partial<InputBaseProps>>(Base, (p) => ({
   borderStyle: `solid`,
   borderColor: `transparent`,
   flexWrap: `wrap`,
+  gap: 10,
 }))
 
 const Icon = themed<Partial<InputBaseProps> & { name: string }>(

@@ -5,7 +5,7 @@ import { isUndefined, omitBy } from 'lodash-es'
 import * as Native from 'react-native'
 import * as React from 'react'
 import { DefaultTheme, useTheme } from 'styled-components/native'
-import { nbsp } from '@proto-native/utils'
+import { nbsp, capitalize as capitalizeFn } from '@proto-native/utils'
 
 export type TextType = 'normal' | 'bold'
 export type TextDecoration = 'underline' | undefined
@@ -18,6 +18,8 @@ export type TextProps = BaseProps<
   Omit<Native.TextProps, 'onPress'>
 > & {
   inherits?: boolean
+  textTransform?: Native.TextStyle['textTransform']
+  capitalize?: boolean
 } & Partial<TextVariant>
 
 const VariantContext = React.createContext<TextVariant | undefined>(undefined)
@@ -33,7 +35,7 @@ export function useVariant(props: TextProps) {
 }
 
 export function Text(props: TextProps) {
-  const { children, inherits, ...passed } = props
+  const { children, inherits, capitalize, ...passed } = props
   const textOwnProps = takeTextOwnProps(passed)
   const theme = useTheme()
 
@@ -52,12 +54,16 @@ export function Text(props: TextProps) {
     fontSize: theme.proto.typography.size.md,
   }
 
-  const nonBreakingChildren = React.Children.map(children, (child) => {
+  const formattedChildren = React.Children.map(children, (child) => {
     if (typeof child == `string`) {
-      return child
+      child = child
         .replaceAll(` ?`, `${nbsp}?`)
         .replaceAll(` !`, `${nbsp}!`)
         .replaceAll(` :`, `${nbsp}:`)
+
+      if (capitalize) {
+        child = capitalizeFn(child as string)
+      }
     }
     return child
   })
@@ -70,7 +76,7 @@ export function Text(props: TextProps) {
           style={[!inherits && baseStyle, textBaseStyle, { fontWeight }]}
           {...variant}
         >
-          {nonBreakingChildren}
+          {formattedChildren}
         </TextBase>
       </VariantContext.Provider>
     </TextWrapper>
@@ -85,11 +91,12 @@ const TextWrapper = Base
 
 const TextBase = themed<TextProps>(Native.Text, (p) => ({
   fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
-  ...(p.decoration == `underline` && { textDecorationLine: `underline` }),
+  textTransform: p.textTransform,
+  textDecorationLine: p.decoration,
 }))
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
-  const { children, style, ...rest } = props
+  const { children, style, textTransform: textTransformProps, ...rest } = props
   const {
     color,
     fontWeight,
@@ -121,7 +128,11 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
   )
 
   return {
-    taken: { children, style: takenStyle as Native.TextStyle },
+    taken: {
+      children,
+      textTransform: textTransformProps,
+      style: takenStyle as Native.TextStyle,
+    },
     rest: { ...rest, style: styleRest } as any,
   }
 }

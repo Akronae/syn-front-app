@@ -29,6 +29,7 @@ import {
 import { createThemedStyle } from '@proto-native/utils/theme/create-themed-style'
 import { DropdownProps } from '@proto-native/components/dropdown'
 import { Row } from '@proto-native/components/row'
+import { Column } from '@proto-native/components/column'
 
 export type InputTextType = 'text' | 'password' | 'email' | 'numeric'
 export type InputTextProps<
@@ -59,6 +60,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
       multiline,
       onKeyPress,
       onSubmitEditing,
+      editable,
       input,
       keyboardType,
       placeholderTextColor,
@@ -149,42 +151,45 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
         isFocused={isFocused}
         isInvalid={isInvalid}
       >
-        {childrenBy.TopSlot}
-        <Row style={{ width: `100%` }}>
-          <Native.TextInput
-            ref={nativeInputRef}
-            placeholder={placeholder}
-            placeholderTextColor={
-              placeholderTextColor ?? theme.proto.colors.text.sub
-            }
-            value={model.state ?? ``}
-            keyboardType={keyboardType}
-            numberOfLines={numberOfLines}
-            multiline={multiline}
-            onKeyPress={onKeyPressBase}
-            onSubmitEditing={onSubmitEditing}
-            isInvalid={isInvalid}
-            invalid={invalid}
-            {...textProps.taken}
-            {...baseProps.rest}
-            style={[
-              NativeInputStyle(theme, { isInvalid, invalid }),
-              textProps.taken.style,
-              baseProps.rest.style,
-              isIos() && iosLineHeightFix,
-            ]}
-            onChangeText={onChangeText}
-            onFocus={(e) => {
-              isFocused.state = true
-              onFocus?.(e)
-            }}
-            onBlur={(e) => {
-              isFocused.state = false
-              onBlur?.(e)
-            }}
-          />
-          {childrenBy.others}
-        </Row>
+        <Column style={{ width: `100%` }}>
+          {childrenBy.TopSlot}
+          <Row style={{ flexGrow: 1, flexShrink: 1 }}>
+            <Native.TextInput
+              ref={nativeInputRef}
+              placeholder={placeholder}
+              placeholderTextColor={
+                placeholderTextColor ?? theme.proto.colors.text.sub
+              }
+              value={model.state ?? ``}
+              keyboardType={keyboardType}
+              numberOfLines={numberOfLines}
+              multiline={multiline}
+              onKeyPress={onKeyPressBase}
+              onSubmitEditing={onSubmitEditing}
+              isInvalid={isInvalid}
+              invalid={invalid}
+              editable={editable}
+              {...textProps.taken}
+              {...baseProps.rest}
+              style={[
+                NativeInputStyle(theme, { isInvalid, invalid }),
+                textProps.taken.style,
+                baseProps.rest.style,
+                isIos() && iosLineHeightFix,
+              ]}
+              onChangeText={onChangeText}
+              onFocus={(e) => {
+                isFocused.state = true
+                onFocus?.(e)
+              }}
+              onBlur={(e) => {
+                isFocused.state = false
+                onBlur?.(e)
+              }}
+            />
+            {childrenBy.others}
+          </Row>
+        </Column>
         {childrenBy.Dropdown.map((child, i) => {
           return React.cloneElement(
             child as React.ReactElement<DropdownProps>,

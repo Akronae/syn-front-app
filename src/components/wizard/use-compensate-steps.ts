@@ -15,12 +15,6 @@ export function useCompensateSteps(
     const newsBefore = news.filter(
       (e) => stepElems.findIndex((e2) => e2.props.id == e) < step.state,
     )
-    const missing = p.current.filter(
-      (e) => !stepElems.map((e2) => e2.props.id).includes(e),
-    )
-    const missingBefore = missing.filter(
-      (e) => stepElems.findIndex((e2) => e2.props.id == e) < step.state,
-    )
     if (newsBefore.length > 0) {
       setImmediate(() => {
         log.warn(
@@ -31,16 +25,22 @@ export function useCompensateSteps(
         step.state += newsBefore.length
       })
     }
-    if (missingBefore.length > 0) {
-      setImmediate(() => {
-        log.warn(
-          `Wizard steps removed before current step`,
-          missingBefore,
-          `decreasing current step to compensate`,
-        )
-        step.state -= missingBefore.length
-      })
-    }
+    // const missing = p.current.filter(
+    //   (e) => !stepElems.map((e2) => e2.props.id).includes(e),
+    // )
+    // const missingBefore = missing.filter(
+    //   (e) => stepElems.findIndex((e2) => e2.props.id == e) < step.state,
+    // )
+    // if (missingBefore.length > 0) {
+    //   setImmediate(() => {
+    //     log.warn(
+    //       `Wizard steps removed before current step`,
+    //       missingBefore,
+    //       `decreasing current step to compensate`,
+    //     )
+    //     step.state -= missingBefore.length
+    //   })
+    // }
   }
 
   p.current = stepElems.map((e) => e.props.id)

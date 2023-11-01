@@ -25,7 +25,7 @@ export type ButtonVariant = {
 
 export type ButtonProps = BaseProps<
   Native.ViewStyle & { stroke?: string; fill?: string },
-  any
+  object
 > &
   Omit<TextProps, 'style'> &
   Omit<Native.ViewProps, 'style'> & {
