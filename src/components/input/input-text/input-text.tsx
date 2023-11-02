@@ -64,6 +64,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
       input,
       keyboardType,
       placeholderTextColor,
+      value,
       ...passed
     } = props
     multiline ??= numberOfLines > 1
@@ -151,7 +152,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
         isFocused={isFocused}
         isInvalid={isInvalid}
       >
-        <Column style={{ width: `100%` }}>
+        <Column style={{ flexGrow: 1, flexShrink: 1 }}>
           {childrenBy.TopSlot}
           <Row style={{ flexGrow: 1, flexShrink: 1 }}>
             <Native.TextInput
@@ -160,7 +161,7 @@ export const InputText = forwardRef<InputTextRef, InputTextProps>(
               placeholderTextColor={
                 placeholderTextColor ?? theme.proto.colors.text.sub
               }
-              value={model.state ?? ``}
+              value={model.state || value || ``}
               keyboardType={keyboardType}
               numberOfLines={numberOfLines}
               multiline={multiline}
@@ -238,14 +239,14 @@ const NativeInputStyle = createThemedStyle<Partial<InputTextProps>>((p) => ({
 
 function textInputTypeToKeyboard(type: InputTextType): Native.KeyboardType {
   switch (type) {
-  case `email`:
-    return `email-address`
-  case `numeric`:
-    return `numeric`
-  case `password`:
-    return `default`
-  case `text`:
-    return `default`
+    case `email`:
+      return `email-address`
+    case `numeric`:
+      return `numeric`
+    case `password`:
+      return `default`
+    case `text`:
+      return `default`
   }
 }
 
@@ -253,10 +254,10 @@ function getDefaultInputFilter(
   type: InputTextType,
 ): NonNullable<InputTextProps['inputFilter']> {
   switch (type) {
-  case `numeric`:
-    return numericInputFilter
-  default:
-    return textInputFilter
+    case `numeric`:
+      return numericInputFilter
+    default:
+      return textInputFilter
   }
 }
 
