@@ -1,5 +1,6 @@
 import { from } from '@proto-native/utils/union'
 export type MimeType =
+  | '*'
   | 'image/*'
   | 'image/png'
   | 'image/jpeg'
