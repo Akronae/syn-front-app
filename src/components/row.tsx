@@ -7,7 +7,8 @@ export type RowProps = BaseProps & {
   justifyContent?: FlexStyle['justifyContent']
   alignItems?: FlexStyle['alignItems']
   flexWrap?: FlexStyle['flexWrap']
-  gap?: number
+  gap?: FlexStyle['gap']
+  flex?: FlexStyle['flex']
 }
 
 export function Row(props: RowProps) {
@@ -21,6 +22,7 @@ const RowBase = themed<RowProps>(Base, (p) => ({
   flexDirection: `row`,
   justifyContent: p.justifyContent,
   alignItems: p.alignItems,
-  flexWrap: p.flexWrap,
+  flexWrap: p.flexWrap ?? `wrap`,
   gap: p.gap,
+  flex: p.flex,
 }))
