@@ -206,7 +206,10 @@ export function InputBase<TModel = any>(props: InputBaseProps<TModel>) {
     </Base>
   )
 }
-InputBase.Placeholder = themed(Text, (p) => ({}))
+InputBase.Placeholder = themed(
+  (p) => <Text capitalize {...p} />,
+  (p) => ({}),
+)
 InputBase.Dropdown = Dropdown
 
 const InputBaseBase = Base

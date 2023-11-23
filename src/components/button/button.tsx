@@ -118,6 +118,7 @@ export function Button(props: ButtonProps) {
           {icon?.position !== `right` && <IconComponent />}
           {textProps.taken.children && (
             <BtnCardText
+              capitalize={true}
               {...textProps.taken}
               {...variant}
               style={[
@@ -217,7 +218,7 @@ const StateSecondary: ThemedStyle = (p) => ({
   color: p.theme.proto.colors.text.primary,
 })
 
-const BtnCardText = themed<BaseProps & ButtonVariant>(Text, (p) => {
+const BtnCardText = themed<BaseProps & ButtonVariant & TextProps>(Text, (p) => {
   return {
     fontSize: p.theme.proto.typography.size[p.size],
     fontWeight: `500`,

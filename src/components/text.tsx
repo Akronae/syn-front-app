@@ -96,7 +96,13 @@ const TextBase = themed<TextProps>(Native.Text, (p) => ({
 }))
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
-  const { children, style, textTransform: textTransformProps, ...rest } = props
+  const {
+    children,
+    style,
+    capitalize,
+    textTransform: textTransformProps,
+    ...rest
+  } = props
   const {
     color,
     fontWeight,
@@ -127,12 +133,15 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     isUndefined,
   )
 
+  const taken: Record<string, any> = {
+    children,
+    textTransform: textTransformProps,
+    style: takenStyle as Native.TextStyle,
+  }
+  if (capitalize) taken.capitalize = capitalize
+
   return {
-    taken: {
-      children,
-      textTransform: textTransformProps,
-      style: takenStyle as Native.TextStyle,
-    },
+    taken,
     rest: { ...rest, style: styleRest } as any,
   }
 }
