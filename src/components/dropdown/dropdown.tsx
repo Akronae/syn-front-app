@@ -128,6 +128,7 @@ export function Dropdown(props: DropdownProps) {
           onTouchStart: (e: any) => {
             if (child.props.interactive === false) return
             setTimeout(() => {
+              child.props.onPress?.(e)
               child.props.onTouchStart?.(e)
               props.onItemPress?.(child)
             }, 300)
