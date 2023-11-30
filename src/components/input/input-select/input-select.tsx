@@ -1,5 +1,4 @@
 import { Base } from '@proto-native/components/base'
-import { Text } from '@proto-native/components/text'
 import { Ionicons } from '@expo/vector-icons'
 
 import {
@@ -138,7 +137,7 @@ InputSelect.Option = themed<DropdownItemProps>(
 )
 
 InputSelect.Placeholder = InputBase.Placeholder
-InputSelect.Selected = themed(Text, (p) => ({}))
+InputSelect.Selected = themed(Base, (p) => ({}))
 InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
