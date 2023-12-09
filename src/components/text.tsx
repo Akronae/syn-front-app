@@ -20,6 +20,8 @@ export type TextProps = BaseProps<
   inherits?: boolean
   textTransform?: Native.TextStyle['textTransform']
   capitalize?: boolean
+  flex?: Native.TextStyle['flex']
+  textAlign?: Native.TextStyle['textAlign']
 } & Partial<TextVariant>
 
 const VariantContext = React.createContext<TextVariant | undefined>(undefined)
@@ -35,7 +37,7 @@ export function useVariant(props: TextProps) {
 }
 
 export function Text(props: TextProps) {
-  const { children, inherits, capitalize, ...passed } = props
+  const { children, inherits, capitalize, flex, ...passed } = props
   const textOwnProps = takeTextOwnProps(passed)
   const theme = useTheme()
 
@@ -69,7 +71,13 @@ export function Text(props: TextProps) {
   })
 
   return (
-    <TextWrapper {...textOwnProps.rest}>
+    <TextWrapper
+      {...textOwnProps.rest}
+      style={Native.StyleSheet.flatten([
+        textOwnProps.rest.style,
+        omitBy({ flex }, isUndefined),
+      ])}
+    >
       <VariantContext.Provider value={variant}>
         <TextBase
           {...textOwnProps.taken}
@@ -101,6 +109,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     style,
     capitalize,
     textTransform: textTransformProps,
+    textAlign: textAlignProps,
     ...rest
   } = props
   const {
@@ -128,7 +137,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
       letterSpacing,
       textDecorationColor,
       textDecorationLine,
-      textAlign,
+      textAlign: textAlignProps ?? textAlign,
     },
     isUndefined,
   )

@@ -38,10 +38,11 @@ export type ButtonProps = BaseProps<
       position?: `left` | `right`
     }
     pressAnimation?: ButtonPressAnimation
+    flex?: Native.ViewStyle['flex']
   } & Partial<ButtonVariant>
 
 export function Button(props: ButtonProps) {
-  const { icon, state, type, size, ...rest } = props
+  const { icon, state, type, size, flex, ...rest } = props
   const theme = useTheme()
   const btnProps = takeButtonOwnProps(rest)
   const textProps = takeTextOwnProps(btnProps.rest)
@@ -54,7 +55,10 @@ export function Button(props: ButtonProps) {
     size: size || `md`,
   }
 
-  const flatStyle = Native.StyleSheet.flatten(style) as Record<string, any>
+  const flatStyle = Native.StyleSheet.flatten([
+    style,
+    omitBy({ flex }, isUndefined),
+  ]) as Record<string, any>
   const fontSize = flatStyle?.fontSize
   const color = flatStyle?.color
   const stroke = flatStyle?.stroke || color
