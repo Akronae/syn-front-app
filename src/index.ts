@@ -1,4 +1,5 @@
 export * from './components'
+export * from './random'
+export * from './storage'
 export * from './theme'
 export * from './utils'
-export * from './storage'
