@@ -39,9 +39,6 @@ export function LoadingBar(props: LoadingBarProps) {
 
   return (
     <LoadingBarBase {...passed}>
-      <Modal>
-        <ParticleEmitter />
-      </Modal>
       <Outer>
         <Inner progress={progress.state}></Inner>
       </Outer>

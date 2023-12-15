@@ -8,7 +8,9 @@ import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
 import * as Native from 'react-native'
 
-export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps>
+export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps> & {
+  size?: number
+}
 
 export function Image(props: ImageProps) {
   const { ...passed } = props
@@ -23,7 +25,7 @@ export function Image(props: ImageProps) {
 }
 
 export function takeImageOwnProps(props: ImageProps) {
-  const { style, ...rest } = props
+  const { style, size, ...rest } = props
 
   const flattenStyle = Native.StyleSheet.flatten(style)
   const {
@@ -33,6 +35,8 @@ export function takeImageOwnProps(props: ImageProps) {
     borderTopRightRadius,
     borderBottomLeftRadius,
     borderBottomRightRadius,
+    width,
+    height,
     ...styleRest
   } = flattenStyle
   const styleTaken = pickBy(
@@ -43,6 +47,8 @@ export function takeImageOwnProps(props: ImageProps) {
       borderTopRightRadius,
       borderBottomLeftRadius,
       borderBottomRightRadius,
+      width: width ?? size,
+      height: height ?? size,
     },
     (e) => !isUndefined(e),
   )

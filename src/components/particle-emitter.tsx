@@ -16,16 +16,22 @@ import { Modal } from './modal'
 import { useInterval, useState } from '@proto-native/utils'
 import { useTimeout } from '@proto-native/utils/use-timeout'
 import { AnchoredModal } from './anchored-modal'
+import { Image } from './image'
 
-export type ParticleEmitterProps = BaseProps
+export type ParticleEmitterProps = BaseProps & {
+  number?: number
+  particle?: ParticleProps
+}
 
 export const ParticleEmitter = React.forwardRef<
   typeof ParticleEmitterBase,
   ParticleEmitterProps
 >((props: ParticleEmitterProps, ref) => {
-  const { children, ...passed } = props
+  const { children, number = 20, particle, ...passed } = props
 
-  const particles = range(0, 20).map((i) => <Particle key={i} />)
+  const particles = range(0, number).map((i) => (
+    <Particle {...particle} key={i} />
+  ))
 
   return (
     <ParticleEmitterBase {...passed}>
@@ -45,6 +51,7 @@ type ParticleProps = {
   delay?: number | [number, number]
   color?: string
   text?: string | string[]
+  image?: string | string[]
   destinationX?: number | [number, number]
   destinationY?: number | [number, number]
   opacity?: { from: number; to: number }
@@ -57,6 +64,7 @@ function Particle({
   delay = [0, 300],
   color,
   text,
+  image,
   destinationX,
   destinationY,
   opacity = { from: 1, to: 0 },
@@ -87,12 +95,6 @@ function Particle({
   else if (Array.isArray(destinationY))
     dstY = randomInt(destinationY[0], destinationY[1])
   else dstY = destinationY
-
-  var selected = ''
-  if (text) {
-    if (Array.isArray(text)) selected = text[randomInt(0, text.length - 1)]
-    else selected = text
-  }
 
   const posX = useSharedValue(x)
   const posY = useSharedValue(y)
@@ -125,7 +127,20 @@ function Particle({
     opacityVal.value = withSpring(opacity.to, { duration: dur })
   }
 
-  const children = selected ? <Text>{selected}</Text> : null
+  var children: React.ReactNode | null = null
+  if (text) {
+    if (Array.isArray(text))
+      children = <Text>{text[randomInt(0, text.length - 1)]}</Text>
+    else children = <Text>{text}</Text>
+  }
+  if (image) {
+    if (Array.isArray(image))
+      children = (
+        <Image source={image[randomInt(0, image.length - 1)]} size={size} />
+      )
+    else children = <Image source={image} size={size} />
+  }
+
   const particle = <Animated.View style={style}>{children}</Animated.View>
 
   useTimeout(() => start(), delay)
