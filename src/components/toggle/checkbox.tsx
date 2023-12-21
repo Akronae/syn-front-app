@@ -6,6 +6,8 @@ import { Text } from '@proto-native/components/text'
 import { Ionicons } from '@expo/vector-icons'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
 
+export const CheckboxContext = React.createContext<CheckboxProps | null>(null)
+
 export type CheckboxProps = BaseProps & {
   model?: ReactiveState<boolean | null>
   markbox?: {
@@ -33,23 +35,26 @@ export function Checkbox(props: CheckboxProps) {
   }
 
   return (
-    <CheckboxBase {...passed} onTouchEnd={onTouchEnd}>
-      <Markbox model={model} markbox={markbox}>
-        {markbox?.mark?.custom ? (
-          <markbox.mark.custom model={model} />
-        ) : (
-          <Mark
-            model={model}
-            name={markbox?.mark?.ionicons ?? `remove-outline`}
-          />
-        )}
-      </Markbox>
-      {children}
-    </CheckboxBase>
+    <CheckboxContext.Provider value={{ ...props, model, onTouchEnd }}>
+      <CheckboxBase {...passed} onTouchEnd={onTouchEnd}>
+        <Markbox model={model} markbox={markbox}>
+          {markbox?.mark?.custom ? (
+            <markbox.mark.custom model={model} />
+          ) : (
+            <Mark
+              model={model}
+              name={markbox?.mark?.ionicons ?? `remove-outline`}
+            />
+          )}
+        </Markbox>
+        {children}
+      </CheckboxBase>
+    </CheckboxContext.Provider>
   )
 }
 Checkbox.Label = themed(Text, (p) => ({
   fontSize: p.theme.proto.typography.size.xs,
+  flex: 1,
 }))
 
 const CheckboxBase = themed<BaseProps>(Base, (p) => ({

@@ -6,10 +6,7 @@ import {
   useState,
 } from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
-import { useTimeout } from '@proto-native/utils/use-timeout'
 import * as React from 'react'
-import { ParticleEmitter } from './particle-emitter'
-import { Modal } from './modal'
 
 export type LoadingBarProps = BaseProps & {
   progress?: ReactiveState<number> | number

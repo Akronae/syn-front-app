@@ -8,7 +8,10 @@ import * as ExpoImage from 'expo-image'
 import { isUndefined, pickBy } from 'lodash-es'
 import * as Native from 'react-native'
 
-export type ImageProps = BaseProps<ExpoImage.ImageStyle, ExpoImage.ImageProps> & {
+export type ImageProps = BaseProps<
+  ExpoImage.ImageStyle,
+  ExpoImage.ImageProps
+> & {
   size?: number
 }
 

@@ -39,6 +39,9 @@ export type BottomSheetProps = BaseProps & {
     content?: {
       style?: Native.ViewStyle
     }
+    footer?: {
+      style?: Native.ViewStyle
+    }
   }
   footer?: (props: any) => React.ReactNode
 }
@@ -53,24 +56,26 @@ export function BottomSheet(props: BottomSheetProps) {
   const yAnimDur = 400
   const yDur = useSharedValue(0)
   const yAnimCallback = () => {
-    if (y.value >= yAnimGoTo) {
+    if (!open.state) {
       runOnJS(close)()
     }
   }
   const yAnimReset = () => {
     // on web an assignment, even if the value does not change
-    /// will trigger the animation -> loop
-    if (y.value != 1000) y.value = 1000
+    // will trigger the animation -> loop
+    if (y.value != yAnimGoTo) y.value = yAnimGoTo
     if (yDur.value != 0) yDur.value = 0
   }
   const close = () => {
     open.state = false
-    setTimeout(yAnimReset, 200)
+    yAnimReset()
   }
+
   React.useEffect(() => {
     y.value = open.state ? 0 : 1000
     yDur.value = open.state ? 300 : 0
   }, [open.state])
+
   const animStyle = useAnimatedStyle(() => ({
     transform: [
       {
@@ -81,7 +86,9 @@ export function BottomSheet(props: BottomSheetProps) {
         ),
       },
     ],
-    height: `100%`,
+    // height: `100%`,
+    // width: `100%`,
+    // position: 'absolute',
   }))
 
   const pan = RNGH.Gesture.Pan()
@@ -99,28 +106,30 @@ export function BottomSheet(props: BottomSheetProps) {
       }
     })
 
-  const SheetWrapper = RNGH.gestureHandlerRootHOC(() => (
-    <RNGH.GestureDetector gesture={pan}>
-      <Sheet
-        style={sheet?.container?.style}
-        behavior={isIos() ? `padding` : undefined}
-      >
-        <TopNotchContainer>
-          {sheet?.topNotch?.slot ?? <TopNotch style={sheet?.topNotch?.style} />}
-        </TopNotchContainer>
-
-        <Content style={sheet?.content?.style}>{children}</Content>
-        <Native.View>{footer?.(null)}</Native.View>
-      </Sheet>
-    </RNGH.GestureDetector>
-  ))
-
   return (
     <BottomSheetBase showIf={open.state} {...passed}>
       <Portal hostName='bottom-sheet'>
         <Background onTouchEnd={close} style={overlay?.style} />
         <Animated.View style={animStyle}>
-          <SheetWrapper />
+          <RNGH.GestureHandlerRootView>
+            <RNGH.GestureDetector gesture={pan}>
+              <Sheet
+                style={sheet?.container?.style}
+                behavior={isIos() ? `padding` : undefined}
+              >
+                <TopNotchContainer>
+                  {sheet?.topNotch?.slot ?? (
+                    <TopNotch style={sheet?.topNotch?.style} />
+                  )}
+                </TopNotchContainer>
+
+                <Content style={sheet?.content?.style}>{children}</Content>
+                <Native.View style={sheet?.footer?.style}>
+                  {footer?.(null)}
+                </Native.View>
+              </Sheet>
+            </RNGH.GestureDetector>
+          </RNGH.GestureHandlerRootView>
         </Animated.View>
       </Portal>
     </BottomSheetBase>

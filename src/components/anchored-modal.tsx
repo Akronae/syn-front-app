@@ -1,20 +1,10 @@
-import { Base, BaseProps } from '@proto-native/components/base'
-import { randomInt } from '@proto-native/random'
+import { Base } from '@proto-native/components/base'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react'
 import * as Native from 'react-native'
-import { Text } from './text'
-import Animated, {
-  AnimateProps,
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated'
-import { range } from 'lodash-es'
+
 import { Modal, ModalProps } from './modal'
-import { useInterval, useState } from '@proto-native/utils'
-import { useTimeout } from '@proto-native/utils/use-timeout'
+import { useState } from '@proto-native/utils'
 
 export type AnchoredModalProps = ModalProps
 
@@ -41,7 +31,7 @@ export const AnchoredModal = React.forwardRef<
       <Modal
         style={Native.StyleSheet.flatten([
           {
-            position: 'absolute',
+            position: `absolute`,
             left: anchor.state.x,
             top: anchor.state.y,
             width: anchor.state.width,

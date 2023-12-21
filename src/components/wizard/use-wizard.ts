@@ -1,5 +1,5 @@
 import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardDataBase, WizardHandle } from './wizard-handle'
 
@@ -41,8 +41,14 @@ function useWizardInternal<
     data,
   ) as ReactiveState<NonNullable<T['reactive'][TKey]>>
 
-  if (context.data?.reactive.state)
-    context.data.reactive.state[key] = stepDataState.state
+  useEffect(() => {
+    if (context?.data?.reactive.state) {
+      context.data.reactive.state = {
+        ...context.data.reactive.state,
+        [key]: stepDataState.state,
+      }
+    }
+  }, [stepDataState.state])
 
   return { wizard: context, stepData: stepDataState }
 }

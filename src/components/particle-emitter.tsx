@@ -2,18 +2,13 @@ import { Base, BaseProps } from '@proto-native/components/base'
 import { randomInt } from '@proto-native/random'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as React from 'react'
-import * as Native from 'react-native'
 import { Text } from './text'
 import Animated, {
-  AnimateProps,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
 import { range } from 'lodash-es'
-import { Modal } from './modal'
-import { useInterval, useState } from '@proto-native/utils'
 import { useTimeout } from '@proto-native/utils/use-timeout'
 import { AnchoredModal } from './anchored-modal'
 import { Image } from './image'
@@ -36,6 +31,7 @@ export const ParticleEmitter = React.forwardRef<
   return (
     <ParticleEmitterBase {...passed}>
       <AnchoredModal>{particles}</AnchoredModal>
+      {children}
     </ParticleEmitterBase>
   )
 })
@@ -73,7 +69,7 @@ function Particle({
   if (Array.isArray(y)) y = randomInt(y[0], y[1])
   if (Array.isArray(size)) size = randomInt(size[0], size[1])
 
-  var dur = 0
+  let dur = 0
   if (Array.isArray(duration)) dur = randomInt(duration[0], duration[1])
   else dur = duration
 
@@ -84,13 +80,13 @@ function Particle({
       85,
     )}%)`
 
-  var dstX: number = 0
+  let dstX: number = 0
   if (!destinationX) dstX = x + (Math.random() - 0.5) * 2 * 75
   else if (Array.isArray(destinationX))
     dstX = randomInt(destinationX[0], destinationX[1])
   else dstX = destinationX
 
-  var dstY = 0
+  let dstY = 0
   if (!destinationY) dstY = y + (Math.random() - 0.5) * 2 * 75
   else if (Array.isArray(destinationY))
     dstY = randomInt(destinationY[0], destinationY[1])
@@ -103,17 +99,17 @@ function Particle({
     return {
       transform: [{ translateX: posX.value }, { translateY: posY.value }],
       opacity: opacityVal.value,
-      position: 'absolute',
+      position: `absolute`,
       left: 0,
       top: 0,
       borderRadius: 9999,
-      pointerEvents: 'none',
+      pointerEvents: `none`,
       zIndex: 5,
       width: size as number,
       height: size as number,
       color: color,
       fontSize: size as number,
-      backgroundColor: children ? 'transparent' : color,
+      backgroundColor: children ? `transparent` : color,
     }
   })
 
@@ -127,7 +123,7 @@ function Particle({
     opacityVal.value = withSpring(opacity.to, { duration: dur })
   }
 
-  var children: React.ReactNode | null = null
+  let children: React.ReactNode | null = null
   if (text) {
     if (Array.isArray(text))
       children = <Text>{text[randomInt(0, text.length - 1)]}</Text>
