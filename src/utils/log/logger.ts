@@ -1,36 +1,10 @@
-type Callback = (...args: any[]) => void
-class EventEmitter {
-  private listeners: { [key: string]: Callback[] } = {}
-
-  addListener(event: string, callback: Callback) {
-    if (!this.listeners[event]) {
-      this.listeners[event] = []
-    }
-    this.listeners[event].push(callback)
-  }
-  emit(event: string, ...args: any[]) {
-    if (!this.listeners[event]) {
-      return
-    }
-    this.listeners[event].forEach((callback) => {
-      callback(...args)
-    })
-  }
-  removeListener(event: string, callback: Callback) {
-    if (!this.listeners[event]) {
-      return
-    }
-    this.listeners[event] = this.listeners[event].filter(
-      (listener) => listener !== callback,
-    )
-  }
-}
+import { EventEmitter } from '@proto-native/utils/event-emitter'
 
 export class Logger {
   private eventEmitter = new EventEmitter()
 
   public on = {
-    error: (callback: (msg: string, err?: Error) => void) => {
+    error: (callback: (arg: [string, Error]) => void) => {
       this.eventEmitter.addListener(`error`, callback)
     },
     info: (callback: (msg: any[]) => void) => {
@@ -40,7 +14,7 @@ export class Logger {
 
   error(msg: string, err?: Error) {
     console.error(msg, err)
-    this.eventEmitter.emit(`error`, msg, err)
+    this.eventEmitter.emit(`error`, [msg, err])
   }
 
   info(...msg: any[]) {
