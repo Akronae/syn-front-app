@@ -12,7 +12,7 @@ export type ImageProps = BaseProps<
   ExpoImage.ImageStyle,
   ExpoImage.ImageProps
 > & {
-  size?: number
+  size?: Native.DimensionValue
 }
 
 export function Image(props: ImageProps) {
