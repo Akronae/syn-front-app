@@ -5,7 +5,7 @@ import {
 } from '@proto-native/components/base'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as ExpoImage from 'expo-image'
-import { isUndefined, pickBy } from 'lodash-es'
+import { isUndefined, pickBy, sortBy } from 'lodash-es'
 import * as Native from 'react-native'
 
 export type ImageProps = BaseProps<
@@ -16,13 +16,15 @@ export type ImageProps = BaseProps<
 }
 
 export function Image(props: ImageProps) {
-  const { ...passed } = props
+  const { source, ...passed } = props
   const imgProps = takeImageOwnProps(passed)
   const baseProps = takeBaseOwnProps(imgProps.rest)
 
+  if (!source) return null
+
   return (
     <ImageBase {...baseProps.taken}>
-      <Img {...baseProps.rest} {...imgProps.taken} />
+      <Img {...baseProps.rest} {...imgProps.taken} source={source} />
     </ImageBase>
   )
 }
@@ -63,7 +65,7 @@ export function takeImageOwnProps(props: ImageProps) {
 
 const ImageBase = Base
 
-const Img = themed(ExpoImage.Image, (p) => ({
+const Img = themed<ExpoImage.ImageProps>(ExpoImage.Image, (p) => ({
   width: `100%`,
   height: `100%`,
 }))
