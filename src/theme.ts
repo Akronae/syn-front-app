@@ -5,6 +5,7 @@ export interface Theme {
       default: string
       primary: string
       contrast: string
+      uncontrasted: string
       sub: string
       disabled: string
       error: string

@@ -1,5 +1,6 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { themed } from '@proto-native/utils/theme/themed'
+import { isUndefined, omitBy } from 'lodash-es'
 import * as React from 'react'
 import { FlexStyle } from 'react-native'
 
@@ -24,3 +25,19 @@ const ColumnBase = themed<ColumnProps>(Base, (p) => ({
   alignItems: p.alignItems,
   gap: p.gap,
 }))
+
+export function takeColumnOwnProps(props: ColumnProps) {
+  const { justifyContent, alignItems, flex, gap, ...rest } = props
+  return {
+    taken: omitBy(
+      {
+        justifyContent,
+        alignItems,
+        flex,
+        gap,
+      },
+      isUndefined,
+    ),
+    rest,
+  }
+}

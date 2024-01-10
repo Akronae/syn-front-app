@@ -13,6 +13,8 @@ import * as Native from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
+import { useInterval, useState } from '@proto-native/utils'
+import { Row } from '../row'
 
 export type ButtonState = `default` | `disabled` | `hover` | `pressed`
 export type ButtonType = `primary` | `secondary` | `text`
@@ -42,12 +44,15 @@ export type ButtonProps = BaseProps<
   } & Partial<ButtonVariant>
 
 export function Button(props: ButtonProps) {
-  const { icon, state, type, size, flex, ...rest } = props
+  const { icon, state, type, size, flex, onPress, ...rest } = props
   const theme = useTheme()
   const btnProps = takeButtonOwnProps(rest)
   const textProps = takeTextOwnProps(btnProps.rest)
   const pressAnimation = btnProps.taken.pressAnimation || `none`
   const anim = usePressAnimation(pressAnimation)
+  const isLoading = useState(false)
+  const isLoadingRef = React.useRef(isLoading)
+  isLoadingRef.current = isLoading
   const style = props.style
   const variant: ButtonVariant = {
     state: state || `default`,
@@ -118,20 +123,35 @@ export function Button(props: ButtonProps) {
             anim.revert()
             props.onPressOut?.(e)
           }}
+          onPress={async (e) => {
+            if (isLoading.state) return
+            isLoading.state = true
+            await onPress?.(e)
+            isLoadingRef.current.state = false
+          }}
         >
           {icon?.position !== `right` && <IconComponent />}
           {textProps.taken.children && (
-            <BtnCardText
-              capitalize={true}
-              {...textProps.taken}
-              {...variant}
-              style={[
-                omitBy({ color, fontWeight, fontSize }, isUndefined),
-                textProps.taken.style,
-              ]}
-              parent={{ props }}
-            />
+            <Row gap={10}>
+              {isLoading.state && (
+                <Native.ActivityIndicator
+                  color={theme.proto.colors.surface.uncontrasted}
+                  size='small'
+                />
+              )}
+              <BtnCardText
+                capitalize={true}
+                {...textProps.taken}
+                {...variant}
+                style={[
+                  omitBy({ color, fontWeight, fontSize }, isUndefined),
+                  textProps.taken.style,
+                ]}
+                parent={{ props }}
+              />
+            </Row>
           )}
+
           {icon?.position === `right` && <IconComponent />}
         </ButtonBase>
       </Animated.View>
