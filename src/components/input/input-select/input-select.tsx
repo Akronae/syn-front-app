@@ -33,6 +33,7 @@ export type InputSelectProps<
       style?: ReturnType<ThemedStyle>
     }
   }
+  onItemSelect?: (item: ReactElement<DropdownItemProps>) => void
 }
 
 export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
@@ -45,6 +46,7 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     textSlot,
     onPress: onPressProps,
     model: modelProps,
+    onItemSelect,
     ...passed
   } = props
   const model = useExistingStateOr(modelProps, undefined)
@@ -116,9 +118,10 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
       {childrenBy.Dropdown.map((child, i) => {
         return React.cloneElement(child, {
           key: i,
-          onItemPress: (item: any) => {
+          onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
             isFocused.state = false
             child.props.onItemPress?.(item)
+            onItemSelect?.(item)
           },
         })
       })}
@@ -138,7 +141,10 @@ InputSelect.Option = themed<DropdownItemProps>(
 
 InputSelect.Placeholder = InputBase.Placeholder
 InputSelect.Selected = themed(Base, (p) => ({}))
-InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
+InputSelect.Dropdown = themed<DropdownProps>(
+  InputBase.Dropdown,
+  (p) => ({}),
+) as typeof InputBase.Dropdown
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
   // gap: p.theme.proto.spacing(2),

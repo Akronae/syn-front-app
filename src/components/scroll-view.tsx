@@ -1,8 +1,5 @@
-import {
-  Base,
-  BaseProps,
-  takeBaseOwnProps,
-} from '@proto-native/components/base'
+
+
 import * as Native from 'react-native'
 
 export type ScrollViewProps = Native.ScrollViewProps & {
@@ -16,7 +13,7 @@ export function ScrollView(props: ScrollViewProps) {
   return (
     <Native.ScrollView
       {...passed}
-      contentContainerStyle={{ display: 'flex', flex, gap }}
+      contentContainerStyle={{ display: `flex`, flex, gap }}
     >
       {children}
     </Native.ScrollView>

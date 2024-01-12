@@ -5,7 +5,7 @@ import {
 } from '@proto-native/components/base'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as ExpoImage from 'expo-image'
-import { isUndefined, pickBy, sortBy } from 'lodash-es'
+import { isUndefined, pickBy } from 'lodash-es'
 import * as Native from 'react-native'
 
 export type ImageProps = BaseProps<

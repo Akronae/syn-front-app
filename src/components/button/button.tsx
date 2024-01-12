@@ -13,7 +13,7 @@ import * as Native from 'react-native'
 import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
-import { useInterval, useState } from '@proto-native/utils'
+import { useState } from '@proto-native/utils'
 import { Row } from '../row'
 
 export type ButtonState = `default` | `disabled` | `hover` | `pressed`
