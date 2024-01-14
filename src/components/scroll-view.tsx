@@ -1,5 +1,3 @@
-
-
 import * as Native from 'react-native'
 
 export type ScrollViewProps = Native.ScrollViewProps & {

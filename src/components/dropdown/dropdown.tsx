@@ -33,6 +33,7 @@ export type DropdownProps = BaseProps & {
     wrapper: ModalProps['wrapper']
   }
   open?: ReactiveState<boolean>
+  wrapperProps?: BaseProps
 }
 
 export function Dropdown(props: DropdownProps) {
@@ -42,6 +43,7 @@ export function Dropdown(props: DropdownProps) {
     modal,
     onDismiss,
     open: openProps,
+    wrapperProps,
     ...passed
   } = props
   const childrenBy = useGroupChildrenByType(children, {
@@ -160,7 +162,7 @@ export function Dropdown(props: DropdownProps) {
         portalName={`dropdown`}
       >
         <Base style={childrenWrapperStyle}>
-          <Base style={style}>
+          <Base {...wrapperProps} style={style}>
             <Base>{childrenBy.Header}</Base>
             <Wrapper
               onLayout={onChildrenWrapperLayout}
