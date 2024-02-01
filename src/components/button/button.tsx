@@ -123,12 +123,16 @@ export function Button(props: ButtonProps) {
             anim.revert()
             props.onPressOut?.(e)
           }}
-          onPress={async (e) => {
-            if (isLoading.state) return
-            isLoading.state = true
-            await onPress?.(e)
-            isLoadingRef.current.state = false
-          }}
+          onPress={
+            onPress
+              ? async (e) => {
+                  if (isLoading.state) return
+                  isLoading.state = true
+                  await onPress?.(e)
+                  isLoadingRef.current.state = false
+                }
+              : undefined
+          }
         >
           {icon?.position !== `right` && <IconComponent />}
           {textProps.taken.children && (
