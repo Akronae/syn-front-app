@@ -5,18 +5,14 @@ import * as React from 'react'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { WordDetails } from 'src/components/word-details'
 import { Stack, useRouter, useSearchParams } from 'expo-router'
-import text from 'src/assets/text'
 import * as Types from 'src/types'
 import { Button } from 'src/components/button'
-import { findByKey } from 'src/utils/object/find-by-key'
-import axios from 'axios'
 
 import * as RNGH from 'react-native-gesture-handler'
 
 import { VerseScrollView } from 'src/components/verse/verse-scrollview'
 import { useQuery } from '@tanstack/react-query'
-import { getEnv } from 'src/utils/env/get-env'
-import { api, apiClient, ApiGetManifestResponse } from 'src/api/api-client'
+import { api, ApiGetManifestResponse } from 'src/api/api-client'
 
 export type ReadVerseParams = {
   collection: string
@@ -32,7 +28,7 @@ export default function ReadVerse() {
 
   const verseQuery = useQuery({
     queryKey: [
-      'get-verse',
+      `get-verse`,
       params.collection,
       params.book,
       params.chapter,
@@ -48,7 +44,7 @@ export default function ReadVerse() {
   })
 
   const manifest = useQuery<ApiGetManifestResponse>({
-    queryKey: ['get-manifest'],
+    queryKey: [`get-manifest`],
     queryFn: () => api.verses.getManifest(),
   })
 

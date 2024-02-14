@@ -4,12 +4,12 @@ import urljoin from 'proper-url-join'
 import { Declension, Verse } from 'src/types'
 
 export const apiClient = axios.create({
-  baseURL: urljoin(getEnv('BACK_URL'), 'v1'),
+  baseURL: urljoin(getEnv(`BACK_URL`), `v1`),
 })
 
 export const api = {
   verses: {
-    getManifest: () => apiClient.get('/verses/manifest'),
+    getManifest: () => apiClient.get(`/verses/manifest`),
     get: (collection: string, book: string, chapter: number, verse: number) =>
       apiClient.get<GetVerse>(
         `/verses/${collection}/${book}/${chapter}/${verse}`,

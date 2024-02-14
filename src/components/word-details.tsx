@@ -22,17 +22,17 @@ export function WordDetails(props: WordDetailsProps) {
   const open = useState(true)
 
   const wordQuery = useQuery({
-    queryKey: ['get-word', word.state?.text, word.state?.declension],
+    queryKey: [`get-word`, word.state?.text, word.state?.declension],
     queryFn: () =>
       api.lexicon.get(
         word.state?.declension.indeclinable
           ? { lemma: word.state.text }
           : {
-              inflection: {
-                word: word.state!.text,
-                declension: word.state!.declension,
-              },
+            inflection: {
+              word: word.state!.text,
+              declension: word.state!.declension,
             },
+          },
       ),
     enabled: !!word.state,
   })

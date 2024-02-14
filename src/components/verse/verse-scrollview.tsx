@@ -63,4 +63,4 @@ export const VerseScrollView = React.forwardRef<
 
   return <Handler />
 })
-VerseScrollView.displayName = 'VerseScrollView'
+VerseScrollView.displayName = `VerseScrollView`

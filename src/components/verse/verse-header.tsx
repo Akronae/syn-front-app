@@ -15,7 +15,7 @@ export function VerseHeader(props: VerseHeaderProps) {
       <Text>
         {verse.book} {verse.chapterNumber}:{verse.verseNumber}
       </Text>
-      <VerseTranslated>{verse.translation['en']}</VerseTranslated>
+      <VerseTranslated>{verse.translation[`en`]}</VerseTranslated>
     </VerseHeaderBase>
   )
 }

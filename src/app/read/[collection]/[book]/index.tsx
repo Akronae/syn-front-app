@@ -4,8 +4,6 @@ import * as React from 'react'
 
 import * as Native from 'react-native'
 import { Stack, usePathname, useRouter, useSearchParams } from 'expo-router'
-import * as Types from 'src/types'
-import { findByKey } from 'src/utils/object/find-by-key'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { Card } from 'src/components/card'
 import { Title } from 'src/components/title'
@@ -26,14 +24,14 @@ export default function BookIndex() {
   const booksRead = useAsync(async () => await BooksReadStorage.get())
 
   const query = useQuery<ApiGetManifestResponse>({
-    queryKey: ['get-manifest'],
+    queryKey: [`get-manifest`],
     queryFn: () => api.verses.getManifest(),
   })
   const book = query.data?.data.collections
     .find((c) => c.name == params.collection)
     ?.books.find((b) => b.name == params.book)
 
-  if (!book) return 'no book'
+  if (!book) return `no book`
 
   const goToVerse = (chapter: number, verse: number) => {
     router.push(`${path}/${chapter}/${verse}`)

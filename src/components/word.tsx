@@ -11,87 +11,87 @@ export type WordProps = ViewProps & {
 
 function posShort(pos: Types.PartOfSpeech) {
   switch (pos) {
-    case Types.PartOfSpeech.Adjective:
-      return `adjective`
-    case Types.PartOfSpeech.Adverb:
-      return `adverb`
-    case Types.PartOfSpeech.ArticleDefinite:
-      return `def. art.`
-    case Types.PartOfSpeech.ArticleIndefinite:
-      return `indef art.`
-    case Types.PartOfSpeech.Conjunction:
-      return `conj.`
-    case Types.PartOfSpeech.Determiner:
-      return `determiner`
-    case Types.PartOfSpeech.Interjection:
-      return `interjection`
-    case Types.PartOfSpeech.NounCommon:
-      return `noun`
-    case Types.PartOfSpeech.NounProper:
-      return `noun (proper)`
-    case Types.PartOfSpeech.Numeral:
-      return `numeral`
-    case Types.PartOfSpeech.Particle:
-      return `particle`
-    case Types.PartOfSpeech.PronounDemonstrative:
-      return `pronoun dem.`
-    case Types.PartOfSpeech.PronounIndefinite:
-      return `pronoun ind.`
-    case Types.PartOfSpeech.PronounInterrogative:
-      return `pronoun int.`
-    case Types.PartOfSpeech.PronounPersonal:
-      return `pronoun pers.`
-    case Types.PartOfSpeech.PronounReciprocal:
-      return `pronoun rec.`
-    case Types.PartOfSpeech.PronounReflexive:
-      return `pronoun refl.`
-    case Types.PartOfSpeech.PronounRelative:
-      return `pronoun rel.`
-    case Types.PartOfSpeech.Preposition:
-      return `preposition`
-    case Types.PartOfSpeech.Verb:
-      return `verb`
-    case Types.PartOfSpeech.Participle:
-      return `participle`
-    default:
-      throw new Error(`Unknown part of speech: ${pos}`)
+  case Types.PartOfSpeech.Adjective:
+    return `adjective`
+  case Types.PartOfSpeech.Adverb:
+    return `adverb`
+  case Types.PartOfSpeech.ArticleDefinite:
+    return `def. art.`
+  case Types.PartOfSpeech.ArticleIndefinite:
+    return `indef art.`
+  case Types.PartOfSpeech.Conjunction:
+    return `conj.`
+  case Types.PartOfSpeech.Determiner:
+    return `determiner`
+  case Types.PartOfSpeech.Interjection:
+    return `interjection`
+  case Types.PartOfSpeech.NounCommon:
+    return `noun`
+  case Types.PartOfSpeech.NounProper:
+    return `noun (proper)`
+  case Types.PartOfSpeech.Numeral:
+    return `numeral`
+  case Types.PartOfSpeech.Particle:
+    return `particle`
+  case Types.PartOfSpeech.PronounDemonstrative:
+    return `pronoun dem.`
+  case Types.PartOfSpeech.PronounIndefinite:
+    return `pronoun ind.`
+  case Types.PartOfSpeech.PronounInterrogative:
+    return `pronoun int.`
+  case Types.PartOfSpeech.PronounPersonal:
+    return `pronoun pers.`
+  case Types.PartOfSpeech.PronounReciprocal:
+    return `pronoun rec.`
+  case Types.PartOfSpeech.PronounReflexive:
+    return `pronoun refl.`
+  case Types.PartOfSpeech.PronounRelative:
+    return `pronoun rel.`
+  case Types.PartOfSpeech.Preposition:
+    return `preposition`
+  case Types.PartOfSpeech.Verb:
+    return `verb`
+  case Types.PartOfSpeech.Participle:
+    return `participle`
+  default:
+    throw new Error(`Unknown part of speech: ${pos}`)
   }
 }
 
 function caseShort(gramCase: GrammaticalCase) {
   switch (gramCase) {
-    case GrammaticalCase.Accusative:
-      return `acc`
-    case GrammaticalCase.Dative:
-      return `dat`
-    case GrammaticalCase.Genitive:
-      return `gen`
-    case GrammaticalCase.Nominative:
-      return `nom`
-    case GrammaticalCase.Vocative:
-      return `voc`
-    default:
-      throw new Error(`Unknown grammatical case: ${gramCase}`)
+  case GrammaticalCase.Accusative:
+    return `acc`
+  case GrammaticalCase.Dative:
+    return `dat`
+  case GrammaticalCase.Genitive:
+    return `gen`
+  case GrammaticalCase.Nominative:
+    return `nom`
+  case GrammaticalCase.Vocative:
+    return `voc`
+  default:
+    throw new Error(`Unknown grammatical case: ${gramCase}`)
   }
 }
 
 function numberShort(number: Types.Number) {
   switch (number) {
-    case 'plural':
-      return `pl`
-    case 'singular':
-      return `si`
-    default:
-      throw new Error(`Unknown number: ${number}`)
+  case `plural`:
+    return `pl`
+  case `singular`:
+    return `si`
+  default:
+    throw new Error(`Unknown number: ${number}`)
   }
 }
 
 function genderShort(gender: Types.Gender) {
   switch (gender) {
-    case 'feminine':
-      return `fem`
-    case 'masculine':
-      return `mas`
+  case `feminine`:
+    return `fem`
+  case `masculine`:
+    return `mas`
   }
 }
 
@@ -122,7 +122,7 @@ export function Word(props: WordProps) {
     >
       <Greek>{word.text}</Greek>
       <View gap={1}>
-        <English>{word.translation['en']}</English>
+        <English>{word.translation[`en`]}</English>
         <English>{declStr}</English>
       </View>
     </WordWrapper>

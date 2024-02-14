@@ -7,7 +7,7 @@ import BooksReadStorage from 'src/storage/books-read-stored'
 import { Button } from 'src/components/button'
 import { useQuery } from '@tanstack/react-query'
 import { api, ApiGetManifestResponse } from 'src/api/api-client'
-import { capitalize, negate } from 'lodash-es'
+import { capitalize } from 'lodash-es'
 
 export default function AppIndex() {
   const router = useRouter()
@@ -80,13 +80,13 @@ function BookThumbs() {
   const booksRead = useAsync(async () => await BooksReadStorage.get())
 
   const query = useQuery<ApiGetManifestResponse>({
-    queryKey: ['get-manifest'],
+    queryKey: [`get-manifest`],
     queryFn: () => api.verses.getManifest(),
   })
 
   if (booksRead.loading || !query.data?.data) return null
 
-  const nt = query.data.data.collections.find((c) => c.name == 'new_testament')!
+  const nt = query.data.data.collections.find((c) => c.name == `new_testament`)!
 
   return (
     <View gap={(t) => t.syn.spacing(4)}>

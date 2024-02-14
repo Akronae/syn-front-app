@@ -22,6 +22,7 @@ module.exports = {
     'linebreak-style': [`error`, `unix`],
     'jsx-quotes': [`error`, `prefer-single`],
     '@typescript-eslint/quotes': [`error`, `backtick`],
+    '@typescript-eslint/no-non-null-assertion': `off`,
     semi: [`error`, `never`],
     'unused-imports/no-unused-imports': `error`,
     'prefer-template': `error`,
