@@ -7,7 +7,7 @@ import * as Types from 'src/types'
 
 export interface VerseProps extends ViewProps {
   verse: Types.Verse
-  focusedWord?: ReactiveState<string | undefined>
+  focusedWord?: ReactiveState<Types.Word | undefined>
 }
 
 export function Verse(props: VerseProps) {
@@ -17,11 +17,11 @@ export function Verse(props: VerseProps) {
   return (
     <View style={[column]} {...passed}>
       <VerseWrapper gap={0}>
-        {verse.wordsParsed.map((word, i) => (
+        {verse.words.map((word, i) => (
           <Word
             key={i}
             word={word}
-            onPress={() => (focusedWord.state = word.greek)}
+            onPress={() => (focusedWord.state = word)}
           />
         ))}
       </VerseWrapper>

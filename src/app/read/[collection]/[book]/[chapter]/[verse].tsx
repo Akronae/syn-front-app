@@ -9,12 +9,14 @@ import text from 'src/assets/text'
 import * as Types from 'src/types'
 import { Button } from 'src/components/button'
 import { findByKey } from 'src/utils/object/find-by-key'
-
+import axios from 'axios'
 
 import * as RNGH from 'react-native-gesture-handler'
 
-
 import { VerseScrollView } from 'src/components/verse/verse-scrollview'
+import { useQuery } from '@tanstack/react-query'
+import { getEnv } from 'src/utils/env/get-env'
+import { api, apiClient, ApiGetManifestResponse } from 'src/api/api-client'
 
 export type ReadVerseParams = {
   collection: string
@@ -26,24 +28,40 @@ export type ReadVerseParams = {
 export default function ReadVerse() {
   const router = useRouter()
   const params = useSearchParams<ReadVerseParams>() as ReadVerseParams
-  const focusedWord = useState<string | undefined>(undefined)
-  const collection = findByKey<Types.collection>(text, params.collection)
-  const book = findByKey<Types.Book>(collection, params.book as string)
-  const chapter = findByKey<Types.Chapter>(book, params.chapter as string)
-  const verse = findByKey<Types.Verse>(
-    chapter?.versesParsed,
-    (parseInt(params.verse) - 1).toString(),
-  )
+  const focusedWord = useState<Types.Word | undefined>(undefined)
+
+  const verseQuery = useQuery({
+    queryKey: [
+      'get-verse',
+      params.collection,
+      params.book,
+      params.chapter,
+      params.verse,
+    ],
+    queryFn: () =>
+      api.verses.get(
+        params.collection,
+        params.book,
+        Number(params.chapter),
+        Number(params.verse),
+      ),
+  })
+
+  const manifest = useQuery<ApiGetManifestResponse>({
+    queryKey: ['get-manifest'],
+    queryFn: () => api.verses.getManifest(),
+  })
 
   const scrollview = React.useRef<RNGH.ScrollView>(null)
 
-  if (!book || !verse) return null
+  const verse = verseQuery.data?.data
+  if (!verse) return null
 
   BooksReadStorage.merge([
     {
       collection: params.collection,
       book: params.book,
-      chapter: verse.chapter,
+      chapter: verse.chapterNumber,
       verse: verse.verseNumber,
       firstReadDate: new Date().toUTCString(),
       lastReadDate: new Date().toUTCString(),
@@ -51,16 +69,22 @@ export default function ReadVerse() {
     },
   ])
 
-  const goToChapter = (chapter: number, verse: number) => {
-    const c = book[chapter]
+  const goTo = (chapter: number, verse: number) => {
+    const book = manifest.data?.data.collections
+      .find((c) => c.name === params.collection)
+      ?.books.find((b) => b.name === params.book)
+    if (!book) throw new Error(`book ${params.book} not found`)
+    const c = book.chapters.find((c) => c.number === chapter)
+    if (!c) throw new Error(`chapter ${chapter} not found`)
+
     if (verse < 0) {
-      verse = c.versesParsed.length + verse + 1
+      verse = c.verses + verse + 1
     }
-    if (verse > c.versesParsed.length) {
+    if (verse > c.verses) {
       verse = 1
       chapter = chapter + 1
     }
-    if (chapter > Object.values(book).length) {
+    if (chapter > book.chapters.length) {
       return router.push(`/`)
     }
     router.setParams({ chapter: chapter.toString(), verse: verse.toString() })
@@ -68,11 +92,11 @@ export default function ReadVerse() {
   }
 
   const goNext = () => {
-    goToChapter(verse.chapter, verse.verseNumber + 1)
+    goTo(verse.chapterNumber, verse.verseNumber + 1)
   }
   const goBack = () => {
-    if (verse.verseNumber === 1) return goToChapter(verse.chapter - 1, -1)
-    else goToChapter(verse.chapter, verse.verseNumber - 1)
+    if (verse.verseNumber === 1) return goTo(verse.chapterNumber - 1, -1)
+    else goTo(verse.chapterNumber, verse.verseNumber - 1)
   }
   const goHome = () => {
     router.push(`/`)
@@ -87,7 +111,7 @@ export default function ReadVerse() {
     <ReadChapterBase>
       <Stack.Screen
         options={{
-          title: `${verse.book} ${verse.chapter}:${verse.verseNumber}`,
+          title: `${verse.book} ${verse.chapterNumber}:${verse.verseNumber}`,
         }}
       />
       <VerseScrollView

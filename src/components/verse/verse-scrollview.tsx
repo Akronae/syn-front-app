@@ -5,19 +5,15 @@ import * as React from 'react'
 import * as Native from 'react-native'
 import { Verse } from 'src/components/verse/verse'
 import * as Types from 'src/types'
-import {
-  gestureHandlerRootHOC,
-} from 'react-native-gesture-handler'
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 import * as RNGH from 'react-native-gesture-handler'
-import {
-  useSharedValue,
-} from 'react-native-reanimated'
+import { useSharedValue } from 'react-native-reanimated'
 import { VerseHeader } from 'src/components/verse/verse-header'
 import { PullableView, PullableViewProps } from 'src/components/pullable-view'
 
 export type VerseScrollViewProps = {
   verse: Types.Verse
-  focusedWord: ReactiveState<string | undefined>
+  focusedWord: ReactiveState<Types.Word | undefined>
   onPull?: PullableViewProps['onPull']
 }
 export const VerseScrollView = React.forwardRef<

@@ -7,34 +7,59 @@ export enum GrammaticalCase {
 }
 
 export enum PartOfSpeech {
-  Noun = `Noun`,
-  ProperNoun = `ProperNoun`,
-  Pronoun = `Pronoun`,
-  PersonalPronoun = `PersonalPronoun`,
-  Verb = `Verb`,
-  Adjective = `Adjective`,
-  Adverb = `Adverb`,
-  Preposition = `Preposition`,
-  Conjunction = `Conjunction`,
-  Interjection = `Interjection`,
-  Particle = `Particle`,
-  Numeral = `Numeral`,
-  Article = `Article`,
-  Determiner = `Determiner`,
+  NounCommon = `noun_common`,
+  NounProper = `noun_proper`,
+  PronounRelative = `pronoun_relative`,
+  PronounInterrogative = `pronoun_interrogative`,
+  PronounIndefinite = `pronoun_indefinite`,
+  PronounReciprocal = `pronoun_reciprocal`,
+  PronounReflexive = `pronoun_reflexive`,
+  PronounDemonstrative = `pronoun_demonstrative`,
+  PronounPersonal = `pronoun_personal`,
+  Verb = `verb`,
+  Adjective = `adjective`,
+  Adverb = `adverb`,
+  Preposition = `preposition`,
+  Conjunction = `conjunction`,
+  Interjection = `interjection`,
+  Particle = `particle`,
+  Participle = `participle`,
+  Numeral = `numeral`,
+  ArticleDefinite = `article_definite`,
+  ArticleIndefinite = `article_indefinite`,
+  Determiner = `determiner`,
 }
 
-export interface Word {
-  greek: string
-  english: string
-  parsing: string
+export type Number = 'singular' | 'plural'
+export type Gender = 'masculine' | 'feminine' | 'neuter'
+
+export type Declension = {
+  case?: GrammaticalCase
+  number?: Number
+  gender?: Gender
+  mood?: string
+  person?: string
+  tense?: string
+  voice?: string
+  partOfSpeech: PartOfSpeech
+  theme?: string
+  indeclinable?: boolean
 }
 
-export interface Verse {
+export type Word = {
+  language: string
+  text: string
+  translation: Record<string, string>
+  declension: Declension
+}
+
+export type Verse = {
+  collection: string
   book: string
-  chapter: number
+  chapterNumber: number
   verseNumber: number
-  wordsParsed: Word[]
-  verseTranslated: string
+  translation: Record<string, string>
+  words: Word[]
 }
 
 export interface Chapter {

@@ -4,13 +4,15 @@ import * as React from 'react'
 
 import * as Native from 'react-native'
 import { Stack, usePathname, useRouter, useSearchParams } from 'expo-router'
-import text from 'src/assets/text'
 import * as Types from 'src/types'
 import { findByKey } from 'src/utils/object/find-by-key'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { Card } from 'src/components/card'
 import { Title } from 'src/components/title'
 import { MenuBar } from 'src/components/menu-bar'
+import { useQuery } from '@tanstack/react-query'
+import { api, ApiGetManifestResponse } from 'src/api/api-client'
+import { capitalize } from 'lodash-es'
 
 export type BookIndexParams = {
   collection: string
@@ -21,11 +23,17 @@ export default function BookIndex() {
   const router = useRouter()
   const path = usePathname()
   const params = useSearchParams<BookIndexParams>() as BookIndexParams
-  const collection = findByKey<Types.collection>(text, params.collection)
-  const book = findByKey<Types.Book>(collection, params.book as string)
   const booksRead = useAsync(async () => await BooksReadStorage.get())
 
-  if (!book) return null
+  const query = useQuery<ApiGetManifestResponse>({
+    queryKey: ['get-manifest'],
+    queryFn: () => api.verses.getManifest(),
+  })
+  const book = query.data?.data.collections
+    .find((c) => c.name == params.collection)
+    ?.books.find((b) => b.name == params.book)
+
+  if (!book) return 'no book'
 
   const goToVerse = (chapter: number, verse: number) => {
     router.push(`${path}/${chapter}/${verse}`)
@@ -40,28 +48,28 @@ export default function BookIndex() {
       />
       <ScrollView>
         <Title tStyle={(t) => ({ marginBottom: t.syn.spacing(5) })}>
-          {params.book}
+          {capitalize(params.book)}
         </Title>
         <View gap={15}>
-          {Object.entries(book).map(([chapter, c]) => {
+          {book.chapters.map((chapter) => {
             const versesRead = booksRead.value?.filter(
-              (b) => b.book === params.book && b.chapter.toString() === chapter,
+              (b) => b.book === params.book && b.chapter === chapter.number,
             )
             const lastVerseRead = versesRead?.sort(
               (a, b) => b.verse - a.verse,
             )[0]
             return (
               <BookThumb
-                key={chapter}
+                key={chapter.number}
                 onPress={() =>
-                  goToVerse(parseInt(chapter), lastVerseRead?.verse ?? 1)
+                  goToVerse(chapter.number, lastVerseRead?.verse ?? 1)
                 }
               >
                 <BookThumb.Title>
-                  {params.book} {chapter}
+                  {capitalize(params.book)} {chapter.number}
                 </BookThumb.Title>
                 <BookThumb.Description>
-                  Read {versesRead?.length} out of {c.versesParsed.length}
+                  Read {versesRead?.length} out of {chapter.verses}
                   {` `}
                   verses
                 </BookThumb.Description>

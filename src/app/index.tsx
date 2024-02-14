@@ -1,11 +1,13 @@
 import { useRouter } from 'expo-router'
-import text from 'src/assets/text'
 import { Card } from 'src/components/card'
 import { Title, TitleProps } from 'src/components/title'
 import { Text, View, useAsync } from 'src/packages/proto-native/src'
 import { themed } from 'src/packages/proto-native/src/utils/theme/themed'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { Button } from 'src/components/button'
+import { useQuery } from '@tanstack/react-query'
+import { api, ApiGetManifestResponse } from 'src/api/api-client'
+import { capitalize, negate } from 'lodash-es'
 
 export default function AppIndex() {
   const router = useRouter()
@@ -77,28 +79,34 @@ function BookThumbs() {
   const router = useRouter()
   const booksRead = useAsync(async () => await BooksReadStorage.get())
 
-  if (booksRead.loading) return null
+  const query = useQuery<ApiGetManifestResponse>({
+    queryKey: ['get-manifest'],
+    queryFn: () => api.verses.getManifest(),
+  })
+
+  if (booksRead.loading || !query.data?.data) return null
+
+  const nt = query.data.data.collections.find((c) => c.name == 'new_testament')!
 
   return (
     <View gap={(t) => t.syn.spacing(4)}>
-      {Object.keys(text.NT).map((bookName) => {
-        const book = text.NT[bookName as keyof typeof text.NT]
+      {nt.books.map((book) => {
         const bookVersesRead = booksRead.value?.filter(
-          (b) => b.book === bookName,
+          (b) => b.book === book.name,
         )
         const bookChaptersRead = Array.from(
           new Set(bookVersesRead?.map((b) => b.chapter)),
         )
         return (
           <BookThumb
-            key={bookName}
+            key={book.name}
             onPress={() => {
-              router.push(`/read/nt/${bookName}`)
+              router.push(`/read/new_testament/${book.name}`)
             }}
           >
-            <BookThumb.Title>{bookName}</BookThumb.Title>
+            <BookThumb.Title>{capitalize(book.name)}</BookThumb.Title>
             <BookThumb.Description>
-              Read {bookChaptersRead.length} out of {Object.keys(book).length}
+              Read {bookChaptersRead.length} out of {book.chapters.length}
               {` `}
               chapters
             </BookThumb.Description>

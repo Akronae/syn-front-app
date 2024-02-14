@@ -15,6 +15,9 @@ import { Stack } from 'expo-router'
 import { getHeaderScreenOptions } from 'src/routing/get-header-screen-options'
 import * as ReactNavigation from '@react-navigation/native'
 import { getNavigationTheme } from 'src/routing/get-navigation-theme'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 export default function AppLayout() {
   enableExperimentalWebImplementation()
@@ -49,21 +52,23 @@ export default function AppLayout() {
   return (
     <ThemeProvider theme={Theme}>
       <ReactNavigation.ThemeProvider value={getNavigationTheme(Theme)}>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <PortalProvider>
-            <Page>
-              <Proto.StatusBarMockup />
-              <StatusBar style='light' />
-              <Stack
-                screenOptions={{
-                  ...getHeaderScreenOptions(Theme),
-                  headerShown: false,
-                }}
-              />
-            </Page>
-            <PortalHost name='bottom-sheet' />
-          </PortalProvider>
-        </GestureHandlerRootView>
+        <QueryClientProvider client={queryClient}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <PortalProvider>
+              <Page>
+                <Proto.StatusBarMockup />
+                <StatusBar style='light' />
+                <Stack
+                  screenOptions={{
+                    ...getHeaderScreenOptions(Theme),
+                    headerShown: false,
+                  }}
+                />
+              </Page>
+              <PortalHost name='bottom-sheet' />
+            </PortalProvider>
+          </GestureHandlerRootView>
+        </QueryClientProvider>
       </ReactNavigation.ThemeProvider>
     </ThemeProvider>
   )
