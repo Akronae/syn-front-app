@@ -1,12 +1,12 @@
 import { View, ViewProps } from '@proto-native/components/view'
-import { useExistingStateOr, useState } from '@proto-native/utils'
+import { useExistingStateOr, useFlatStyle, useState } from '@proto-native/utils'
 import {
   forwardRef,
   ForwardRefExoticComponent,
   RefAttributes,
   useImperativeHandle,
 } from 'react'
-import * as React from 'react-native'
+import * as Native from 'react-native'
 import { FormFieldContext } from './form-field-context'
 import { FormFieldError } from './form-field-error'
 import { FormFieldHandle } from './form-field-handle'
@@ -17,17 +17,17 @@ import useForm from './use-form'
 
 export type FormFieldProps = ViewProps & {
   name: string
-  validate?: (input: any) => boolean
-  error?: { message?: string; style?: React.StyleProp<React.TextStyle> }
+  validate?: (input: any) => Promise<boolean> | boolean
+  error?: { message?: string; style?: Native.StyleProp<Native.TextStyle> }
 }
 
 export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
   (props: FormFieldProps, ref) => {
-    const { children, name, error, ...passed } = props
+    const { children, name, error, gap, ...passed } = props
 
     const form = useForm()
     const state = useExistingStateOr(
-      form.fields[name]?.state,
+      form?.fields[name]?.state,
       FormFieldState.Normal,
     )
     const defaultInput = useState<any>(null)
@@ -38,12 +38,15 @@ export const FormField = forwardRef<FormFieldHandle, FormFieldProps>(
       props,
     }
     useImperativeHandle(ref, () => refHandle)
-    form.fields[name] = refHandle
+    if (form) form.fields[name] = refHandle
+
+    const flattenStyle = useFlatStyle(props.style)
+    const globalgap = gap ?? flattenStyle?.gap
 
     return (
-      <FormFieldBase gap={(t) => t.protonative.spacing(2)} {...passed}>
+      <FormFieldBase gap={globalgap} {...passed}>
         <FormFieldContext.Provider value={refHandle}>
-          <View gap={props.gap}>{children}</View>
+          <View gap={globalgap}>{children}</View>
         </FormFieldContext.Provider>
 
         {state.state === FormFieldState.Error && error && (

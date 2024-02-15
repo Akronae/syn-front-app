@@ -2,8 +2,10 @@ import { useContext } from 'react'
 import { WizardContext } from './wizard-context'
 import { WizardHandle } from './wizard-handle'
 
-export function useWizardNextGuard(shouldGoNext: () => boolean) {
-  let context: WizardHandle<unknown> | null = null
+export function useWizardNextGuard(
+  shouldGoNext: () => Promise<boolean> | boolean,
+) {
+  let context: WizardHandle<any> | null = null
 
   try {
     context = useContext(WizardContext)

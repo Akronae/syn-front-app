@@ -1,5 +1,4 @@
 import { Base } from '@proto-native/components/base'
-import { Text } from '@proto-native/components/text'
 import { Ionicons } from '@expo/vector-icons'
 
 import {
@@ -19,10 +18,11 @@ import {
   DropdownProps,
 } from '@proto-native/components/dropdown'
 import { ThemedStyle } from '@proto-native/utils/theme/themed-style'
+import { getChildrenByType } from '@proto-native/utils/get-children-by-type'
 
 export type InputSelectProps<
   TModel = string,
-  TSlotProps = any,
+  TSlotProps = { isFocused: boolean },
 > = InputBaseProps<TModel | undefined, TSlotProps> & {
   openIndicator?: React.ComponentType<Partial<TSlotProps>>
   textSlot?: {
@@ -33,6 +33,7 @@ export type InputSelectProps<
       style?: ReturnType<ThemedStyle>
     }
   }
+  onItemSelect?: (item: ReactElement<DropdownItemProps>) => void
 }
 
 export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
@@ -43,9 +44,12 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     rightSlot,
     openIndicator,
     textSlot,
+    onPress: onPressProps,
+    model: modelProps,
+    onItemSelect,
     ...passed
   } = props
-  const model = useExistingStateOr(props.model, undefined)
+  const model = useExistingStateOr(modelProps, undefined)
   const isFocused = useExistingStateOr(isFocusedProps, false)
   const childrenBy = useGroupChildrenByType(children, {
     Dropdown: Dropdown,
@@ -55,16 +59,18 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
 
   const selectedItem = useState<ReactElement<DropdownItemProps> | null>(null)
   useEffect(() => {
-    model.state = selectedItem.state?.props.value
+    if (selectedItem.state?.props.value)
+      model.state = selectedItem.state?.props.value
   }, [selectedItem.state])
 
   useEffect(() => {
-    if (model.state) {
-      const found = childrenBy.Dropdown.map((child) => {
-        return child.props.children.find(
-          (item: ReactElement<DropdownItemProps>) =>
-            item.props.value === model.state,
+    if (model.state != null) {
+      const found = childrenBy.Dropdown.map((drop) => {
+        const { taken: items } = getChildrenByType(
+          drop.props.children,
+          Dropdown.Item,
         )
+        return items.find((item) => item.props.value === model.state)
       })
       selectedItem.state = found[0] as ReactElement<DropdownItemProps>
     }
@@ -77,44 +83,53 @@ export function InputSelect<TModel = string>(props: InputSelectProps<TModel>) {
     return isFocused?.state || false
   }, [isFocused?.state])
 
+  const OpenIndicator =
+    openIndicator ||
+    (() => (
+      <Ionicons name={showDropdown.state ? `chevron-up` : `chevron-down`} />
+    ))
+
+  const placeholder =
+    selectedItem.state != null ? (
+      <InputSelect.Selected style={textSlot?.selected?.style}>
+        {selectedItem.state.props.children}
+      </InputSelect.Selected>
+    ) : (
+      childrenBy.Placeholder.map((child, i) => {
+        return React.cloneElement(child, {
+          key: i,
+          style: textSlot?.placeholder?.style,
+        })
+      })
+    )
+
   return (
     <InputContainer
       {...passed}
       model={model}
       dropdown={dropdown}
       isFocused={isFocused}
-      onPress={() => {
+      onPress={(e: any) => {
         isFocused.state = !isFocused.state
+        onPressProps?.(e)
       }}
     >
-      {selectedItem.state ? (
-        <InputSelect.Selected style={textSlot?.selected?.style}>
-          {selectedItem.state.props.children}
-        </InputSelect.Selected>
-      ) : (
-        childrenBy.Placeholder.map((child, i) => {
-          return React.cloneElement(child, {
-            key: i,
-            style: textSlot?.placeholder?.style,
-          })
-        })
-      )}
+      {placeholder}
       {childrenBy.Dropdown.map((child, i) => {
         return React.cloneElement(child, {
           key: i,
-          onItemPress: (item: any) => {
+          onItemPress: (item: React.ReactElement<DropdownItemProps>) => {
             isFocused.state = false
             child.props.onItemPress?.(item)
+            onItemSelect?.(item)
           },
         })
       })}
       {childrenBy.others}
       <IconWrapper>
-        {(openIndicator && React.createElement(openIndicator, props)) || (
-          <Ionicons name={showDropdown.state ? `chevron-up` : `chevron-down`} />
-        )}
+        <OpenIndicator isFocused={showDropdown.state} />
       </IconWrapper>
-      {rightSlot?.(props)}
+      {rightSlot?.({ isFocused: showDropdown.state })}
     </InputContainer>
   )
 }
@@ -125,11 +140,14 @@ InputSelect.Option = themed<DropdownItemProps>(
 )
 
 InputSelect.Placeholder = InputBase.Placeholder
-InputSelect.Selected = themed(Text, (p) => ({}))
-InputSelect.Dropdown = themed<DropdownProps>(InputBase.Dropdown, (p) => ({}))
+InputSelect.Selected = themed(Base, (p) => ({}))
+InputSelect.Dropdown = themed<DropdownProps>(
+  InputBase.Dropdown,
+  (p) => ({}),
+) as typeof InputBase.Dropdown
 
 const InputContainer = themed<InputBaseProps>(InputBase, (p) => ({
-  gap: p.theme.protonative.spacing(2),
+  // gap: p.theme.proto.spacing(2),
 }))
 
 const IconWrapper = themed(Base, (p) => ({

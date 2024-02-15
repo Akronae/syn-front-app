@@ -2,6 +2,11 @@ import { Theme } from '../theme'
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    protonative: Theme
+    proto: Theme
+  }
+}
+declare module 'styled-components/native' {
+  export interface DefaultTheme {
+    proto: Theme
   }
 }

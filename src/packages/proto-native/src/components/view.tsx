@@ -1,6 +1,5 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { useInterval, useState } from '@proto-native/utils'
-import { isWeb } from '@proto-native/utils/device/is-web'
 import { computeThemeValue } from '@proto-native/utils/theme/compute-theme-value'
 import { ThemeValue } from '@proto-native/utils/theme/theme-value'
 import { castArray } from 'lodash-es'
@@ -51,12 +50,15 @@ export function View(props: ViewProps) {
     childrenToRenderCount.state = flatChildren.length
   }
 
-  useInterval((id) => {
-    if (childrenToRenderCount.state >= flatChildren.length) {
-      clearInterval(id)
-    }
-    childrenToRenderCount.state += 1
-  }, childRendering?.interval?.ms)
+  useInterval(
+    (id) => {
+      if (childrenToRenderCount.state >= flatChildren.length) {
+        clearInterval(id)
+      }
+      childrenToRenderCount.state += 1
+    },
+    childRendering?.interval?.ms,
+  )
 
   const style = Native.StyleSheet.flatten([
     styleProps,
@@ -71,5 +73,5 @@ export function View(props: ViewProps) {
 }
 
 const BaseStyle: ViewStyle = {
-  ...(isWeb() && { minHeight: `revert`, minWidth: `revert` }),
+  // ...(isWeb() && { minHeight: `revert`, minWidth: `revert` }),
 }

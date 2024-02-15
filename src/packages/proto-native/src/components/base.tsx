@@ -25,10 +25,14 @@ export type BaseProps<
       media?: MediaQueries
     }
     parent?: { props?: BaseProps }
+    onMouseEnter?: (e: MouseEvent) => void
+    onMouseLeave?: (e: MouseEvent) => void
     onMouseDown?: Native.Touchable['onTouchStart']
     onMouseUp?: Native.Touchable['onTouchEnd']
     onTouchEnd?: Native.ViewProps['onTouchEnd']
     onPress?: Native.PressableProps['onPress']
+    onPressIn?: Native.PressableProps['onPressIn']
+    onPressOut?: Native.PressableProps['onPressOut']
   }
 
 export function Base<

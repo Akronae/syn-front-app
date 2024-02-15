@@ -12,7 +12,10 @@ import { FormHandle } from './form-handle'
 import { useFormValidate } from './form-use-form-validate'
 
 export type FormProps = ViewProps
-export type FormRef = { validate: () => boolean; fields: FormHandle[`fields`] }
+export type FormRef = {
+  validate: () => Promise<boolean>
+  fields: FormHandle[`fields`]
+}
 
 export const Form = forwardRef<FormRef, FormProps>((props: FormProps, ref) => {
   const { children, ...passed } = props

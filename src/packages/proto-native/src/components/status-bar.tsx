@@ -1,27 +1,25 @@
 import { Base, BaseProps } from '@proto-native/components/base'
 import { Text } from '@proto-native/components/text'
 import { View } from '@proto-native/components/view'
-import { isWeb } from '@proto-native/utils/device/is-web'
-import { isDesktopOrMore } from '@proto-native/utils/device/media-queries'
-import { isDev } from '@proto-native/utils/env/is-dev'
 import { themed } from '@proto-native/utils/theme/themed'
 import Constants from 'expo-constants'
 import * as React from 'react-native'
 import Svg, { Path, Rect } from 'react-native-svg'
 
-export type StatusBarProps = BaseProps
+export type StatusBarProps = BaseProps & {
+  mockup?: {
+    show?: boolean
+  }
+}
 
 export function StatusBarMockup(props: StatusBarProps) {
-  const { ...passed } = props
-  const desktopOrMore = isDesktopOrMore.use()
+  const { mockup, ...passed } = props
 
-  if (desktopOrMore) return null
+  // somehow only android status bar gets overlapped by the SafeAreaView
+  // so we need to keep the StatusBarBase to act as a padding
+  // if (!isAndroid()) return null
 
-  return (
-    <StatusBarBase {...passed}>
-      {isWeb() && isDev() && <Mockup />}
-    </StatusBarBase>
-  )
+  return <StatusBarBase {...passed}>{mockup?.show && <Mockup />}</StatusBarBase>
 }
 
 function Mockup() {
@@ -47,9 +45,9 @@ const StatusBarBase = themed(Base, (p) => ({
   display: `flex`,
   flexDirection: `row`,
   justifyContent: `space-around`,
-  color: p.theme.protonative.colors.text.contrast,
-  fill: p.theme.protonative.colors.text.contrast,
-  stroke: p.theme.protonative.colors.text.contrast,
+  color: p.theme.proto.colors.text.contrast,
+  fill: p.theme.proto.colors.text.contrast,
+  stroke: p.theme.proto.colors.text.contrast,
 }))
 
 const Time = themed(Text, (p) => ({
@@ -61,7 +59,7 @@ const Time = themed(Text, (p) => ({
   justifyContent: `center`,
   alignItems: `center`,
   fontWeight: 400,
-  color: p.theme.protonative.colors.text.contrast,
+  color: p.theme.proto.colors.text.contrast,
 }))
 
 const Icons = themed(View, (p) => ({
@@ -78,7 +76,7 @@ const Icons = themed(View, (p) => ({
 const Notch = themed(Base, (p) => ({
   height: 37,
   width: 125,
-  backgroundColor: p.theme.protonative.colors.text.contrast,
+  backgroundColor: p.theme.proto.colors.text.contrast,
   borderRadius: 40,
   marginTop: 11,
   marginBottom: 5,

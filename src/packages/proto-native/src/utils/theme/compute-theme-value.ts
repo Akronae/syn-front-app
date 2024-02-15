@@ -1,15 +1,14 @@
-import { DefaultTheme } from 'styled-components/native'
 import { ThemeValue } from './theme-value'
 
-export function computeThemeValue<T>(
-  value: ThemeValue<T> | undefined,
-  theme: DefaultTheme,
+export function computeThemeValue<TReturn, TTheme>(
+  value: ThemeValue<TReturn, TTheme> | undefined,
+  theme: TTheme,
 ) {
   if (typeof value === `undefined`) {
     return value
   }
   if (typeof value === `function`) {
-    return (value as (theme: DefaultTheme) => T)(theme)
+    return (value as (theme: TTheme) => TReturn)(theme)
   }
 
   return value

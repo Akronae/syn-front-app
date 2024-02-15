@@ -1,33 +1,55 @@
 import { Portal } from '@gorhom/portal'
 import { Base, BaseProps } from '@proto-native/components/base'
-import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import {
+  createThemedStyle,
+  ReactiveState,
+  useExistingStateOr,
+} from '@proto-native/utils'
 import { themed } from '@proto-native/utils/theme/themed'
 import * as Native from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useTheme } from 'styled-components/native'
 
 export type ModalProps = BaseProps & {
+  portalName?: string
   open?: ReactiveState<boolean>
   overlay?: {
-    style?: Native.StyleProp<Native.ViewStyle>
+    style?: Native.ViewStyle
     onPress?: (e: Native.GestureResponderEvent) => void
+    dismissOnPress?: boolean
   }
+  wrapper?: React.ComponentType<BaseProps>
 }
 
 export function Modal(props: ModalProps) {
-  const { children, overlay, open: openProps, ...passed } = props
+  const {
+    children,
+    overlay,
+    open: openProps,
+    portalName = `modal`,
+    wrapper: Wrapper = Base,
+    ...passed
+  } = props
   const open = useExistingStateOr(openProps, true)
+  const theme = useTheme()
 
   const onBackgroundPress = (e: Native.GestureResponderEvent) => {
     setTimeout(() => {
-      open.state = false
+      if (overlay?.dismissOnPress) open.state = false
       overlay?.onPress?.(e)
     }, 1)
   }
 
   return (
-    <ModalBase showIf={open.state} {...passed}>
-      <Portal hostName='modal'>
-        <Overlay onPress={onBackgroundPress} style={overlay?.style} />
-        <Content>{children}</Content>
+    <ModalBase showIf={open.state}>
+      <Portal hostName={portalName}>
+        <Wrapper
+          {...passed}
+          style={StyleSheet.flatten([wrapperStyle(theme), passed.style])}
+        >
+          <Overlay onPress={onBackgroundPress} style={overlay?.style} />
+          <Content>{children}</Content>
+        </Wrapper>
       </Portal>
     </ModalBase>
   )
@@ -35,7 +57,7 @@ export function Modal(props: ModalProps) {
 
 const ModalBase = Base
 
-const Overlay = themed<BaseProps & { transparent?: boolean }>(Base, (p) => ({
+const Overlay = themed<BaseProps>(Base, (p) => ({
   position: `absolute`,
   left: 0,
   top: 0,
@@ -46,9 +68,12 @@ const Overlay = themed<BaseProps & { transparent?: boolean }>(Base, (p) => ({
   backgroundColor: `transparent`,
 }))
 
-const Content = themed(Base, (p) => ({
+const wrapperStyle = createThemedStyle<BaseProps>((p) => ({
   position: `absolute`,
-  left: 0,
   top: 0,
+  left: 0,
   width: `100%`,
+  height: `100%`,
 }))
+
+const Content = themed(Base, (p) => ({}))

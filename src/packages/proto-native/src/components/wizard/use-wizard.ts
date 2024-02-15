@@ -1,22 +1,28 @@
-import { ReactiveState, useState } from '@proto-native/utils'
-import { useContext } from 'react'
+import { ReactiveState, useExistingStateOr } from '@proto-native/utils'
+import { useContext, useEffect } from 'react'
 import { WizardContext } from './wizard-context'
-import { WizardHandle } from './wizard-handle'
+import { WizardDataBase, WizardHandle } from './wizard-handle'
 
-type SubsetFunctionOf<T> = <TKey extends keyof T, TData extends T[TKey]>(
+type SubsetFunctionOf<T extends WizardDataBase<any, any>> = <
+  TKey extends keyof T['reactive'],
+  TData extends T['reactive'][TKey],
+>(
   key: TKey,
   data: TData,
 ) => {
   wizard: WizardHandle<T>
-  stepData: ReactiveState<NonNullable<T[TKey]>>
+  stepData: ReactiveState<NonNullable<T['reactive'][TKey]>>
 }
 
-function useWizardInternal<T, TKey extends keyof T = keyof T>(
+function useWizardInternal<
+  T extends WizardDataBase<any, any>,
+  TKey extends keyof T['reactive'] = keyof T['reactive'],
+>(
   key: TKey,
-  data: T[TKey],
+  data: NonNullable<T['reactive'][TKey]>,
 ): {
   wizard: WizardHandle<T>
-  stepData: ReactiveState<NonNullable<T[TKey]>>
+  stepData: ReactiveState<NonNullable<T['reactive'][TKey]>>
 } {
   let context: WizardHandle<T> | null = null
 
@@ -30,12 +36,22 @@ function useWizardInternal<T, TKey extends keyof T = keyof T>(
     throw new Error(`\`useWizard\` must be used within \`Wizard.Body\``)
   }
 
-  const stepDataState = useState(
-    context.data?.state[key] ?? (data as NonNullable<T[TKey]>),
-  )
-  if (context.data) context.data.state[key] = stepDataState.state
+  const stepDataState = useExistingStateOr(
+    context.data?.reactive.state?.[key],
+    data,
+  ) as ReactiveState<NonNullable<T['reactive'][TKey]>>
+
+  useEffect(() => {
+    if (context?.data?.reactive.state) {
+      context.data.reactive.state = {
+        ...context.data.reactive.state,
+        [key]: stepDataState.state,
+      }
+    }
+  }, [stepDataState.state])
 
   return { wizard: context, stepData: stepDataState }
 }
 
-export const useWizard = <T>() => useWizardInternal as SubsetFunctionOf<T>
+export const useWizard = <T extends WizardDataBase<any, any>>() =>
+  useWizardInternal as SubsetFunctionOf<T>

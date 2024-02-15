@@ -9,7 +9,7 @@ export function _Template(props: _TemplateProps) {
 
   return <_TemplateBase {...passed}></_TemplateBase>
 }
-// const _Template = forwardRef<typeof _TemplateBase, _TemplateProps>(
+// export const _Template = React.forwardRef<typeof _TemplateBase, _TemplateProps>(
 //   (props: _TemplateProps) => {
 //     const { ...passed } = props
 

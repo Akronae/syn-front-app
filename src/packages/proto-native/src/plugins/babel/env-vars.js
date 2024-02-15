@@ -9,7 +9,6 @@ function getEnvFilePaths(envName) {
 
 function plugin(api, options) {
   const envs = {}
-  Object.assign(envs, process.env)
 
   const envsFromFiles = {}
   for (const path of getEnvFilePaths(api.env())) {
@@ -23,6 +22,7 @@ function plugin(api, options) {
     Object.assign(envsFromFiles, toObj)
   }
   Object.assign(envs, envsFromFiles)
+  Object.assign(envs, process.env)
 
   return {
     visitor: {
