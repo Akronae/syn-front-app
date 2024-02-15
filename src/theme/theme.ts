@@ -3,7 +3,7 @@ import * as ProtoNative from '@proto-native'
 export type SynTheme = ProtoNative.Theme
 
 export type AppTheme = {
-  protonative: ProtoNative.Theme
+  proto: ProtoNative.Theme
   syn: SynTheme
 }
 
@@ -14,6 +14,7 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
       primary: `#800080`,
       default: `#0e0e11`,
       contrast: `#ffffff`,
+      uncontrasted: `#0e0e11`,
       disabled: `#32373e`,
       sub: `#232326`,
       error: `#ff0000`,
@@ -57,6 +58,6 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
 }
 
 export const Theme: AppTheme = {
-  protonative: ProtoNativeDarkTheme,
+  proto: ProtoNativeDarkTheme,
   syn: ProtoNativeDarkTheme,
 }

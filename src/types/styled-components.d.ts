@@ -5,3 +5,9 @@ declare module 'styled-components' {
     syn: SynTheme
   }
 }
+
+declare module 'styled-components/native' {
+  export interface DefaultTheme extends Theme {
+    syn: SynTheme
+  }
+}

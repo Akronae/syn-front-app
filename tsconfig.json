@@ -4,10 +4,24 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"],
-      "@proto-native": ["./src/packages/proto-native/src/index"],
-      "@proto-native/*": ["./src/packages/proto-native/src/*"]
+      "src/*": [
+        "./src/*"
+      ],
+      "@proto-native": [
+        "./src/packages/proto-native/src/index"
+      ],
+      "@proto-native/*": [
+        "./src/packages/proto-native/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
 }

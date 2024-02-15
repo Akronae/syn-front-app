@@ -3,7 +3,12 @@ import { View } from '@proto-native'
 import * as React from 'react'
 
 import * as Native from 'react-native'
-import { Stack, usePathname, useRouter, useSearchParams } from 'expo-router'
+import {
+  Stack,
+  usePathname,
+  useRouter,
+  useLocalSearchParams,
+} from 'expo-router'
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { Card } from 'src/components/card'
 import { Title } from 'src/components/title'
@@ -20,7 +25,7 @@ export type BookIndexParams = {
 export default function BookIndex() {
   const router = useRouter()
   const path = usePathname()
-  const params = useSearchParams<BookIndexParams>() as BookIndexParams
+  const params = useLocalSearchParams<BookIndexParams>() as BookIndexParams
   const booksRead = useAsync(async () => await BooksReadStorage.get())
 
   const query = useQuery<ApiGetManifestResponse>({
@@ -34,7 +39,7 @@ export default function BookIndex() {
   if (!book) return `no book`
 
   const goToVerse = (chapter: number, verse: number) => {
-    router.push(`${path}/${chapter}/${verse}`)
+    router.push(`${path}/${chapter}/${verse}` as never)
   }
 
   return (

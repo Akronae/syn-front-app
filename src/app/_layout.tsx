@@ -41,8 +41,8 @@ export default function AppLayout() {
   if (isAndroid()) NavigationBar.setVisibilityAsync(`hidden`)
 
   const isDark = useColorScheme() == `dark`
-  if (Platform.OS == `web`)
-    document.documentElement.style.setProperty(
+  if (Proto.isWeb())
+    window.document.documentElement.style.setProperty(
       `color-scheme`,
       isDark ? `dark` : `light`,
     )

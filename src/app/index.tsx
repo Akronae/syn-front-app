@@ -62,7 +62,7 @@ const GetBackView = themed(View, (p) => ({
   borderRadius: p.theme.syn.borderRadius(4),
 })) as typeof View
 
-const GetBackTitle = themed(Text.Inherit, (p) => ({
+const GetBackTitle = themed(Text.Inherits, (p) => ({
   color: `#bf7af0`,
   fontSize: 18,
   fontWeight: `600`,
@@ -101,7 +101,7 @@ function BookThumbs() {
           <BookThumb
             key={book.name}
             onPress={() => {
-              router.push(`/read/new_testament/${book.name}`)
+              router.push(`/read/new_testament/${book.name}` as never)
             }}
           >
             <BookThumb.Title>{capitalize(book.name)}</BookThumb.Title>

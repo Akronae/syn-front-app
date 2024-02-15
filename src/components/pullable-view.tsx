@@ -2,10 +2,7 @@ import { ViewProps } from '@proto-native'
 import { View } from '@proto-native'
 import * as React from 'react'
 
-import {
-  Gesture,
-  GestureDetector,
-} from 'react-native-gesture-handler'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -31,8 +28,8 @@ export function PullableView(props: PullableViewProps) {
     ...(pulled.value < 0
       ? { bottom: -pulled.value * 0.5, top: undefined }
       : pulled.value > 0
-        ? { top: pulled.value * 0.5, bottom: undefined }
-        : {}),
+      ? { top: pulled.value * 0.5, bottom: undefined }
+      : {}),
     transform: [{ scale: (-pulled.value / ACTIVATION) * 0.5 }],
     right: `0%`,
     left: `0%`,
@@ -76,7 +73,7 @@ export function PullableView(props: PullableViewProps) {
     <View {...passed}>
       <GestureDetector gesture={gesture}>{children}</GestureDetector>
       <Animated.View style={chipStyle}>
-        <Ionicons name='ios-arrow-down' color={`white`} size={100} />
+        <Ionicons name='arrow-down' color={`white`} size={100} />
       </Animated.View>
     </View>
   )

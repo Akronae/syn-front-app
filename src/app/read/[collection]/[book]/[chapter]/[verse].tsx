@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import BooksReadStorage from 'src/storage/books-read-stored'
 import { WordDetails } from 'src/components/word-details'
-import { Stack, useRouter, useSearchParams } from 'expo-router'
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router'
 import * as Types from 'src/types'
 import { Button } from 'src/components/button'
 
@@ -23,7 +23,7 @@ export type ReadVerseParams = {
 
 export default function ReadVerse() {
   const router = useRouter()
-  const params = useSearchParams<ReadVerseParams>() as ReadVerseParams
+  const params = useLocalSearchParams<ReadVerseParams>() as ReadVerseParams
   const focusedWord = useState<Types.Word | undefined>(undefined)
 
   const verseQuery = useQuery({
