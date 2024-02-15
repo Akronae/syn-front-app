@@ -1,5 +1,5 @@
 import { Platform } from 'react-native'
 
 export function isWeb() {
-  return Platform.OS === `web`
+  return Platform.OS === `web` && typeof window !== `undefined`
 }
