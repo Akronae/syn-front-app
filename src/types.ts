@@ -35,7 +35,7 @@ export type Gender = 'masculine' | 'feminine' | 'neuter'
 
 export type Declension = {
   case?: GrammaticalCase
-  number?: number
+  number?: Number
   gender?: Gender
   mood?: string
   person?: string
