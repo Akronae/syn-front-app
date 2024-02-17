@@ -2,6 +2,7 @@ import {
   Base,
   BaseProps,
   BottomSheet,
+  Column,
   ReactiveState,
   Text,
   themed,
@@ -10,8 +11,11 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import * as React from 'react-native'
-import { api } from 'src/api/api-client'
+import {
+  api,
+} from 'src/api/api-client'
 import { Word } from 'src/types'
+import { WordInflectionTables } from './word-inflection-tables'
 
 export type WordDetailsProps = BaseProps & {
   word: ReactiveState<Word | undefined>
@@ -35,7 +39,7 @@ export function WordDetails(props: WordDetailsProps) {
           },
       ),
     enabled: !!word.state,
-  })
+  }).data?.data
 
   useEffect(() => {
     open.state = !!word.state
@@ -44,14 +48,39 @@ export function WordDetails(props: WordDetailsProps) {
     if (!open.state) word.state = undefined
   }, [open.state])
 
-  if (!word) return null
+  if (!word || !wordQuery || !word.state) return null
+
+  const declension = word.state.declension
+  const article =
+    declension.gender == `masculine`
+      ? `ὁ`
+      : declension.gender == `feminine`
+        ? `ἡ`
+        : `τό`
+
+  const inflection = wordQuery.inflections[0]
+  const uncontracted =
+    declension.gender &&
+    declension.number &&
+    inflection?.noun?.[declension.gender][declension.number].nominative
+      .uncontracted
 
   return (
     <WordDetailsBase {...passed}>
       <BottomSheet open={open}>
-        <Title>{wordQuery.data?.data.lemma}</Title>
-        <Translation>{wordQuery.data?.data.translation}</Translation>
-        <Description>{wordQuery.data?.data.description}</Description>
+        <Column gap={10}>
+          <Column gap={5}>
+            <Title>
+              {article} {wordQuery.lemma}
+            </Title>
+            <Description>{uncontracted?.join(`·`)}</Description>
+          </Column>
+          <Column gap={5}>
+            <Translation>{wordQuery?.translation}</Translation>
+            <Description>{wordQuery?.description}</Description>
+          </Column>
+          <WordInflectionTables inflection={inflection} />
+        </Column>
       </BottomSheet>
     </WordDetailsBase>
   )

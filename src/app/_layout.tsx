@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font'
 import * as NavigationBar from 'expo-navigation-bar'
 import { StatusBar } from 'expo-status-bar'
-import { Platform, SafeAreaView, useColorScheme } from 'react-native'
+import { SafeAreaView, useColorScheme } from 'react-native'
 import {
   GestureHandlerRootView,
   enableExperimentalWebImplementation,

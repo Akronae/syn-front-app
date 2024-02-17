@@ -36,6 +36,7 @@ export type GetLexicon = {
   lemma: string
   translation: string
   description: string
+  inflections: WordInflection[]
 }
 
 export type GetLexiconFilter = {
@@ -46,4 +47,32 @@ export type GetLexiconFilter = {
 export type GetLexiconFilterInflection = {
   word: string
   declension: Declension
+}
+
+export type FormInflection = {
+  contracted: string
+  uncontracted: string[]
+}
+
+export type CaseInflection = {
+  nominative: FormInflection
+  genitive: FormInflection
+  dative: FormInflection
+  accusative: FormInflection
+  vocative: FormInflection
+}
+
+export type NumberInflection = {
+  singular: CaseInflection
+  plural: CaseInflection
+}
+
+export type GenderInflection = {
+  masculine: NumberInflection
+  feminine: NumberInflection
+  neuter: NumberInflection
+}
+
+export type WordInflection = {
+  noun?: GenderInflection
 }

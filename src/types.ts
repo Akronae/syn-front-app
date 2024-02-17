@@ -35,6 +35,7 @@ export type Gender = 'masculine' | 'feminine' | 'neuter'
 
 export type Declension = {
   case?: GrammaticalCase
+  // eslint-disable-next-line @typescript-eslint/ban-types
   number?: Number
   gender?: Gender
   mood?: string
