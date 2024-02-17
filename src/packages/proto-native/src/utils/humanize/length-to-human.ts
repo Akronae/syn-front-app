@@ -1,6 +1,6 @@
 import { Lenght } from '@proto-native/utils/geo/length'
 
-export function lengthToHuman(lenght: Lenght, precision: number = 1): string {
+export function lengthToHuman(lenght: Lenght, precision = 1): string {
   if (lenght.unit == `m`) {
     if (lenght.value > 1000) {
       return `${(lenght.value / 1000).toFixed(precision)} km`

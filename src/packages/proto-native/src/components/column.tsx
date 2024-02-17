@@ -8,6 +8,7 @@ export type ColumnProps = BaseProps & {
   justifyContent?: FlexStyle['justifyContent']
   alignItems?: FlexStyle['alignItems']
   flex?: FlexStyle['flex']
+  flexGrow?: FlexStyle['flexGrow']
   gap?: number
 }
 
@@ -23,6 +24,7 @@ const ColumnBase = themed<ColumnProps>(Base, (p) => ({
   flex: p.flex,
   justifyContent: p.justifyContent,
   alignItems: p.alignItems,
+  flexGrow: p.flexGrow,
   gap: p.gap,
 }))
 

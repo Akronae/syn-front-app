@@ -2,7 +2,7 @@ export function truncate(
   s: string | undefined,
   length: number,
   from: 'start' | 'middle' | 'end',
-  omission: string = `...`,
+  omission = `...`,
 ) {
   if (!s) return s
   if (s.length <= length) return s

@@ -80,7 +80,7 @@ function Particle({
       85,
     )}%)`
 
-  let dstX: number = 0
+  let dstX = 0
   if (!destinationX) dstX = x + (Math.random() - 0.5) * 2 * 75
   else if (Array.isArray(destinationX))
     dstX = randomInt(destinationX[0], destinationX[1])
