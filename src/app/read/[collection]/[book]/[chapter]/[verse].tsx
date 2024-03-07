@@ -91,8 +91,10 @@ export default function ReadVerse() {
     goTo(verse.chapterNumber, verse.verseNumber + 1)
   }
   const goBack = () => {
-    if (verse.verseNumber === 1) return goTo(verse.chapterNumber - 1, -1)
-    else goTo(verse.chapterNumber, verse.verseNumber - 1)
+    if (verse.verseNumber === 1) {
+      if (verse.chapterNumber === 1) return
+      return goTo(verse.chapterNumber - 1, -1)
+    } else goTo(verse.chapterNumber, verse.verseNumber - 1)
   }
   const goHome = () => {
     router.push(`/`)
@@ -105,11 +107,6 @@ export default function ReadVerse() {
 
   return (
     <ReadChapterBase>
-      <Stack.Screen
-        options={{
-          title: `${verse.book} ${verse.chapterNumber}:${verse.verseNumber}`,
-        }}
-      />
       <VerseScrollView
         focusedWord={focusedWord}
         verse={verse}

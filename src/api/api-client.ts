@@ -55,22 +55,22 @@ export type FormInflection = {
 }
 
 export type CaseInflection = {
-  nominative: FormInflection
-  genitive: FormInflection
-  dative: FormInflection
-  accusative: FormInflection
-  vocative: FormInflection
+  nominative?: FormInflection[]
+  genitive?: FormInflection[]
+  dative?: FormInflection[]
+  accusative?: FormInflection[]
+  vocative?: FormInflection[]
 }
 
 export type NumberInflection = {
-  singular: CaseInflection
-  plural: CaseInflection
+  singular?: CaseInflection
+  plural?: CaseInflection
 }
 
 export type GenderInflection = {
-  masculine: NumberInflection
-  feminine: NumberInflection
-  neuter: NumberInflection
+  masculine?: NumberInflection
+  feminine?: NumberInflection
+  neuter?: NumberInflection
 }
 
 export type WordInflection = {

@@ -12,7 +12,7 @@ export function VerseHeader(props: VerseHeaderProps) {
 
   return (
     <VerseHeaderBase {...passed}>
-      <Text>
+      <Text capitalize>
         {verse.book} {verse.chapterNumber}:{verse.verseNumber}
       </Text>
       <VerseTranslated>{verse.translation[`en`]}</VerseTranslated>

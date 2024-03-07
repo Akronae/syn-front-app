@@ -57,29 +57,52 @@ const getNumberInflectionCells = (
   infl: NumberInflection,
   contraction: 'contracted' | 'uncontracted',
 ) => {
-  const str = (x: string | string[]) => {
+  const str = (x: string | string[] | undefined) => {
+    if (!x) return ``
     if (Array.isArray(x)) return x.join(`·`)
     return x
   }
 
-  const contracted = [
-    <Cell key='sg.voc'>{str(infl.singular.vocative[contraction])}</Cell>,
-    <Cell key='sg.nom'>{str(infl.singular.nominative[contraction])}</Cell>,
-    <Cell key='sg.acc'>{str(infl.singular.accusative[contraction])}</Cell>,
-    <Cell key='sg.dat'>{str(infl.singular.dative[contraction])}</Cell>,
-    <Cell key='sg.gen'>{str(infl.singular.genitive[contraction])}</Cell>,
-    <Cell key='pl.voc'>{str(infl.plural.vocative[contraction])}</Cell>,
-    <Cell key='pl.nom'>{str(infl.plural.nominative[contraction])}</Cell>,
-    <Cell key='pl.acc'>{str(infl.plural.accusative[contraction])}</Cell>,
-    <Cell key='pl.dat'>{str(infl.plural.dative[contraction])}</Cell>,
-    <Cell key='pl.gen'>{str(infl.plural.genitive[contraction])}</Cell>,
+  const cells = [
+    <Cell key='sg.voc'>
+      {str(infl.singular?.vocative?.[0]?.[contraction])}
+    </Cell>,
+    <Cell key='sg.nom'>
+      {str(infl.singular?.nominative?.[0]?.[contraction])}
+    </Cell>,
+    <Cell key='sg.acc'>
+      {str(infl.singular?.accusative?.[0]?.[contraction])}
+    </Cell>,
+    <Cell key='sg.dat'>{str(infl.singular?.dative?.[0]?.[contraction])}</Cell>,
+    <Cell key='sg.gen'>
+      {str(infl.singular?.genitive?.[0]?.[contraction])}
+    </Cell>,
+    ...(infl.plural
+      ? [
+          <Cell key='pl.voc'>
+            {str(infl.plural.vocative?.[0]?.[contraction])}
+          </Cell>,
+          <Cell key='pl.nom'>
+            {str(infl.plural.nominative?.[0]?.[contraction])}
+          </Cell>,
+          <Cell key='pl.acc'>
+            {str(infl.plural.accusative?.[0]?.[contraction])}
+          </Cell>,
+          <Cell key='pl.dat'>
+            {str(infl.plural.dative?.[0]?.[contraction])}
+          </Cell>,
+          <Cell key='pl.gen'>
+            {str(infl.plural.genitive?.[0]?.[contraction])}
+          </Cell>,
+        ]
+      : []),
   ]
 
   const newarr: ReactElement[] = []
-  for (const cell of contracted) {
-    const i = contracted.indexOf(cell)
-    const previous = contracted[i - 1] as ReactElement
-    const next = contracted[i + 1] as ReactElement
+  for (const cell of cells) {
+    const i = cells.indexOf(cell)
+    const previous = cells[i - 1] as ReactElement
+    const next = cells[i + 1] as ReactElement
 
     if (next?.props.children === cell.props.children) {
       newarr.push(cloneElement(cell, { flexGrow: 1 }))
@@ -96,18 +119,28 @@ const getNumberInflectionCells = (
 
 const getNounInflectionColumns = (infl: GenderInflection) => {
   const makeCol = (header: string, infl: NumberInflection) => {
+    const contracted = getNumberInflectionCells(infl, `contracted`)
+    const uncontracted = getNumberInflectionCells(infl, `uncontracted`)
+
+    const hasContracted = contracted.some((x) => x.props.children)
+    const hasUncontracted = uncontracted.some((x) => x.props.children)
+
     return (
       <Column flexGrow={1} key={header}>
         <Cell header>{header}</Cell>
         <Row flex={1}>
-          <Column flexGrow={1}>
-            <Cell header>Contracted</Cell>
-            {getNumberInflectionCells(infl, `contracted`)}
-          </Column>
-          <Column flexGrow={1}>
-            <Cell header>Uncontracted</Cell>
-            {getNumberInflectionCells(infl, `uncontracted`)}
-          </Column>
+          {hasContracted && (
+            <Column flexGrow={1}>
+              <Cell header>Contracted</Cell>
+              {contracted}
+            </Column>
+          )}
+          {hasUncontracted && (
+            <Column flexGrow={1}>
+              <Cell header>Uncontracted</Cell>
+              {uncontracted}
+            </Column>
+          )}
         </Row>
       </Column>
     )
@@ -121,6 +154,11 @@ const getNounInflectionColumns = (infl: GenderInflection) => {
 }
 
 const getInflectionNounTable = (inflection: GenderInflection) => {
+  const hasPlural =
+    inflection.masculine?.plural ||
+    inflection.feminine?.plural ||
+    inflection.neuter?.plural
+
   return (
     <Row>
       <Column>
@@ -131,9 +169,11 @@ const getInflectionNounTable = (inflection: GenderInflection) => {
             <Cell flexGrow={1} header>
               Sg
             </Cell>
-            <Cell flexGrow={1} header>
-              Pl
-            </Cell>
+            {hasPlural && (
+              <Cell flexGrow={1} header>
+                Pl
+              </Cell>
+            )}
           </Column>
           <Column>
             <Cell header> </Cell>
@@ -143,11 +183,15 @@ const getInflectionNounTable = (inflection: GenderInflection) => {
             <Cell header>Acc</Cell>
             <Cell header>Dat</Cell>
             <Cell header>Gen</Cell>
-            <Cell header>Voc</Cell>
-            <Cell header>Nom</Cell>
-            <Cell header>Acc</Cell>
-            <Cell header>Dat</Cell>
-            <Cell header>Gen</Cell>
+            {hasPlural && (
+              <>
+                <Cell header>Voc</Cell>
+                <Cell header>Nom</Cell>
+                <Cell header>Acc</Cell>
+                <Cell header>Dat</Cell>
+                <Cell header>Gen</Cell>
+              </>
+            )}
           </Column>
         </Row>
       </Column>

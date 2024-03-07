@@ -11,9 +11,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import * as React from 'react-native'
-import {
-  api,
-} from 'src/api/api-client'
+import { api } from 'src/api/api-client'
 import { Word } from 'src/types'
 import { WordInflectionTables } from './word-inflection-tables'
 
@@ -32,11 +30,11 @@ export function WordDetails(props: WordDetailsProps) {
         word.state?.declension.indeclinable
           ? { lemma: word.state.text }
           : {
-            inflection: {
-              word: word.state!.text,
-              declension: word.state!.declension,
+              inflection: {
+                word: word.state!.text,
+                declension: word.state!.declension,
+              },
             },
-          },
       ),
     enabled: !!word.state,
   }).data?.data
@@ -55,14 +53,14 @@ export function WordDetails(props: WordDetailsProps) {
     declension.gender == `masculine`
       ? `ὁ`
       : declension.gender == `feminine`
-        ? `ἡ`
-        : `τό`
+      ? `ἡ`
+      : `τό`
 
   const inflection = wordQuery.inflections[0]
   const uncontracted =
     declension.gender &&
     declension.number &&
-    inflection?.noun?.[declension.gender][declension.number].nominative
+    inflection?.noun?.[declension.gender]?.[declension.number]?.nominative?.[0]
       .uncontracted
 
   return (
@@ -79,7 +77,7 @@ export function WordDetails(props: WordDetailsProps) {
             <Translation>{wordQuery?.translation}</Translation>
             <Description>{wordQuery?.description}</Description>
           </Column>
-          <WordInflectionTables inflection={inflection} />
+          {inflection && <WordInflectionTables inflection={inflection} />}
         </Column>
       </BottomSheet>
     </WordDetailsBase>
