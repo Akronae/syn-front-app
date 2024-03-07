@@ -14,7 +14,7 @@ import Animated from 'react-native-reanimated'
 import { useTheme } from 'styled-components/native'
 import { ButtonPressAnimation, usePressAnimation } from './button-animation'
 import { useState } from '@proto-native/utils'
-import { Row } from '@proto-native'
+import { Row } from '@proto-native/components/row'
 
 export type ButtonState = `default` | `disabled` | `hover` | `pressed`
 export type ButtonType = `primary` | `secondary` | `text`
@@ -126,11 +126,11 @@ export function Button(props: ButtonProps) {
           onPress={
             onPress
               ? async (e) => {
-                if (isLoading.state) return
-                isLoading.state = true
-                await onPress?.(e)
-                isLoadingRef.current.state = false
-              }
+                  if (isLoading.state) return
+                  isLoading.state = true
+                  await onPress?.(e)
+                  isLoadingRef.current.state = false
+                }
               : undefined
           }
         >

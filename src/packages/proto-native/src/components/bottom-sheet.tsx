@@ -56,7 +56,7 @@ export function BottomSheet(props: BottomSheetProps) {
   const yAnimDur = 400
   const yDur = useSharedValue(0)
   const yAnimCallback = () => {
-    if (!open.state) {
+    if (!open.state || y.value == yAnimGoTo) {
       runOnJS(close)()
     }
   }
@@ -91,6 +91,19 @@ export function BottomSheet(props: BottomSheetProps) {
     // position: 'absolute',
   }))
 
+  console.log(yAnimGoTo, y.value)
+
+  const backgroundStyle = useAnimatedStyle(() => ({
+    backgroundColor: '#000000',
+    position: `absolute`,
+    left: 0,
+    bottom: 0,
+    width: `100%`,
+    height: `100%`,
+    opacity: 0.5 - y.value / yAnimGoTo,
+    ...overlay?.style,
+  }))
+
   const pan = RNGH.Gesture.Pan()
     .onChange((e) => {
       yDur.value = 0
@@ -109,7 +122,7 @@ export function BottomSheet(props: BottomSheetProps) {
   return (
     <BottomSheetBase showIf={open.state} {...passed}>
       <Portal hostName='bottom-sheet'>
-        <Background onTouchEnd={close} style={overlay?.style} />
+        <Background onTouchEnd={close} style={backgroundStyle} />
         <Animated.View style={animStyle}>
           <RNGH.GestureHandlerRootView>
             <RNGH.GestureDetector gesture={pan}>
@@ -138,13 +151,12 @@ export function BottomSheet(props: BottomSheetProps) {
 
 const BottomSheetBase = themed<BaseProps>(Base, (p) => ({}))
 
-const Background = themed<BaseProps>(Base, (p) => ({
+const Background = themed<BaseProps>(Animated.View, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,
   width: `100%`,
   height: `100%`,
-  backgroundColor: hexOpacity(p.theme.proto.colors.surface.default, 0.1),
 }))
 
 const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
@@ -159,13 +171,7 @@ const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
   borderRadius: p.theme.proto.borderRadius(12),
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  shadowColor: `#000`,
-  shadowOffset: {
-    width: 0,
-    height: -10,
-  },
-  shadowOpacity: 1,
-  shadowRadius: 100,
+  boxShadow: `0px 10px 20px rgba(0, 0, 0, 0.25)`,
   elevation: 20,
 }))
 

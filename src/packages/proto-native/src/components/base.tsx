@@ -74,9 +74,7 @@ export function Base<
     })
   }
 
-  const Wrapper: React.ElementType = onPress
-    ? Native.TouchableOpacity
-    : Native.View
+  const Wrapper: React.ElementType = onPress ? Native.Pressable : Native.View
 
   const isClickable = Boolean(onPress || onTouchEndProps)
 
@@ -90,7 +88,7 @@ export function Base<
       ]}
       isClickable={isClickable}
       onPress={onPress}
-      // we do not want opacity animation however TouchableOpacity has all
+      // we do not want opacity animation however Pressable has all
       // the features we need and Pressable is not yet available for Expo Go
       activeOpacity={1}
       {...passed}
