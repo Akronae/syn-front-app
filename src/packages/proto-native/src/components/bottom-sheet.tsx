@@ -91,8 +91,6 @@ export function BottomSheet(props: BottomSheetProps) {
     // position: 'absolute',
   }))
 
-  console.log(yAnimGoTo, y.value)
-
   const backgroundStyle = useAnimatedStyle(() => ({
     backgroundColor: '#000000',
     position: `absolute`,
@@ -101,6 +99,7 @@ export function BottomSheet(props: BottomSheetProps) {
     width: `100%`,
     height: `100%`,
     opacity: 0.5 - y.value / yAnimGoTo,
+    cursor: `pointer`,
     ...overlay?.style,
   }))
 
@@ -122,7 +121,11 @@ export function BottomSheet(props: BottomSheetProps) {
   return (
     <BottomSheetBase showIf={open.state} {...passed}>
       <Portal hostName='bottom-sheet'>
-        <Background onTouchEnd={close} style={backgroundStyle} />
+        <Background
+          onClick={close}
+          onTouchEnd={close}
+          style={backgroundStyle}
+        />
         <Animated.View style={animStyle}>
           <RNGH.GestureHandlerRootView>
             <RNGH.GestureDetector gesture={pan}>
@@ -151,7 +154,7 @@ export function BottomSheet(props: BottomSheetProps) {
 
 const BottomSheetBase = themed<BaseProps>(Base, (p) => ({}))
 
-const Background = themed<BaseProps>(Animated.View, (p) => ({
+const Background = themed<BaseProps & { onClick: any }>(Animated.View, (p) => ({
   position: `absolute`,
   left: 0,
   bottom: 0,

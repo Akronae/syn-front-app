@@ -102,6 +102,7 @@ const TextBase = themed<TextProps>(Native.Text, (p) => ({
   fontFamily: boldnessToFont(getStyleBoldness(p.style), p.theme),
   textTransform: p.textTransform,
   textDecorationLine: p.decoration,
+  userSelect: 'text',
 }))
 
 export function takeTextOwnProps<T extends TextProps>(props: T) {
