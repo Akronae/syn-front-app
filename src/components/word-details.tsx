@@ -74,8 +74,9 @@ export function WordDetails(props: WordDetailsProps) {
             <Description>{uncontracted?.join(`·`)}</Description>
           </Column>
           <Column gap={5}>
-            <Translation>{wordQuery?.translation}</Translation>
-            <Description>{wordQuery?.description}</Description>
+            {wordQuery?.definitions.map((def, i) => (
+              <Description key={i}>{def.litteral || def.formof}</Description>
+            ))}
           </Column>
           {inflection && <WordInflectionTables inflection={inflection} />}
         </Column>

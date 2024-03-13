@@ -34,9 +34,13 @@ export type GetVerse = Verse
 
 export type GetLexicon = {
   lemma: string
-  translation: string
-  description: string
+  definitions: GetLexiconDefinition[]
   inflections: WordInflection[]
+}
+
+export type GetLexiconDefinition = {
+  litteral?: string
+  formof?: string
 }
 
 export type GetLexiconFilter = {

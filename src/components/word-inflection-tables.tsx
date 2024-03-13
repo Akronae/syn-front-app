@@ -2,6 +2,7 @@ import { Base, BaseProps, Column, Row, Text, TextProps } from '@proto-native'
 import { ReactElement, cloneElement } from 'react'
 import * as React from 'react-native'
 import {
+  FormInflection,
   GenderInflection,
   NumberInflection,
   WordInflection,
@@ -57,43 +58,34 @@ const getNumberInflectionCells = (
   infl: NumberInflection,
   contraction: 'contracted' | 'uncontracted',
 ) => {
-  const str = (x: string | string[] | undefined) => {
-    if (!x) return ``
-    if (Array.isArray(x)) return x.join(`·`)
-    return x
+  const str = (
+    forms: FormInflection[] | undefined,
+    contraction: 'contracted' | 'uncontracted',
+  ) => {
+    return forms
+      ?.map((form) => {
+        const x = form[contraction]
+        if (!x) return null
+        if (Array.isArray(x)) return x.join(`·`)
+        return x
+      })
+      .filter(Boolean)
+      .join(', ')
   }
 
   const cells = [
-    <Cell key='sg.voc'>
-      {str(infl.singular?.vocative?.[0]?.[contraction])}
-    </Cell>,
-    <Cell key='sg.nom'>
-      {str(infl.singular?.nominative?.[0]?.[contraction])}
-    </Cell>,
-    <Cell key='sg.acc'>
-      {str(infl.singular?.accusative?.[0]?.[contraction])}
-    </Cell>,
-    <Cell key='sg.dat'>{str(infl.singular?.dative?.[0]?.[contraction])}</Cell>,
-    <Cell key='sg.gen'>
-      {str(infl.singular?.genitive?.[0]?.[contraction])}
-    </Cell>,
+    <Cell key='sg.voc'>{str(infl.singular?.vocative, contraction)}</Cell>,
+    <Cell key='sg.nom'>{str(infl.singular?.nominative, contraction)}</Cell>,
+    <Cell key='sg.acc'>{str(infl.singular?.accusative, contraction)}</Cell>,
+    <Cell key='sg.dat'>{str(infl.singular?.dative, contraction)}</Cell>,
+    <Cell key='sg.gen'>{str(infl.singular?.genitive, contraction)}</Cell>,
     ...(infl.plural
       ? [
-          <Cell key='pl.voc'>
-            {str(infl.plural.vocative?.[0]?.[contraction])}
-          </Cell>,
-          <Cell key='pl.nom'>
-            {str(infl.plural.nominative?.[0]?.[contraction])}
-          </Cell>,
-          <Cell key='pl.acc'>
-            {str(infl.plural.accusative?.[0]?.[contraction])}
-          </Cell>,
-          <Cell key='pl.dat'>
-            {str(infl.plural.dative?.[0]?.[contraction])}
-          </Cell>,
-          <Cell key='pl.gen'>
-            {str(infl.plural.genitive?.[0]?.[contraction])}
-          </Cell>,
+          <Cell key='pl.voc'>{str(infl.plural.vocative, contraction)}</Cell>,
+          <Cell key='pl.nom'>{str(infl.plural.nominative, contraction)}</Cell>,
+          <Cell key='pl.acc'>{str(infl.plural.accusative, contraction)}</Cell>,
+          <Cell key='pl.dat'>{str(infl.plural.dative, contraction)}</Cell>,
+          <Cell key='pl.gen'>{str(infl.plural.genitive, contraction)}</Cell>,
         ]
       : []),
   ]
