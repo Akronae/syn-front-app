@@ -23,6 +23,7 @@ export type TextProps = BaseProps<
   flex?: Native.TextStyle['flex']
   textAlign?: Native.TextStyle['textAlign']
   fontSize?: Native.TextStyle['fontSize']
+  fontFamily?: Native.TextStyle['fontFamily']
 } & Partial<TextVariant>
 
 const VariantContext = React.createContext<TextVariant | undefined>(undefined)
@@ -113,6 +114,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     textTransform: textTransformProps,
     textAlign: textAlignProps,
     fontSize: fontSizeProps,
+    fontFamily: fontFamilyProps,
     ...rest
   } = props
   const {
@@ -133,7 +135,6 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
     {
       color,
       fontWeight,
-      fontFamily,
       lineHeight,
       textTransform,
       letterSpacing,
@@ -141,6 +142,7 @@ export function takeTextOwnProps<T extends TextProps>(props: T) {
       textDecorationLine,
       textAlign: textAlignProps ?? textAlign,
       fontSize: fontSizeProps ?? fontSize,
+      fontFamily: fontFamilyProps ?? fontFamily,
     },
     isUndefined,
   )

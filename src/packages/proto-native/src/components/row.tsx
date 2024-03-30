@@ -10,6 +10,7 @@ export type RowProps = BaseProps & {
   flexWrap?: FlexStyle['flexWrap']
   gap?: FlexStyle['gap']
   flex?: FlexStyle['flex']
+  flexGrow?: FlexStyle['flexGrow']
 }
 
 export function Row(props: RowProps) {
@@ -27,4 +28,5 @@ const RowBase = themed<RowProps>(Base, (p) => ({
   flexWrap: p.flexWrap ?? `wrap`,
   gap: p.gap,
   flex: p.flex,
+  flexGrow: p.flexGrow,
 }))

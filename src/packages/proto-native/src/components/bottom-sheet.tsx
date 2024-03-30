@@ -22,6 +22,7 @@ import {
   KeyboardAvoidingViewProps,
   useWindowDimensions,
 } from 'react-native'
+import { ScrollView } from './scroll-view'
 
 export type BottomSheetProps = BaseProps & {
   open?: ReactiveState<boolean>
@@ -55,6 +56,7 @@ export function BottomSheet(props: BottomSheetProps) {
   const yAnimGoTo = 1000
   const yAnimDur = 400
   const yDur = useSharedValue(0)
+  const sheetScrollEnabled = useSharedValue(true)
   const yAnimCallback = () => {
     if (!open.state || y.value == yAnimGoTo) {
       runOnJS(close)()
@@ -105,11 +107,13 @@ export function BottomSheet(props: BottomSheetProps) {
 
   const pan = RNGH.Gesture.Pan()
     .onChange((e) => {
+      if (!sheetScrollEnabled.value) return
       yDur.value = 0
       if (e.translationY < 0) return
       y.value = e.translationY
     })
     .onEnd((e) => {
+      if (!sheetScrollEnabled.value) return
       if (e.velocityY > 1000 || e.translationY / height > 0.2) {
         yDur.value = yAnimDur
         y.value = yAnimGoTo
@@ -133,13 +137,22 @@ export function BottomSheet(props: BottomSheetProps) {
                 style={sheet?.container?.style}
                 behavior={isIos() ? `padding` : undefined}
               >
-                <TopNotchContainer>
+                <TopNotchContainer
+                  onTouchStart={() => (sheetScrollEnabled.value = true)}
+                >
                   {sheet?.topNotch?.slot ?? (
                     <TopNotch style={sheet?.topNotch?.style} />
                   )}
                 </TopNotchContainer>
-
-                <Content style={sheet?.content?.style}>{children}</Content>
+                <ScrollView
+                  onScroll={(e) =>
+                    (sheetScrollEnabled.value =
+                      e.nativeEvent.contentOffset.y == 0)
+                  }
+                  scrollEventThrottle={16}
+                >
+                  <Content style={sheet?.content?.style}>{children}</Content>
+                </ScrollView>
                 <Native.View style={sheet?.footer?.style}>
                   {footer?.(null)}
                 </Native.View>
@@ -176,6 +189,7 @@ const Sheet = themed<KeyboardAvoidingViewProps>(KeyboardAvoidingView, (p) => ({
   borderBottomRightRadius: 0,
   boxShadow: `0px 10px 20px rgba(0, 0, 0, 0.25)`,
   elevation: 20,
+  maxHeight: Native.Dimensions.get(`window`).height * 0.8,
 }))
 
 const TopNotchContainer = themed<BaseProps>(Base, (p) => ({}))
@@ -185,6 +199,7 @@ const TopNotch = themed<BaseProps>(Base, (p) => ({
   borderRadius: 99,
   backgroundColor: p.theme.proto.colors.surface.disabled,
   marginTop: p.theme.proto.spacing(3),
+  marginBottom: p.theme.proto.spacing(3),
   marginLeft: `auto`,
   marginRight: `auto`,
 }))
