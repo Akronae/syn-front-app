@@ -5,9 +5,17 @@ import {
   FormInflection,
   GenderInflection,
   NumberInflection,
+  VerbInflectionContraction,
+  VerbInflectionForm,
+  VerbInflectionInfinitive,
+  VerbInflectionMoods,
+  VerbInflectionTenses,
+  VerbInflectionThemes,
+  VerbInflectionVoices,
   WordInflection,
 } from 'src/api/api-client'
 import { themed } from 'src/packages/proto-native/src/utils/theme/themed'
+import { Greek } from './greek'
 
 export type WordInflectionTablePropss = BaseProps & {
   inflection: WordInflection
@@ -28,9 +36,10 @@ const WordInflectionTableBases = themed(Base, (p) => ({}))
 type CellProps = TextProps & {
   flexGrow?: React.FlexStyle['flexGrow']
   header?: boolean
+  width?: number
 }
 function Cell(props: CellProps) {
-  const { flexGrow, header, ...passed } = props
+  const { flexGrow, header, width, ...passed } = props
 
   return (
     <Base
@@ -41,6 +50,7 @@ function Cell(props: CellProps) {
         borderColor: t.syn.colors.border.disabled,
         borderWidth: 1,
         flexGrow,
+        width,
       })}
       {...passed}
     >
@@ -198,6 +208,183 @@ const getInflectionNounTable = (inflection: GenderInflection) => {
   )
 }
 
+const getVerbInflectionInfinitiveTables = (inf: VerbInflectionInfinitive) => {
+  const contracted = (x: VerbInflectionForm[] | undefined) =>
+    x?.map((x) => x.contracted).join(', ') || ' '
+
+  return (
+    <Row>
+      <Column>
+        <Cell header> </Cell>
+        <Cell header>Act</Cell>
+        <Cell header>Mid</Cell>
+        <Cell header>Pas</Cell>
+      </Column>
+      <Column>
+        <Cell header>Contracted</Cell>
+        <Cell header>{contracted(inf.active)}</Cell>
+        <Cell header>{contracted(inf.middle)}</Cell>
+        <Cell header>{contracted(inf.passive)}</Cell>
+      </Column>
+    </Row>
+  )
+}
+
+const getInflectionVerbTables = (inflection: VerbInflectionTenses) => {
+  type Decl = {
+    tense: keyof VerbInflectionTenses
+    theme: keyof VerbInflectionThemes
+    contraction: keyof VerbInflectionContraction
+    mood: keyof VerbInflectionMoods
+  }
+  const alls: [Decl, VerbInflectionMoods][] = []
+
+  for (const tense in inflection) {
+    const tenses = inflection[tense as keyof VerbInflectionTenses]
+    if (!tenses) continue
+
+    for (const theme in tenses) {
+      const themes = tenses[theme as keyof VerbInflectionThemes]
+      if (!themes) continue
+
+      for (const contraction in themes) {
+        const contractions =
+          themes[contraction as keyof VerbInflectionContraction]
+        if (!contractions) continue
+
+        for (const mood in contractions) {
+          const moods = contractions[mood as keyof VerbInflectionMoods]
+          if (!moods) continue
+
+          alls.push([
+            { tense, theme, contraction, mood } as any,
+            { [mood]: moods },
+          ])
+        }
+      }
+    }
+  }
+
+  const tables: [Decl, ReactElement][] = []
+  for (const [decl, moods] of alls) {
+    if (moods.imperative) {
+      tables.push([decl, getVerbInflectionVoicesTables(moods.imperative)])
+    }
+    if (moods.indicative) {
+      tables.push([decl, getVerbInflectionVoicesTables(moods.indicative)])
+    }
+    if (moods.optative) {
+      tables.push([decl, getVerbInflectionVoicesTables(moods.optative)])
+    }
+    if (moods.pluperfect) {
+      tables.push([decl, getVerbInflectionVoicesTables(moods.pluperfect)])
+    }
+    if (moods.subjunctive) {
+      tables.push([decl, getVerbInflectionVoicesTables(moods.subjunctive)])
+    }
+    if (moods.infinitive) {
+      tables.push([decl, getVerbInflectionInfinitiveTables(moods.infinitive)])
+    }
+  }
+
+  return tables
+}
+
+const getVerbInflectionVoicesTables = (themes: VerbInflectionVoices) => {
+  const s = (x: VerbInflectionForm[] | undefined) =>
+    x ? x.map((x) => x.contracted).join(', ') : ' '
+
+  return (
+    <Row flexWrap='nowrap'>
+      <Column>
+        <Cell header> </Cell>
+        <Cell header flexGrow={1}>
+          Sg
+        </Cell>
+        <Cell header flexGrow={1}>
+          Pl
+        </Cell>
+        <Cell header flexGrow={1}>
+          Du
+        </Cell>
+      </Column>
+      <Column>
+        <Cell header> </Cell>
+        <Cell header>1st</Cell>
+        <Cell header>2nd</Cell>
+        <Cell header>3rd</Cell>
+        <Cell header>1st</Cell>
+        <Cell header>2nd</Cell>
+        <Cell header>3rd</Cell>
+        <Cell header>1st</Cell>
+        <Cell header>2nd</Cell>
+        <Cell header>3rd</Cell>
+      </Column>
+      <React.ScrollView
+        horizontal
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flex: 1 }}
+      >
+        <Column>
+          <Cell header>Active</Cell>
+          <Cell>{s(themes.active?.singular?.first)}</Cell>
+          <Cell>{s(themes.active?.singular?.second)}</Cell>
+          <Cell>{s(themes.active?.singular?.third)}</Cell>
+          <Cell>{s(themes.active?.plural?.first)}</Cell>
+          <Cell>{s(themes.active?.plural?.second)}</Cell>
+          <Cell>{s(themes.active?.plural?.third)}</Cell>
+          <Cell>{s(themes.active?.dual?.first)}</Cell>
+          <Cell>{s(themes.active?.dual?.second)}</Cell>
+          <Cell>{s(themes.active?.dual?.third)}</Cell>
+        </Column>
+        <Column>
+          <Cell header>Middle</Cell>
+          <Cell>{s(themes.middle?.singular?.first)}</Cell>
+          <Cell>{s(themes.middle?.singular?.second)}</Cell>
+          <Cell>{s(themes.middle?.singular?.third)}</Cell>
+          <Cell>{s(themes.middle?.plural?.first)}</Cell>
+          <Cell>{s(themes.middle?.plural?.second)}</Cell>
+          <Cell>{s(themes.middle?.plural?.third)}</Cell>
+          <Cell>{s(themes.middle?.dual?.first)}</Cell>
+          <Cell>{s(themes.middle?.dual?.second)}</Cell>
+          <Cell>{s(themes.middle?.dual?.third)}</Cell>
+        </Column>
+        <Column>
+          <Cell header>Passive</Cell>
+          <Cell>{s(themes.passive?.singular?.first)}</Cell>
+          <Cell>{s(themes.passive?.singular?.second)}</Cell>
+          <Cell>{s(themes.passive?.singular?.third)}</Cell>
+          <Cell>{s(themes.passive?.plural?.first)}</Cell>
+          <Cell>{s(themes.passive?.plural?.second)}</Cell>
+          <Cell>{s(themes.passive?.plural?.third)}</Cell>
+          <Cell>{s(themes.passive?.dual?.first)}</Cell>
+          <Cell>{s(themes.passive?.dual?.second)}</Cell>
+          <Cell>{s(themes.passive?.dual?.third)}</Cell>
+        </Column>
+      </React.ScrollView>
+    </Row>
+  )
+}
+
 const getWordInflectionTables = (inflection: WordInflection) => {
-  return <>{inflection.noun && getInflectionNounTable(inflection.noun)}</>
+  return (
+    <>
+      {inflection.noun && getInflectionNounTable(inflection.noun)}
+      {inflection.pronoun && getInflectionNounTable(inflection.pronoun)}
+      {inflection.article && getInflectionNounTable(inflection.article)}
+      {inflection.verb && (
+        <Column gap={20}>
+          {getInflectionVerbTables(inflection.verb).map(([decl, table], i) => (
+            <Column key={i} gap={10}>
+              <Text capitalize fontSize={16}>
+                {decl.tense} {decl.mood}{' '}
+                {decl.contraction == 'contracted' ? 'contracted' : ''}
+              </Text>
+              {table}
+            </Column>
+          ))}
+        </Column>
+      )}
+    </>
+  )
 }

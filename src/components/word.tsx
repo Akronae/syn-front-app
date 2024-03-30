@@ -1,4 +1,4 @@
-import { Text, themed } from '@proto-native'
+import { Text, from, themed } from '@proto-native'
 import { ViewProps, View } from '@proto-native'
 import * as React from 'react-native'
 import { StyleSheet } from 'react-native'
@@ -11,47 +11,47 @@ export type WordProps = ViewProps & {
 
 function posShort(pos: Types.PartOfSpeech) {
   switch (pos) {
-    case Types.PartOfSpeech.Adjective:
+    case 'adjective':
       return `adjective`
-    case Types.PartOfSpeech.Adverb:
+    case 'adverb':
       return `adverb`
-    case Types.PartOfSpeech.ArticleDefinite:
+    case 'article_definite':
       return `def. art.`
-    case Types.PartOfSpeech.ArticleIndefinite:
+    case 'article_indefinite':
       return `indef art.`
-    case Types.PartOfSpeech.Conjunction:
+    case 'conjunction':
       return `conj.`
-    case Types.PartOfSpeech.Determiner:
+    case 'determiner':
       return `determiner`
-    case Types.PartOfSpeech.Interjection:
+    case 'interjection':
       return `interjection`
-    case Types.PartOfSpeech.NounCommon:
+    case 'noun_common':
       return `noun`
-    case Types.PartOfSpeech.NounProper:
+    case 'noun_proper':
       return `noun (proper)`
-    case Types.PartOfSpeech.Numeral:
+    case 'numeral':
       return `numeral`
-    case Types.PartOfSpeech.Particle:
+    case 'participle':
       return `particle`
-    case Types.PartOfSpeech.PronounDemonstrative:
+    case 'pronoun_demonstrative':
       return `pronoun dem.`
-    case Types.PartOfSpeech.PronounIndefinite:
+    case 'pronoun_indefinite':
       return `pronoun ind.`
-    case Types.PartOfSpeech.PronounInterrogative:
+    case 'pronoun_interrogative':
       return `pronoun int.`
-    case Types.PartOfSpeech.PronounPersonal:
+    case 'pronoun_personal':
       return `pronoun pers.`
-    case Types.PartOfSpeech.PronounReciprocal:
+    case 'pronoun_reciprocal':
       return `pronoun rec.`
-    case Types.PartOfSpeech.PronounReflexive:
+    case 'pronoun_reflexive':
       return `pronoun refl.`
-    case Types.PartOfSpeech.PronounRelative:
+    case 'pronoun_relative':
       return `pronoun rel.`
-    case Types.PartOfSpeech.Preposition:
+    case 'preposition':
       return `preposition`
-    case Types.PartOfSpeech.Verb:
+    case 'verb':
       return `verb`
-    case Types.PartOfSpeech.Participle:
+    case 'particle':
       return `participle`
     default:
       throw new Error(`Unknown part of speech: ${pos}`)
@@ -145,6 +145,7 @@ const Greek = themed(Text, (p) => ({
   fontSize: 20,
   color: p.theme.syn.colors.text.sub,
   textAlign: `center`,
+  fontFamily: p.theme.syn.typography.font.greekRegular,
 }))
 
 const English = themed(Text, (p) => ({
@@ -154,27 +155,27 @@ const English = themed(Text, (p) => ({
 }))
 
 export const styles = StyleSheet.create({
-  [Types.PartOfSpeech.Adjective]: {},
-  [Types.PartOfSpeech.Adverb]: {},
-  [Types.PartOfSpeech.ArticleDefinite]: {},
-  [Types.PartOfSpeech.ArticleIndefinite]: {},
-  [Types.PartOfSpeech.Conjunction]: {},
-  [Types.PartOfSpeech.Determiner]: {},
-  [Types.PartOfSpeech.Interjection]: {},
-  [Types.PartOfSpeech.NounCommon]: {},
-  [Types.PartOfSpeech.NounProper]: {},
-  [Types.PartOfSpeech.Numeral]: {},
-  [Types.PartOfSpeech.Particle]: {},
-  [Types.PartOfSpeech.PronounDemonstrative]: {},
-  [Types.PartOfSpeech.PronounIndefinite]: {},
-  [Types.PartOfSpeech.PronounInterrogative]: {},
-  [Types.PartOfSpeech.PronounPersonal]: {},
-  [Types.PartOfSpeech.PronounReciprocal]: {},
-  [Types.PartOfSpeech.PronounReflexive]: {},
-  [Types.PartOfSpeech.PronounRelative]: {},
-  [Types.PartOfSpeech.Preposition]: {},
-  [Types.PartOfSpeech.Participle]: {},
-  [Types.PartOfSpeech.Verb]: {
+  [from<Types.PartOfSpeech>('adjective')]: {},
+  [from<Types.PartOfSpeech>('adverb')]: {},
+  [from<Types.PartOfSpeech>('article_definite')]: {},
+  [from<Types.PartOfSpeech>('article_indefinite')]: {},
+  [from<Types.PartOfSpeech>('conjunction')]: {},
+  [from<Types.PartOfSpeech>('determiner')]: {},
+  [from<Types.PartOfSpeech>('interjection')]: {},
+  [from<Types.PartOfSpeech>('noun_common')]: {},
+  [from<Types.PartOfSpeech>('noun_proper')]: {},
+  [from<Types.PartOfSpeech>('numeral')]: {},
+  [from<Types.PartOfSpeech>('participle')]: {},
+  [from<Types.PartOfSpeech>('pronoun_demonstrative')]: {},
+  [from<Types.PartOfSpeech>('pronoun_indefinite')]: {},
+  [from<Types.PartOfSpeech>('pronoun_interrogative')]: {},
+  [from<Types.PartOfSpeech>('pronoun_personal')]: {},
+  [from<Types.PartOfSpeech>('pronoun_reciprocal')]: {},
+  [from<Types.PartOfSpeech>('pronoun_reflexive')]: {},
+  [from<Types.PartOfSpeech>('pronoun_relative')]: {},
+  [from<Types.PartOfSpeech>('preposition')]: {},
+  [from<Types.PartOfSpeech>('participle')]: {},
+  [from<Types.PartOfSpeech>('verb')]: {
     backgroundColor: `#6666f917`,
   },
   [GrammaticalCase.Accusative]: {

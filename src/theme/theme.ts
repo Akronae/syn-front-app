@@ -1,13 +1,15 @@
 import * as ProtoNative from '@proto-native'
 
-export type SynTheme = ProtoNative.Theme
+export type SynTheme = typeof ProtoNativeDarkTheme
 
 export type AppTheme = {
   proto: ProtoNative.Theme
   syn: SynTheme
 }
 
-const ProtoNativeDarkTheme: ProtoNative.Theme = {
+const ProtoNativeDarkTheme: ProtoNative.Theme & {
+  typography: { font: { greekRegular: string; greekBold: string } }
+} = {
   dark: true,
   colors: {
     surface: {
@@ -44,6 +46,8 @@ const ProtoNativeDarkTheme: ProtoNative.Theme = {
       bold: `MazzardH-Bold`,
       extraBold: `MazzardH-Bold`,
       black: `MazzardH-Black`,
+      greekRegular: `Inter-Regular`,
+      greekBold: `Inter-Bold`,
     },
     size: {
       xxl: 48,

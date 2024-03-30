@@ -14,6 +14,7 @@ import * as React from 'react-native'
 import { api } from 'src/api/api-client'
 import { Word } from 'src/types'
 import { WordInflectionTables } from './word-inflection-tables'
+import { Greek } from './greek'
 
 export type WordDetailsProps = BaseProps & {
   word: ReactiveState<Word | undefined>
@@ -49,6 +50,9 @@ export function WordDetails(props: WordDetailsProps) {
   if (!word || !wordQuery || !word.state) return null
 
   const declension = word.state.declension
+  const hasArticle =
+    declension.partOfSpeech == 'noun_common' ||
+    declension.partOfSpeech == 'noun_proper'
   const article =
     declension.gender == `masculine`
       ? `ὁ`
@@ -66,17 +70,18 @@ export function WordDetails(props: WordDetailsProps) {
   return (
     <WordDetailsBase {...passed}>
       <BottomSheet open={open}>
-        <Column gap={10}>
+        <Column gap={30}>
           <Column gap={5}>
             <Title>
-              {article} {wordQuery.lemma}
+              {hasArticle && `${article} `}
+              {wordQuery.lemma}
             </Title>
             <Description>{uncontracted?.join(`·`)}</Description>
-          </Column>
-          <Column gap={5}>
-            {wordQuery?.definitions.map((def, i) => (
-              <Description key={i}>{def.litteral || def.formof}</Description>
-            ))}
+            <Column gap={5}>
+              {wordQuery?.definitions.map((def, i) => (
+                <Description key={i}>{def.litteral || def.formof}</Description>
+              ))}
+            </Column>
           </Column>
           {inflection && <WordInflectionTables inflection={inflection} />}
         </Column>
@@ -86,11 +91,8 @@ export function WordDetails(props: WordDetailsProps) {
 }
 
 const WordDetailsBase = themed(Base, (p) => ({}))
-const Title = themed(Text, (p) => ({
+const Title = themed(Greek, (p) => ({
   fontSize: p.theme.syn.typography.size.xl,
-}))
-const Translation = themed(Text, (p) => ({
-  fontSize: p.theme.syn.typography.size.lg,
 }))
 const Description = themed(Text, (p) => ({
   fontSize: p.theme.syn.typography.size.sm,

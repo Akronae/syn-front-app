@@ -6,29 +6,28 @@ export enum GrammaticalCase {
   Vocative = `vocative`,
 }
 
-export enum PartOfSpeech {
-  NounCommon = `noun_common`,
-  NounProper = `noun_proper`,
-  PronounRelative = `pronoun_relative`,
-  PronounInterrogative = `pronoun_interrogative`,
-  PronounIndefinite = `pronoun_indefinite`,
-  PronounReciprocal = `pronoun_reciprocal`,
-  PronounReflexive = `pronoun_reflexive`,
-  PronounDemonstrative = `pronoun_demonstrative`,
-  PronounPersonal = `pronoun_personal`,
-  Verb = `verb`,
-  Adjective = `adjective`,
-  Adverb = `adverb`,
-  Preposition = `preposition`,
-  Conjunction = `conjunction`,
-  Interjection = `interjection`,
-  Particle = `particle`,
-  Participle = `participle`,
-  Numeral = `numeral`,
-  ArticleDefinite = `article_definite`,
-  ArticleIndefinite = `article_indefinite`,
-  Determiner = `determiner`,
-}
+export type PartOfSpeech =
+  | `noun_common`
+  | `noun_proper`
+  | `pronoun_relative`
+  | `pronoun_interrogative`
+  | `pronoun_indefinite`
+  | `pronoun_reciprocal`
+  | `pronoun_reflexive`
+  | `pronoun_demonstrative`
+  | `pronoun_personal`
+  | `verb`
+  | `adjective`
+  | `adverb`
+  | `preposition`
+  | `conjunction`
+  | `interjection`
+  | `particle`
+  | `participle`
+  | `numeral`
+  | `article_definite`
+  | `article_indefinite`
+  | `determiner`
 
 export type Number = 'singular' | 'plural'
 export type Gender = 'masculine' | 'feminine' | 'neuter'
