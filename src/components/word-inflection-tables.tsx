@@ -9,6 +9,7 @@ import {
   VerbInflectionForm,
   VerbInflectionInfinitive,
   VerbInflectionMoods,
+  VerbInflectionParticiple,
   VerbInflectionTenses,
   VerbInflectionThemes,
   VerbInflectionVoices,
@@ -45,7 +46,7 @@ function Cell(props: CellProps) {
     <Base
       tStyle={(t) => ({
         backgroundColor: t.syn.colors.surface.sub,
-        paddingHorizontal: 5,
+        paddingHorizontal: header ? 5 : 10,
         paddingVertical: 10,
         borderColor: t.syn.colors.border.disabled,
         borderWidth: 1,
@@ -72,15 +73,17 @@ const getNumberInflectionCells = (
     forms: FormInflection[] | undefined,
     contraction: 'contracted' | 'uncontracted',
   ) => {
-    return forms
-      ?.map((form) => {
-        const x = form[contraction]
-        if (!x) return null
-        if (Array.isArray(x)) return x.join(`·`)
-        return x
-      })
-      .filter(Boolean)
-      .join(', ')
+    return (
+      forms
+        ?.map((form) => {
+          const x = form[contraction]
+          if (!x) return null
+          if (Array.isArray(x)) return x.join(`·`)
+          return x
+        })
+        .filter(Boolean)
+        .join(', ') || ' '
+    )
   }
 
   const cells = [
@@ -106,15 +109,19 @@ const getNumberInflectionCells = (
     const previous = cells[i - 1] as ReactElement
     const next = cells[i + 1] as ReactElement
 
+    if (previous?.props.children === cell.props.children) {
+      continue
+    }
     if (next?.props.children === cell.props.children) {
       newarr.push(cloneElement(cell, { flexGrow: 1 }))
       continue
     }
-    if (previous?.props.children === cell.props.children) {
-      continue
-    }
+
     newarr.push(cell)
   }
+
+  const isEmptyColumn = newarr.every((x) => !x.props.children.toString().trim())
+  if (isEmptyColumn) return []
 
   return newarr
 }
@@ -128,9 +135,9 @@ const getNounInflectionColumns = (infl: GenderInflection) => {
     const hasUncontracted = uncontracted.some((x) => x.props.children)
 
     return (
-      <Column flexGrow={1} key={header}>
+      <Column key={header}>
         <Cell header>{header}</Cell>
-        <Row flex={1}>
+        <Row flexGrow={1}>
           {hasContracted && (
             <Column flexGrow={1}>
               <Cell header>Contracted</Cell>
@@ -209,23 +216,134 @@ const getInflectionNounTable = (inflection: GenderInflection) => {
 }
 
 const getVerbInflectionInfinitiveTables = (inf: VerbInflectionInfinitive) => {
-  const contracted = (x: VerbInflectionForm[] | undefined) =>
+  const s = (x: VerbInflectionForm[] | undefined) =>
     x?.map((x) => x.contracted).join(', ') || ' '
 
   return (
     <Row>
       <Column>
-        <Cell header> </Cell>
-        <Cell header>Act</Cell>
-        <Cell header>Mid</Cell>
-        <Cell header>Pas</Cell>
+        <Cell header>Active</Cell>
+        <Cell header>{s(inf.active)}</Cell>
       </Column>
       <Column>
-        <Cell header>Contracted</Cell>
-        <Cell header>{contracted(inf.active)}</Cell>
-        <Cell header>{contracted(inf.middle)}</Cell>
-        <Cell header>{contracted(inf.passive)}</Cell>
+        <Cell header>Middle</Cell>
+        <Cell header>{s(inf.middle)}</Cell>
       </Column>
+      <Column>
+        <Cell header>Passive</Cell>
+        <Cell header>{s(inf.passive)}</Cell>
+      </Column>
+    </Row>
+  )
+}
+
+const getVerbInflectionParticipleTables = (inf: VerbInflectionParticiple) => {
+  const s = (x: FormInflection[] | undefined) =>
+    x?.map((x) => x.contracted).join(', ') || ' '
+
+  const col = (
+    voice: keyof VerbInflectionParticiple,
+    gender: keyof GenderInflection,
+  ) => {
+    return (
+      <>
+        <Cell>{s(inf.active?.feminine?.singular?.vocative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.singular?.nominative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.singular?.accusative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.singular?.dative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.singular?.genitive)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.plural?.vocative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.plural?.nominative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.plural?.accusative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.plural?.dative)}</Cell>
+        <Cell>{s(inf[voice]?.[gender]?.plural?.genitive)}</Cell>
+      </>
+    )
+  }
+
+  return (
+    <Row flexWrap='nowrap'>
+      <Column>
+        <Cell header> </Cell>
+        <Cell header> </Cell>
+        <Cell header flexGrow={1}>
+          Sg
+        </Cell>
+        <Cell header flexGrow={1}>
+          Pl
+        </Cell>
+      </Column>
+      <Column>
+        <Cell header> </Cell>
+        <Cell header> </Cell>
+        <Cell header>Voc</Cell>
+        <Cell header>Nom</Cell>
+        <Cell header>Acc</Cell>
+        <Cell header>Dat</Cell>
+        <Cell header>Gen</Cell>
+        <Cell header>Voc</Cell>
+        <Cell header>Nom</Cell>
+        <Cell header>Acc</Cell>
+        <Cell header>Dat</Cell>
+        <Cell header>Gen</Cell>
+      </Column>
+      <React.ScrollView
+        horizontal
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flex: 1 }}
+      >
+        <Column>
+          <Cell header>Active</Cell>
+          <Row>
+            <Column>
+              <Cell header>Fem</Cell>
+              {col('active', 'feminine')}
+            </Column>
+            <Column>
+              <Cell header>Masc</Cell>
+              {col('active', 'masculine')}
+            </Column>
+            <Column>
+              <Cell header>Neu</Cell>
+              {col('active', 'neuter')}
+            </Column>
+          </Row>
+        </Column>
+        <Column>
+          <Cell header>Middle</Cell>
+          <Row>
+            <Column>
+              <Cell header>Fem</Cell>
+              {col('middle', 'feminine')}
+            </Column>
+            <Column>
+              <Cell header>Masc</Cell>
+              {col('middle', 'masculine')}
+            </Column>
+            <Column>
+              <Cell header>Neu</Cell>
+              {col('middle', 'neuter')}
+            </Column>
+          </Row>
+        </Column>
+        <Column>
+          <Cell header>Passive</Cell>
+          <Row>
+            <Column>
+              <Cell header>Fem</Cell>
+              {col('passive', 'feminine')}
+            </Column>
+            <Column>
+              <Cell header>Masc</Cell>
+              {col('passive', 'masculine')}
+            </Column>
+            <Column>
+              <Cell header>Neu</Cell>
+              {col('passive', 'neuter')}
+            </Column>
+          </Row>
+        </Column>
+      </React.ScrollView>
     </Row>
   )
 }
@@ -284,6 +402,9 @@ const getInflectionVerbTables = (inflection: VerbInflectionTenses) => {
     }
     if (moods.infinitive) {
       tables.push([decl, getVerbInflectionInfinitiveTables(moods.infinitive)])
+    }
+    if (moods.participle) {
+      tables.push([decl, getVerbInflectionParticipleTables(moods.participle)])
     }
   }
 
