@@ -415,6 +415,26 @@ const getVerbInflectionVoicesTables = (themes: VerbInflectionVoices) => {
   const s = (x: VerbInflectionForm[] | undefined) =>
     x ? x.map((x) => x.contracted).join(', ') : ' '
 
+  const col = (voice: keyof VerbInflectionVoices) => {
+    return [
+      s(themes[voice]?.singular?.first),
+      s(themes[voice]?.singular?.second),
+      s(themes[voice]?.singular?.third),
+      s(themes[voice]?.plural?.first),
+      s(themes[voice]?.plural?.second),
+      s(themes[voice]?.plural?.third),
+      s(themes[voice]?.dual?.first),
+      s(themes[voice]?.dual?.second),
+      s(themes[voice]?.dual?.third),
+    ]
+  }
+
+  const active = col('active')
+  const middle = col('middle')
+  const passive = col('passive')
+
+  const useMedioPassive = middle.every((x, i) => passive[i] === x)
+
   return (
     <Row flexWrap='nowrap'>
       <Column>
@@ -448,40 +468,34 @@ const getVerbInflectionVoicesTables = (themes: VerbInflectionVoices) => {
       >
         <Column>
           <Cell header>Active</Cell>
-          <Cell>{s(themes.active?.singular?.first)}</Cell>
-          <Cell>{s(themes.active?.singular?.second)}</Cell>
-          <Cell>{s(themes.active?.singular?.third)}</Cell>
-          <Cell>{s(themes.active?.plural?.first)}</Cell>
-          <Cell>{s(themes.active?.plural?.second)}</Cell>
-          <Cell>{s(themes.active?.plural?.third)}</Cell>
-          <Cell>{s(themes.active?.dual?.first)}</Cell>
-          <Cell>{s(themes.active?.dual?.second)}</Cell>
-          <Cell>{s(themes.active?.dual?.third)}</Cell>
+          {active.map((x, i) => (
+            <Cell key={i}>{x}</Cell>
+          ))}
         </Column>
-        <Column>
-          <Cell header>Middle</Cell>
-          <Cell>{s(themes.middle?.singular?.first)}</Cell>
-          <Cell>{s(themes.middle?.singular?.second)}</Cell>
-          <Cell>{s(themes.middle?.singular?.third)}</Cell>
-          <Cell>{s(themes.middle?.plural?.first)}</Cell>
-          <Cell>{s(themes.middle?.plural?.second)}</Cell>
-          <Cell>{s(themes.middle?.plural?.third)}</Cell>
-          <Cell>{s(themes.middle?.dual?.first)}</Cell>
-          <Cell>{s(themes.middle?.dual?.second)}</Cell>
-          <Cell>{s(themes.middle?.dual?.third)}</Cell>
-        </Column>
-        <Column>
-          <Cell header>Passive</Cell>
-          <Cell>{s(themes.passive?.singular?.first)}</Cell>
-          <Cell>{s(themes.passive?.singular?.second)}</Cell>
-          <Cell>{s(themes.passive?.singular?.third)}</Cell>
-          <Cell>{s(themes.passive?.plural?.first)}</Cell>
-          <Cell>{s(themes.passive?.plural?.second)}</Cell>
-          <Cell>{s(themes.passive?.plural?.third)}</Cell>
-          <Cell>{s(themes.passive?.dual?.first)}</Cell>
-          <Cell>{s(themes.passive?.dual?.second)}</Cell>
-          <Cell>{s(themes.passive?.dual?.third)}</Cell>
-        </Column>
+        {!useMedioPassive && (
+          <>
+            <Column>
+              <Cell header>Middle</Cell>
+              {middle.map((x, i) => (
+                <Cell key={i}>{x}</Cell>
+              ))}
+            </Column>
+            <Column>
+              <Cell header>Passive</Cell>
+              {passive.map((x, i) => (
+                <Cell key={i}>{x}</Cell>
+              ))}
+            </Column>
+          </>
+        )}
+        {useMedioPassive && (
+          <Column>
+            <Cell header>Middle/Passive</Cell>
+            {middle.map((x, i) => (
+              <Cell key={i}>{x}</Cell>
+            ))}
+          </Column>
+        )}
       </React.ScrollView>
     </Row>
   )

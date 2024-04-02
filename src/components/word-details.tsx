@@ -4,6 +4,7 @@ import {
   BottomSheet,
   Column,
   ReactiveState,
+  Row,
   Text,
   themed,
   useState,
@@ -79,7 +80,16 @@ export function WordDetails(props: WordDetailsProps) {
             <Description>{uncontracted?.join(`·`)}</Description>
             <Column gap={5}>
               {wordQuery?.definitions.map((def, i) => (
-                <Description key={i}>{def.litteral || def.formof}</Description>
+                <Description key={i}>
+                  <Row flexWrap='nowrap'>
+                    {i + 1}.
+                    <Base
+                      style={{ marginLeft: 20, flexShrink: 1, display: 'flex' }}
+                    >
+                      {(def.litteral || def.formof)?.trim()}
+                    </Base>
+                  </Row>
+                </Description>
               ))}
             </Column>
           </Column>
